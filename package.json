@@ -1,13 +1,12 @@
 {
   "name": "creem",
-  "version": "0.3.31",
+  "version": "0.3.32",
   "author": "Speakeasy",
   "scripts": {
     "lint": "eslint --cache --max-warnings=0 src",
     "build:mcp": "bun src/mcp-server/build.mts",
     "build": "npm run build:mcp && tshy",
-    "prepublishOnly": "npm run build",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+    "prepublishOnly": "npm run build"
   },
   "type": "module",
   "bin": {
@@ -58,6 +57,7 @@
     "typescript-eslint": "^8.22.0",
     "zod": "^3.23.4"
   },
+  "dependencies": {},
   "exports": {
     ".": {
       "import": {
