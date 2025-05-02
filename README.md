@@ -11,36 +11,36 @@ Developer-friendly & type-safe Typescript SDK specifically catered to leverage _
 
 <br /><br />
 
-> [!IMPORTANT]
-> This SDK is not yet ready for production use. To complete setup please follow the steps outlined in your [workspace](https://app.speakeasy.com/org/creem/engineering). Delete this section before > publishing to a package manager.
-
-<!-- Start Summary [summary] -->
 ## Summary
 
 Creem API: Creem is an all-in-one platform for managing subscriptions and recurring revenue, tailored specifically for today's SaaS companies. It enables you to boost revenue, enhance customer retention, and scale your operations seamlessly.'
-<!-- End Summary [summary] -->
 
+<!-- End Summary [summary] -->
 <!-- Start Table of Contents [toc] -->
+
 ## Table of Contents
+
 <!-- $toc-max-depth=2 -->
-* [creem](#creem)
-  * [SDK Installation](#sdk-installation)
-  * [Requirements](#requirements)
-  * [SDK Example Usage](#sdk-example-usage)
-  * [Available Resources and Operations](#available-resources-and-operations)
-  * [Standalone functions](#standalone-functions)
-  * [Retries](#retries)
-  * [Error Handling](#error-handling)
-  * [Server Selection](#server-selection)
-  * [Custom HTTP Client](#custom-http-client)
-  * [Debugging](#debugging)
-* [Development](#development)
-  * [Maturity](#maturity)
-  * [Contributions](#contributions)
+
+- [creem](#creem)
+  - [SDK Installation](#sdk-installation)
+  - [Requirements](#requirements)
+  - [SDK Example Usage](#sdk-example-usage)
+  - [Available Resources and Operations](#available-resources-and-operations)
+  - [Standalone functions](#standalone-functions)
+  - [Retries](#retries)
+  - [Error Handling](#error-handling)
+  - [Server Selection](#server-selection)
+  - [Custom HTTP Client](#custom-http-client)
+  - [Debugging](#debugging)
+- [Development](#development)
+  - [Maturity](#maturity)
+  - [Contributions](#contributions)
 
 <!-- End Table of Contents [toc] -->
 
 <!-- Start SDK Installation [installation] -->
+
 ## SDK Installation
 
 The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https://pnpm.io/), [bun](https://bun.sh/) or [yarn](https://classic.yarnpkg.com/en/) package managers.
@@ -75,7 +75,6 @@ yarn add creem zod
 > [!NOTE]
 > This package is published with CommonJS and ES Modules (ESM) support.
 
-
 ### Model Context Protocol (MCP) Server
 
 This SDK is also an installable MCP server where the various SDK methods are
@@ -93,11 +92,7 @@ Add the following server definition to your `claude_desktop_config.json` file:
   "mcpServers": {
     "Creem": {
       "command": "npx",
-      "args": [
-        "-y", "--package", "creem",
-        "--",
-        "mcp", "start"
-      ]
+      "args": ["-y", "--package", "creem", "--", "mcp", "start"]
     }
   }
 }
@@ -115,11 +110,7 @@ Create a `.cursor/mcp.json` file in your project root with the following content
   "mcpServers": {
     "Creem": {
       "command": "npx",
-      "args": [
-        "-y", "--package", "creem",
-        "--",
-        "mcp", "start"
-      ]
+      "args": ["-y", "--package", "creem", "--", "mcp", "start"]
     }
   }
 }
@@ -137,15 +128,12 @@ chmod +x mcp-server
 
 If the repo is a private repo you must add your Github PAT to download a release `-H "Authorization: Bearer {GITHUB_PAT}"`.
 
-
 ```json
 {
   "mcpServers": {
     "Todos": {
       "command": "./DOWNLOAD/PATH/mcp-server",
-      "args": [
-        "start"
-      ]
+      "args": ["start"]
     }
   }
 }
@@ -156,15 +144,19 @@ For a full list of server arguments, run:
 ```sh
 npx -y --package creem -- mcp start --help
 ```
+
 <!-- End SDK Installation [installation] -->
 
 <!-- Start Requirements [requirements] -->
+
 ## Requirements
 
 For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
+
 <!-- End Requirements [requirements] -->
 
 <!-- Start SDK Example Usage [usage] -->
+
 ## SDK Example Usage
 
 ### Example
@@ -185,11 +177,12 @@ async function run() {
 }
 
 run();
-
 ```
+
 <!-- End SDK Example Usage [usage] -->
 
 <!-- Start Available Resources and Operations [operations] -->
+
 ## Available Resources and Operations
 
 <details open>
@@ -197,29 +190,30 @@ run();
 
 ### [Creem SDK](docs/sdks/creem/README.md)
 
-* [retrieveProduct](docs/sdks/creem/README.md#retrieveproduct) - Retrieve a product
-* [createProduct](docs/sdks/creem/README.md#createproduct) - Creates a new product.
-* [searchProducts](docs/sdks/creem/README.md#searchproducts) - List all products
-* [retrieveCustomer](docs/sdks/creem/README.md#retrievecustomer) - Retrieve a customer
-* [generateCustomerLinks](docs/sdks/creem/README.md#generatecustomerlinks) - Generate Customer Links
-* [retrieveSubscription](docs/sdks/creem/README.md#retrievesubscription) - Retrieve a subscription
-* [cancelSubscription](docs/sdks/creem/README.md#cancelsubscription) - Cancel a subscription.
-* [updateSubscription](docs/sdks/creem/README.md#updatesubscription) - Update a subscription.
-* [upgradeSubscription](docs/sdks/creem/README.md#upgradesubscription) - Upgrade a subscription to a different product
-* [retrieveCheckout](docs/sdks/creem/README.md#retrievecheckout) - Retrieve a new checkout session.
-* [createCheckout](docs/sdks/creem/README.md#createcheckout) - Creates a new checkout session.
-* [activateLicense](docs/sdks/creem/README.md#activatelicense) - Activates a license key.
-* [deactivateLicense](docs/sdks/creem/README.md#deactivatelicense) - Deactivate a license key instance.
-* [validateLicense](docs/sdks/creem/README.md#validatelicense) - Validates a license key or instance.
-* [retrieveDiscount](docs/sdks/creem/README.md#retrievediscount) - Retrieve discount
-* [createDiscount](docs/sdks/creem/README.md#creatediscount) - Create a discount.
-* [deleteDiscount](docs/sdks/creem/README.md#deletediscount) - Delete a discount.
-* [searchTransactions](docs/sdks/creem/README.md#searchtransactions) - List all transactions
+- [retrieveProduct](docs/sdks/creem/README.md#retrieveproduct) - Retrieve a product
+- [createProduct](docs/sdks/creem/README.md#createproduct) - Creates a new product.
+- [searchProducts](docs/sdks/creem/README.md#searchproducts) - List all products
+- [retrieveCustomer](docs/sdks/creem/README.md#retrievecustomer) - Retrieve a customer
+- [generateCustomerLinks](docs/sdks/creem/README.md#generatecustomerlinks) - Generate Customer Links
+- [retrieveSubscription](docs/sdks/creem/README.md#retrievesubscription) - Retrieve a subscription
+- [cancelSubscription](docs/sdks/creem/README.md#cancelsubscription) - Cancel a subscription.
+- [updateSubscription](docs/sdks/creem/README.md#updatesubscription) - Update a subscription.
+- [upgradeSubscription](docs/sdks/creem/README.md#upgradesubscription) - Upgrade a subscription to a different product
+- [retrieveCheckout](docs/sdks/creem/README.md#retrievecheckout) - Retrieve a new checkout session.
+- [createCheckout](docs/sdks/creem/README.md#createcheckout) - Creates a new checkout session.
+- [activateLicense](docs/sdks/creem/README.md#activatelicense) - Activates a license key.
+- [deactivateLicense](docs/sdks/creem/README.md#deactivatelicense) - Deactivate a license key instance.
+- [validateLicense](docs/sdks/creem/README.md#validatelicense) - Validates a license key or instance.
+- [retrieveDiscount](docs/sdks/creem/README.md#retrievediscount) - Retrieve discount
+- [createDiscount](docs/sdks/creem/README.md#creatediscount) - Create a discount.
+- [deleteDiscount](docs/sdks/creem/README.md#deletediscount) - Delete a discount.
+- [searchTransactions](docs/sdks/creem/README.md#searchtransactions) - List all transactions
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Standalone functions [standalone-funcs] -->
+
 ## Standalone functions
 
 All the methods listed above are available as standalone functions. These
@@ -257,42 +251,47 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 <!-- End Standalone functions [standalone-funcs] -->
 
 <!-- Start Retries [retries] -->
+
 ## Retries
 
-Some of the endpoints in this SDK support retries.  If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API.  However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+Some of the endpoints in this SDK support retries. If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API. However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
 
 To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
+
 ```typescript
 import { Creem } from "creem";
 
 const creem = new Creem();
 
 async function run() {
-  const result = await creem.retrieveProduct({
-    productId: "<id>",
-    xApiKey: "<value>",
-  }, {
-    retries: {
-      strategy: "backoff",
-      backoff: {
-        initialInterval: 1,
-        maxInterval: 50,
-        exponent: 1.1,
-        maxElapsedTime: 100,
-      },
-      retryConnectionErrors: false,
+  const result = await creem.retrieveProduct(
+    {
+      productId: "<id>",
+      xApiKey: "<value>",
     },
-  });
+    {
+      retries: {
+        strategy: "backoff",
+        backoff: {
+          initialInterval: 1,
+          maxInterval: 50,
+          exponent: 1.1,
+          maxElapsedTime: 100,
+        },
+        retryConnectionErrors: false,
+      },
+    },
+  );
 
   // Handle the result
   console.log(result);
 }
 
 run();
-
 ```
 
 If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
+
 ```typescript
 import { Creem } from "creem";
 
@@ -320,11 +319,12 @@ async function run() {
 }
 
 run();
-
 ```
+
 <!-- End Retries [retries] -->
 
 <!-- Start Error Handling [errors] -->
+
 ## Error Handling
 
 If the request fails due to, for example 4XX or 5XX status codes, it will throw a `APIError`.
@@ -352,7 +352,7 @@ async function run() {
   } catch (err) {
     switch (true) {
       // The server response does not match the expected SDK schema
-      case (err instanceof SDKValidationError):
+      case err instanceof SDKValidationError:
         {
           // Pretty-print will provide a human-readable multi-line error message
           console.error(err.pretty());
@@ -362,7 +362,7 @@ async function run() {
         }
         apierror.js;
       // Server returned an error status code or an unknown content type
-      case (err instanceof APIError): {
+      case err instanceof APIError: {
         console.error(err.statusCode);
         console.error(err.rawResponse.body);
         return;
@@ -376,23 +376,24 @@ async function run() {
 }
 
 run();
-
 ```
 
 Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted multi-line string since validation errors can list many issues and the plain error string may be difficult read when debugging.
 
 In some rare cases, the SDK can fail to get a response from the server or even make the request due to unexpected circumstances such as network conditions. These types of errors are captured in the `models/errors/httpclienterrors.ts` module:
 
-| HTTP Client Error                                    | Description                                          |
-| ---------------------------------------------------- | ---------------------------------------------------- |
-| RequestAbortedError                                  | HTTP request was aborted by the client               |
-| RequestTimeoutError                                  | HTTP request timed out due to an AbortSignal signal  |
-| ConnectionError                                      | HTTP client was unable to make a request to a server |
-| InvalidRequestError                                  | Any input used to create a request is invalid        |
-| UnexpectedClientError                                | Unrecognised or unexpected error                     |
+| HTTP Client Error     | Description                                          |
+| --------------------- | ---------------------------------------------------- |
+| RequestAbortedError   | HTTP request was aborted by the client               |
+| RequestTimeoutError   | HTTP request timed out due to an AbortSignal signal  |
+| ConnectionError       | HTTP client was unable to make a request to a server |
+| InvalidRequestError   | Any input used to create a request is invalid        |
+| UnexpectedClientError | Unrecognised or unexpected error                     |
+
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
+
 ## Server Selection
 
 ### Select Server by Index
@@ -424,12 +425,12 @@ async function run() {
 }
 
 run();
-
 ```
 
 ### Override Server URL Per-Client
 
 The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
+
 ```typescript
 import { Creem } from "creem";
 
@@ -448,11 +449,12 @@ async function run() {
 }
 
 run();
-
 ```
+
 <!-- End Server Selection [server] -->
 
 <!-- Start Custom HTTP Client [http-client] -->
+
 ## Custom HTTP Client
 
 The TypeScript SDK makes API calls using an `HTTPClient` that wraps the native
@@ -477,12 +479,12 @@ const httpClient = new HTTPClient({
   // fetcher takes a function that has the same signature as native `fetch`.
   fetcher: (request) => {
     return fetch(request);
-  }
+  },
 });
 
 httpClient.addHook("beforeRequest", (request) => {
   const nextRequest = new Request(request, {
-    signal: request.signal || AbortSignal.timeout(5000)
+    signal: request.signal || AbortSignal.timeout(5000),
   });
 
   nextRequest.headers.set("x-custom-header", "custom value");
@@ -499,9 +501,11 @@ httpClient.addHook("requestError", (error, request) => {
 
 const sdk = new Creem({ httpClient });
 ```
+
 <!-- End Custom HTTP Client [http-client] -->
 
 <!-- Start Debugging [debug] -->
+
 ## Debugging
 
 You can setup your SDK to emit debug logs for SDK requests and responses.
@@ -518,6 +522,7 @@ const sdk = new Creem({ debugLogger: console });
 ```
 
 You can also enable a default debug logger by setting an environment variable `CREEM_DEBUG` to true.
+
 <!-- End Debugging [debug] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
