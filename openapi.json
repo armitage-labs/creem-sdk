@@ -763,9 +763,6 @@
     },
     {
       "url": "https://test-api.creem.io"
-    },
-    {
-      "url": "http://localhost:8000"
     }
   ],
   "components": {
