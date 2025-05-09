@@ -1943,8 +1943,7 @@
           "mode",
           "object",
           "status",
-          "product",
-          "checkout_url"
+          "product"
         ]
       },
       "CustomerRequestEntity": {

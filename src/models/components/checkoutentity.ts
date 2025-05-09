@@ -109,7 +109,7 @@ export type CheckoutEntity = {
   /**
    * The URL to which the customer will be redirected to complete the payment.
    */
-  checkoutUrl: string;
+  checkoutUrl?: string | undefined;
   /**
    * The URL to which the user will be redirected after the checkout process is completed.
    */
@@ -302,7 +302,7 @@ export const CheckoutEntity$inboundSchema: z.ZodType<
   subscription: z.lazy(() => Subscription$inboundSchema).optional(),
   customer: z.lazy(() => CheckoutEntityCustomer$inboundSchema).optional(),
   custom_fields: z.array(CustomField$inboundSchema).optional(),
-  checkout_url: z.string(),
+  checkout_url: z.string().optional(),
   success_url: z.nullable(z.string()).optional(),
   feature: z.array(ProductFeatureEntity$inboundSchema).optional(),
   metadata: z.record(z.any()).optional(),
@@ -328,7 +328,7 @@ export type CheckoutEntity$Outbound = {
   subscription?: Subscription$Outbound | undefined;
   customer?: CheckoutEntityCustomer$Outbound | undefined;
   custom_fields?: Array<CustomField$Outbound> | undefined;
-  checkout_url: string;
+  checkout_url?: string | undefined;
   success_url?: string | null | undefined;
   feature?: Array<ProductFeatureEntity$Outbound> | undefined;
   metadata?: { [k: string]: any } | undefined;
@@ -351,7 +351,7 @@ export const CheckoutEntity$outboundSchema: z.ZodType<
   subscription: z.lazy(() => Subscription$outboundSchema).optional(),
   customer: z.lazy(() => CheckoutEntityCustomer$outboundSchema).optional(),
   customFields: z.array(CustomField$outboundSchema).optional(),
-  checkoutUrl: z.string(),
+  checkoutUrl: z.string().optional(),
   successUrl: z.nullable(z.string()).optional(),
   feature: z.array(ProductFeatureEntity$outboundSchema).optional(),
   metadata: z.record(z.any()).optional(),

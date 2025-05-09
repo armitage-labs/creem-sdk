@@ -58,13 +58,12 @@ let value: CheckoutEntity = {
     createdAt: new Date("2023-09-13T00:00:00Z"),
     updatedAt: new Date("2023-09-13T00:00:00Z"),
   },
-  checkoutUrl: "https://back-arcade.info/",
   successUrl: "https://example.com/return",
   feature: [
     {
       license: {
         id: "<id>",
-        mode: "sandbox",
+        mode: "live",
         object: "<value>",
         status: "active",
         key: "ABC123-XYZ456-XYZ456-XYZ456",
@@ -74,7 +73,7 @@ let value: CheckoutEntity = {
         createdAt: new Date("2023-09-13T00:00:00Z"),
         instance: {
           id: "<id>",
-          mode: "live",
+          mode: "test",
           object: "license-instance",
           name: "My Customer License Instance",
           status: "active",
@@ -106,7 +105,7 @@ let value: CheckoutEntity = {
 | `subscription`                                                                         | [components.Subscription](../../models/components/subscription.md)                     | :heavy_minus_sign:                                                                     | The subscription associated with the checkout session.                                 |                                                                                        |
 | `customer`                                                                             | [components.CheckoutEntityCustomer](../../models/components/checkoutentitycustomer.md) | :heavy_minus_sign:                                                                     | The customer associated with the checkout session.                                     |                                                                                        |
 | `customFields`                                                                         | [components.CustomField](../../models/components/customfield.md)[]                     | :heavy_minus_sign:                                                                     | Additional information collected from your customer during the checkout process.       |                                                                                        |
-| `checkoutUrl`                                                                          | *string*                                                                               | :heavy_check_mark:                                                                     | The URL to which the customer will be redirected to complete the payment.              |                                                                                        |
+| `checkoutUrl`                                                                          | *string*                                                                               | :heavy_minus_sign:                                                                     | The URL to which the customer will be redirected to complete the payment.              |                                                                                        |
 | `successUrl`                                                                           | *string*                                                                               | :heavy_minus_sign:                                                                     | The URL to which the user will be redirected after the checkout process is completed.  | https://example.com/return                                                             |
 | `feature`                                                                              | [components.ProductFeatureEntity](../../models/components/productfeatureentity.md)[]   | :heavy_minus_sign:                                                                     | Features issued for the order.                                                         |                                                                                        |
 | `metadata`                                                                             | Record<string, *any*>                                                                  | :heavy_minus_sign:                                                                     | Metadata for the checkout in the form of key-value pairs                               | {<br/>"userId": "user_123",<br/>"visitCount": 42,<br/>"lastVisit": "2023-04-01"<br/>}  |
