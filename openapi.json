@@ -763,6 +763,9 @@
     },
     {
       "url": "https://test-api.creem.io"
+    },
+    {
+      "url": "http://localhost:8000"
     }
   ],
   "components": {
@@ -1622,10 +1625,10 @@
           "type": {
             "type": "string",
             "description": "The type of order. This can specify whether it's a regular purchase, subscription, etc.",
-            "example": "subscription",
+            "example": "recurring",
             "enum": [
-              "subscription",
-              "purchase"
+              "recurring",
+              "onetime"
             ]
           },
           "affiliate": {
