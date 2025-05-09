@@ -38,8 +38,8 @@ export type OrderEntityStatus = ClosedEnum<typeof OrderEntityStatus>;
  * The type of order. This can specify whether it's a regular purchase, subscription, etc.
  */
 export const OrderEntityType = {
-  Subscription: "subscription",
-  Purchase: "purchase",
+  Recurring: "recurring",
+  Onetime: "onetime",
 } as const;
 /**
  * The type of order. This can specify whether it's a regular purchase, subscription, etc.

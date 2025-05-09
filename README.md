@@ -404,6 +404,7 @@ You can override the default server globally by passing a server index to the `s
 | --- | --------------------------- | ----------- |
 | 0   | `https://api.creem.io`      |             |
 | 1   | `https://test-api.creem.io` |             |
+| 2   | `http://localhost:8000`     |             |
 
 #### Example
 
@@ -411,7 +412,7 @@ You can override the default server globally by passing a server index to the `s
 import { Creem } from "creem";
 
 const creem = new Creem({
-  serverIdx: 1,
+  serverIdx: 2,
 });
 
 async function run() {

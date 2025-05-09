@@ -7,11 +7,11 @@ The type of order. This can specify whether it's a regular purchase, subscriptio
 ```typescript
 import { OrderEntityType } from "creem/models/components";
 
-let value: OrderEntityType = "subscription";
+let value: OrderEntityType = "recurring";
 ```
 
 ## Values
 
 ```typescript
-"subscription" | "purchase"
+"recurring" | "onetime"
 ```

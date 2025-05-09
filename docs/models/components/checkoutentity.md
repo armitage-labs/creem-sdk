@@ -54,7 +54,7 @@ let value: CheckoutEntity = {
     fxCurrency: "EUR",
     fxRate: 1.2,
     status: "pending",
-    type: "subscription",
+    type: "recurring",
     createdAt: new Date("2023-09-13T00:00:00Z"),
     updatedAt: new Date("2023-09-13T00:00:00Z"),
   },
