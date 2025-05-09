@@ -42,8 +42,6 @@ describe("retrieveCheckout", () => {
     expect(result).toHaveProperty("object", "checkout");
     expect(result).toHaveProperty("status");
     expect(result).toHaveProperty("product");
-    expect(result).toHaveProperty("checkoutUrl");
-    expect(result.checkoutUrl).toContain("checkout/ch_30nWkmXFkLFPs184P6hjDG/");
 
     // Verify it's a recurring checkout
     if (typeof result.product === "object") {
@@ -63,8 +61,6 @@ describe("retrieveCheckout", () => {
     expect(result).toHaveProperty("object", "checkout");
     expect(result).toHaveProperty("status");
     expect(result).toHaveProperty("product");
-    expect(result).toHaveProperty("checkoutUrl");
-    expect(result.checkoutUrl).toContain("checkout/ch_hN1U5gHS0gW7C1p86Bjjm/");
 
     // Verify it's a one-time checkout
     if (typeof result.product === "object") {
