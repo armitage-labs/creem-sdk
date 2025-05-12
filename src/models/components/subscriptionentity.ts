@@ -38,7 +38,7 @@ import {
  */
 export const SubscriptionEntityMode = {
   Test: "test",
-  Live: "live",
+  Prod: "prod",
   Sandbox: "sandbox",
 } as const;
 /**

@@ -7,12 +7,12 @@ import { CheckoutEntity } from "creem/models/components";
 
 let value: CheckoutEntity = {
   id: "<id>",
-  mode: "live",
+  mode: "prod",
   object: "<value>",
   status: "<value>",
   product: {
     id: "<id>",
-    mode: "live",
+    mode: "prod",
     object: "<value>",
     name: "<value>",
     description: "This is a sample product description.",
@@ -63,7 +63,7 @@ let value: CheckoutEntity = {
     {
       license: {
         id: "<id>",
-        mode: "live",
+        mode: "prod",
         object: "<value>",
         status: "active",
         key: "ABC123-XYZ456-XYZ456-XYZ456",

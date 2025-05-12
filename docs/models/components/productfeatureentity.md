@@ -18,7 +18,7 @@ let value: ProductFeatureEntity = {
     createdAt: new Date("2023-09-13T00:00:00Z"),
     instance: {
       id: "<id>",
-      mode: "live",
+      mode: "prod",
       object: "license-instance",
       name: "My Customer License Instance",
       status: "active",

@@ -20,7 +20,7 @@ import {
  */
 export const Mode = {
   Test: "test",
-  Live: "live",
+  Prod: "prod",
   Sandbox: "sandbox",
 } as const;
 /**

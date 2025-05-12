@@ -14,7 +14,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  */
 export const SubscriptionItemEntityMode = {
   Test: "test",
-  Live: "live",
+  Prod: "prod",
   Sandbox: "sandbox",
 } as const;
 /**

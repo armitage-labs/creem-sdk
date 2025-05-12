@@ -7,7 +7,7 @@ import { SubscriptionEntity } from "creem/models/components";
 
 let value: SubscriptionEntity = {
   id: "<id>",
-  mode: "live",
+  mode: "prod",
   object: "subscription",
   product: {
     id: "<id>",

@@ -14,7 +14,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  */
 export const LicenseEntityMode = {
   Test: "test",
-  Live: "live",
+  Prod: "prod",
   Sandbox: "sandbox",
 } as const;
 /**
@@ -51,7 +51,7 @@ export type ExpiresAt = {};
  */
 export const LicenseEntityInstanceMode = {
   Test: "test",
-  Live: "live",
+  Prod: "prod",
   Sandbox: "sandbox",
 } as const;
 /**

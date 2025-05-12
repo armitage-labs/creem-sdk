@@ -7,11 +7,11 @@ String representing the environment.
 ```typescript
 import { OrderEntityMode } from "creem/models/components";
 
-let value: OrderEntityMode = "live";
+let value: OrderEntityMode = "prod";
 ```
 
 ## Values
 
 ```typescript
-"test" | "live" | "sandbox"
+"test" | "prod" | "sandbox"
 ```

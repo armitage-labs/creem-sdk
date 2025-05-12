@@ -13,5 +13,5 @@ let value: DiscountEntityMode = "sandbox";
 ## Values
 
 ```typescript
-"test" | "live" | "sandbox"
+"test" | "prod" | "sandbox"
 ```

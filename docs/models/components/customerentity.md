@@ -7,7 +7,7 @@ import { CustomerEntity } from "creem/models/components";
 
 let value: CustomerEntity = {
   id: "<id>",
-  mode: "live",
+  mode: "prod",
   object: "<value>",
   email: "user@example.com",
   name: "John Doe",

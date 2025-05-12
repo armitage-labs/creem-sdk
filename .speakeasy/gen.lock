@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 091f072e-89b5-4c97-b605-63f1bf64ee97
 management:
-  docChecksum: 95e9791d7575466c755c46d856cbd03f
+  docChecksum: 55276d20f451fbd97c52177873402f09
   docVersion: v1
-  speakeasyVersion: 1.543.2
-  generationVersion: 2.598.21
-  releaseVersion: 0.3.35
-  configChecksum: 3e08fbd63d811ce3dc49d6f19ea24b1f
+  speakeasyVersion: 1.543.4
+  generationVersion: 2.598.22
+  releaseVersion: 0.3.36
+  configChecksum: 873b9bd80949387c14bfbcb13580d18a
   published: true
 features:
   typescript:
@@ -18,7 +18,7 @@ features:
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
     globalSecurityCallbacks: 0.1.0
-    globalServerURLs: 2.82.4
+    globalServerURLs: 2.82.5
     mcpServer: 0.9.2
     nullables: 0.1.1
     responseFormat: 0.2.3
@@ -442,7 +442,7 @@ examples:
         application/json: {"product_id": "prod_1234567890", "units": 1, "discount_code": "SUMMER2024", "customer": {"id": "cust_1234567890", "email": "user@example.com"}, "custom_field": [{"type": "text", "key": "<key>", "label": "<value>"}, {"type": "text", "key": "<key>", "label": "<value>"}, {"type": "text", "key": "<key>", "label": "<value>"}], "metadata": {"userId": "user_123", "visitCount": 42, "lastVisit": "2023-04-01"}}
       responses:
         "200":
-          application/json: {"id": "<id>", "mode": "live", "object": "<value>", "status": "<value>", "product": "Rustic Cotton Mouse", "units": 0, "order": {"id": "<id>", "mode": "live", "object": "<value>", "product": "Rustic Cotton Hat", "transaction": "tx_1234567890", "discount": "dis_1234567890", "amount": 2000, "sub_total": 1800, "tax_amount": 200, "discount_amount": 100, "amount_due": 1900, "amount_paid": 1900, "currency": "EUR", "fx_amount": 15, "fx_currency": "EUR", "fx_rate": 1.2, "status": "pending", "type": "recurring", "created_at": "2023-09-13T00:00:00Z", "updated_at": "2023-09-13T00:00:00Z"}, "checkout_url": "https://overcooked-inspection.name/", "success_url": "https://example.com/return", "feature": [{"license": {"id": "<id>", "mode": "test", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": {"id": "<id>", "mode": "sandbox", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}}}, {"license": {"id": "<id>", "mode": "test", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": {"id": "<id>", "mode": "live", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}}}], "metadata": {"userId": "user_123", "visitCount": 42, "lastVisit": "2023-04-01"}}
+          application/json: {"id": "<id>", "mode": "sandbox", "object": "<value>", "status": "<value>", "product": "Rustic Cotton Mouse", "units": 0, "order": {"id": "<id>", "mode": "prod", "object": "<value>", "product": "Rustic Cotton Hat", "transaction": "tx_1234567890", "discount": "dis_1234567890", "amount": 2000, "sub_total": 1800, "tax_amount": 200, "discount_amount": 100, "amount_due": 1900, "amount_paid": 1900, "currency": "EUR", "fx_amount": 15, "fx_currency": "EUR", "fx_rate": 1.2, "status": "pending", "type": "recurring", "created_at": "2023-09-13T00:00:00Z", "updated_at": "2023-09-13T00:00:00Z"}, "checkout_url": "https://overcooked-inspection.name/", "success_url": "https://example.com/return", "feature": [{"license": {"id": "<id>", "mode": "test", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": {"id": "<id>", "mode": "sandbox", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}}}, {"license": {"id": "<id>", "mode": "test", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": {"id": "<id>", "mode": "prod", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}}}], "metadata": {"userId": "user_123", "visitCount": 42, "lastVisit": "2023-04-01"}}
   retrieveProduct:
     speakeasy-default-retrieve-product:
       parameters:
@@ -480,7 +480,7 @@ examples:
           x-api-key: "<value>"
       responses:
         "200":
-          application/json: {"id": "<id>", "mode": "live", "object": "<value>", "email": "user@example.com", "name": "John Doe", "country": "US", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}
+          application/json: {"id": "<id>", "mode": "prod", "object": "<value>", "email": "user@example.com", "name": "John Doe", "country": "US", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}
   generateCustomerLinks:
     speakeasy-default-generate-customer-links:
       parameters:
@@ -500,7 +500,7 @@ examples:
           x-api-key: "<value>"
       responses:
         "200":
-          application/json: {"id": "<id>", "mode": "test", "object": "subscription", "product": {"id": "<id>", "mode": "live", "object": "<value>", "name": "<value>", "description": "This is a sample product description.", "image_url": "https://example.com/image.jpg", "features": [{"id": "<id>", "type": "<value>", "description": "Get access to discord server."}, {"id": "<id>", "type": "<value>", "description": "Get access to discord server."}, {"id": "<id>", "type": "<value>", "description": "Get access to discord server."}], "price": 400, "currency": "EUR", "billing_type": "recurring", "billing_period": "every-month", "status": "<value>", "tax_mode": "inclusive", "tax_category": "saas", "product_url": "https://creem.io/product/prod_123123123123", "default_success_url": "https://example.com/?status=successful", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}, "customer": {"id": "<id>", "mode": "sandbox", "object": "<value>", "email": "user@example.com", "name": "John Doe", "country": "US", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}, "collection_method": "charge_automatically", "status": "active", "last_transaction_id": "tran_3e6Z6TzvHKdsjEgXnGDEp0", "last_transaction": {"id": "<id>", "mode": "live", "object": "transaction", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "EUR", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 6937.17}, "last_transaction_date": "2024-09-12T12:34:56Z", "next_transaction_date": "2024-09-12T12:34:56Z", "current_period_start_date": "2024-09-12T12:34:56Z", "current_period_end_date": "2024-09-12T12:34:56Z", "canceled_at": "2024-09-12T12:34:56Z", "created_at": "2024-01-01T00:00:00Z", "updated_at": "2024-09-12T12:34:56Z"}
+          application/json: {"id": "<id>", "mode": "test", "object": "subscription", "product": {"id": "<id>", "mode": "prod", "object": "<value>", "name": "<value>", "description": "This is a sample product description.", "image_url": "https://example.com/image.jpg", "features": [{"id": "<id>", "type": "<value>", "description": "Get access to discord server."}, {"id": "<id>", "type": "<value>", "description": "Get access to discord server."}, {"id": "<id>", "type": "<value>", "description": "Get access to discord server."}], "price": 400, "currency": "EUR", "billing_type": "recurring", "billing_period": "every-month", "status": "<value>", "tax_mode": "inclusive", "tax_category": "saas", "product_url": "https://creem.io/product/prod_123123123123", "default_success_url": "https://example.com/?status=successful", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}, "customer": {"id": "<id>", "mode": "sandbox", "object": "<value>", "email": "user@example.com", "name": "John Doe", "country": "US", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}, "collection_method": "charge_automatically", "status": "active", "last_transaction_id": "tran_3e6Z6TzvHKdsjEgXnGDEp0", "last_transaction": {"id": "<id>", "mode": "prod", "object": "transaction", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "EUR", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 6937.17}, "last_transaction_date": "2024-09-12T12:34:56Z", "next_transaction_date": "2024-09-12T12:34:56Z", "current_period_start_date": "2024-09-12T12:34:56Z", "current_period_end_date": "2024-09-12T12:34:56Z", "canceled_at": "2024-09-12T12:34:56Z", "created_at": "2024-01-01T00:00:00Z", "updated_at": "2024-09-12T12:34:56Z"}
   cancelSubscription:
     speakeasy-default-cancel-subscription:
       parameters:
@@ -510,7 +510,7 @@ examples:
           x-api-key: "<value>"
       responses:
         "200":
-          application/json: {"id": "<id>", "mode": "sandbox", "object": "subscription", "product": "Practical Bronze Table", "customer": {"id": "<id>", "mode": "live", "object": "<value>", "email": "user@example.com", "name": "John Doe", "country": "US", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}, "collection_method": "charge_automatically", "status": "active", "last_transaction_id": "tran_3e6Z6TzvHKdsjEgXnGDEp0", "last_transaction": {"id": "<id>", "mode": "sandbox", "object": "transaction", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "EUR", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 127.79}, "last_transaction_date": "2024-09-12T12:34:56Z", "next_transaction_date": "2024-09-12T12:34:56Z", "current_period_start_date": "2024-09-12T12:34:56Z", "current_period_end_date": "2024-09-12T12:34:56Z", "canceled_at": "2024-09-12T12:34:56Z", "created_at": "2024-01-01T00:00:00Z", "updated_at": "2024-09-12T12:34:56Z"}
+          application/json: {"id": "<id>", "mode": "sandbox", "object": "subscription", "product": "Practical Bronze Table", "customer": "<value>", "collection_method": "charge_automatically", "status": "active", "last_transaction_id": "tran_3e6Z6TzvHKdsjEgXnGDEp0", "last_transaction": {"id": "<id>", "mode": "sandbox", "object": "transaction", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "EUR", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 127.79}, "last_transaction_date": "2024-09-12T12:34:56Z", "next_transaction_date": "2024-09-12T12:34:56Z", "current_period_start_date": "2024-09-12T12:34:56Z", "current_period_end_date": "2024-09-12T12:34:56Z", "canceled_at": "2024-09-12T12:34:56Z", "created_at": "2024-01-01T00:00:00Z", "updated_at": "2024-09-12T12:34:56Z"}
   updateSubscription:
     speakeasy-default-update-subscription:
       parameters:
@@ -522,7 +522,7 @@ examples:
         application/json: {"update_behavior": "proration-charge"}
       responses:
         "200":
-          application/json: {"id": "<id>", "mode": "sandbox", "object": "subscription", "product": "Bespoke Metal Soap", "customer": {"id": "<id>", "mode": "live", "object": "<value>", "email": "user@example.com", "name": "John Doe", "country": "US", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}, "collection_method": "charge_automatically", "status": "active", "last_transaction_id": "tran_3e6Z6TzvHKdsjEgXnGDEp0", "last_transaction": {"id": "<id>", "mode": "test", "object": "transaction", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "EUR", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 5477.37}, "last_transaction_date": "2024-09-12T12:34:56Z", "next_transaction_date": "2024-09-12T12:34:56Z", "current_period_start_date": "2024-09-12T12:34:56Z", "current_period_end_date": "2024-09-12T12:34:56Z", "canceled_at": "2024-09-12T12:34:56Z", "created_at": "2024-01-01T00:00:00Z", "updated_at": "2024-09-12T12:34:56Z"}
+          application/json: {"id": "<id>", "mode": "sandbox", "object": "subscription", "product": "Bespoke Metal Soap", "customer": "<value>", "collection_method": "charge_automatically", "status": "active", "last_transaction_id": "tran_3e6Z6TzvHKdsjEgXnGDEp0", "last_transaction": {"id": "<id>", "mode": "test", "object": "transaction", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "EUR", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 5477.37}, "last_transaction_date": "2024-09-12T12:34:56Z", "next_transaction_date": "2024-09-12T12:34:56Z", "current_period_start_date": "2024-09-12T12:34:56Z", "current_period_end_date": "2024-09-12T12:34:56Z", "canceled_at": "2024-09-12T12:34:56Z", "created_at": "2024-01-01T00:00:00Z", "updated_at": "2024-09-12T12:34:56Z"}
   upgradeSubscription:
     speakeasy-default-upgrade-subscription:
       parameters:
@@ -534,7 +534,7 @@ examples:
         application/json: {"product_id": "prod_123", "update_behavior": "proration-charge-immediately"}
       responses:
         "200":
-          application/json: {"id": "<id>", "mode": "test", "object": "subscription", "product": {"id": "<id>", "mode": "test", "object": "<value>", "name": "<value>", "description": "This is a sample product description.", "image_url": "https://example.com/image.jpg", "features": [{"id": "<id>", "type": "<value>", "description": "Get access to discord server."}], "price": 400, "currency": "EUR", "billing_type": "recurring", "billing_period": "every-month", "status": "<value>", "tax_mode": "inclusive", "tax_category": "saas", "product_url": "https://creem.io/product/prod_123123123123", "default_success_url": "https://example.com/?status=successful", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}, "customer": {"id": "<id>", "mode": "live", "object": "<value>", "email": "user@example.com", "name": "John Doe", "country": "US", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}, "collection_method": "charge_automatically", "status": "active", "last_transaction_id": "tran_3e6Z6TzvHKdsjEgXnGDEp0", "last_transaction": {"id": "<id>", "mode": "test", "object": "transaction", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "EUR", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 3053.73}, "last_transaction_date": "2024-09-12T12:34:56Z", "next_transaction_date": "2024-09-12T12:34:56Z", "current_period_start_date": "2024-09-12T12:34:56Z", "current_period_end_date": "2024-09-12T12:34:56Z", "canceled_at": "2024-09-12T12:34:56Z", "created_at": "2024-01-01T00:00:00Z", "updated_at": "2024-09-12T12:34:56Z"}
+          application/json: {"id": "<id>", "mode": "test", "object": "subscription", "product": {"id": "<id>", "mode": "test", "object": "<value>", "name": "<value>", "description": "This is a sample product description.", "image_url": "https://example.com/image.jpg", "features": [{"id": "<id>", "type": "<value>", "description": "Get access to discord server."}], "price": 400, "currency": "EUR", "billing_type": "recurring", "billing_period": "every-month", "status": "<value>", "tax_mode": "inclusive", "tax_category": "saas", "product_url": "https://creem.io/product/prod_123123123123", "default_success_url": "https://example.com/?status=successful", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}, "customer": {"id": "<id>", "mode": "test", "object": "<value>", "email": "user@example.com", "name": "John Doe", "country": "US", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}, "collection_method": "charge_automatically", "status": "active", "last_transaction_id": "tran_3e6Z6TzvHKdsjEgXnGDEp0", "last_transaction": {"id": "<id>", "mode": "test", "object": "transaction", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "EUR", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 3053.73}, "last_transaction_date": "2024-09-12T12:34:56Z", "next_transaction_date": "2024-09-12T12:34:56Z", "current_period_start_date": "2024-09-12T12:34:56Z", "current_period_end_date": "2024-09-12T12:34:56Z", "canceled_at": "2024-09-12T12:34:56Z", "created_at": "2024-01-01T00:00:00Z", "updated_at": "2024-09-12T12:34:56Z"}
   retrieveCheckout:
     speakeasy-default-retrieve-checkout:
       parameters:
@@ -544,7 +544,7 @@ examples:
           x-api-key: "<value>"
       responses:
         "200":
-          application/json: {"id": "<id>", "mode": "live", "object": "<value>", "status": "<value>", "product": "Unbranded Bronze Towels", "units": 1, "order": {"id": "<id>", "mode": "sandbox", "object": "<value>", "product": "Small Steel Table", "transaction": "tx_1234567890", "discount": "dis_1234567890", "amount": 2000, "sub_total": 1800, "tax_amount": 200, "discount_amount": 100, "amount_due": 1900, "amount_paid": 1900, "currency": "EUR", "fx_amount": 15, "fx_currency": "EUR", "fx_rate": 1.2, "status": "pending", "type": "recurring", "created_at": "2023-09-13T00:00:00Z", "updated_at": "2023-09-13T00:00:00Z"}, "checkout_url": "https://skeletal-atrium.info", "success_url": "https://example.com/return", "feature": [{"license": {"id": "<id>", "mode": "live", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": {"id": "<id>", "mode": "live", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}}}], "metadata": {"userId": "user_123", "visitCount": 42, "lastVisit": "2023-04-01"}}
+          application/json: {"id": "<id>", "mode": "prod", "object": "<value>", "status": "<value>", "product": "Unbranded Bronze Towels", "units": 1, "order": {"id": "<id>", "mode": "sandbox", "object": "<value>", "product": "Small Steel Table", "transaction": "tx_1234567890", "discount": "dis_1234567890", "amount": 2000, "sub_total": 1800, "tax_amount": 200, "discount_amount": 100, "amount_due": 1900, "amount_paid": 1900, "currency": "EUR", "fx_amount": 15, "fx_currency": "EUR", "fx_rate": 1.2, "status": "pending", "type": "recurring", "created_at": "2023-09-13T00:00:00Z", "updated_at": "2023-09-13T00:00:00Z"}, "checkout_url": "https://skeletal-atrium.info", "success_url": "https://example.com/return", "feature": [{"license": {"id": "<id>", "mode": "prod", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": {"id": "<id>", "mode": "sandbox", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}}}], "metadata": {"userId": "user_123", "visitCount": 42, "lastVisit": "2023-04-01"}}
   activateLicense:
     speakeasy-default-activate-license:
       parameters:
@@ -554,7 +554,7 @@ examples:
         application/json: {"key": "<key>", "instance_name": "<value>"}
       responses:
         "200":
-          application/json: {"id": "<id>", "mode": "live", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": {"id": "<id>", "mode": "live", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}}
+          application/json: {"id": "<id>", "mode": "prod", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "created_at": "2023-09-13T00:00:00Z", "instance": {"id": "<id>", "mode": "test", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}}
   deactivateLicense:
     speakeasy-default-deactivate-license:
       parameters:
@@ -593,7 +593,7 @@ examples:
         application/json: {"name": "Holiday Sale", "code": "HOLIDAY2024", "type": "fixed", "amount": 20, "currency": "USD", "percentage": 15, "expiry_date": "2024-12-31T23:59:59Z", "max_redemptions": 100, "duration": "repeating", "duration_in_months": 6, "applies_to_products": ["prod_123", "prod_456"]}
       responses:
         "200":
-          application/json: {"id": "<id>", "mode": "live", "object": "discount", "status": "active", "name": "Holiday Sale", "code": "HOLIDAY2024", "type": "percentage", "amount": 20, "currency": "USD", "percentage": 15, "expiry_date": "2024-12-31T23:59:59Z", "max_redemptions": 100, "duration": "repeating", "duration_in_months": 6, "applies_to_products": ["prod_123", "prod_456"]}
+          application/json: {"id": "<id>", "mode": "sandbox", "object": "discount", "status": "active", "name": "Holiday Sale", "code": "HOLIDAY2024", "type": "percentage", "amount": 20, "currency": "USD", "percentage": 15, "expiry_date": "2024-12-31T23:59:59Z", "max_redemptions": 100, "duration": "repeating", "duration_in_months": 6, "applies_to_products": ["prod_123", "prod_456"]}
   deleteDiscount:
     speakeasy-default-delete-discount:
       parameters:
@@ -603,7 +603,7 @@ examples:
           x-api-key: "<value>"
       responses:
         "200":
-          application/json: {"id": "<id>", "mode": "live", "object": "discount", "status": "active", "name": "Holiday Sale", "code": "HOLIDAY2024", "type": "percentage", "amount": 20, "currency": "USD", "percentage": 15, "expiry_date": "2024-12-31T23:59:59Z", "max_redemptions": 100, "duration": "repeating", "duration_in_months": 6, "applies_to_products": ["prod_123", "prod_456"]}
+          application/json: {"id": "<id>", "mode": "prod", "object": "discount", "status": "active", "name": "Holiday Sale", "code": "HOLIDAY2024", "type": "percentage", "amount": 20, "currency": "USD", "percentage": 15, "expiry_date": "2024-12-31T23:59:59Z", "max_redemptions": 100, "duration": "repeating", "duration_in_months": 6, "applies_to_products": ["prod_123", "prod_456"]}
   searchTransactions:
     speakeasy-default-search-transactions:
       parameters:
@@ -612,6 +612,6 @@ examples:
           x-api-key: "<value>"
       responses:
         "200":
-          application/json: {"items": [{"id": "<id>", "mode": "live", "object": "transaction", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "EUR", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 618.34}, {"id": "<id>", "mode": "sandbox", "object": "transaction", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "EUR", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 9438.92}, {"id": "<id>", "mode": "test", "object": "transaction", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "EUR", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 3723.22}], "pagination": {"total_records": 0, "total_pages": 0, "current_page": 1, "next_page": 2, "prev_page": null}}
+          application/json: {"items": [{"id": "<id>", "mode": "sandbox", "object": "transaction", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "EUR", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 618.34}, {"id": "<id>", "mode": "sandbox", "object": "transaction", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "EUR", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 9438.92}, {"id": "<id>", "mode": "test", "object": "transaction", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "EUR", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 3723.22}], "pagination": {"total_records": 0, "total_pages": 0, "current_page": 1, "next_page": 2, "prev_page": null}}
 examplesVersion: 1.0.1
 generatedTests: {}

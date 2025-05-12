@@ -13,5 +13,5 @@ let value: SubscriptionEntityMode = "test";
 ## Values
 
 ```typescript
-"test" | "live" | "sandbox"
+"test" | "prod" | "sandbox"
 ```

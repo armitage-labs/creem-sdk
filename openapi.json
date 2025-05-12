@@ -801,7 +801,7 @@
             "type": "string",
             "enum": [
               "test",
-              "live",
+              "prod",
               "sandbox"
             ],
             "description": "String representing the environment."
@@ -1100,7 +1100,7 @@
             "type": "string",
             "enum": [
               "test",
-              "live",
+              "prod",
               "sandbox"
             ],
             "description": "String representing the environment."
@@ -1183,7 +1183,7 @@
             "type": "string",
             "enum": [
               "test",
-              "live",
+              "prod",
               "sandbox"
             ],
             "description": "String representing the environment."
@@ -1222,7 +1222,7 @@
             "type": "string",
             "enum": [
               "test",
-              "live",
+              "prod",
               "sandbox"
             ],
             "description": "String representing the environment."
@@ -1331,7 +1331,7 @@
             "type": "string",
             "enum": [
               "test",
-              "live",
+              "prod",
               "sandbox"
             ],
             "description": "String representing the environment."
@@ -1533,7 +1533,7 @@
             "type": "string",
             "enum": [
               "test",
-              "live",
+              "prod",
               "sandbox"
             ],
             "description": "String representing the environment."
@@ -1705,7 +1705,7 @@
             "type": "string",
             "enum": [
               "test",
-              "live",
+              "prod",
               "sandbox"
             ],
             "description": "String representing the environment."
@@ -1756,7 +1756,7 @@
             "type": "string",
             "enum": [
               "test",
-              "live",
+              "prod",
               "sandbox"
             ],
             "description": "String representing the environment."
@@ -1851,7 +1851,7 @@
             "type": "string",
             "enum": [
               "test",
-              "live",
+              "prod",
               "sandbox"
             ],
             "description": "String representing the environment."
@@ -2076,7 +2076,7 @@
             "type": "string",
             "enum": [
               "test",
-              "live",
+              "prod",
               "sandbox"
             ],
             "description": "String representing the environment."
