@@ -10,6 +10,8 @@ export * from "./createproduct.js";
 export * from "./deactivatelicense.js";
 export * from "./deletediscount.js";
 export * from "./generatecustomerlinks.js";
+export * from "./gettransactionbyid.js";
+export * from "./listcustomers.js";
 export * from "./retrievecheckout.js";
 export * from "./retrievecustomer.js";
 export * from "./retrievediscount.js";

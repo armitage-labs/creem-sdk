@@ -10,7 +10,6 @@ async function run() {
     xApiKey: "<value>",
   });
 
-  // Handle the result
   console.log(result);
 }
 

@@ -68,10 +68,7 @@ bun add creem
 ### Yarn
 
 ```bash
-yarn add creem zod
-
-# Note that Yarn does not install peer dependencies automatically. You will need
-# to install zod as shown above.
+yarn add creem
 ```
 
 > [!NOTE]
@@ -182,7 +179,6 @@ async function run() {
     xApiKey: "<value>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -202,6 +198,7 @@ run();
 * [retrieveProduct](docs/sdks/creem/README.md#retrieveproduct) - Retrieve a product
 * [createProduct](docs/sdks/creem/README.md#createproduct) - Creates a new product.
 * [searchProducts](docs/sdks/creem/README.md#searchproducts) - List all products
+* [listCustomers](docs/sdks/creem/README.md#listcustomers) - List all customers
 * [retrieveCustomer](docs/sdks/creem/README.md#retrievecustomer) - Retrieve a customer
 * [generateCustomerLinks](docs/sdks/creem/README.md#generatecustomerlinks) - Generate Customer Links
 * [retrieveSubscription](docs/sdks/creem/README.md#retrievesubscription) - Retrieve a subscription
@@ -216,6 +213,7 @@ run();
 * [retrieveDiscount](docs/sdks/creem/README.md#retrievediscount) - Retrieve discount
 * [createDiscount](docs/sdks/creem/README.md#creatediscount) - Create a discount.
 * [deleteDiscount](docs/sdks/creem/README.md#deletediscount) - Delete a discount.
+* [getTransactionById](docs/sdks/creem/README.md#gettransactionbyid) - Get a transaction by ID
 * [searchTransactions](docs/sdks/creem/README.md#searchtransactions) - List all transactions
 
 </details>
@@ -244,6 +242,8 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`deactivateLicense`](docs/sdks/creem/README.md#deactivatelicense) - Deactivate a license key instance.
 - [`deleteDiscount`](docs/sdks/creem/README.md#deletediscount) - Delete a discount.
 - [`generateCustomerLinks`](docs/sdks/creem/README.md#generatecustomerlinks) - Generate Customer Links
+- [`getTransactionById`](docs/sdks/creem/README.md#gettransactionbyid) - Get a transaction by ID
+- [`listCustomers`](docs/sdks/creem/README.md#listcustomers) - List all customers
 - [`retrieveCheckout`](docs/sdks/creem/README.md#retrievecheckout) - Retrieve a new checkout session.
 - [`retrieveCustomer`](docs/sdks/creem/README.md#retrievecustomer) - Retrieve a customer
 - [`retrieveDiscount`](docs/sdks/creem/README.md#retrievediscount) - Retrieve discount
@@ -286,7 +286,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -317,7 +316,6 @@ async function run() {
     xApiKey: "<value>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -329,50 +327,37 @@ run();
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-If the request fails due to, for example 4XX or 5XX status codes, it will throw a `APIError`.
+[`CreemError`](./src/models/errors/creemerror.ts) is the base class for all HTTP error responses. It has the following properties:
 
-| Error Type      | Status Code | Content Type |
-| --------------- | ----------- | ------------ |
-| errors.APIError | 4XX, 5XX    | \*/\*        |
+| Property            | Type       | Description                                            |
+| ------------------- | ---------- | ------------------------------------------------------ |
+| `error.message`     | `string`   | Error message                                          |
+| `error.statusCode`  | `number`   | HTTP response status code eg `404`                     |
+| `error.headers`     | `Headers`  | HTTP response headers                                  |
+| `error.body`        | `string`   | HTTP body. Can be empty string if no body is returned. |
+| `error.rawResponse` | `Response` | Raw HTTP response                                      |
 
+### Example
 ```typescript
 import { Creem } from "creem";
-import { SDKValidationError } from "creem/models/errors";
+import * as errors from "creem/models/errors";
 
 const creem = new Creem();
 
 async function run() {
-  let result;
   try {
-    result = await creem.retrieveProduct({
+    const result = await creem.retrieveProduct({
       productId: "<id>",
       xApiKey: "<value>",
     });
 
-    // Handle the result
     console.log(result);
-  } catch (err) {
-    switch (true) {
-      // The server response does not match the expected SDK schema
-      case (err instanceof SDKValidationError):
-        {
-          // Pretty-print will provide a human-readable multi-line error message
-          console.error(err.pretty());
-          // Raw value may also be inspected
-          console.error(err.rawValue);
-          return;
-        }
-        apierror.js;
-      // Server returned an error status code or an unknown content type
-      case (err instanceof APIError): {
-        console.error(err.statusCode);
-        console.error(err.rawResponse.body);
-        return;
-      }
-      default: {
-        // Other errors such as network errors, see HTTPClientErrors for more details
-        throw err;
-      }
+  } catch (error) {
+    if (error instanceof errors.CreemError) {
+      console.log(error.message);
+      console.log(error.statusCode);
+      console.log(error.body);
+      console.log(error.headers);
     }
   }
 }
@@ -381,17 +366,26 @@ run();
 
 ```
 
-Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted multi-line string since validation errors can list many issues and the plain error string may be difficult read when debugging.
+### Error Classes
+**Primary error:**
+* [`CreemError`](./src/models/errors/creemerror.ts): The base class for HTTP error responses.
 
-In some rare cases, the SDK can fail to get a response from the server or even make the request due to unexpected circumstances such as network conditions. These types of errors are captured in the `models/errors/httpclienterrors.ts` module:
+<details><summary>Less common errors (6)</summary>
 
-| HTTP Client Error                                    | Description                                          |
-| ---------------------------------------------------- | ---------------------------------------------------- |
-| RequestAbortedError                                  | HTTP request was aborted by the client               |
-| RequestTimeoutError                                  | HTTP request timed out due to an AbortSignal signal  |
-| ConnectionError                                      | HTTP client was unable to make a request to a server |
-| InvalidRequestError                                  | Any input used to create a request is invalid        |
-| UnexpectedClientError                                | Unrecognised or unexpected error                     |
+<br />
+
+**Network errors:**
+* [`ConnectionError`](./src/models/errors/httpclienterrors.ts): HTTP client was unable to make a request to a server.
+* [`RequestTimeoutError`](./src/models/errors/httpclienterrors.ts): HTTP request timed out due to an AbortSignal signal.
+* [`RequestAbortedError`](./src/models/errors/httpclienterrors.ts): HTTP request was aborted by the client.
+* [`InvalidRequestError`](./src/models/errors/httpclienterrors.ts): Any input used to create a request is invalid.
+* [`UnexpectedClientError`](./src/models/errors/httpclienterrors.ts): Unrecognised or unexpected error.
+
+
+**Inherit from [`CreemError`](./src/models/errors/creemerror.ts)**:
+* [`ResponseValidationError`](./src/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
+
+</details>
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
@@ -405,7 +399,6 @@ You can override the default server globally by passing a server index to the `s
 | --- | --------------------------- | ----------- |
 | 0   | `https://api.creem.io`      |             |
 | 1   | `https://test-api.creem.io` |             |
-| 2   | `http://localhost:8000`     |             |
 
 #### Example
 
@@ -413,7 +406,7 @@ You can override the default server globally by passing a server index to the `s
 import { Creem } from "creem";
 
 const creem = new Creem({
-  serverIdx: 2,
+  serverIdx: 1,
 });
 
 async function run() {
@@ -422,7 +415,6 @@ async function run() {
     xApiKey: "<value>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -437,7 +429,7 @@ The default server can also be overridden globally by passing a URL to the `serv
 import { Creem } from "creem";
 
 const creem = new Creem({
-  serverURL: "http://localhost:8000",
+  serverURL: "https://test-api.creem.io",
 });
 
 async function run() {
@@ -446,7 +438,6 @@ async function run() {
     xApiKey: "<value>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -500,7 +491,7 @@ httpClient.addHook("requestError", (error, request) => {
   console.groupEnd();
 });
 
-const sdk = new Creem({ httpClient });
+const sdk = new Creem({ httpClient: httpClient });
 ```
 <!-- End Custom HTTP Client [http-client] -->
 

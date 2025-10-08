@@ -10,6 +10,7 @@ export * from "./creatediscountrequestentity.js";
 export * from "./createproductrequestentity.js";
 export * from "./customerentity.js";
 export * from "./customerlinksentity.js";
+export * from "./customerlistentity.js";
 export * from "./customerrequestentity.js";
 export * from "./customfield.js";
 export * from "./customfieldrequestentity.js";

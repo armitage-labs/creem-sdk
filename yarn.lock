@@ -655,10 +655,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@oven/bun-darwin-aarch64@1.2.5":
-  version "1.2.5"
-  resolved "https://registry.npmjs.org/@oven/bun-darwin-aarch64/-/bun-darwin-aarch64-1.2.5.tgz"
-  integrity sha512-ggZfdpgUJ/OiWrfcfTgHeSTHcec5HAjkGrZHL9FJ/R60sydRKPYHgAgexdIoJAGfsCVAL+x7y8NSTRIAX8J4Ng==
+"@oven/bun-darwin-aarch64@1.2.17":
+  version "1.2.17"
+  resolved "https://registry.npmjs.org/@oven/bun-darwin-aarch64/-/bun-darwin-aarch64-1.2.17.tgz"
+  integrity sha512-66Xjz3NZXUUWKZJPvWKuwEkaqMZpir1Gm4SbhbB2iiRSSTW8jqwdkSb9RhgTCDt5OnSPd3+Cq0WsP/T5ExJbhA==
 
 "@pkgjs/parseargs@^0.11.0":
   version "0.11.0"
@@ -849,13 +849,6 @@
   version "2.0.3"
   resolved "https://registry.npmjs.org/@types/stack-utils/-/stack-utils-2.0.3.tgz"
   integrity sha512-9aEbYZ3TbYMznPdcdr3SmIrLXwC/AKZXQeCf9Pgao5CKb8CyHuEX5jzWPTkvregvhRJHcpRO6BFoGW9ycaOkYw==
-
-"@types/ws@~8.5.10":
-  version "8.5.14"
-  resolved "https://registry.npmjs.org/@types/ws/-/ws-8.5.14.tgz"
-  integrity sha512-bd/YFLW+URhBzMXurx7lWByOu+xzU9+kb3RboOteXYDfW+tr+JZa99OyNmPINEGB/ahzKrEuc8rcv4gnpJmxTw==
-  dependencies:
-    "@types/node" "*"
 
 "@types/yargs-parser@*":
   version "21.0.3"
@@ -1207,30 +1200,29 @@ buffer-from@^1.0.0:
   resolved "https://registry.npmjs.org/buffer-from/-/buffer-from-1.1.2.tgz"
   integrity sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==
 
-bun-types@^1.2.2:
-  version "1.2.5"
-  resolved "https://registry.npmjs.org/bun-types/-/bun-types-1.2.5.tgz"
-  integrity sha512-3oO6LVGGRRKI4kHINx5PIdIgnLRb7l/SprhzqXapmoYkFl5m4j6EvALvbDVuuBFaamB46Ap6HCUxIXNLCGy+tg==
+bun-types@1.2.17:
+  version "1.2.17"
+  resolved "https://registry.npmjs.org/bun-types/-/bun-types-1.2.17.tgz"
+  integrity sha512-ElC7ItwT3SCQwYZDYoAH+q6KT4Fxjl8DtZ6qDulUFBmXA8YB4xo+l54J9ZJN+k2pphfn9vk7kfubeSd5QfTVJQ==
   dependencies:
     "@types/node" "*"
-    "@types/ws" "~8.5.10"
 
-bun@^1.2.2:
-  version "1.2.5"
-  resolved "https://registry.npmjs.org/bun/-/bun-1.2.5.tgz"
-  integrity sha512-fbQLt+DPiGUrPKdmsHRRT7cQAlfjdxPVFvLZrsUPmKiTdv+pU50ypdx9yRJluknSbyaZchFVV7Lx2KXikXKX2Q==
+bun@1.2.17:
+  version "1.2.17"
+  resolved "https://registry.npmjs.org/bun/-/bun-1.2.17.tgz"
+  integrity sha512-lrUZTWS24eVy6v+Eph8VTwqFPcG7/XQ0rLBQEMNoQs2Vd7ctVdMGAzJKKGZRUQH+rgkD8rBeHGIVoWxX4vJLCA==
   optionalDependencies:
-    "@oven/bun-darwin-aarch64" "1.2.5"
-    "@oven/bun-darwin-x64" "1.2.5"
-    "@oven/bun-darwin-x64-baseline" "1.2.5"
-    "@oven/bun-linux-aarch64" "1.2.5"
-    "@oven/bun-linux-aarch64-musl" "1.2.5"
-    "@oven/bun-linux-x64" "1.2.5"
-    "@oven/bun-linux-x64-baseline" "1.2.5"
-    "@oven/bun-linux-x64-musl" "1.2.5"
-    "@oven/bun-linux-x64-musl-baseline" "1.2.5"
-    "@oven/bun-windows-x64" "1.2.5"
-    "@oven/bun-windows-x64-baseline" "1.2.5"
+    "@oven/bun-darwin-aarch64" "1.2.17"
+    "@oven/bun-darwin-x64" "1.2.17"
+    "@oven/bun-darwin-x64-baseline" "1.2.17"
+    "@oven/bun-linux-aarch64" "1.2.17"
+    "@oven/bun-linux-aarch64-musl" "1.2.17"
+    "@oven/bun-linux-x64" "1.2.17"
+    "@oven/bun-linux-x64-baseline" "1.2.17"
+    "@oven/bun-linux-x64-musl" "1.2.17"
+    "@oven/bun-linux-x64-musl-baseline" "1.2.17"
+    "@oven/bun-windows-x64" "1.2.17"
+    "@oven/bun-windows-x64-baseline" "1.2.17"
 
 bytes@^3.1.2, bytes@3.1.2:
   version "3.1.2"
@@ -3752,7 +3744,7 @@ type-is@~1.6.18:
     media-typer "0.3.0"
     mime-types "~2.1.24"
 
-typescript-eslint@^8.22.0:
+typescript-eslint@^8.26.0:
   version "8.26.1"
   resolved "https://registry.npmjs.org/typescript-eslint/-/typescript-eslint-8.26.1.tgz"
   integrity sha512-t/oIs9mYyrwZGRpDv3g+3K6nZ5uhKEMt2oNmAPwaY4/ye0+EH4nXIPYNtkYFS6QHm+1DFg34DbglYBz5P9Xysg==
@@ -3761,10 +3753,10 @@ typescript-eslint@^8.22.0:
     "@typescript-eslint/parser" "8.26.1"
     "@typescript-eslint/utils" "8.26.1"
 
-typescript@^5.4.5, "typescript@>=4.3 <6", typescript@>=4.8.4, "typescript@>=4.8.4 <5.9.0", typescript@5:
-  version "5.8.2"
-  resolved "https://registry.npmjs.org/typescript/-/typescript-5.8.2.tgz"
-  integrity sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ==
+"typescript@>=4.3 <6", typescript@>=4.8.4, "typescript@>=4.8.4 <5.9.0", typescript@~5.8.3, typescript@5:
+  version "5.8.3"
+  resolved "https://registry.npmjs.org/typescript/-/typescript-5.8.3.tgz"
+  integrity sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ==
 
 undici-types@~6.20.0:
   version "6.20.0"
@@ -3912,7 +3904,7 @@ zod-to-json-schema@^3.24.1:
   resolved "https://registry.npmjs.org/zod-to-json-schema/-/zod-to-json-schema-3.24.4.tgz"
   integrity sha512-0uNlcvgabyrni9Ag8Vghj21drk7+7tp7VTwwR7KxxXXc/3pbXz2PHlDgj3cICahgF1kHm4dExBFj7BXrZJXzig==
 
-zod@^3.23.4, zod@^3.23.8, zod@^3.24.1:
+zod@^3.20.0, zod@^3.23.8, zod@^3.24.1:
   version "3.24.2"
   resolved "https://registry.npmjs.org/zod/-/zod-3.24.2.tgz"
   integrity sha512-lY7CDW43ECgW9u1TcT3IoXHflywfVqDYze4waEz812jR/bZ8FHDsl7pFQoSZTz5N+2NqRXs8GBwnAwo3ZNxqhQ==

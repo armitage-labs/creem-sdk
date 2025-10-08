@@ -6,34 +6,7 @@
 import { ProductListEntity } from "creem/models/components";
 
 let value: ProductListEntity = {
-  items: [
-    {
-      id: "<id>",
-      mode: "test",
-      object: "<value>",
-      name: "<value>",
-      description: "This is a sample product description.",
-      imageUrl: "https://example.com/image.jpg",
-      features: [
-        {
-          id: "<id>",
-          type: "<value>",
-          description: "Get access to discord server.",
-        },
-      ],
-      price: 400,
-      currency: "EUR",
-      billingType: "recurring",
-      billingPeriod: "every-month",
-      status: "<value>",
-      taxMode: "inclusive",
-      taxCategory: "saas",
-      productUrl: "https://creem.io/product/prod_123123123123",
-      defaultSuccessUrl: "https://example.com/?status=successful",
-      createdAt: new Date("2023-01-01T00:00:00Z"),
-      updatedAt: new Date("2023-01-01T00:00:00Z"),
-    },
-  ],
+  items: [],
   pagination: {
     totalRecords: 0,
     totalPages: 0,
