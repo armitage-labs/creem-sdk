@@ -59,6 +59,20 @@ export const CheckoutEntityMode = {
 export type CheckoutEntityMode = ClosedEnum<typeof CheckoutEntityMode>;
 
 /**
+ * Status of the checkout.
+ */
+export const CheckoutEntityStatus = {
+  Pending: "pending",
+  Processing: "processing",
+  Completed: "completed",
+  Expired: "expired",
+} as const;
+/**
+ * Status of the checkout.
+ */
+export type CheckoutEntityStatus = ClosedEnum<typeof CheckoutEntityStatus>;
+
+/**
  * The product associated with the checkout session.
  */
 export type CheckoutEntityProduct = ProductEntity | string;
@@ -89,7 +103,7 @@ export type CheckoutEntity = {
   /**
    * Status of the checkout.
    */
-  status: string;
+  status: CheckoutEntityStatus;
   /**
    * Identify and track each checkout request.
    */
@@ -155,6 +169,27 @@ export namespace CheckoutEntityMode$ {
   export const inboundSchema = CheckoutEntityMode$inboundSchema;
   /** @deprecated use `CheckoutEntityMode$outboundSchema` instead. */
   export const outboundSchema = CheckoutEntityMode$outboundSchema;
+}
+
+/** @internal */
+export const CheckoutEntityStatus$inboundSchema: z.ZodNativeEnum<
+  typeof CheckoutEntityStatus
+> = z.nativeEnum(CheckoutEntityStatus);
+
+/** @internal */
+export const CheckoutEntityStatus$outboundSchema: z.ZodNativeEnum<
+  typeof CheckoutEntityStatus
+> = CheckoutEntityStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CheckoutEntityStatus$ {
+  /** @deprecated use `CheckoutEntityStatus$inboundSchema` instead. */
+  export const inboundSchema = CheckoutEntityStatus$inboundSchema;
+  /** @deprecated use `CheckoutEntityStatus$outboundSchema` instead. */
+  export const outboundSchema = CheckoutEntityStatus$outboundSchema;
 }
 
 /** @internal */
@@ -306,7 +341,7 @@ export const CheckoutEntity$inboundSchema: z.ZodType<
   id: z.string(),
   mode: CheckoutEntityMode$inboundSchema,
   object: z.string(),
-  status: z.string(),
+  status: CheckoutEntityStatus$inboundSchema,
   request_id: z.string().optional(),
   product: z.union([ProductEntity$inboundSchema, z.string()]),
   units: z.number().default(1),
@@ -356,7 +391,7 @@ export const CheckoutEntity$outboundSchema: z.ZodType<
   id: z.string(),
   mode: CheckoutEntityMode$outboundSchema,
   object: z.string(),
-  status: z.string(),
+  status: CheckoutEntityStatus$outboundSchema,
   requestId: z.string().optional(),
   product: z.union([ProductEntity$outboundSchema, z.string()]),
   units: z.number().default(1),

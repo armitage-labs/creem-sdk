@@ -9,7 +9,7 @@ let value: TransactionListEntity = {
   items: [
     {
       id: "<id>",
-      mode: "sandbox",
+      mode: "test",
       object: "transaction",
       amount: 2000,
       amountPaid: 2000,
@@ -20,7 +20,7 @@ let value: TransactionListEntity = {
       taxAmount: 2000,
       status: "<value>",
       refundedAmount: 2000,
-      createdAt: 3244,
+      createdAt: 7304.21,
     },
   ],
   pagination: {

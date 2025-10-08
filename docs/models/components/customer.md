@@ -10,7 +10,7 @@ The customer who owns the subscription.
 ```typescript
 const value: components.CustomerEntity = {
   id: "<id>",
-  mode: "sandbox",
+  mode: "prod",
   object: "<value>",
   email: "user@example.com",
   name: "John Doe",

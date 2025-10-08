@@ -13,7 +13,6 @@ import { Params, pathToFunc } from "./url.js";
 export const ServerList = [
   "https://api.creem.io",
   "https://test-api.creem.io",
-  "http://localhost:8000",
 ] as const;
 
 export type SDKOptions = {
@@ -26,6 +25,10 @@ export type SDKOptions = {
    * Allows overriding the default server URL used by the SDK
    */
   serverURL?: string | undefined;
+  /**
+   * Allows overriding the default user agent used by the SDK
+   */
+  userAgent?: string | undefined;
   /**
    * Allows overriding the default retry config used by the SDK
    */
@@ -54,7 +57,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = {
   language: "typescript",
   openapiDocVersion: "v1",
-  sdkVersion: "0.3.37",
-  genVersion: "2.599.0",
-  userAgent: "speakeasy-sdk/typescript 0.3.37 2.599.0 v1 creem",
+  sdkVersion: "0.4.0",
+  genVersion: "2.723.4",
+  userAgent: "speakeasy-sdk/typescript 0.4.0 2.723.4 v1 creem",
 } as const;

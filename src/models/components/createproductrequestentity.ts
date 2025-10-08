@@ -59,6 +59,10 @@ export type CreateProductRequestEntity = {
    * Collect additional information from your customer using custom fields during checkout. Up to 3 fields are supported.
    */
   customField?: Array<CustomFieldRequestEntity> | undefined;
+  /**
+   * Enable abandoned cart recovery for this product
+   */
+  abandonedCartRecoveryEnabled?: boolean | undefined;
 };
 
 /** @internal */
@@ -78,6 +82,7 @@ export const CreateProductRequestEntity$inboundSchema: z.ZodType<
   tax_category: z.string().optional(),
   default_success_url: z.string().optional(),
   custom_field: z.array(CustomFieldRequestEntity$inboundSchema).optional(),
+  abandoned_cart_recovery_enabled: z.boolean().default(false),
 }).transform((v) => {
   return remap$(v, {
     "image_url": "imageUrl",
@@ -87,6 +92,7 @@ export const CreateProductRequestEntity$inboundSchema: z.ZodType<
     "tax_category": "taxCategory",
     "default_success_url": "defaultSuccessUrl",
     "custom_field": "customField",
+    "abandoned_cart_recovery_enabled": "abandonedCartRecoveryEnabled",
   });
 });
 
@@ -103,6 +109,7 @@ export type CreateProductRequestEntity$Outbound = {
   tax_category?: string | undefined;
   default_success_url?: string | undefined;
   custom_field?: Array<CustomFieldRequestEntity$Outbound> | undefined;
+  abandoned_cart_recovery_enabled: boolean;
 };
 
 /** @internal */
@@ -122,6 +129,7 @@ export const CreateProductRequestEntity$outboundSchema: z.ZodType<
   taxCategory: z.string().optional(),
   defaultSuccessUrl: z.string().optional(),
   customField: z.array(CustomFieldRequestEntity$outboundSchema).optional(),
+  abandonedCartRecoveryEnabled: z.boolean().default(false),
 }).transform((v) => {
   return remap$(v, {
     imageUrl: "image_url",
@@ -131,6 +139,7 @@ export const CreateProductRequestEntity$outboundSchema: z.ZodType<
     taxCategory: "tax_category",
     defaultSuccessUrl: "default_success_url",
     customField: "custom_field",
+    abandonedCartRecoveryEnabled: "abandoned_cart_recovery_enabled",
   });
 });
 

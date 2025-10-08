@@ -10,6 +10,8 @@ import { createProduct } from "../funcs/createProduct.js";
 import { deactivateLicense } from "../funcs/deactivateLicense.js";
 import { deleteDiscount } from "../funcs/deleteDiscount.js";
 import { generateCustomerLinks } from "../funcs/generateCustomerLinks.js";
+import { getTransactionById } from "../funcs/getTransactionById.js";
+import { listCustomers } from "../funcs/listCustomers.js";
 import { retrieveCheckout } from "../funcs/retrieveCheckout.js";
 import { retrieveCustomer } from "../funcs/retrieveCustomer.js";
 import { retrieveDiscount } from "../funcs/retrieveDiscount.js";
@@ -62,6 +64,20 @@ export class Creem extends ClientSDK {
     options?: RequestOptions,
   ): Promise<components.ProductListEntity> {
     return unwrapAsync(searchProducts(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * List all customers
+   */
+  async listCustomers(
+    request: operations.ListCustomersRequest,
+    options?: RequestOptions,
+  ): Promise<components.CustomerListEntity> {
+    return unwrapAsync(listCustomers(
       this,
       request,
       options,
@@ -258,6 +274,20 @@ export class Creem extends ClientSDK {
     options?: RequestOptions,
   ): Promise<components.DiscountEntity> {
     return unwrapAsync(deleteDiscount(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get a transaction by ID
+   */
+  async getTransactionById(
+    request: operations.GetTransactionByIdRequest,
+    options?: RequestOptions,
+  ): Promise<components.TransactionEntity> {
+    return unwrapAsync(getTransactionById(
       this,
       request,
       options,

@@ -21,6 +21,8 @@ import { tool$createProduct } from "./tools/createProduct.js";
 import { tool$deactivateLicense } from "./tools/deactivateLicense.js";
 import { tool$deleteDiscount } from "./tools/deleteDiscount.js";
 import { tool$generateCustomerLinks } from "./tools/generateCustomerLinks.js";
+import { tool$getTransactionById } from "./tools/getTransactionById.js";
+import { tool$listCustomers } from "./tools/listCustomers.js";
 import { tool$retrieveCheckout } from "./tools/retrieveCheckout.js";
 import { tool$retrieveCustomer } from "./tools/retrieveCustomer.js";
 import { tool$retrieveDiscount } from "./tools/retrieveDiscount.js";
@@ -41,7 +43,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Creem",
-    version: "0.3.37",
+    version: "0.4.0",
   });
 
   const client = new CreemCore({
@@ -73,6 +75,7 @@ export function createMCPServer(deps: {
   tool(tool$retrieveProduct);
   tool(tool$createProduct);
   tool(tool$searchProducts);
+  tool(tool$listCustomers);
   tool(tool$retrieveCustomer);
   tool(tool$generateCustomerLinks);
   tool(tool$retrieveSubscription);
@@ -87,6 +90,7 @@ export function createMCPServer(deps: {
   tool(tool$retrieveDiscount);
   tool(tool$createDiscount);
   tool(tool$deleteDiscount);
+  tool(tool$getTransactionById);
   tool(tool$searchTransactions);
 
   return server;

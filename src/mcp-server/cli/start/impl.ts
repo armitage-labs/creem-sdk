@@ -11,14 +11,12 @@ import {
   ConsoleLoggerLevel,
   createConsoleLogger,
 } from "../../console-logger.js";
-import { MCPScope } from "../../scopes.js";
 import { createMCPServer } from "../../server.js";
 
 interface StartCommandFlags {
   readonly transport: "stdio" | "sse";
   readonly port: number;
   readonly tool?: string[];
-  readonly scope?: MCPScope[];
   readonly "server-url"?: string;
   readonly "server-index"?: SDKOptions["serverIdx"];
   readonly "log-level": ConsoleLoggerLevel;
@@ -48,7 +46,6 @@ async function startStdio(flags: StartCommandFlags) {
   const server = createMCPServer({
     logger,
     allowedTools: flags.tool,
-    scopes: flags.scope,
     serverURL: flags["server-url"],
     serverIdx: flags["server-index"],
   });
@@ -68,7 +65,6 @@ async function startSSE(flags: StartCommandFlags) {
   const mcpServer = createMCPServer({
     logger,
     allowedTools: flags.tool,
-    scopes: flags.scope,
     serverURL: flags["server-url"],
     serverIdx: flags["server-index"],
   });

@@ -9,6 +9,7 @@ Creem API: Creem is an all-in-one platform for managing subscriptions and recurr
 * [retrieveProduct](#retrieveproduct) - Retrieve a product
 * [createProduct](#createproduct) - Creates a new product.
 * [searchProducts](#searchproducts) - List all products
+* [listCustomers](#listcustomers) - List all customers
 * [retrieveCustomer](#retrievecustomer) - Retrieve a customer
 * [generateCustomerLinks](#generatecustomerlinks) - Generate Customer Links
 * [retrieveSubscription](#retrievesubscription) - Retrieve a subscription
@@ -23,6 +24,7 @@ Creem API: Creem is an all-in-one platform for managing subscriptions and recurr
 * [retrieveDiscount](#retrievediscount) - Retrieve discount
 * [createDiscount](#creatediscount) - Create a discount.
 * [deleteDiscount](#deletediscount) - Delete a discount.
+* [getTransactionById](#gettransactionbyid) - Get a transaction by ID
 * [searchTransactions](#searchtransactions) - List all transactions
 
 ## retrieveProduct
@@ -31,6 +33,7 @@ Retrieve a product
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="retrieveProduct" method="get" path="/v1/products" -->
 ```typescript
 import { Creem } from "creem";
 
@@ -42,7 +45,6 @@ async function run() {
     xApiKey: "<value>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -66,15 +68,12 @@ async function run() {
     productId: "<id>",
     xApiKey: "<value>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("retrieveProduct failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -105,6 +104,7 @@ Creates a new product.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createProduct" method="post" path="/v1/products" -->
 ```typescript
 import { Creem } from "creem";
 
@@ -133,7 +133,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -174,15 +173,12 @@ async function run() {
       ],
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("createProduct failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -213,6 +209,7 @@ List all products
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="searchProducts" method="get" path="/v1/products/search" -->
 ```typescript
 import { Creem } from "creem";
 
@@ -223,7 +220,6 @@ async function run() {
     xApiKey: "<value>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -246,15 +242,12 @@ async function run() {
   const res = await searchProducts(creem, {
     xApiKey: "<value>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("searchProducts failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -279,12 +272,82 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.APIError | 4XX, 5XX        | \*/\*           |
 
+## listCustomers
+
+List all customers
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="listCustomers" method="get" path="/v1/customers/list" -->
+```typescript
+import { Creem } from "creem";
+
+const creem = new Creem();
+
+async function run() {
+  const result = await creem.listCustomers({
+    xApiKey: "<value>",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { CreemCore } from "creem/core.js";
+import { listCustomers } from "creem/funcs/listCustomers.js";
+
+// Use `CreemCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const creem = new CreemCore();
+
+async function run() {
+  const res = await listCustomers(creem, {
+    xApiKey: "<value>",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("listCustomers failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.ListCustomersRequest](../../models/operations/listcustomersrequest.md)                                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[components.CustomerListEntity](../../models/components/customerlistentity.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
 ## retrieveCustomer
 
 Retrieve a customer
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="retrieveCustomer" method="get" path="/v1/customers" -->
 ```typescript
 import { Creem } from "creem";
 
@@ -295,7 +358,6 @@ async function run() {
     xApiKey: "<value>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -318,15 +380,12 @@ async function run() {
   const res = await retrieveCustomer(creem, {
     xApiKey: "<value>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("retrieveCustomer failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -357,6 +416,7 @@ Generate Customer Links
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="generateCustomerLinks" method="post" path="/v1/customers/billing" -->
 ```typescript
 import { Creem } from "creem";
 
@@ -370,7 +430,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -396,15 +455,12 @@ async function run() {
       customerId: "<id>",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("generateCustomerLinks failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -435,6 +491,7 @@ Retrieve a subscription
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="retrieveSubscription" method="get" path="/v1/subscriptions" -->
 ```typescript
 import { Creem } from "creem";
 
@@ -446,7 +503,6 @@ async function run() {
     xApiKey: "<value>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -470,15 +526,12 @@ async function run() {
     subscriptionId: "<id>",
     xApiKey: "<value>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("retrieveSubscription failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -509,6 +562,7 @@ Cancel a subscription.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="cancelSubscription" method="post" path="/v1/subscriptions/{id}/cancel" -->
 ```typescript
 import { Creem } from "creem";
 
@@ -520,7 +574,6 @@ async function run() {
     xApiKey: "<value>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -544,15 +597,12 @@ async function run() {
     id: "<id>",
     xApiKey: "<value>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("cancelSubscription failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -583,6 +633,7 @@ Update a subscription.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateSubscription" method="post" path="/v1/subscriptions/{id}" -->
 ```typescript
 import { Creem } from "creem";
 
@@ -595,7 +646,6 @@ async function run() {
     updateSubscriptionRequestEntity: {},
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -620,15 +670,12 @@ async function run() {
     xApiKey: "<value>",
     updateSubscriptionRequestEntity: {},
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("updateSubscription failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -659,6 +706,7 @@ Upgrade a subscription to a different product
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="upgradeSubscription" method="post" path="/v1/subscriptions/{id}/upgrade" -->
 ```typescript
 import { Creem } from "creem";
 
@@ -673,7 +721,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -700,15 +747,12 @@ async function run() {
       productId: "prod_123",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("upgradeSubscription failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -739,6 +783,7 @@ Retrieve a new checkout session.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="retrieveCheckout" method="get" path="/v1/checkouts" -->
 ```typescript
 import { Creem } from "creem";
 
@@ -750,7 +795,6 @@ async function run() {
     xApiKey: "<value>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -774,15 +818,12 @@ async function run() {
     checkoutId: "<id>",
     xApiKey: "<value>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("retrieveCheckout failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -813,6 +854,7 @@ Creates a new checkout session.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createCheckout" method="post" path="/v1/checkouts" -->
 ```typescript
 import { Creem } from "creem";
 
@@ -835,16 +877,6 @@ async function run() {
           key: "<key>",
           label: "<value>",
         },
-        {
-          type: "text",
-          key: "<key>",
-          label: "<value>",
-        },
-        {
-          type: "text",
-          key: "<key>",
-          label: "<value>",
-        },
       ],
       metadata: {
         "userId": "user_123",
@@ -854,7 +886,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -890,16 +921,6 @@ async function run() {
           key: "<key>",
           label: "<value>",
         },
-        {
-          type: "text",
-          key: "<key>",
-          label: "<value>",
-        },
-        {
-          type: "text",
-          key: "<key>",
-          label: "<value>",
-        },
       ],
       metadata: {
         "userId": "user_123",
@@ -908,15 +929,12 @@ async function run() {
       },
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("createCheckout failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -947,6 +965,7 @@ Activates a license key.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="activateLicense" method="post" path="/v1/licenses/activate" -->
 ```typescript
 import { Creem } from "creem";
 
@@ -961,7 +980,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -988,15 +1006,12 @@ async function run() {
       instanceName: "<value>",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("activateLicense failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1027,6 +1042,7 @@ Deactivate a license key instance.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deactivateLicense" method="post" path="/v1/licenses/deactivate" -->
 ```typescript
 import { Creem } from "creem";
 
@@ -1041,7 +1057,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1068,15 +1083,12 @@ async function run() {
       instanceId: "<id>",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("deactivateLicense failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1107,6 +1119,7 @@ Validates a license key or instance.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="validateLicense" method="post" path="/v1/licenses/validate" -->
 ```typescript
 import { Creem } from "creem";
 
@@ -1121,7 +1134,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1148,15 +1160,12 @@ async function run() {
       instanceId: "<id>",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("validateLicense failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1187,6 +1196,7 @@ Retrieve discount
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="retrieveDiscount" method="get" path="/v1/discounts" -->
 ```typescript
 import { Creem } from "creem";
 
@@ -1197,7 +1207,6 @@ async function run() {
     xApiKey: "<value>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1220,15 +1229,12 @@ async function run() {
   const res = await retrieveDiscount(creem, {
     xApiKey: "<value>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("retrieveDiscount failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1259,6 +1265,7 @@ Create a discount.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createDiscount" method="post" path="/v1/discounts" -->
 ```typescript
 import { Creem } from "creem";
 
@@ -1270,7 +1277,7 @@ async function run() {
     createDiscountRequestEntity: {
       name: "Holiday Sale",
       code: "HOLIDAY2024",
-      type: "fixed",
+      type: "percentage",
       amount: 20,
       currency: "USD",
       percentage: 15,
@@ -1285,7 +1292,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1310,7 +1316,7 @@ async function run() {
     createDiscountRequestEntity: {
       name: "Holiday Sale",
       code: "HOLIDAY2024",
-      type: "fixed",
+      type: "percentage",
       amount: 20,
       currency: "USD",
       percentage: 15,
@@ -1324,15 +1330,12 @@ async function run() {
       ],
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("createDiscount failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1363,6 +1366,7 @@ Delete a discount.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deleteDiscount" method="delete" path="/v1/discounts/{id}/delete" -->
 ```typescript
 import { Creem } from "creem";
 
@@ -1374,7 +1378,6 @@ async function run() {
     xApiKey: "<value>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1398,15 +1401,12 @@ async function run() {
     id: "<id>",
     xApiKey: "<value>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("deleteDiscount failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1431,12 +1431,84 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.APIError | 4XX, 5XX        | \*/\*           |
 
+## getTransactionById
+
+Get a transaction by ID
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getTransactionById" method="get" path="/v1/transactions" -->
+```typescript
+import { Creem } from "creem";
+
+const creem = new Creem();
+
+async function run() {
+  const result = await creem.getTransactionById({
+    transactionId: "<id>",
+    xApiKey: "<value>",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { CreemCore } from "creem/core.js";
+import { getTransactionById } from "creem/funcs/getTransactionById.js";
+
+// Use `CreemCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const creem = new CreemCore();
+
+async function run() {
+  const res = await getTransactionById(creem, {
+    transactionId: "<id>",
+    xApiKey: "<value>",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("getTransactionById failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetTransactionByIdRequest](../../models/operations/gettransactionbyidrequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[components.TransactionEntity](../../models/components/transactionentity.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
 ## searchTransactions
 
 List all transactions
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="searchTransactions" method="get" path="/v1/transactions/search" -->
 ```typescript
 import { Creem } from "creem";
 
@@ -1447,7 +1519,6 @@ async function run() {
     xApiKey: "<value>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1470,15 +1541,12 @@ async function run() {
   const res = await searchTransactions(creem, {
     xApiKey: "<value>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("searchTransactions failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

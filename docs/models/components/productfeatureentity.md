@@ -8,7 +8,7 @@ import { ProductFeatureEntity } from "creem/models/components";
 let value: ProductFeatureEntity = {
   license: {
     id: "<id>",
-    mode: "test",
+    mode: "prod",
     object: "<value>",
     status: "active",
     key: "ABC123-XYZ456-XYZ456-XYZ456",
