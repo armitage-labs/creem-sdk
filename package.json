@@ -6,7 +6,8 @@
     "lint": "eslint --cache --max-warnings=0 src",
     "build:mcp": "bun src/mcp-server/build.mts",
     "build": "npm run build:mcp && tshy",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
   "type": "module",
   "bin": {
