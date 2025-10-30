@@ -1,4 +1,3 @@
-/examples/node_modules
 .env.local
 .env.*.local
 **/.speakeasy/temp/
@@ -8,7 +7,6 @@
 /models
 /models/errors
 /types
-/node_modules
 /lib
 /sdk
 /funcs
@@ -20,7 +18,6 @@
 /bin
 /cjs
 /esm
-/dist
 /.tsbuildinfo
 /.eslintcache
 /.tshy
