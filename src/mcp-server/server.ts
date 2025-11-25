@@ -40,17 +40,17 @@ export function createMCPServer(deps: {
   scopes?: MCPScope[] | undefined;
   serverURL?: string | undefined;
   apiKey?: SDKOptions["apiKey"] | undefined;
-  serverIdx?: SDKOptions["serverIdx"] | undefined;
+  server?: SDKOptions["server"] | undefined;
 }) {
   const server = new McpServer({
     name: "Creem",
-    version: "0.7.0",
+    version: "0.8.0",
   });
 
   const client = new CreemCore({
     apiKey: deps.apiKey,
     serverURL: deps.serverURL,
-    serverIdx: deps.serverIdx,
+    server: deps.server,
   });
 
   const scopes = new Set(deps.scopes);
