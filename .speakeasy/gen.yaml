@@ -20,12 +20,15 @@ generation:
     oAuth2ClientCredentialsEnabled: false
     oAuth2PasswordEnabled: false
     hoistGlobalSecurity: true
+  schemas:
+    allOfMergeStrategy: shallowMerge
+  requestBodyFieldName: ""
   tests:
     generateTests: true
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 0.4.0
+  version: 0.7.0
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
@@ -39,6 +42,8 @@ typescript:
   additionalPackageJSON:
     scripts:
       test: npx jest
+  additionalScripts: {}
+  alwaysIncludeInboundAndOutbound: false
   author: Speakeasy
   baseErrorName: CreemError
   clientServerStatusCodesAsErrors: true
@@ -49,8 +54,10 @@ typescript:
   enableReactQuery: false
   enumFormat: union
   envVarPrefix: CREEM
+  exportZodModelNamespace: false
   flattenGlobalSecurity: true
   flatteningOrder: parameters-first
+  forwardCompatibleEnumsByDefault: false
   generateExamples: true
   imports:
     option: openapi
@@ -62,7 +69,8 @@ typescript:
       webhooks: models/webhooks
   inputModelSuffix: input
   jsonpath: rfc9535
-  maxMethodParams: 0
+  laxMode: strict
+  maxMethodParams: 99
   methodArguments: require-security-and-request
   modelPropertyCasing: camel
   moduleFormat: dual
@@ -71,5 +79,7 @@ typescript:
   responseFormat: flat
   sseFlatResponse: false
   templateVersion: v2
+  unionStrategy: left-to-right
   usageSDKInitImports: []
   useIndexModules: true
+  zodVersion: v3

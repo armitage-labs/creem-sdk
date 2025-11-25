@@ -5,9 +5,7 @@
 ```typescript
 import { SearchTransactionsRequest } from "creem/models/operations";
 
-let value: SearchTransactionsRequest = {
-  xApiKey: "<value>",
-};
+let value: SearchTransactionsRequest = {};
 ```
 
 ## Fields
@@ -19,4 +17,3 @@ let value: SearchTransactionsRequest = {
 | `productId`        | *string*           | :heavy_minus_sign: | The product id     |
 | `pageNumber`       | *number*           | :heavy_minus_sign: | The page number    |
 | `pageSize`         | *number*           | :heavy_minus_sign: | The the page size  |
-| `xApiKey`          | *string*           | :heavy_check_mark: | N/A                |

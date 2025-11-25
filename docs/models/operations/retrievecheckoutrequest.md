@@ -7,7 +7,6 @@ import { RetrieveCheckoutRequest } from "creem/models/operations";
 
 let value: RetrieveCheckoutRequest = {
   checkoutId: "<id>",
-  xApiKey: "<value>",
 };
 ```
 
@@ -16,4 +15,3 @@ let value: RetrieveCheckoutRequest = {
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
 | `checkoutId`       | *string*           | :heavy_check_mark: | N/A                |
-| `xApiKey`          | *string*           | :heavy_check_mark: | N/A                |

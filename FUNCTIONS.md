@@ -20,22 +20,21 @@ specific category of applications.
 
 ```typescript
 import { CreemCore } from "creem/core.js";
-import { retrieveProduct } from "creem/funcs/retrieveProduct.js";
+import { productsGet } from "creem/funcs/productsGet.js";
 
 // Use `CreemCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const creem = new CreemCore();
+const creem = new CreemCore({
+  apiKey: process.env["CREEM_API_KEY"] ?? "",
+});
 
 async function run() {
-  const res = await retrieveProduct(creem, {
-    productId: "<id>",
-    xApiKey: "<value>",
-  });
+  const res = await productsGet(creem, "<id>");
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
   } else {
-    console.log("retrieveProduct failed:", res.error);
+    console.log("productsGet failed:", res.error);
   }
 }
 

@@ -1,0 +1,210 @@
+overlay: 1.0.0
+x-speakeasy-jsonpath: rfc9535
+info:
+  title: Speakeasy Modifications
+  version: 0.0.2
+  x-speakeasy-metadata:
+    after: ""
+    before: ""
+    type: speakeasy-modifications
+actions:
+  - target: $["paths"]["/v1/discounts"]["get"]
+    update:
+      x-speakeasy-group: discounts
+      x-speakeasy-name-override: get
+    x-speakeasy-metadata:
+      after: sdk.discounts.get()
+      before: sdk.<no_group>.retrieveDiscount()
+      created_at: 1764062816429
+      reviewed_at: 1764063054051
+      type: method-name
+  - target: $["paths"]["/v1/discounts/{id}/delete"]["delete"]
+    update:
+      x-speakeasy-group: discounts
+      x-speakeasy-name-override: delete
+    x-speakeasy-metadata:
+      after: sdk.discounts.delete()
+      before: sdk.<no_group>.deleteDiscount()
+      created_at: 1764062816429
+      reviewed_at: 1764063054051
+      type: method-name
+  - target: $["paths"]["/v1/customers/billing"]["post"]
+    update:
+      x-speakeasy-group: customers
+      x-speakeasy-name-override: generateBillingLinks
+    x-speakeasy-metadata:
+      after: sdk.customers.generateBillingLinks()
+      before: sdk.<no_group>.generateCustomerLinks()
+      created_at: 1764062816429
+      reviewed_at: 1764063054051
+      type: method-name
+  - target: $["paths"]["/v1/subscriptions"]["get"]
+    update:
+      x-speakeasy-group: subscriptions
+      x-speakeasy-name-override: get
+    x-speakeasy-metadata:
+      after: sdk.subscriptions.get()
+      before: sdk.<no_group>.retrieveSubscription()
+      created_at: 1764062816430
+      reviewed_at: 1764063054051
+      type: method-name
+  - target: $["paths"]["/v1/subscriptions/{id}/upgrade"]["post"]
+    update:
+      x-speakeasy-group: subscriptions
+      x-speakeasy-name-override: upgrade
+    x-speakeasy-metadata:
+      after: sdk.subscriptions.upgrade()
+      before: sdk.<no_group>.upgradeSubscription()
+      created_at: 1764062816430
+      reviewed_at: 1764063054051
+      type: method-name
+  - target: $["paths"]["/v1/customers"]["get"]
+    update:
+      x-speakeasy-group: customers
+      x-speakeasy-name-override: retrieve
+    x-speakeasy-metadata:
+      after: sdk.customers.retrieve()
+      before: sdk.<no_group>.retrieveCustomer()
+      created_at: 1764062816430
+      reviewed_at: 1764063054051
+      type: method-name
+  - target: $["paths"]["/v1/products"]["post"]
+    update:
+      x-speakeasy-group: products
+      x-speakeasy-name-override: create
+    x-speakeasy-metadata:
+      after: sdk.products.create()
+      before: sdk.<no_group>.createProduct()
+      created_at: 1764062816430
+      reviewed_at: 1764063054051
+      type: method-name
+  - target: $["paths"]["/v1/products/search"]["get"]
+    update:
+      x-speakeasy-group: products
+      x-speakeasy-name-override: search
+    x-speakeasy-metadata:
+      after: sdk.products.search()
+      before: sdk.<no_group>.searchProducts()
+      created_at: 1764062816430
+      reviewed_at: 1764063054051
+      type: method-name
+  - target: $["paths"]["/v1/checkouts"]["post"]
+    update:
+      x-speakeasy-group: checkouts
+      x-speakeasy-name-override: create
+    x-speakeasy-metadata:
+      after: sdk.checkouts.create()
+      before: sdk.<no_group>.createCheckout()
+      created_at: 1764062816430
+      reviewed_at: 1764063054051
+      type: method-name
+  - target: $["paths"]["/v1/licenses/activate"]["post"]
+    update:
+      x-speakeasy-group: licenses
+      x-speakeasy-name-override: activate
+    x-speakeasy-metadata:
+      after: sdk.licenses.activate()
+      before: sdk.<no_group>.activateLicense()
+      created_at: 1764062816430
+      reviewed_at: 1764063054051
+      type: method-name
+  - target: $["paths"]["/v1/checkouts"]["get"]
+    update:
+      x-speakeasy-group: checkouts
+      x-speakeasy-name-override: retrieve
+    x-speakeasy-metadata:
+      after: sdk.checkouts.retrieve()
+      before: sdk.<no_group>.retrieveCheckout()
+      created_at: 1764062816430
+      reviewed_at: 1764063054051
+      type: method-name
+  - target: $["paths"]["/v1/products"]["get"]
+    update:
+      x-speakeasy-group: products
+      x-speakeasy-name-override: get
+    x-speakeasy-metadata:
+      after: sdk.products.get()
+      before: sdk.<no_group>.retrieveProduct()
+      created_at: 1764062816430
+      reviewed_at: 1764063054051
+      type: method-name
+  - target: $["paths"]["/v1/licenses/deactivate"]["post"]
+    update:
+      x-speakeasy-group: licenses
+      x-speakeasy-name-override: deactivate
+    x-speakeasy-metadata:
+      after: sdk.licenses.deactivate()
+      before: sdk.<no_group>.deactivateLicense()
+      created_at: 1764062816430
+      reviewed_at: 1764063054051
+      type: method-name
+  - target: $["paths"]["/v1/transactions/search"]["get"]
+    update:
+      x-speakeasy-group: transactions
+      x-speakeasy-name-override: search
+    x-speakeasy-metadata:
+      after: sdk.transactions.search()
+      before: sdk.<no_group>.searchTransactions()
+      created_at: 1764062816430
+      reviewed_at: 1764063054051
+      type: method-name
+  - target: $["paths"]["/v1/subscriptions/{id}/cancel"]["post"]
+    update:
+      x-speakeasy-group: subscriptions
+      x-speakeasy-name-override: cancel
+    x-speakeasy-metadata:
+      after: sdk.subscriptions.cancel()
+      before: sdk.<no_group>.cancelSubscription()
+      created_at: 1764062816430
+      reviewed_at: 1764063054051
+      type: method-name
+  - target: $["paths"]["/v1/subscriptions/{id}"]["post"]
+    update:
+      x-speakeasy-group: subscriptions
+      x-speakeasy-name-override: update
+    x-speakeasy-metadata:
+      after: sdk.subscriptions.update()
+      before: sdk.<no_group>.updateSubscription()
+      created_at: 1764062816430
+      reviewed_at: 1764063054051
+      type: method-name
+  - target: $["paths"]["/v1/transactions"]["get"]
+    update:
+      x-speakeasy-group: transactions
+      x-speakeasy-name-override: getById
+    x-speakeasy-metadata:
+      after: sdk.transactions.getById()
+      before: sdk.<no_group>.getTransactionById()
+      created_at: 1764062816430
+      reviewed_at: 1764063054051
+      type: method-name
+  - target: $["paths"]["/v1/discounts"]["post"]
+    update:
+      x-speakeasy-group: discounts
+      x-speakeasy-name-override: create
+    x-speakeasy-metadata:
+      after: sdk.discounts.create()
+      before: sdk.<no_group>.createDiscount()
+      created_at: 1764062816430
+      reviewed_at: 1764063054051
+      type: method-name
+  - target: $["paths"]["/v1/customers/list"]["get"]
+    update:
+      x-speakeasy-group: customers
+      x-speakeasy-name-override: list
+    x-speakeasy-metadata:
+      after: sdk.customers.list()
+      before: sdk.<no_group>.listCustomers()
+      created_at: 1764062816430
+      reviewed_at: 1764063054051
+      type: method-name
+  - target: $["paths"]["/v1/licenses/validate"]["post"]
+    update:
+      x-speakeasy-group: licenses
+      x-speakeasy-name-override: validate
+    x-speakeasy-metadata:
+      after: sdk.licenses.validate()
+      before: sdk.<no_group>.validateLicense()
+      created_at: 1764062816430
+      reviewed_at: 1764063054051
+      type: method-name

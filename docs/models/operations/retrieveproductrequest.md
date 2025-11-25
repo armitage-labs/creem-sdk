@@ -7,7 +7,6 @@ import { RetrieveProductRequest } from "creem/models/operations";
 
 let value: RetrieveProductRequest = {
   productId: "<id>",
-  xApiKey: "<value>",
 };
 ```
 
@@ -16,4 +15,3 @@ let value: RetrieveProductRequest = {
 | Field                                | Type                                 | Required                             | Description                          |
 | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | `productId`                          | *string*                             | :heavy_check_mark:                   | The unique identifier of the product |
-| `xApiKey`                            | *string*                             | :heavy_check_mark:                   | N/A                                  |

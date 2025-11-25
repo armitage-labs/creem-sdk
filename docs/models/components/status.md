@@ -13,5 +13,5 @@ let value: Status = "active";
 ## Values
 
 ```typescript
-"active" | "canceled" | "unpaid" | "paused" | "trialing"
+"active" | "canceled" | "unpaid" | "paused" | "trialing" | "scheduled_cancel"
 ```

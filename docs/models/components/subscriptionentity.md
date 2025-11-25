@@ -24,12 +24,12 @@ let value: SubscriptionEntity = {
       },
     ],
     price: 400,
-    currency: "EUR",
+    currency: "USD",
     billingType: "recurring",
     billingPeriod: "every-month",
     status: "<value>",
     taxMode: "inclusive",
-    taxCategory: "saas",
+    taxCategory: "[\"saas\",\"digital-goods-service\",\"ebooks\"]",
     productUrl: "https://creem.io/product/prod_123123123123",
     defaultSuccessUrl: "https://example.com/?status=successful",
     createdAt: new Date("2023-01-01T00:00:00Z"),
@@ -46,7 +46,7 @@ let value: SubscriptionEntity = {
     amount: 2000,
     amountPaid: 2000,
     discountAmount: 2000,
-    currency: "EUR",
+    currency: "USD",
     type: "<value>",
     taxCountry: "US",
     taxAmount: 2000,
@@ -85,3 +85,4 @@ let value: SubscriptionEntity = {
 | `canceledAt`                                                                                  | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_minus_sign:                                                                            | The date and time when the subscription was canceled, if applicable.                          | 2024-09-12T12:34:56Z                                                                          |
 | `createdAt`                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_check_mark:                                                                            | The date and time when the subscription was created.                                          | 2024-01-01T00:00:00Z                                                                          |
 | `updatedAt`                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_check_mark:                                                                            | The date and time when the subscription was last updated.                                     | 2024-09-12T12:34:56Z                                                                          |
+| `discount`                                                                                    | [components.Discount](../../models/components/discount.md)                                    | :heavy_minus_sign:                                                                            | The discount code applied to the subscription, if any.                                        |                                                                                               |

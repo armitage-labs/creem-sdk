@@ -13,5 +13,5 @@ let value: Type = "text";
 ## Values
 
 ```typescript
-"text"
+"text" | "checkbox"
 ```

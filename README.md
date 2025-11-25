@@ -29,6 +29,7 @@ Creem API: Creem is an all-in-one platform for managing subscriptions and recurr
   * [SDK Installation](#sdk-installation)
   * [Requirements](#requirements)
   * [SDK Example Usage](#sdk-example-usage)
+  * [Authentication](#authentication)
   * [Available Resources and Operations](#available-resources-and-operations)
   * [Standalone functions](#standalone-functions)
   * [Retries](#retries)
@@ -95,7 +96,8 @@ Add the following server definition to your `claude_desktop_config.json` file:
       "args": [
         "-y", "--package", "creem",
         "--",
-        "mcp", "start"
+        "mcp", "start",
+        "--api-key", "..."
       ]
     }
   }
@@ -117,7 +119,8 @@ Create a `.cursor/mcp.json` file in your project root with the following content
       "args": [
         "-y", "--package", "creem",
         "--",
-        "mcp", "start"
+        "mcp", "start",
+        "--api-key", "..."
       ]
     }
   }
@@ -171,13 +174,12 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 ```typescript
 import { Creem } from "creem";
 
-const creem = new Creem();
+const creem = new Creem({
+  apiKey: process.env["CREEM_API_KEY"] ?? "",
+});
 
 async function run() {
-  const result = await creem.retrieveProduct({
-    productId: "<id>",
-    xApiKey: "<value>",
-  });
+  const result = await creem.products.get("<id>");
 
   console.log(result);
 }
@@ -187,34 +189,82 @@ run();
 ```
 <!-- End SDK Example Usage [usage] -->
 
+<!-- Start Authentication [security] -->
+## Authentication
+
+### Per-Client Security Schemes
+
+This SDK supports the following security scheme globally:
+
+| Name     | Type   | Scheme  | Environment Variable |
+| -------- | ------ | ------- | -------------------- |
+| `apiKey` | apiKey | API key | `CREEM_API_KEY`      |
+
+To authenticate with the API the `apiKey` parameter must be set when initializing the SDK client instance. For example:
+```typescript
+import { Creem } from "creem";
+
+const creem = new Creem({
+  apiKey: process.env["CREEM_API_KEY"] ?? "",
+});
+
+async function run() {
+  const result = await creem.products.get("<id>");
+
+  console.log(result);
+}
+
+run();
+
+```
+<!-- End Authentication [security] -->
+
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
 <details open>
 <summary>Available methods</summary>
 
-### [Creem SDK](docs/sdks/creem/README.md)
+### [checkouts](docs/sdks/checkouts/README.md)
 
-* [retrieveProduct](docs/sdks/creem/README.md#retrieveproduct) - Retrieve a product
-* [createProduct](docs/sdks/creem/README.md#createproduct) - Creates a new product.
-* [searchProducts](docs/sdks/creem/README.md#searchproducts) - List all products
-* [listCustomers](docs/sdks/creem/README.md#listcustomers) - List all customers
-* [retrieveCustomer](docs/sdks/creem/README.md#retrievecustomer) - Retrieve a customer
-* [generateCustomerLinks](docs/sdks/creem/README.md#generatecustomerlinks) - Generate Customer Links
-* [retrieveSubscription](docs/sdks/creem/README.md#retrievesubscription) - Retrieve a subscription
-* [cancelSubscription](docs/sdks/creem/README.md#cancelsubscription) - Cancel a subscription.
-* [updateSubscription](docs/sdks/creem/README.md#updatesubscription) - Update a subscription.
-* [upgradeSubscription](docs/sdks/creem/README.md#upgradesubscription) - Upgrade a subscription to a different product
-* [retrieveCheckout](docs/sdks/creem/README.md#retrievecheckout) - Retrieve a new checkout session.
-* [createCheckout](docs/sdks/creem/README.md#createcheckout) - Creates a new checkout session.
-* [activateLicense](docs/sdks/creem/README.md#activatelicense) - Activates a license key.
-* [deactivateLicense](docs/sdks/creem/README.md#deactivatelicense) - Deactivate a license key instance.
-* [validateLicense](docs/sdks/creem/README.md#validatelicense) - Validates a license key or instance.
-* [retrieveDiscount](docs/sdks/creem/README.md#retrievediscount) - Retrieve discount
-* [createDiscount](docs/sdks/creem/README.md#creatediscount) - Create a discount.
-* [deleteDiscount](docs/sdks/creem/README.md#deletediscount) - Delete a discount.
-* [getTransactionById](docs/sdks/creem/README.md#gettransactionbyid) - Get a transaction by ID
-* [searchTransactions](docs/sdks/creem/README.md#searchtransactions) - List all transactions
+* [retrieve](docs/sdks/checkouts/README.md#retrieve) - Retrieve a new checkout session.
+* [create](docs/sdks/checkouts/README.md#create) - Creates a new checkout session.
+
+### [customers](docs/sdks/customers/README.md)
+
+* [list](docs/sdks/customers/README.md#list) - List all customers
+* [retrieve](docs/sdks/customers/README.md#retrieve) - Retrieve a customer
+* [generateBillingLinks](docs/sdks/customers/README.md#generatebillinglinks) - Generate Customer Links
+
+### [discounts](docs/sdks/discounts/README.md)
+
+* [get](docs/sdks/discounts/README.md#get) - Retrieve discount
+* [create](docs/sdks/discounts/README.md#create) - Create a discount.
+* [delete](docs/sdks/discounts/README.md#delete) - Delete a discount.
+
+### [licenses](docs/sdks/licenses/README.md)
+
+* [activate](docs/sdks/licenses/README.md#activate) - Activates a license key.
+* [deactivate](docs/sdks/licenses/README.md#deactivate) - Deactivate a license key instance.
+* [validate](docs/sdks/licenses/README.md#validate) - Validates a license key or instance.
+
+### [products](docs/sdks/products/README.md)
+
+* [get](docs/sdks/products/README.md#get) - Retrieve a product
+* [create](docs/sdks/products/README.md#create) - Creates a new product.
+* [search](docs/sdks/products/README.md#search) - List all products
+
+### [subscriptions](docs/sdks/subscriptions/README.md)
+
+* [get](docs/sdks/subscriptions/README.md#get) - Retrieve a subscription
+* [cancel](docs/sdks/subscriptions/README.md#cancel) - Cancel a subscription.
+* [update](docs/sdks/subscriptions/README.md#update) - Update a subscription.
+* [upgrade](docs/sdks/subscriptions/README.md#upgrade) - Upgrade a subscription to a different product
+
+### [transactions](docs/sdks/transactions/README.md)
+
+* [getById](docs/sdks/transactions/README.md#getbyid) - Get a transaction by ID
+* [search](docs/sdks/transactions/README.md#search) - List all transactions
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -234,26 +284,26 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [`activateLicense`](docs/sdks/creem/README.md#activatelicense) - Activates a license key.
-- [`cancelSubscription`](docs/sdks/creem/README.md#cancelsubscription) - Cancel a subscription.
-- [`createCheckout`](docs/sdks/creem/README.md#createcheckout) - Creates a new checkout session.
-- [`createDiscount`](docs/sdks/creem/README.md#creatediscount) - Create a discount.
-- [`createProduct`](docs/sdks/creem/README.md#createproduct) - Creates a new product.
-- [`deactivateLicense`](docs/sdks/creem/README.md#deactivatelicense) - Deactivate a license key instance.
-- [`deleteDiscount`](docs/sdks/creem/README.md#deletediscount) - Delete a discount.
-- [`generateCustomerLinks`](docs/sdks/creem/README.md#generatecustomerlinks) - Generate Customer Links
-- [`getTransactionById`](docs/sdks/creem/README.md#gettransactionbyid) - Get a transaction by ID
-- [`listCustomers`](docs/sdks/creem/README.md#listcustomers) - List all customers
-- [`retrieveCheckout`](docs/sdks/creem/README.md#retrievecheckout) - Retrieve a new checkout session.
-- [`retrieveCustomer`](docs/sdks/creem/README.md#retrievecustomer) - Retrieve a customer
-- [`retrieveDiscount`](docs/sdks/creem/README.md#retrievediscount) - Retrieve discount
-- [`retrieveProduct`](docs/sdks/creem/README.md#retrieveproduct) - Retrieve a product
-- [`retrieveSubscription`](docs/sdks/creem/README.md#retrievesubscription) - Retrieve a subscription
-- [`searchProducts`](docs/sdks/creem/README.md#searchproducts) - List all products
-- [`searchTransactions`](docs/sdks/creem/README.md#searchtransactions) - List all transactions
-- [`updateSubscription`](docs/sdks/creem/README.md#updatesubscription) - Update a subscription.
-- [`upgradeSubscription`](docs/sdks/creem/README.md#upgradesubscription) - Upgrade a subscription to a different product
-- [`validateLicense`](docs/sdks/creem/README.md#validatelicense) - Validates a license key or instance.
+- [`checkoutsCreate`](docs/sdks/checkouts/README.md#create) - Creates a new checkout session.
+- [`checkoutsRetrieve`](docs/sdks/checkouts/README.md#retrieve) - Retrieve a new checkout session.
+- [`customersGenerateBillingLinks`](docs/sdks/customers/README.md#generatebillinglinks) - Generate Customer Links
+- [`customersList`](docs/sdks/customers/README.md#list) - List all customers
+- [`customersRetrieve`](docs/sdks/customers/README.md#retrieve) - Retrieve a customer
+- [`discountsCreate`](docs/sdks/discounts/README.md#create) - Create a discount.
+- [`discountsDelete`](docs/sdks/discounts/README.md#delete) - Delete a discount.
+- [`discountsGet`](docs/sdks/discounts/README.md#get) - Retrieve discount
+- [`licensesActivate`](docs/sdks/licenses/README.md#activate) - Activates a license key.
+- [`licensesDeactivate`](docs/sdks/licenses/README.md#deactivate) - Deactivate a license key instance.
+- [`licensesValidate`](docs/sdks/licenses/README.md#validate) - Validates a license key or instance.
+- [`productsCreate`](docs/sdks/products/README.md#create) - Creates a new product.
+- [`productsGet`](docs/sdks/products/README.md#get) - Retrieve a product
+- [`productsSearch`](docs/sdks/products/README.md#search) - List all products
+- [`subscriptionsCancel`](docs/sdks/subscriptions/README.md#cancel) - Cancel a subscription.
+- [`subscriptionsGet`](docs/sdks/subscriptions/README.md#get) - Retrieve a subscription
+- [`subscriptionsUpdate`](docs/sdks/subscriptions/README.md#update) - Update a subscription.
+- [`subscriptionsUpgrade`](docs/sdks/subscriptions/README.md#upgrade) - Upgrade a subscription to a different product
+- [`transactionsGetById`](docs/sdks/transactions/README.md#getbyid) - Get a transaction by ID
+- [`transactionsSearch`](docs/sdks/transactions/README.md#search) - List all transactions
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
@@ -267,13 +317,12 @@ To change the default retry strategy for a single API call, simply provide a ret
 ```typescript
 import { Creem } from "creem";
 
-const creem = new Creem();
+const creem = new Creem({
+  apiKey: process.env["CREEM_API_KEY"] ?? "",
+});
 
 async function run() {
-  const result = await creem.retrieveProduct({
-    productId: "<id>",
-    xApiKey: "<value>",
-  }, {
+  const result = await creem.products.get("<id>", {
     retries: {
       strategy: "backoff",
       backoff: {
@@ -308,13 +357,11 @@ const creem = new Creem({
     },
     retryConnectionErrors: false,
   },
+  apiKey: process.env["CREEM_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await creem.retrieveProduct({
-    productId: "<id>",
-    xApiKey: "<value>",
-  });
+  const result = await creem.products.get("<id>");
 
   console.log(result);
 }
@@ -342,14 +389,13 @@ run();
 import { Creem } from "creem";
 import * as errors from "creem/models/errors";
 
-const creem = new Creem();
+const creem = new Creem({
+  apiKey: process.env["CREEM_API_KEY"] ?? "",
+});
 
 async function run() {
   try {
-    const result = await creem.retrieveProduct({
-      productId: "<id>",
-      xApiKey: "<value>",
-    });
+    const result = await creem.products.get("<id>");
 
     console.log(result);
   } catch (error) {
@@ -406,14 +452,12 @@ You can override the default server globally by passing a server index to the `s
 import { Creem } from "creem";
 
 const creem = new Creem({
-  serverIdx: 1,
+  serverIdx: 0,
+  apiKey: process.env["CREEM_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await creem.retrieveProduct({
-    productId: "<id>",
-    xApiKey: "<value>",
-  });
+  const result = await creem.products.get("<id>");
 
   console.log(result);
 }
@@ -430,13 +474,11 @@ import { Creem } from "creem";
 
 const creem = new Creem({
   serverURL: "https://test-api.creem.io",
+  apiKey: process.env["CREEM_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await creem.retrieveProduct({
-    productId: "<id>",
-    xApiKey: "<value>",
-  });
+  const result = await creem.products.get("<id>");
 
   console.log(result);
 }
