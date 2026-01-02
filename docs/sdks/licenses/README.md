@@ -1,5 +1,4 @@
 # Licenses
-(*licenses*)
 
 ## Overview
 

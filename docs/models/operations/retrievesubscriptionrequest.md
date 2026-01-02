@@ -6,12 +6,12 @@
 import { RetrieveSubscriptionRequest } from "creem/models/operations";
 
 let value: RetrieveSubscriptionRequest = {
-  subscriptionId: "<id>",
+  subscriptionId: "sub_1234567890",
 };
 ```
 
 ## Fields
 
-| Field                                     | Type                                      | Required                                  | Description                               |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| `subscriptionId`                          | *string*                                  | :heavy_check_mark:                        | The unique identifier of the subscription |
+| Field                                     | Type                                      | Required                                  | Description                               | Example                                   |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| `subscriptionId`                          | *string*                                  | :heavy_check_mark:                        | The unique identifier of the subscription | sub_1234567890                            |

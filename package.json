@@ -1,6 +1,6 @@
 {
   "name": "creem",
-  "version": "0.8.0",
+  "version": "0.10.0",
   "author": "Speakeasy",
   "scripts": {
     "lint": "eslint --cache --max-warnings=0 src",
@@ -48,7 +48,7 @@
     "typescript-eslint": "^8.26.0"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": ">=1.5.0 <1.10.0",
+    "@modelcontextprotocol/sdk": "^1.24.0",
     "zod": "^3.25.0 || ^4.0.0"
   },
   "exports": {

@@ -1,18 +1,22 @@
 lockVersion: 2.0.0
 id: 091f072e-89b5-4c97-b605-63f1bf64ee97
 management:
-  docChecksum: 5bb204660ad44b3b83efb260fa2c209d
+  docChecksum: b614c7d18f87adb9f9ef1bbb4fd87a2e
   docVersion: v1
-  speakeasyVersion: 1.660.0
-  generationVersion: 2.760.2
-  releaseVersion: 0.8.0
-  configChecksum: cb212cd7c8e77072481a17b3d97ff924
+  speakeasyVersion: 1.680.11
+  generationVersion: 2.788.15
+  releaseVersion: 0.10.0
+  configChecksum: 339acc254d88548f62445e474f3a2861
   published: true
+persistentEdits:
+  generation_id: 2ae3947a-1a0f-4467-8464-88dcdadef11e
+  pristine_commit_hash: 684eeef53d307e04bec4eaa6d98542b0c90f4819
+  pristine_tree_hash: 57061f8389bc4dfa046d33bbda10e696eb691c80
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.26.9
+    core: 3.26.17
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.1
     enumUnions: 0.1.0
@@ -23,14 +27,1277 @@ features:
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.83.0
     groups: 2.81.3
-    mcpServer: 0.9.3
+    mcpServer: 0.9.4
     nameOverrides: 2.81.2
     nullables: 0.1.1
     responseFormat: 0.2.3
     retries: 2.83.0
-    sdkHooks: 0.3.0
-    serverIDs: 2.81.2
-    unions: 2.86.0
+    sdkHooks: 0.4.0
+    unions: 2.86.3
+trackedFiles:
+  .devcontainer/README.md:
+    id: b170c0f184ac
+    last_write_checksum: sha1:c6400ee8ddf35936d604f0d44136a772f1d1431c
+    pristine_git_object: 12fe5e7353696202f1e99a59bcf2bc4a9e4a2dc5
+  .devcontainer/devcontainer.json:
+    id: b34062a34eb1
+    last_write_checksum: sha1:d0b15193202c961e7d1875864ddb15f9d17c84dd
+    pristine_git_object: 4d560dd5f40afaf10d96eb75b1f02cd48bbd640c
+  .devcontainer/setup.sh:
+    id: 5f1dfbfeb8eb
+    last_write_checksum: sha1:58c9e85ca90d7a2d7b17fe28272cc359f07b05cf
+    pristine_git_object: a90904cd59a3269cca2b5f578192882ed7f413eb
+  .gitattributes:
+    id: 24139dae6567
+    last_write_checksum: sha1:26d16d8297b104945139da8c25bd38feeaad3e25
+    pristine_git_object: 113eead5093c17d43a46159132885318f281a68a
+  .npmignore:
+    id: aa70c1f807c3
+    last_write_checksum: sha1:3d5eb92f81539175db1ff0280e0aefbdd701f200
+    pristine_git_object: cf98a6bf092538eb10ff0edc915102682ce9a6e6
+  FUNCTIONS.md:
+    id: 21b9df02aaeb
+    last_write_checksum: sha1:0737396717292fce5cd031e55931d67bfebd9faf
+    pristine_git_object: 6927cec22df09075b530e22241d956e96ba16799
+  RUNTIMES.md:
+    id: 620c490847b6
+    last_write_checksum: sha1:e45b854f02c357cbcfdb8c3663000e8339e16505
+    pristine_git_object: 27731c3b5ace66bedc454ed5acbe15075aacd3dc
+  USAGE.md:
+    id: 3aed33ce6e6f
+    last_write_checksum: sha1:b438eb36908709376580e06fc87aa27fea7ad29f
+    pristine_git_object: 5dfcc707237fb11b8dfef64430535bb41f139ae3
+  docs/lib/utils/retryconfig.md:
+    id: 0ce9707cb848
+    last_write_checksum: sha1:bc4454e196fcd219f5a78da690375a884f5ed07b
+    pristine_git_object: 08f95f4552349360b2c0b01802aa71ec3a55d2c2
+  docs/models/components/activatelicenserequestentity.md:
+    id: 3dc1cb0e852e
+    last_write_checksum: sha1:71ded0506a82e47bc3fddd1eb82c72c732f8de21
+    pristine_git_object: 634cbc45074962fdbda3c112c4a3ba2a1b429754
+  docs/models/components/activationlimit.md:
+    id: 6c593cd0989f
+    last_write_checksum: sha1:348775080ce630aba9afc0e5bedbe3ecfc4b39cf
+    pristine_git_object: 613f0ad6c3274edd144d6edd0bc9339d38827552
+  docs/models/components/cancelsubscriptionrequestentity.md:
+    id: 058fefa14fc4
+    last_write_checksum: sha1:d018725736da7e61d2049beb3b9881d8cdd8f79e
+    pristine_git_object: a8de379c39f4d35e505db271792fc5ac0e14efcd
+  docs/models/components/cancelsubscriptionrequestentitymode.md:
+    id: d15977aa6be4
+    last_write_checksum: sha1:d472aed7e932d902b17ed5aa899ee97e472de855
+    pristine_git_object: d8f0672456f2652dfcfc489477654b4024773d94
+  docs/models/components/checkbox.md:
+    id: 9fcd28f30a20
+    last_write_checksum: sha1:1ea55a7ea937d065fd0c5622824e7877efeb944a
+    pristine_git_object: b8c063daa3f7c1895dd78be342504e7c745a85bd
+  docs/models/components/checkoutentity.md:
+    id: 67c12f078b56
+    last_write_checksum: sha1:360e3a5eef95293634ecb3c212b5c88a8fb619f1
+    pristine_git_object: 76ae3c39c23dd3a963acc8cae8af7f16bee53a23
+  docs/models/components/checkoutentitycustomer.md:
+    id: c33f6658aa3c
+    last_write_checksum: sha1:dd5a2612f6b742476fa3fb7e955dcb559b359efa
+    pristine_git_object: ba27f68726415c4a724ebd2fad497c38beb0db2d
+  docs/models/components/checkoutentitymode.md:
+    id: 182d5a02d79e
+    last_write_checksum: sha1:8a1ce5d8fbb6e5834fe92a566dbeb8e329bff235
+    pristine_git_object: d58c10a7e5b0e205ed9d18dac2ef58fd1de13c1a
+  docs/models/components/checkoutentityproduct.md:
+    id: ffbb194ba78b
+    last_write_checksum: sha1:48328926cae1e6656b323a20ae1284edcef00583
+    pristine_git_object: 606c270144a6d0f1e87046b044c29f228652f043
+  docs/models/components/checkoutentitystatus.md:
+    id: bac945ba57af
+    last_write_checksum: sha1:309c3cd551478c2d2e697cfbc4ebd810f1e9fd4e
+    pristine_git_object: baf9a9c66a76c0c9ad74bae88df93d1313bf47e9
+  docs/models/components/createcheckoutrequest.md:
+    id: 7557df49b680
+    last_write_checksum: sha1:d1de042f893303bcf5c2d213ed4863ecdef0a1f2
+    pristine_git_object: bb8482df255701edcc1079c08c610b233ecdbbf1
+  docs/models/components/createcustomerportallinkrequestentity.md:
+    id: f493dd6265e5
+    last_write_checksum: sha1:dd3c1198fe0eed12b076fb28050f0afe3d434587
+    pristine_git_object: 11fa2a78d8805e426dbabe9aff94c93c01faff92
+  docs/models/components/creatediscountrequestentity.md:
+    id: 246b87c4416f
+    last_write_checksum: sha1:ffc2c35003db237b36fc3dd697d55a78c15cfc46
+    pristine_git_object: 9b48051f449ee9e7d0a4263354c3a113db0012a0
+  docs/models/components/creatediscountrequestentityduration.md:
+    id: 84c20e1a11f7
+    last_write_checksum: sha1:b6d099946b4c83c8073058704e04ae144d22ab3a
+    pristine_git_object: ec70aec9ab41bc0d9b518856cd5642e346bfacb8
+  docs/models/components/creatediscountrequestentitytype.md:
+    id: 524d7959907d
+    last_write_checksum: sha1:4d68056eb372e15add1ba44b152546283975611c
+    pristine_git_object: e9dbda11873d384fd1d85b46ed1188e7ca85ecbe
+  docs/models/components/createproductrequestentity.md:
+    id: 8257f878173d
+    last_write_checksum: sha1:6cff16c3990b80bf3e88b665f3a1e2b73dd80836
+    pristine_git_object: 1a0798d76f055612a9f62df2a317829617cf3d11
+  docs/models/components/customer.md:
+    id: c4a50385ed0c
+    last_write_checksum: sha1:6d584b8b378d61430c476892f975c818bc9f25b2
+    pristine_git_object: e90603c9526c6d2ffbe60436dae40e6989cd43ed
+  docs/models/components/customerentity.md:
+    id: 2e9b74ad0ca6
+    last_write_checksum: sha1:0f62af29e0da6e16306b52fb158719961b41395b
+    pristine_git_object: e22cc8d2ac887e6af76d92b025abf0a6e7f936d7
+  docs/models/components/customerentitymode.md:
+    id: 8be24e13b96a
+    last_write_checksum: sha1:06d982cf4be80430b9e055151209a71257440ebd
+    pristine_git_object: 06248bcf114ed438e3b9ab47b883f1214680be7a
+  docs/models/components/customerlinksentity.md:
+    id: 7ed83d8861eb
+    last_write_checksum: sha1:f477439cf46cb13747d8ca4638c821275707da27
+    pristine_git_object: b18f40bbc66ce93b5a4fe6a96b7013c9e2b46276
+  docs/models/components/customerlistentity.md:
+    id: 395f610a1576
+    last_write_checksum: sha1:340bc1a289528788ffc179bc93c049044e8feeaa
+    pristine_git_object: c3b813f01a82cc2e66cec3193a37c0b8ff04003e
+  docs/models/components/customerrequestentity.md:
+    id: d568e70e39e2
+    last_write_checksum: sha1:cd1a3c78fc8ffa307d9da4d9703c5a76f966f4f9
+    pristine_git_object: a461c6e2c179b9cc0d3d19540a2de9baa6413d91
+  docs/models/components/customfield.md:
+    id: 8aae2fb50194
+    last_write_checksum: sha1:2558be03687c441152d4e5565c86cbf2c5ae127c
+    pristine_git_object: 158f8dcdd8c22e09d54341fd4dba6a3a103db53a
+  docs/models/components/customfieldrequestentity.md:
+    id: f07acef3868a
+    last_write_checksum: sha1:63af5bc9ad4ffb0dce406570a194b47050df2f82
+    pristine_git_object: 8685b457c263ce4fd9275a58f1f16fceda3858d4
+  docs/models/components/customfieldtype.md:
+    id: c4053365bb92
+    last_write_checksum: sha1:2a8f88f75d4732fbf010db5eb79f030c35aad854
+    pristine_git_object: 97732a0a1e39f2c288aaced077b3ff6e1bdc35c5
+  docs/models/components/deactivatelicenserequestentity.md:
+    id: e531da73e7f9
+    last_write_checksum: sha1:09bc50df2ac5c68121286445eaddfb37af358708
+    pristine_git_object: a4031a40e5d35d9aa03fbff408c4b58ca123ffdd
+  docs/models/components/discount.md:
+    id: 902ead98a895
+    last_write_checksum: sha1:e647f09d4fbb48032813a75ce16e36fb4a59a2d7
+    pristine_git_object: dcdafadaa2a9290fc163bffe5513958f8d075bae
+  docs/models/components/discountentity.md:
+    id: 54cb40af5e5d
+    last_write_checksum: sha1:51f1603d360f52811c0785fba7895149feca08e2
+    pristine_git_object: c0e14bf946daaeef5240dbf4a75748336747b86a
+  docs/models/components/discountentitymode.md:
+    id: bef30947bf79
+    last_write_checksum: sha1:0be2c68b86c6e2bdc86517a4f75c100c8e8d039a
+    pristine_git_object: cead934e60dd21c6b56d9c15c5c02ae263e946a4
+  docs/models/components/discountentitystatus.md:
+    id: bb799a9126b9
+    last_write_checksum: sha1:b6247464040d9477661123b7ba147bccce627797
+    pristine_git_object: cce668c6d495bc637d3ea7c856e3cd61e9e2a042
+  docs/models/components/discountentitytype.md:
+    id: 9fa701af1d4e
+    last_write_checksum: sha1:a34638c684c372cce75dd928d862144044b47df4
+    pristine_git_object: bc0668feb27ad344c202e573787e1ac133b89f58
+  docs/models/components/duration.md:
+    id: f14d4eaaeaf9
+    last_write_checksum: sha1:ab1efd268c2288a991190e8c7eeacc4908c96c0b
+    pristine_git_object: 5426c02c7de911ffe654f363a728c0f83e4ca19e
+  docs/models/components/expiresat.md:
+    id: c5ae9bfc4cdf
+    last_write_checksum: sha1:9b09fe7347b1916ce15ecb53779e70fb8ab5656f
+    pristine_git_object: 70248568e197f5ee2106018f77b225b7408756a0
+  docs/models/components/featureentity.md:
+    id: fe7695d86411
+    last_write_checksum: sha1:7a7975ecbad312bb75d0e0e952c861dda0032ad7
+    pristine_git_object: f60f2dcf49c631efa5aa780eaf2b47a80e6b908e
+  docs/models/components/instance.md:
+    id: 258cabab5b86
+    last_write_checksum: sha1:40bece784984fc0898a00bbb2b00ff8088b01aab
+    pristine_git_object: 056846e8c98e3dc4bd67c7e694e9c7fe5e5f0755
+  docs/models/components/licenseentity.md:
+    id: 2d0cf735e53f
+    last_write_checksum: sha1:95dee516f8d23f2554d8d16e2348254d8f40654a
+    pristine_git_object: 26599d872e2051eba024640bf7000dd8420e8bc8
+  docs/models/components/licenseentityinstancemode.md:
+    id: fcf2e1eba825
+    last_write_checksum: sha1:3efe86374d494988f561dfb27cfed1d0684b0693
+    pristine_git_object: 6eab04f2cd808a6c34e2ca815c1061d07f26b1ec
+  docs/models/components/licenseentityinstancestatus.md:
+    id: 17ff4991b673
+    last_write_checksum: sha1:71d1d1896832acf48d5843d5b918eef86121d163
+    pristine_git_object: 0521e7929fa6e21800ad54967d41bf96555c4b0d
+  docs/models/components/licenseentitymode.md:
+    id: b4e0a82ef7c0
+    last_write_checksum: sha1:11afb8d045419e962a4c17eb00e36fb7e9914743
+    pristine_git_object: 6007b1ee5eb53509bd4bcb76f2285f9a5f9f72f8
+  docs/models/components/licenseentitystatus.md:
+    id: 4c858bc3502a
+    last_write_checksum: sha1:b2ac6bb06bbfb3cc875ff8687967945138a02a07
+    pristine_git_object: 8be91f4d52435e6a4d28aae7ec4a5edad07078b8
+  docs/models/components/mode.md:
+    id: ecad6afdf106
+    last_write_checksum: sha1:212e6dbe6bcf9ac6d9c60f954af57fce7c45fe45
+    pristine_git_object: 475730b068d9ee60fb0e41666dc07b833e965cd4
+  docs/models/components/onexecute.md:
+    id: ea2374b1a0da
+    last_write_checksum: sha1:af425b13632321d4ead60d84d82359961edb05a0
+    pristine_git_object: bc42d77227211b22835ceba9a38bed88fc096553
+  docs/models/components/orderentity.md:
+    id: 5af33ed8aff2
+    last_write_checksum: sha1:13fd3a4345be04882c2a0e3fa7381b5442b7540f
+    pristine_git_object: eed4d64839e22ae0a74e7afefc53f28d293b40f1
+  docs/models/components/orderentitymode.md:
+    id: a39a677df599
+    last_write_checksum: sha1:b94160681350abcdfbddc4d61547c76565e67745
+    pristine_git_object: 9e945bbe3ae30bdc4a92d7cc5e5a19e0c4cecf6c
+  docs/models/components/orderentitystatus.md:
+    id: 6f1777a6f54a
+    last_write_checksum: sha1:7895a882250220eae1d33f95f920f7bebc1e5a35
+    pristine_git_object: 8eb7690c1f143859893d937ce6de49deb23db9d2
+  docs/models/components/orderentitytype.md:
+    id: 915ed1e4c107
+    last_write_checksum: sha1:02a11b1b6ce41d03f88cf05ba1760d7effa028e2
+    pristine_git_object: 1722e9bbac1080ded0b5077179caa97a64ef3ee5
+  docs/models/components/paginationentity.md:
+    id: 9473e5fff17d
+    last_write_checksum: sha1:953b0f352c1062e2a833bb8d5e2f12de6047b553
+    pristine_git_object: 111a8b029c00eba4f26c5b660d8cdd43e2fdac36
+  docs/models/components/product.md:
+    id: ba34ccd38ab6
+    last_write_checksum: sha1:34ed65d2edfcbb52e90aa8ad299443820061319c
+    pristine_git_object: 709453d1ecb4d6a24bffc77ced210daf47d8b709
+  docs/models/components/productentity.md:
+    id: 01b586923dbb
+    last_write_checksum: sha1:b72c55ae75eff24b1a552c3078a762ef0714f520
+    pristine_git_object: aa473e7b23f86649b6c80f3c5c11569dc6207ab2
+  docs/models/components/productfeatureentity.md:
+    id: 54a8ab410373
+    last_write_checksum: sha1:d7d261d8c28cbbb5cf7baf5826db026564d9c6ee
+    pristine_git_object: ac862ed56532a94754de17f42f42bbca51d96ac1
+  docs/models/components/productlistentity.md:
+    id: b087b47a2019
+    last_write_checksum: sha1:f7ca7c6f9537856ebfaa41472cfbcefcab4c68c2
+    pristine_git_object: 1e5a17f2e6379b4f887ccdbf851af7a50876ea00
+  docs/models/components/security.md:
+    id: 54906b49ea28
+    last_write_checksum: sha1:82e5c2f8a9f131654365162ba6e8f8d7eba0a575
+    pristine_git_object: 6d1306122d7eb5118620037701176c2280c40e73
+  docs/models/components/status.md:
+    id: e26b2fe7f53e
+    last_write_checksum: sha1:851c8b02bebf12e79e69317a7aaf0e010e2e964d
+    pristine_git_object: 8b82225237994a4dab6afa9a287abd407cb05603
+  docs/models/components/subscription.md:
+    id: 66a8decfafdd
+    last_write_checksum: sha1:0f28efd1dba219022da4b1233c4f07435188316f
+    pristine_git_object: 145d65c10a85c733d69cfad65ddbb7aef1e40571
+  docs/models/components/subscriptionentity.md:
+    id: ac5d50bdbfb7
+    last_write_checksum: sha1:183b652125e0db8937b95dd24a2080c3f4d64fec
+    pristine_git_object: f7f20478fd491f4f790ac0cadb003a13f6881361
+  docs/models/components/subscriptionentitymode.md:
+    id: e289292af600
+    last_write_checksum: sha1:7211ef29c5785fcf7e9d82ff70d6fbcbf9165030
+    pristine_git_object: e0ade80594ad51fb32045c83a647f6480b98fa3c
+  docs/models/components/subscriptionitementity.md:
+    id: a3e9d39a5879
+    last_write_checksum: sha1:72dc62a2e4d62ad6481852995a76a0439f825be5
+    pristine_git_object: 511c90d69614f263f009aa87c87d29589f1c9883
+  docs/models/components/subscriptionitementitymode.md:
+    id: 5873e41843e4
+    last_write_checksum: sha1:f379409ce69e3a0b146d6e37b70cae85ff08f2e0
+    pristine_git_object: cae447e1a1a7fc5600c80b1070535c34e18986b4
+  docs/models/components/text.md:
+    id: ee2fa8584ffe
+    last_write_checksum: sha1:f03e4c6d72912c1cab3a9a23590f732d79c9872a
+    pristine_git_object: 6bf81aaac28472c0399e9b14bd0d06b3f0ebb6df
+  docs/models/components/transactionentity.md:
+    id: b488c8d11cec
+    last_write_checksum: sha1:4b93dbdbe585781f6432879e270d29fa5ff6c930
+    pristine_git_object: 2d149b8e183d7273b57b665d38fcae21905b923a
+  docs/models/components/transactionentitymode.md:
+    id: d4d2be97db3d
+    last_write_checksum: sha1:e64f4255b73149d8e0f2516847e2d71582f6bcf5
+    pristine_git_object: 240a3bbff5690543d49444d9632d313ab228129f
+  docs/models/components/transactionlistentity.md:
+    id: b572848678dd
+    last_write_checksum: sha1:e7658e1be0b6b2a30130719f834d85f0991948ff
+    pristine_git_object: 80d97f8c96303b3b2ca4caf3daa81f77f451421a
+  docs/models/components/type.md:
+    id: 9f07f2d18a9f
+    last_write_checksum: sha1:38b80ab0859b725130ae4fa3d7bce4f6f4b5d88d
+    pristine_git_object: 598b9ede0864ecd7075728acc055872e9d9c82f5
+  docs/models/components/updatebehavior.md:
+    id: 2bbf9ee35707
+    last_write_checksum: sha1:f3b55bedb0b2f2bad6ed0b3c987e3e7ed40a7d41
+    pristine_git_object: 13e4d6b4004b5c7b69287e17d07375883709d365
+  docs/models/components/updatesubscriptionrequestentity.md:
+    id: a9203ebb8593
+    last_write_checksum: sha1:77c191c4e53064e2528407ec9773670fee29cf0b
+    pristine_git_object: 8abb4fde0f967b879213359d6fa986855921a494
+  docs/models/components/upgradesubscriptionrequestentity.md:
+    id: 132bee25b7aa
+    last_write_checksum: sha1:c551c4a56a29e827c2273eb0dc2c2e9567384575
+    pristine_git_object: 6d52464bf587e853311cf9bd5ea2c092333ef4e6
+  docs/models/components/upgradesubscriptionrequestentityupdatebehavior.md:
+    id: 30da7941e382
+    last_write_checksum: sha1:a2c00cd1d0b02be4f95ec8cec44824b5916a5490
+    pristine_git_object: 5b6d896200ed19406dcc37a5403b571943cf26f1
+  docs/models/components/upsertsubscriptionitementity.md:
+    id: 9a6b940566f5
+    last_write_checksum: sha1:8241fe5d30bd88c11096672245244253dda532b8
+    pristine_git_object: b53daec6082bfb6c07ace88d7d0209da53cc90d8
+  docs/models/components/validatelicenserequestentity.md:
+    id: f26067c83d89
+    last_write_checksum: sha1:4abf7e6fa8315f107b0d401113693cf8b6e66371
+    pristine_git_object: dc04743be5b60d9ec782327ae8488a79bbcb2257
+  docs/models/operations/cancelsubscriptionrequest.md:
+    id: 838f185094b0
+    last_write_checksum: sha1:c6b6e075bbfecc068812e92a2373bafa630f7254
+    pristine_git_object: 13ced3d7d373f88b0c13145ce7f7bc656725084e
+  docs/models/operations/deletediscountrequest.md:
+    id: a531c39a8944
+    last_write_checksum: sha1:60920cdf5e7904ff9545228b5b9f2547da8111c5
+    pristine_git_object: 6c568413b4ab173f9f65480f60859637f85103b7
+  docs/models/operations/gettransactionbyidrequest.md:
+    id: 0e4013c65303
+    last_write_checksum: sha1:bf822945217b96c30f4e64efab0248645de90245
+    pristine_git_object: 35e14c16281dbd4f6b58863ab29a1160b8b55181
+  docs/models/operations/listcustomersrequest.md:
+    id: 14ff269ba0f9
+    last_write_checksum: sha1:5bf256f8dec19cf9376881c9108c01d13e903a89
+    pristine_git_object: 0ca867d8074f7212a50f8d5b4cfafdcbbaba37c0
+  docs/models/operations/pausesubscriptionrequest.md:
+    id: 13bd0ce6ef15
+    last_write_checksum: sha1:112221b62d8349b7cc03602f316b21237c516239
+    pristine_git_object: 63eed0f107e278a6b36b89fde63be52336ef6a6c
+  docs/models/operations/resumesubscriptionrequest.md:
+    id: 4fd3f138a941
+    last_write_checksum: sha1:150d705ecec3f1518e9c6889d87f255ea2ac1d01
+    pristine_git_object: 1e1b6c3fdd9c300afce5e2c177fc1d7abb4d9420
+  docs/models/operations/retrievecheckoutrequest.md:
+    id: f436086bf58f
+    last_write_checksum: sha1:61d8b66bba8ff337ca6a4303dc8a62dd10afe7b2
+    pristine_git_object: f864a607b87fb2038b1250281427a28325d27d69
+  docs/models/operations/retrievecustomerrequest.md:
+    id: a5dec02b2be8
+    last_write_checksum: sha1:71150b4449a13eb563d38cbfa9f12fadf702539f
+    pristine_git_object: f16f6a49468e0575eacbd19240daa09171982961
+  docs/models/operations/retrievediscountrequest.md:
+    id: 656f87ce242c
+    last_write_checksum: sha1:364fdad1590b7e54e7d783a1f4403c010e5361ec
+    pristine_git_object: 89f1a2328d188f765b9d1990258b9c37cc1494a4
+  docs/models/operations/retrieveproductrequest.md:
+    id: 88aae4a36275
+    last_write_checksum: sha1:3a393adb5323fbad949de11d0cbe3dc7a4dacada
+    pristine_git_object: 7f593bafffc437f57b740e4e784b20275247bdc8
+  docs/models/operations/retrievesubscriptionrequest.md:
+    id: 609d4d39c68f
+    last_write_checksum: sha1:b4b842d54dcbb0fd36731ebf4270bdb40f7cb365
+    pristine_git_object: 84912b498ab54a11cac4e7d21916a8c9573bc1d2
+  docs/models/operations/searchproductsrequest.md:
+    id: c2b3f4ec5379
+    last_write_checksum: sha1:d026c7291323165056319ba4e9d2feeadbd84b8a
+    pristine_git_object: c4a6570893311b03895aac22542931ccc3859c41
+  docs/models/operations/searchtransactionsrequest.md:
+    id: 2bb8a7f7a3c8
+    last_write_checksum: sha1:b98ba9da05e48951d1d04d52071c30bb1f81c16e
+    pristine_git_object: 5e55c99a18314b651860acbe680c94634689b9a0
+  docs/models/operations/updatesubscriptionrequest.md:
+    id: ce583ff5488a
+    last_write_checksum: sha1:752cfc448834b72ef7ae4d78afd1e982f3fa1404
+    pristine_git_object: 5b21a1092106a5c7ac5d5241befb3501a9898e9d
+  docs/models/operations/upgradesubscriptionrequest.md:
+    id: 345ea726fc03
+    last_write_checksum: sha1:22a469b3105bb91e1b0aaf704fb5187599ca2e6c
+    pristine_git_object: 05718ded2b06e4de3e1722d41e4052c6a2f66ea3
+  docs/sdks/checkouts/README.md:
+    id: 4fb6631c9f7a
+    last_write_checksum: sha1:f68f0405452b9fed97faec63a8cda56a4f861aef
+    pristine_git_object: 576619253f2ac8dfc4b648dbd3c2bacd02c78618
+  docs/sdks/customers/README.md:
+    id: 9332759cffc2
+    last_write_checksum: sha1:13b2e8fc84ccd6e5fe2138a86f71f036fcedfcc5
+    pristine_git_object: 4c3f33ea1a241248c0ca359e1f8fe12b76019642
+  docs/sdks/discounts/README.md:
+    id: "000723261694"
+    last_write_checksum: sha1:4e0f479ce5daa8b918105949d4cb3c983f70ae65
+    pristine_git_object: 0b3a5d36f6dbb5983f831f147ecfeff80c1049d4
+  docs/sdks/licenses/README.md:
+    id: 28ca188b6148
+    last_write_checksum: sha1:d1a403086f28940f43ac5ec16050c724dd8fe288
+    pristine_git_object: 0940a9ab10fc7952917543409c21d0c319d2c9ab
+  docs/sdks/products/README.md:
+    id: af06255e12ab
+    last_write_checksum: sha1:167cc16c21a2475e5391f4364bb92d64219bb640
+    pristine_git_object: 380264dd8701ed10359bbde1079f8183b4fc0004
+  docs/sdks/subscriptions/README.md:
+    id: 298b9ab3c3e0
+    last_write_checksum: sha1:a0b3577316f7587a3568b7626b58e4978d79ab6e
+    pristine_git_object: ee93e52a2de62da609c4b3736e97595520fdcba4
+  docs/sdks/transactions/README.md:
+    id: 85592abe3c6b
+    last_write_checksum: sha1:e0d47ab9d8f1818b90c1dfd9111a060e18985b8a
+    pristine_git_object: 73c87b3c1655fe3bcb6b4fcf276ee6947819052e
+  eslint.config.mjs:
+    id: 461c8d07f6da
+    last_write_checksum: sha1:9398f326377fe47f67af2df6eb6370750c0790b4
+    pristine_git_object: 67bccfec985be20a00970d90155752832dd47135
+  examples/.env.template:
+    id: 52cbe5afed92
+    last_write_checksum: sha1:9bcbbdf0b9f266e2f110a5fb079747e3a5a7cab5
+    pristine_git_object: b08217e8f1f1fe0c4956a3da60e22111cafb3b84
+  examples/README.md:
+    id: 9d0f69d6e677
+    last_write_checksum: sha1:7714fec9333ba299ae1fd2bca46db1570b01bf97
+    pristine_git_object: f6b473cd9c2a717b1b8e5e6d2c8e5a8086c8329c
+  examples/package.json:
+    id: c1d7b0ec8e7e
+    last_write_checksum: sha1:3326115a5867d8e13f9ba0677e9f4534862667ad
+    pristine_git_object: b06f1288c75ea845f541ce3b9a32141eae3d015c
+  examples/productsGet.example.ts:
+    id: 0ed071dee989
+    last_write_checksum: sha1:f365e8683dec3c0eb457d1863badea30ebd4b76d
+    pristine_git_object: 9121e83e6bb14479a098e4ac8e3426e7e29aacf0
+  jsr.json:
+    id: 7f6ab7767282
+    last_write_checksum: sha1:3e5c4ae9fd05db40cf709f1b5d11bef81f8ee7df
+    pristine_git_object: e5888a4c7af0aee5100b8d817f757e0d44eddad1
+  package.json:
+    id: 7030d0b2f71b
+    last_write_checksum: sha1:cf4d4cfe4fceb44b5fd3ee75332307a131ceeec6
+    pristine_git_object: 4904751d275b1cbba4d414fee5ca96961af59a8c
+  src/core.ts:
+    id: f431fdbcd144
+    last_write_checksum: sha1:cfe52efffa2249730665e76efe01d6717dc4d765
+    pristine_git_object: 9720cacca56b86669855b5e92956a5e2a3ee77c1
+  src/funcs/checkoutsCreate.ts:
+    id: 2761731e4157
+    last_write_checksum: sha1:c279d54fe344630a35ac909af53660d1c385b880
+    pristine_git_object: b76922a3e26683def316a8c30735fe896a023ba1
+  src/funcs/checkoutsRetrieve.ts:
+    id: 26ef65391db8
+    last_write_checksum: sha1:d86b2d830c34df3097985f6c7ebb9a93ab745867
+    pristine_git_object: aee48d0aa2ac29a198e847be204b6daf17ec77e9
+  src/funcs/customersGenerateBillingLinks.ts:
+    id: 198d198b3750
+    last_write_checksum: sha1:2d3923f0299455514f66f0cec90f5120087fa020
+    pristine_git_object: d4c037fe03e32da926862a0ef1e3eae8c946971f
+  src/funcs/customersList.ts:
+    id: ec574597f882
+    last_write_checksum: sha1:ca4bb5ce638838eb1f043c92671e11f250865f13
+    pristine_git_object: 4fca060e501a73db8fc2272986bd2fcedd7d03a3
+  src/funcs/customersRetrieve.ts:
+    id: ba4af791e0fb
+    last_write_checksum: sha1:52f70bdbeb964dff4c2e64b10a94025a879ed7c5
+    pristine_git_object: 9f21a9d1c43f3695eac393fd005e01a96a694134
+  src/funcs/discountsCreate.ts:
+    id: 49b98c019000
+    last_write_checksum: sha1:9051de99d2dc1e64365735b050aa9db348e4a3fe
+    pristine_git_object: 9bfc26ad3baefaf0f2c32485f74caddf77ec9058
+  src/funcs/discountsDelete.ts:
+    id: 43cf487fbd2e
+    last_write_checksum: sha1:c63ae09a4897b0a92c3edc502fabe9dba9668aba
+    pristine_git_object: 1e45dfb8cc353d519a858900bf272ae3e156b456
+  src/funcs/discountsGet.ts:
+    id: fa68805c9ec6
+    last_write_checksum: sha1:5b2b921fa84402d2712cf563bb19f94a55519f0e
+    pristine_git_object: d2583ba007bea67317f61490b6479e62c4178194
+  src/funcs/licensesActivate.ts:
+    id: a648cf366c62
+    last_write_checksum: sha1:fe4d13e297341606c18128a3c258d63b6c87ccbd
+    pristine_git_object: 0b101aff9c9d9ce01abfda727408786cfaf35ebc
+  src/funcs/licensesDeactivate.ts:
+    id: cc225e45cc0d
+    last_write_checksum: sha1:08259fe79be5a84f44f6140d82fff993279ee24c
+    pristine_git_object: 9b8f4192b91cca88187b896add74668b521d9caa
+  src/funcs/licensesValidate.ts:
+    id: 83c2f871dfcc
+    last_write_checksum: sha1:4a4872c5a2d210b2118a69e8d0eae04417fffd2a
+    pristine_git_object: bda65a1df533bb402db5bb4df4e7b4fd6e2accff
+  src/funcs/productsCreate.ts:
+    id: a5986653742c
+    last_write_checksum: sha1:6d7359b80b260f6ca9f601615f2db51da5b5ef5c
+    pristine_git_object: 703f3c9c4b72f81ea5167dfe973e0dc3074fe4bd
+  src/funcs/productsGet.ts:
+    id: 18d3367669c7
+    last_write_checksum: sha1:d0618c4b324b29e54a6b3035dabde4e9dae42be4
+    pristine_git_object: ae3ebd3788008d9e1add713fa6c2db9d3f599d07
+  src/funcs/productsSearch.ts:
+    id: 8feca3eabf76
+    last_write_checksum: sha1:bc29b2660407d077dd721302ee1ab47062fd9f9f
+    pristine_git_object: cc8e014ea6ffd1e502b49098942c2eb05ee1d2d7
+  src/funcs/subscriptionsCancel.ts:
+    id: 19596ed40d10
+    last_write_checksum: sha1:0551ea21a8755954d0ba3cc3e12b40faeee06496
+    pristine_git_object: 226bf410adfcf62ebd8904eadc540568499d6bdc
+  src/funcs/subscriptionsGet.ts:
+    id: 1dc5ba956696
+    last_write_checksum: sha1:ad9b46ec38660144a1f0454331c51a3b4fe9a0cf
+    pristine_git_object: d3412aed9464348a5cc3521579ba76cb6aab90d6
+  src/funcs/subscriptionsPause.ts:
+    id: 15c05bc88aa8
+    last_write_checksum: sha1:ea47734fb26bf7ef709434c6061c634f7fbef19b
+    pristine_git_object: 8e098788284ff9d38249ddaa47ab09c4563340bd
+  src/funcs/subscriptionsResume.ts:
+    id: e3485ffca08f
+    last_write_checksum: sha1:de3740c065521c32f6e09250323496808da66eda
+    pristine_git_object: eaacf3622cc0427e4925205b9c78c254001f58c4
+  src/funcs/subscriptionsUpdate.ts:
+    id: c1fd00cb15c8
+    last_write_checksum: sha1:d9ba171ec4dc9285d5cf72816d77c0a19ca739d9
+    pristine_git_object: d22a073d70e350da15efec521f5c5c3aa8077680
+  src/funcs/subscriptionsUpgrade.ts:
+    id: ee2f7da8e8a9
+    last_write_checksum: sha1:e205ecae322b421e28eeece9f03e1e38a34b8762
+    pristine_git_object: d728e82fdcf7648810257b68e7d392872d36f047
+  src/funcs/transactionsGetById.ts:
+    id: 2fb42c4b3f6b
+    last_write_checksum: sha1:f412886098119d472b691afa688dfe83c20ddfe3
+    pristine_git_object: a4662799ad7a9fb2990a71e99ee36e8c0a0352f1
+  src/funcs/transactionsSearch.ts:
+    id: 8961eede678e
+    last_write_checksum: sha1:fad69c39b4ed79962ef020dd239853ec2589c35c
+    pristine_git_object: ddec6dc4025a1802cac43a9a6faac84a06a06c75
+  src/hooks/hooks.ts:
+    id: a2463fc6f69b
+    last_write_checksum: sha1:646c1538dbffb2552af9d7516de64c339b5e96c2
+    pristine_git_object: fc9b13b25900a363b2123d2bad90f541e1d5d176
+  src/hooks/index.ts:
+    id: 5f2dab62b520
+    last_write_checksum: sha1:1a11c073a6cd792932218e1d4ed36b8567bad8ef
+    pristine_git_object: f60ec7acd76141a71d78008c5a362eb0236d8335
+  src/hooks/types.ts:
+    id: 2a02d86ec24f
+    last_write_checksum: sha1:29372122898cc523fa47576f3f6608a28ec6080e
+    pristine_git_object: 8bfe4fe8137138decea7af0a5ed791bf01201789
+  src/index.ts:
+    id: c5fb850250c7
+    last_write_checksum: sha1:35c9cde3ae14b18b3f893a1afe8b6c44f8760f24
+    pristine_git_object: dbcba164a0082e3bb8c43cf21fa7f8ffb9d35dfc
+  src/lib/base64.ts:
+    id: "598522066688"
+    last_write_checksum: sha1:b0b12ddbd8625efb47c0e955a18641aeb10c6532
+    pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
+  src/lib/config.ts:
+    id: 320761608fb3
+    last_write_checksum: sha1:878b59a3eb9aa73dacfe2850fbac19d8da3ea633
+    pristine_git_object: 21c35be9d8c1ab94c37377361515b326d654872b
+  src/lib/dlv.ts:
+    id: b1988214835a
+    last_write_checksum: sha1:1dd3e3fbb4550c4bf31f5ef997faff355d6f3250
+    pristine_git_object: e81091f5e536f82739f71379b1fddc2d147c49e2
+  src/lib/encodings.ts:
+    id: 3bd8ead98afd
+    last_write_checksum: sha1:d20c131976ab8ac68b22bdde2b7ed84b5b873922
+    pristine_git_object: 31cd3733907afbee3641b9ab680ed417247a7d33
+  src/lib/env.ts:
+    id: c52972a3b198
+    last_write_checksum: sha1:019901feda9efb7a31e4cf7a9bf723eb9c3b841d
+    pristine_git_object: 2b2f81bd668ae08ef7a2071718df89d111b8fc01
+  src/lib/files.ts:
+    id: e5efa54fcb95
+    last_write_checksum: sha1:d0f325f445b8d22e7d73baf052c585ec2dd24841
+    pristine_git_object: 0344cd046d033f9e8a55de02f7935c5cec5dc30b
+  src/lib/http.ts:
+    id: 63a80782d37e
+    last_write_checksum: sha1:797cbf16d3c7c4d62d3ba0eedb08617524938457
+    pristine_git_object: 13cf1fd7894a89f727b8d2db2ad24313a94f68c7
+  src/lib/is-plain-object.ts:
+    id: b9862591096a
+    last_write_checksum: sha1:df687f25a9590b6fd95d39df41a652ae3fd4e517
+    pristine_git_object: 61070d3d7c7e5e95b1ed7e7ea21869eb0767db77
+  src/lib/logger.ts:
+    id: 7ee7741a02bf
+    last_write_checksum: sha1:0ec9d3a2a34c362746b767e4f9a746c055d57a7b
+    pristine_git_object: d181f2937d4128afbe9b0327e0f81d1fa9c877b7
+  src/lib/matchers.ts:
+    id: d54b2253b719
+    last_write_checksum: sha1:e7587f40d36710d499f8a7e6b610610e55a2cb40
+    pristine_git_object: 77d41086d77e53263a3a9ba0ec73aea3df521096
+  src/lib/primitives.ts:
+    id: 74859f750b28
+    last_write_checksum: sha1:987869fc54790b9c22e9182099103d6aa7c67016
+    pristine_git_object: d21f1dc49affa4e6d324bdd60811b470fdfa7eb6
+  src/lib/retries.ts:
+    id: b24a69d15639
+    last_write_checksum: sha1:f3da74dffcbe2756c69393f8600205aa1dc06e68
+    pristine_git_object: e3ce9aba72150fc3c18f3105d39b21aba809377b
+  src/lib/schemas.ts:
+    id: deb4b531fae1
+    last_write_checksum: sha1:209cfaabfa7fc1c1310f97453215cb0755619c6e
+    pristine_git_object: 47edb9725c2482c667e2ddc8a56b1fec4285c492
+  src/lib/sdks.ts:
+    id: 8a6d91f1218d
+    last_write_checksum: sha1:8c3704b2707a7306a1396229b2f33dacd84a4292
+    pristine_git_object: 536c1e103bbbf8c0beec1b9e90075d6540086b78
+  src/lib/security.ts:
+    id: 0502afa7922e
+    last_write_checksum: sha1:a90a432d5ff9de93e22ae1b84c40191cbc4ea4a6
+    pristine_git_object: e9501534a329d2cb89103184f1d669f605e177d4
+  src/lib/url.ts:
+    id: b0057e24ed76
+    last_write_checksum: sha1:d124050c7e755c0cce233b9e029afb584ff65201
+    pristine_git_object: f3a8de6c021de59c991707946cd294596cae954d
+  src/mcp-server/build.mts:
+    id: f7a2ed2de4d7
+    last_write_checksum: sha1:1a7a5dc9ace5a5d707bd8d2339f76719e525e7eb
+    pristine_git_object: a04739f2ac2154c097ea821daf364ee4c037a820
+  src/mcp-server/cli.ts:
+    id: 4ade0ef98b00
+    last_write_checksum: sha1:7331efddde881832342fa8779d23be7445d4480c
+    pristine_git_object: b878d8de9f2a0275c3cdbfdcaed48a31092e558a
+  src/mcp-server/cli/start/command.ts:
+    id: b3e53408ccb4
+    last_write_checksum: sha1:89820a173696131d224349b80eb888c235f61331
+    pristine_git_object: 48902d11677f5e8ffcb72b4186bac3f791d02d65
+  src/mcp-server/cli/start/impl.ts:
+    id: 37494f674015
+    last_write_checksum: sha1:aa2f77c08512d442383df712833d11278997f03a
+    pristine_git_object: a7f843d25820b1089d6a0956bc35cb9f063ecb49
+  src/mcp-server/console-logger.ts:
+    id: 57aff4ff2e15
+    last_write_checksum: sha1:66e945860c8318f2a6bb9604a7720a979dacce4b
+    pristine_git_object: d65a295b9545bee0599e46f2a75f2ab5a03c4ae4
+  src/mcp-server/extensions.ts:
+    id: 3d9d20ff158f
+    last_write_checksum: sha1:e36e4b49b77347db80debccc2e77706b0ac7f4a4
+    pristine_git_object: 0955a573c2ce989d63c737410ab8cc28706d9f74
+  src/mcp-server/mcp-server.ts:
+    id: aabbc4ab07c1
+    last_write_checksum: sha1:20e2c6ecac03ceb63a7bff4bc1dd42cce1b42fb7
+    pristine_git_object: 4153fdc4ac7a39fd057e811c809b67b84b86cb9b
+  src/mcp-server/prompts.ts:
+    id: 26f3d73cbf31
+    last_write_checksum: sha1:63b4d998e7db620a3b7aa83faf9e6a12ab5802c2
+    pristine_git_object: b24eaafbd9a0636f0ffb1a9f54af24a0493d9976
+  src/mcp-server/resources.ts:
+    id: cb0c57ebeaea
+    last_write_checksum: sha1:67c05a4dca1f49093f8184873638365380f5cf24
+    pristine_git_object: 6ab619774050c1e5269dc2b72a757a7670db8f92
+  src/mcp-server/scopes.ts:
+    id: 8966d24256b2
+    last_write_checksum: sha1:77d0eb95785e84f9fd0b27c4612f8c6470489fe4
+    pristine_git_object: c25696d4c4f70e081fa5d87ad6891874c509a577
+  src/mcp-server/server.ts:
+    id: 2784dd48e82a
+    last_write_checksum: sha1:4fc02d3301a455199999ea54bb6f9e6bb774ac82
+    pristine_git_object: 93c59790bc4d517a18cdd7e83fe3a2dceffda1c5
+  src/mcp-server/shared.ts:
+    id: 074e80d4be1e
+    last_write_checksum: sha1:56c73d4429691516e35541825e759a0285747a2b
+    pristine_git_object: 3e94144d13f0707bc300183ebb4325b367c297dd
+  src/mcp-server/tools.ts:
+    id: 654d5d1f2062
+    last_write_checksum: sha1:be4c0d8416f5540a2bb38dc338b797f7d7c2d79d
+    pristine_git_object: 3d4e01e8d0b0fe6426461cd11dbef0a7f0c30774
+  src/mcp-server/tools/checkoutsCreate.ts:
+    id: 4ccded29adc4
+    last_write_checksum: sha1:e2fe783f3882f275434c327b48be747187cc9be9
+    pristine_git_object: a98f6f7ef1fb113847224c486cd135dc5cec4c7e
+  src/mcp-server/tools/checkoutsRetrieve.ts:
+    id: a0de29e681bb
+    last_write_checksum: sha1:1eca1659a60f12fe9b71b3307fc709a39e053650
+    pristine_git_object: 650a57f4e6656bf7f3adedc612aa1ef8594990da
+  src/mcp-server/tools/customersGenerateBillingLinks.ts:
+    id: d3b069260165
+    last_write_checksum: sha1:f89f669e3e0180985943cca15b195c638a750450
+    pristine_git_object: 6445501bfb3038ddba33703262f52e4efcc518c6
+  src/mcp-server/tools/customersList.ts:
+    id: 5b334953771e
+    last_write_checksum: sha1:7943d11ff3c886dea1c982b5884f8f7c17b8c8e5
+    pristine_git_object: 5af4b0695a5b30671a8a3ed4dd115bdd1d0aba2e
+  src/mcp-server/tools/customersRetrieve.ts:
+    id: 35f924ce4f29
+    last_write_checksum: sha1:03caf6ab2e70701378d0fffc0c7031bf22331479
+    pristine_git_object: 96c62989907d2c69154de170ae5cda202e08df39
+  src/mcp-server/tools/discountsCreate.ts:
+    id: 5a16ada47a7e
+    last_write_checksum: sha1:50ffe1de7206878f126ea2006092ea5d2c06e409
+    pristine_git_object: 65a7862f193f2ccdf1590f8216c9fb1af5a0e528
+  src/mcp-server/tools/discountsDelete.ts:
+    id: d376015a90e3
+    last_write_checksum: sha1:c28c66b96e77447235b384386973889d6dd70720
+    pristine_git_object: 7a4fd07ae2b825ecf898307286c862738ec2ca3c
+  src/mcp-server/tools/discountsGet.ts:
+    id: 6e3909bd12d2
+    last_write_checksum: sha1:6bc64f33fdce9d71ec581cc8b3131018740f0a5d
+    pristine_git_object: 221e48256cc0fe2c8d84ad34879f63a3b5168cfb
+  src/mcp-server/tools/licensesActivate.ts:
+    id: 783361413d72
+    last_write_checksum: sha1:23fb4ce682514b83fede21fd2655233ab600dbe7
+    pristine_git_object: ee342837b28b2041a2f18a00eef9c164c7969ecd
+  src/mcp-server/tools/licensesDeactivate.ts:
+    id: 32ff38cf74f9
+    last_write_checksum: sha1:155fd30104a52dcd08abaff1dcf33d3e72d9d70a
+    pristine_git_object: 081b0a58e89dfa5a29316273541d690fcab7ea09
+  src/mcp-server/tools/licensesValidate.ts:
+    id: c0006629b8af
+    last_write_checksum: sha1:8abc8e8045b24ce5c2c05af8ff56f09170119d6f
+    pristine_git_object: be208a60e581eeff503fffbc8bf948037c7c1f38
+  src/mcp-server/tools/productsCreate.ts:
+    id: 47ecaff0ccfa
+    last_write_checksum: sha1:b3a1afde9c8b319add5203b4242090512616b092
+    pristine_git_object: baf241f7887db7a0f04dc6f6c83972ce799cd5db
+  src/mcp-server/tools/productsGet.ts:
+    id: f1e7aee7b87a
+    last_write_checksum: sha1:e350d638eb9d9ec5e771eb04153d17025cb208cf
+    pristine_git_object: ce74de4bec6afa99d7ae72619979eeae16536aa7
+  src/mcp-server/tools/productsSearch.ts:
+    id: 0eea6c5ebe5b
+    last_write_checksum: sha1:dc16880e1687f609c6c3097edc9fa4152c727006
+    pristine_git_object: b3ee07a14e4f15bd278ee7800ba357c8a3d309df
+  src/mcp-server/tools/subscriptionsCancel.ts:
+    id: 3bef40106015
+    last_write_checksum: sha1:1d04604f9a18536dfd4f4313f3f5ca67faa4a61f
+    pristine_git_object: 1b163ff5c48ad83063e386fb7de3b949dfe416b2
+  src/mcp-server/tools/subscriptionsGet.ts:
+    id: cffe950f16f6
+    last_write_checksum: sha1:f1b6c2f26d3dd75935b68c098386be364ce12217
+    pristine_git_object: d99052bd99d296d8a48e2d5605c9728ed6c91472
+  src/mcp-server/tools/subscriptionsPause.ts:
+    id: 6bc0b2e9e97f
+    last_write_checksum: sha1:0d3ca3508b5ef2b07791cd16eaa8c0216e4d7ed5
+    pristine_git_object: 3fea244413be51a6e77de6125fe1c64cc0374f06
+  src/mcp-server/tools/subscriptionsResume.ts:
+    id: 4e25924569d2
+    last_write_checksum: sha1:ebe80544327ee554422e47f447fc8dcac37f178f
+    pristine_git_object: d8fac1e7b00960787729d50061af470a0d6a2c23
+  src/mcp-server/tools/subscriptionsUpdate.ts:
+    id: 109b276f31b5
+    last_write_checksum: sha1:89b1164b874e341dd388e5ec5f83b8bb871783e6
+    pristine_git_object: aeaf0f392fe083afb25f1161bb7293ffba92bef4
+  src/mcp-server/tools/subscriptionsUpgrade.ts:
+    id: 1b4aed72d079
+    last_write_checksum: sha1:579e806af1f414c0bbf22c2f1ec17e3aaa08cd96
+    pristine_git_object: f00688fb053143a6c3deea04b5d471d4b92f0cbf
+  src/mcp-server/tools/transactionsGetById.ts:
+    id: cad3bf2b465e
+    last_write_checksum: sha1:6a9c257a4dfedf52664b50608f3b22578d089272
+    pristine_git_object: 4dfa3006e5b8821af260c5ae547d19d3bfd78f5c
+  src/mcp-server/tools/transactionsSearch.ts:
+    id: 06c85748f791
+    last_write_checksum: sha1:b085604eb9089b02526e85012d3c45e7c3454ee3
+    pristine_git_object: 955d5ce8f63f199b1488c60aaa959c9e1438757b
+  src/models/components/activatelicenserequestentity.ts:
+    id: 26d50dbe81c8
+    last_write_checksum: sha1:fdb0b24a359d88e4e5f6dc7a57bd227e3253f6a0
+    pristine_git_object: 5818ab94ac9ae349a458051e22fc2abd99ed4d0e
+  src/models/components/cancelsubscriptionrequestentity.ts:
+    id: 9774bfe34c00
+    last_write_checksum: sha1:f3adc4d229523eca8b8496c1be06fcc9d70981f2
+    pristine_git_object: 393278c5589220f0281a549433ae9ba872f88dcb
+  src/models/components/checkbox.ts:
+    id: ba91b6d2b6ec
+    last_write_checksum: sha1:ee49c2947d3e56be3ae2d03a3cc5385693df2fe0
+    pristine_git_object: 1dcd52d9082a63575ad580069d0b30ab8b8af127
+  src/models/components/checkoutentity.ts:
+    id: 9375d8731949
+    last_write_checksum: sha1:d11b3023e5a14466e59966c1445b0a72c6d7b8be
+    pristine_git_object: dffb33e7306cb4455729933c528202db25b4067f
+  src/models/components/createcheckoutrequest.ts:
+    id: 7b48e312d3c0
+    last_write_checksum: sha1:fe57b793e2a2e6c8ada99ad7deb3b58a8ee5748c
+    pristine_git_object: ee9527237bb65cee6b6934787e92ff42e4c91a37
+  src/models/components/createcustomerportallinkrequestentity.ts:
+    id: 62b7ec08eb9a
+    last_write_checksum: sha1:1ad9e0c4e961d86e125f4dae34052f0c625e1f77
+    pristine_git_object: d3a55fa0f567e993310c8d8190db91528ea08806
+  src/models/components/creatediscountrequestentity.ts:
+    id: 0f4006ef7d1c
+    last_write_checksum: sha1:d3943a19c535865fd2dc19ef95ff592de7e9efd9
+    pristine_git_object: 8ca5ea4adb2ad2285208dd928407c9e239973448
+  src/models/components/createproductrequestentity.ts:
+    id: 81f983fd0163
+    last_write_checksum: sha1:68da05320eb84990c998e7bb2f811792ed29268e
+    pristine_git_object: f903f420dbbf910473c8620607273dba93f0f14e
+  src/models/components/customerentity.ts:
+    id: 1a7de3219dab
+    last_write_checksum: sha1:edaf0bc8d118f8adbc8986b3c02935ca89e0e849
+    pristine_git_object: ad6b862892f24506ae9876896a336d38f6ac84b8
+  src/models/components/customerlinksentity.ts:
+    id: 4b68e006b20d
+    last_write_checksum: sha1:25d897f773a643d6f1d06b3b1c3adcf3a8153486
+    pristine_git_object: fa0761360a0ba1071bb73238e584734a2e769173
+  src/models/components/customerlistentity.ts:
+    id: 1ff9058ce674
+    last_write_checksum: sha1:3e69accf8cfae8ab053ef88d95a8ad40e74cf7ea
+    pristine_git_object: f70b84fda383213f4076b538e4fb5ac9ade58a08
+  src/models/components/customerrequestentity.ts:
+    id: 2b33cb73dabd
+    last_write_checksum: sha1:3e3cc2e786d8b3465f1935f54191d3fd58f17479
+    pristine_git_object: 8413ad3b6fd7094b478cf14634afd4aec90b355e
+  src/models/components/customfield.ts:
+    id: 4a951fa91e23
+    last_write_checksum: sha1:27a84fa7bbe39c834113df373b26e02408f56b4e
+    pristine_git_object: f6f606cdc53ef89735241e3a2c72f87d8c02b1e1
+  src/models/components/customfieldrequestentity.ts:
+    id: 9696e77275c9
+    last_write_checksum: sha1:4e6ab5035183e00936063aa842ff9f22c25049b3
+    pristine_git_object: 473e97b16f8f209575a48fe2baf18fc2dd61da8f
+  src/models/components/deactivatelicenserequestentity.ts:
+    id: 724863f932b0
+    last_write_checksum: sha1:8377e8865fdb26e803a36af442e5776ee718103a
+    pristine_git_object: e4477a35c4983286c7b544141f95f4ee369acb2f
+  src/models/components/discountentity.ts:
+    id: 705708d25113
+    last_write_checksum: sha1:d4e3a59507e59f3a7394a0148f2a4398781ce6f3
+    pristine_git_object: a69c87efe8e9fc2b9d970b195b4d7a8220833ab9
+  src/models/components/featureentity.ts:
+    id: d75feb757483
+    last_write_checksum: sha1:88bc424b13ac967582f1f9a70909fbed8678aa8c
+    pristine_git_object: cb273d5ae1c7c68799125dfcdc336eb70b2053ff
+  src/models/components/index.ts:
+    id: 0aa842dce54d
+    last_write_checksum: sha1:50b9477ab42529e2aac9fe0bc6a7d711756d5a85
+    pristine_git_object: 1087c422faa5594a8ec19160f7299d1afeeee9a4
+  src/models/components/licenseentity.ts:
+    id: 233af4f00429
+    last_write_checksum: sha1:789ef19ad638e21bbb87fb11b6e286357ded8833
+    pristine_git_object: 3feea4852df433f51d8095c2e9c1c761c7fd1d44
+  src/models/components/orderentity.ts:
+    id: 187f5a873311
+    last_write_checksum: sha1:6f08c6b68e52c59ba15c631f26649334370dd532
+    pristine_git_object: 83d46e9dc801524ad49ae89e5ca165df76ad9ad2
+  src/models/components/paginationentity.ts:
+    id: 32290e390954
+    last_write_checksum: sha1:0f985c23dd620a5534c82de1b257b737aaa902dd
+    pristine_git_object: b7da6165b41637f02a25636cb6be6fc4e7da6e2d
+  src/models/components/productentity.ts:
+    id: adeb4171e91f
+    last_write_checksum: sha1:9555de17ca726cd75abc3d8e34cd069a3317bf90
+    pristine_git_object: f9a993aff2aaad6b61512c30d1571c34af3fc177
+  src/models/components/productfeatureentity.ts:
+    id: bda25f411261
+    last_write_checksum: sha1:4f7b8cfd7299e45c07e44da7ca1fa24a6b52e0df
+    pristine_git_object: 2e9834eb05cec7a81bf656c86db4b754614aa79a
+  src/models/components/productlistentity.ts:
+    id: df4238ae8cbf
+    last_write_checksum: sha1:2d3536d4c60c5b2b944f9bfc535b6c4927610d55
+    pristine_git_object: e670fa2042c4cf4d0652c350597e85fc851ebbcc
+  src/models/components/security.ts:
+    id: 472dde81bb1c
+    last_write_checksum: sha1:58318a09f7860de4b4535d4b02055c5bb0537f99
+    pristine_git_object: 93443ecb49cb220f70325f1b3c7245f414ea095d
+  src/models/components/subscriptionentity.ts:
+    id: b3380f288cea
+    last_write_checksum: sha1:d48a793d40ff565ab226f97174be4207a1e7b274
+    pristine_git_object: 899b4d067b6a830deea1f95358af90de3d3a1633
+  src/models/components/subscriptionitementity.ts:
+    id: ab7f5c1e62c5
+    last_write_checksum: sha1:2567f9a6979489189f231b2abbe987325a52b6c7
+    pristine_git_object: f9b278dd401d43c63ba708f0b8b5333883fcb53a
+  src/models/components/text.ts:
+    id: 4f00ef105a8f
+    last_write_checksum: sha1:f539bfe91759234d5c0f51a23d696f861463c8a6
+    pristine_git_object: d07f681176c2dc46bcbd3c01ff9ce06f5d9ebee2
+  src/models/components/transactionentity.ts:
+    id: 6b470dece20d
+    last_write_checksum: sha1:a3c6adb113342f46efb82b1a88c262ac584cdb77
+    pristine_git_object: 037c946a7800b85198d02cff3855166c2341b8c6
+  src/models/components/transactionlistentity.ts:
+    id: b5120a9c2a09
+    last_write_checksum: sha1:905bd473aefe3b021055fae5b4545378ea6493a7
+    pristine_git_object: a5c4250ef68c78b48944e978f2cbc967124f21c1
+  src/models/components/updatesubscriptionrequestentity.ts:
+    id: 07c0be17653a
+    last_write_checksum: sha1:6d4edbbc7ac565b7d9e60d731a1c96ae36a8fbd2
+    pristine_git_object: 6923c409bbc2224822358c1382ab84608ee25cd8
+  src/models/components/upgradesubscriptionrequestentity.ts:
+    id: 4557496c70bc
+    last_write_checksum: sha1:dd14a765a0d6bdd6e1633ec4b4df0213ecdfd721
+    pristine_git_object: 82f0fd8f32c25e31182f7e8fdc3143371c89ad49
+  src/models/components/upsertsubscriptionitementity.ts:
+    id: 7f25875973d8
+    last_write_checksum: sha1:fc8c799f44b7652b309d771d9c5c4d42390c3a8b
+    pristine_git_object: 5be559269e682ca7f96f76a88a0a30034d89bedc
+  src/models/components/validatelicenserequestentity.ts:
+    id: c74671333029
+    last_write_checksum: sha1:45e33c92e2497e77c7cfa64f5f346c76aa8466a0
+    pristine_git_object: e88eb827ee9d67491476047fc3e64e147de5cabf
+  src/models/errors/apierror.ts:
+    id: e2280e075454
+    last_write_checksum: sha1:01d5fbd319a51f566d46b73de1196c10666f81b9
+    pristine_git_object: 88da6e018a33feac3fdc5d91757ee7e4c09a686d
+  src/models/errors/creemerror.ts:
+    id: f0a92ba93fb0
+    last_write_checksum: sha1:2753b891a26dc5be83d055ffe430516736c5943c
+    pristine_git_object: b46799ff743d0e4412d7cbce621b1c80f90fa480
+  src/models/errors/httpclienterrors.ts:
+    id: 6948de76af99
+    last_write_checksum: sha1:994ced121c54fecd0af038ccfb7855fbfd3868ec
+    pristine_git_object: b34f612124c797c2a1106b9735708f679a90b74f
+  src/models/errors/index.ts:
+    id: c4e22507cb83
+    last_write_checksum: sha1:6c8642c3840826892e83d796ef48f6fe9771c14f
+    pristine_git_object: 77bd6356ce1576e48b01e1d9122730b2334cc0d9
+  src/models/errors/responsevalidationerror.ts:
+    id: 88ff98a41be9
+    last_write_checksum: sha1:d1e6cdeb5d9b891f6e6eff984eca7d6e91edf1d9
+    pristine_git_object: 895bd8c2252cb6c051bd1559df4938d1b2bbd813
+  src/models/errors/sdkvalidationerror.ts:
+    id: fb6b2b49c445
+    last_write_checksum: sha1:a69da17627bcc32b820544608f3400423ea53f26
+    pristine_git_object: 6826e1208a5d7b7d310535d18909646522bf0fbd
+  src/models/operations/cancelsubscription.ts:
+    id: 69393943824c
+    last_write_checksum: sha1:d6bcc7afe64b483420cb506f0c87b70645322020
+    pristine_git_object: 2782cba715628f5dd71e890d65206e2e77901242
+  src/models/operations/deletediscount.ts:
+    id: 026f15ee4bfa
+    last_write_checksum: sha1:98843ade4da928b122a18529e08f5019a87ab85d
+    pristine_git_object: 946c37cf9b94129851519dc34c92751b9653f062
+  src/models/operations/gettransactionbyid.ts:
+    id: 6948027a052a
+    last_write_checksum: sha1:3ad1e3a30831ae5fe1a03aa699bf40009969b926
+    pristine_git_object: 8bb83e0a5f1efcbc99fe37b658f3884459dcbd72
+  src/models/operations/index.ts:
+    id: 0d9ffaf774d2
+    last_write_checksum: sha1:c2e061a70d3c1e3bfbd41bfa73a03aec3c304479
+    pristine_git_object: b913dce8f9e69774c040f831d83754a78616264a
+  src/models/operations/listcustomers.ts:
+    id: fa5992922803
+    last_write_checksum: sha1:d1ebd8dc08e1f6ad6596fa88e4cc808538947ecc
+    pristine_git_object: a171343908626c6c0eee4bdec87a2c1ad3d1f84f
+  src/models/operations/pausesubscription.ts:
+    id: 1871e521cda7
+    last_write_checksum: sha1:a589d8c586654faa0bfa95ddfacf770db0d75905
+    pristine_git_object: b93939a0edf1833aab660ec16f5e7fb3f83a375a
+  src/models/operations/resumesubscription.ts:
+    id: fc2ed54145d3
+    last_write_checksum: sha1:a4b34dc8124ca77c52ef9bfe5bd0791ff8acf66c
+    pristine_git_object: 68570c31ad240c6bda3f597935ba79211f6eb9ab
+  src/models/operations/retrievecheckout.ts:
+    id: 8628878a8b0f
+    last_write_checksum: sha1:5cf3c819e0a28367dc17989684598acfa9fc4bbc
+    pristine_git_object: 3ba24d9f67d9210234e7b1af4543b490a4f60148
+  src/models/operations/retrievecustomer.ts:
+    id: 6c2e6a7a8fd1
+    last_write_checksum: sha1:eb8c4a2c613fb6dfb5fe419d30cfc11a2c7f916c
+    pristine_git_object: 2170c14f93d4b087dbccc23e361f7cbaf59fe7be
+  src/models/operations/retrievediscount.ts:
+    id: 7a527a0557fe
+    last_write_checksum: sha1:843660eeaa3e7f40d474a313619949a20c1719c5
+    pristine_git_object: bfbc799778ca43d3f45ea4ed91abd6dc0b9428f1
+  src/models/operations/retrieveproduct.ts:
+    id: 7c5b4052ba76
+    last_write_checksum: sha1:6d5172a4b8c515a3aea32aa96a2c22abd61c437a
+    pristine_git_object: 3e588e96f7a0b349b0c7e53953c0b25c70d52459
+  src/models/operations/retrievesubscription.ts:
+    id: a0fcf4ad186d
+    last_write_checksum: sha1:61e48d75f6c312670e0ad1bf35f3e9907dd8675a
+    pristine_git_object: bf2b8dc16c3db64ad05685d5147ed790857791b4
+  src/models/operations/searchproducts.ts:
+    id: f7be5bc8e0b2
+    last_write_checksum: sha1:e54f814b5c4d3b3e03d7f4da3fde495557616d24
+    pristine_git_object: 5d883473b6467b12b60da14f420290d986808496
+  src/models/operations/searchtransactions.ts:
+    id: 9e0cf81e2211
+    last_write_checksum: sha1:326e8ec8bcee830560dc67d292beacacfebc9241
+    pristine_git_object: c39a211d0e695e931d94d04b939463953b2e163e
+  src/models/operations/updatesubscription.ts:
+    id: 056dbed5624c
+    last_write_checksum: sha1:877e2893a55f89efb48786aad33a1661cc2fdfb0
+    pristine_git_object: ad5a2749f0376cf74a47957692697e28640d5f72
+  src/models/operations/upgradesubscription.ts:
+    id: e806bbbebb75
+    last_write_checksum: sha1:782886cb35bc2d34ed3c81a9877bfbb85e0937b2
+    pristine_git_object: ce7cec3529f6961a54c8aec665dc504749feea68
+  src/sdk/checkouts.ts:
+    id: cd7ce1658f32
+    last_write_checksum: sha1:988ae9668fd1f02cb11efa45b0a24fe50305aca5
+    pristine_git_object: 370e322a6e6d1432ef69474203fccc0cdffa716a
+  src/sdk/customers.ts:
+    id: d33e193e0c00
+    last_write_checksum: sha1:7b295c68afb6e638c38dfaf633141f8b7163d07f
+    pristine_git_object: b223e6b71bdf864efbb04c2294527f6223647a20
+  src/sdk/discounts.ts:
+    id: 413e4d5bc639
+    last_write_checksum: sha1:13440fe12e42c148e1e1389e0180c6dce29f51a7
+    pristine_git_object: bee6ede9e1cb2acbcb14f6ce7790dce6d3269d3d
+  src/sdk/index.ts:
+    id: a857902a703f
+    last_write_checksum: sha1:ed6d64f2a6135349aa8498b8d8cff9ba85c7fb8f
+    pristine_git_object: ecac2264817bb369ff2dbf0f0e9029807e67ff77
+  src/sdk/licenses.ts:
+    id: ea9e33a052fc
+    last_write_checksum: sha1:1e83ab69792b20dc9f165adbb123f1ea8fad0ecc
+    pristine_git_object: 50db819386729343ddc4aa91f6f85fb82abbce81
+  src/sdk/products.ts:
+    id: b199702e5352
+    last_write_checksum: sha1:c06d93d0a3a4d49e6b62dcfee6c70dc325d44f9a
+    pristine_git_object: eb2dda41175fdea6bc07db049a3f7a9e42045285
+  src/sdk/sdk.ts:
+    id: 784571af2f69
+    last_write_checksum: sha1:3e1818a78f7f5ada2e25ac5c557b8fc8c8e2b176
+    pristine_git_object: b268469561a95cf8c984a218f9cd4f08e2f5e7e2
+  src/sdk/subscriptions.ts:
+    id: fb904d08fb20
+    last_write_checksum: sha1:6685c8f17926576dbbb920ce3cdb4b33256ea59c
+    pristine_git_object: f6b11f119bb5a545a1672797f1d487b52ddcfcb6
+  src/sdk/transactions.ts:
+    id: bcd7a9b32ed7
+    last_write_checksum: sha1:6b56aa7c4491ffd81f8fd2ebf5d82fadb04f50f6
+    pristine_git_object: ffa659f97c7d3839412341722d5c580a69b52477
+  src/types/async.ts:
+    id: fac8da972f86
+    last_write_checksum: sha1:3ff07b3feaf390ec1aeb18ff938e139c6c4a9585
+    pristine_git_object: 689dba5de50e8769e5f3bb913e3f42a146d15bc1
+  src/types/blobs.ts:
+    id: f8ab9b326c86
+    last_write_checksum: sha1:cf45d78916671cb6345a11c97c633c64402bc27c
+    pristine_git_object: cce2892d4f573a120ef3907db90ab15f5979cfda
+  src/types/constdatetime.ts:
+    id: 0f7b6f513917
+    last_write_checksum: sha1:dfaaf9adfaf49808bd4c9dea0039f21b7088d9c0
+    pristine_git_object: fe62144eaf6a2054fc8ca9a98466e70f41b5434d
+  src/types/enums.ts:
+    id: 4d03ddfe5100
+    last_write_checksum: sha1:ee590453d2c87e33e89c633d37ee46907eca0e58
+    pristine_git_object: aba0ffd2a3308a31e516d83b52823d80aa65a8f9
+  src/types/fp.ts:
+    id: ae9f0fb8aab6
+    last_write_checksum: sha1:d24994d58f37a1ca106847fcc6d2e976c6f1c093
+    pristine_git_object: ccbe51eac69dfb0da5131f14fd753c4b47c1d527
+  src/types/index.ts:
+    id: cd7a0a5ed005
+    last_write_checksum: sha1:bf43b3dccb960ca9ae9c5ab940da4786255881cd
+    pristine_git_object: abf0b7ab8f196829df8946da40d627a46da68e3c
+  src/types/operations.ts:
+    id: 314da01dca47
+    last_write_checksum: sha1:c49e724cfb1259296381cb57bc0fcdd2eae45865
+    pristine_git_object: beb81e10f0b9eee2ed398a853fe6f737b743f818
+  src/types/rfcdate.ts:
+    id: 9eb64906dcd6
+    last_write_checksum: sha1:8e5f382e02fe21c2f2e24deb1b7bbf8cddd3dd16
+    pristine_git_object: c79b3f53a3dd922aa2ace5a4191c8652cf9a8e89
+  src/types/streams.ts:
+    id: f99be9c4bf14
+    last_write_checksum: sha1:cc9ced2dd34a76c3a1bd7784ccda1cc3b37ab9a9
+    pristine_git_object: a0163e7a99cea88f21d0ad4ce3af1c720180ee20
+  src/types/unrecognized.ts:
+    id: 476605c40716
+    last_write_checksum: sha1:d33ac686528492f4cdc0dbf81ed343b4afe020fe
+    pristine_git_object: b7a2a13f3dff50663429df24ae2f55b647ff1084
+  tsconfig.json:
+    id: 61ebb9fd6e8c
+    last_write_checksum: sha1:c3ec7996536cdb9a54319e7d1eb3b199b733d34c
+    pristine_git_object: 0ccdbe286a8780e06a469a9eb7e2fb95322fd507
+examples:
+  retrieveProduct:
+    speakeasy-default-retrieve-product:
+      parameters:
+        query:
+          product_id: "prod_1234567890"
+        header:
+          x-api-key: "<value>"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "mode": "test", "object": "<value>", "name": "<value>", "description": "This is a sample product description.", "image_url": "https://example.com/image.jpg", "features": [{"id": "<id>", "type": "<value>", "description": "Get access to discord server."}], "price": 400, "currency": "USD", "billing_type": "recurring", "billing_period": "every-month", "status": "<value>", "tax_mode": "inclusive", "tax_category": "[\"saas\",\"digital-goods-service\",\"ebooks\"]", "product_url": "https://creem.io/product/prod_123123123123", "default_success_url": "https://example.com/?status=successful", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}
+  createProduct:
+    speakeasy-default-create-product:
+      parameters:
+        header:
+          x-api-key: "<value>"
+      requestBody:
+        application/json: {"name": "<value>", "image_url": "https://picsum.photos/200/300", "price": 400, "currency": "USD", "billing_type": "recurring", "billing_period": "every-month", "tax_mode": "inclusive", "tax_category": "[\"saas\",\"digital-goods-service\",\"ebooks\"]", "default_success_url": "https://example.com/?status=successful", "custom_field": [{"type": "text", "key": "<key>", "label": "<value>"}], "abandoned_cart_recovery_enabled": false}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "mode": "sandbox", "object": "<value>", "name": "<value>", "description": "This is a sample product description.", "image_url": "https://example.com/image.jpg", "features": [{"id": "<id>", "type": "<value>", "description": "Get access to discord server."}], "price": 400, "currency": "USD", "billing_type": "recurring", "billing_period": "every-month", "status": "<value>", "tax_mode": "inclusive", "tax_category": "[\"saas\",\"digital-goods-service\",\"ebooks\"]", "product_url": "https://creem.io/product/prod_123123123123", "default_success_url": "https://example.com/?status=successful", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}
+  searchProducts:
+    speakeasy-default-search-products:
+      parameters:
+        header:
+          x-api-key: "<value>"
+      responses:
+        "200":
+          application/json: {"items": [], "pagination": {"total_records": 0, "total_pages": 0, "current_page": 1, "next_page": 2, "prev_page": null}}
+  listCustomers:
+    speakeasy-default-list-customers:
+      parameters:
+        header:
+          x-api-key: "<value>"
+      responses:
+        "200":
+          application/json: {"items": [], "pagination": {"total_records": 0, "total_pages": 0, "current_page": 1, "next_page": 2, "prev_page": null}}
+  retrieveCustomer:
+    speakeasy-default-retrieve-customer:
+      parameters:
+        header:
+          x-api-key: "<value>"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "mode": "sandbox", "object": "<value>", "email": "user@example.com", "name": "John Doe", "country": "US", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}
+  generateCustomerLinks:
+    speakeasy-default-generate-customer-links:
+      parameters:
+        header:
+          x-api-key: "<value>"
+      requestBody:
+        application/json: {"customer_id": "<id>"}
+      responses:
+        "200":
+          application/json: {"customer_portal_link": "<value>"}
+  retrieveSubscription:
+    speakeasy-default-retrieve-subscription:
+      parameters:
+        query:
+          subscription_id: "sub_1234567890"
+        header:
+          x-api-key: "<value>"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "mode": "prod", "object": "subscription", "product": "Gorgeous Fresh Towels", "customer": {"id": "<id>", "mode": "test", "object": "<value>", "email": "user@example.com", "name": "John Doe", "country": "US", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}, "collection_method": "charge_automatically", "status": "active", "last_transaction_id": "tran_3e6Z6TzvHKdsjEgXnGDEp0", "last_transaction": {"id": "<id>", "mode": "prod", "object": "transaction", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "USD", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 382.66}, "last_transaction_date": "2024-09-12T12:34:56Z", "next_transaction_date": "2024-09-12T12:34:56Z", "current_period_start_date": "2024-09-12T12:34:56Z", "current_period_end_date": "2024-09-12T12:34:56Z", "canceled_at": "2024-09-12T12:34:56Z", "created_at": "2024-01-01T00:00:00Z", "updated_at": "2024-09-12T12:34:56Z"}
+  cancelSubscription:
+    speakeasy-default-cancel-subscription:
+      parameters:
+        path:
+          id: "<id>"
+        header:
+          x-api-key: "<value>"
+      requestBody:
+        application/json: {"mode": "immediate", "onExecute": "cancel"}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "mode": "test", "object": "subscription", "product": "Unbranded Soft Table", "customer": {"id": "<id>", "mode": "prod", "object": "<value>", "email": "user@example.com", "name": "John Doe", "country": "US", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}, "collection_method": "charge_automatically", "status": "active", "last_transaction_id": "tran_3e6Z6TzvHKdsjEgXnGDEp0", "last_transaction": {"id": "<id>", "mode": "sandbox", "object": "transaction", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "USD", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 174.01}, "last_transaction_date": "2024-09-12T12:34:56Z", "next_transaction_date": "2024-09-12T12:34:56Z", "current_period_start_date": "2024-09-12T12:34:56Z", "current_period_end_date": "2024-09-12T12:34:56Z", "canceled_at": "2024-09-12T12:34:56Z", "created_at": "2024-01-01T00:00:00Z", "updated_at": "2024-09-12T12:34:56Z"}
+  updateSubscription:
+    speakeasy-default-update-subscription:
+      parameters:
+        path:
+          id: "<id>"
+        header:
+          x-api-key: "<value>"
+      requestBody:
+        application/json: {"update_behavior": "proration-charge"}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "mode": "prod", "object": "subscription", "product": "Unbranded Steel Table", "customer": {"id": "<id>", "mode": "test", "object": "<value>", "email": "user@example.com", "name": "John Doe", "country": "US", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}, "collection_method": "charge_automatically", "status": "active", "last_transaction_id": "tran_3e6Z6TzvHKdsjEgXnGDEp0", "last_transaction": {"id": "<id>", "mode": "test", "object": "transaction", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "USD", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 8102.12}, "last_transaction_date": "2024-09-12T12:34:56Z", "next_transaction_date": "2024-09-12T12:34:56Z", "current_period_start_date": "2024-09-12T12:34:56Z", "current_period_end_date": "2024-09-12T12:34:56Z", "canceled_at": "2024-09-12T12:34:56Z", "created_at": "2024-01-01T00:00:00Z", "updated_at": "2024-09-12T12:34:56Z"}
+  upgradeSubscription:
+    speakeasy-default-upgrade-subscription:
+      parameters:
+        path:
+          id: "<id>"
+        header:
+          x-api-key: "<value>"
+      requestBody:
+        application/json: {"product_id": "prod_123", "update_behavior": "proration-charge-immediately"}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "mode": "prod", "object": "subscription", "product": "Handcrafted Cotton Towels", "customer": "<value>", "collection_method": "charge_automatically", "status": "active", "last_transaction_id": "tran_3e6Z6TzvHKdsjEgXnGDEp0", "last_transaction": {"id": "<id>", "mode": "test", "object": "transaction", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "USD", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 1773.86}, "last_transaction_date": "2024-09-12T12:34:56Z", "next_transaction_date": "2024-09-12T12:34:56Z", "current_period_start_date": "2024-09-12T12:34:56Z", "current_period_end_date": "2024-09-12T12:34:56Z", "canceled_at": "2024-09-12T12:34:56Z", "created_at": "2024-01-01T00:00:00Z", "updated_at": "2024-09-12T12:34:56Z"}
+  retrieveCheckout:
+    speakeasy-default-retrieve-checkout:
+      parameters:
+        query:
+          checkout_id: "chk_1234567890"
+        header:
+          x-api-key: "<value>"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "mode": "test", "object": "<value>", "status": "completed", "product": {"id": "<id>", "mode": "test", "object": "<value>", "name": "<value>", "description": "This is a sample product description.", "image_url": "https://example.com/image.jpg", "features": [{"id": "<id>", "type": "<value>", "description": "Get access to discord server."}], "price": 400, "currency": "EUR", "billing_type": "recurring", "billing_period": "every-month", "status": "<value>", "tax_mode": "inclusive", "tax_category": "saas", "product_url": "https://creem.io/product/prod_123123123123", "default_success_url": "https://example.com/?status=successful", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}, "units": 1, "order": {"id": "<id>", "mode": "sandbox", "object": "<value>", "product": "Unbranded Rubber Chair", "transaction": "tx_1234567890", "discount": "dis_1234567890", "amount": 2000, "sub_total": 1800, "tax_amount": 200, "discount_amount": 100, "amount_due": 1900, "amount_paid": 1900, "currency": "USD", "fx_amount": 15, "fx_currency": "EUR", "fx_rate": 1.2, "status": "pending", "type": "recurring", "created_at": "2023-09-13T00:00:00Z", "updated_at": "2023-09-13T00:00:00Z"}, "subscription": {"id": "<id>", "mode": "test", "object": "subscription", "product": "Handcrafted Metal Pizza", "customer": {"id": "<id>", "mode": "test", "object": "<value>", "email": "user@example.com", "name": "John Doe", "country": "US", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}, "collection_method": "charge_automatically", "status": "active", "last_transaction_id": "tran_3e6Z6TzvHKdsjEgXnGDEp0", "last_transaction": {"id": "<id>", "mode": "test", "object": "transaction", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "EUR", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 8159.34}, "last_transaction_date": "2024-09-12T12:34:56Z", "next_transaction_date": "2024-09-12T12:34:56Z", "current_period_start_date": "2024-09-12T12:34:56Z", "current_period_end_date": "2024-09-12T12:34:56Z", "canceled_at": "2024-09-12T12:34:56Z", "created_at": "2024-01-01T00:00:00Z", "updated_at": "2024-09-12T12:34:56Z"}, "customer": "<value>", "success_url": "https://example.com/return", "feature": [{"license": {"id": "<id>", "mode": "test", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "expires_at": {}, "created_at": "2023-09-13T00:00:00Z", "instance": {"id": "<id>", "mode": "sandbox", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}}}], "metadata": {"userId": "user_123", "visitCount": 42, "lastVisit": "2023-04-01"}}
+  createCheckout:
+    speakeasy-default-create-checkout:
+      parameters:
+        header:
+          x-api-key: "<value>"
+      requestBody:
+        application/json: {"product_id": "prod_1234567890", "units": 1, "discount_code": "SUMMER2024", "customer": {"id": "cust_1234567890", "email": "user@example.com"}, "custom_field": [{"type": "text", "key": "<key>", "label": "<value>"}], "metadata": {"userId": "user_123", "visitCount": 42, "lastVisit": "2023-04-01"}}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "mode": "prod", "object": "<value>", "status": "completed", "product": "Generic Bronze Bike", "units": 1, "order": {"id": "<id>", "mode": "sandbox", "object": "<value>", "product": "Recycled Frozen Keyboard", "transaction": "tx_1234567890", "discount": "dis_1234567890", "amount": 2000, "sub_total": 1800, "tax_amount": 200, "discount_amount": 100, "amount_due": 1900, "amount_paid": 1900, "currency": "USD", "fx_amount": 15, "fx_currency": "EUR", "fx_rate": 1.2, "status": "pending", "type": "recurring", "created_at": "2023-09-13T00:00:00Z", "updated_at": "2023-09-13T00:00:00Z"}, "subscription": "<value>", "customer": "<value>", "success_url": "https://example.com/return", "feature": [{"license": {"id": "<id>", "mode": "test", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "expires_at": {}, "created_at": "2023-09-13T00:00:00Z", "instance": {"id": "<id>", "mode": "sandbox", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}}}], "metadata": {"userId": "user_123", "visitCount": 42, "lastVisit": "2023-04-01"}}
+  activateLicense:
+    speakeasy-default-activate-license:
+      parameters:
+        header:
+          x-api-key: "<value>"
+      requestBody:
+        application/json: {"key": "<key>", "instance_name": "<value>"}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "mode": "sandbox", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "expires_at": {}, "created_at": "2023-09-13T00:00:00Z", "instance": {"id": "<id>", "mode": "test", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}}
+  deactivateLicense:
+    speakeasy-default-deactivate-license:
+      parameters:
+        header:
+          x-api-key: "<value>"
+      requestBody:
+        application/json: {"key": "<key>", "instance_id": "<id>"}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "mode": "test", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "expires_at": {}, "created_at": "2023-09-13T00:00:00Z", "instance": {"id": "<id>", "mode": "prod", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}}
+  validateLicense:
+    speakeasy-default-validate-license:
+      parameters:
+        header:
+          x-api-key: "<value>"
+      requestBody:
+        application/json: {"key": "<key>", "instance_id": "<id>"}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "mode": "sandbox", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "expires_at": {}, "created_at": "2023-09-13T00:00:00Z", "instance": {"id": "<id>", "mode": "prod", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}}
+  retrieveDiscount:
+    speakeasy-default-retrieve-discount:
+      parameters:
+        header:
+          x-api-key: "<value>"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "mode": "sandbox", "object": "discount", "status": "active", "name": "Holiday Sale", "code": "HOLIDAY2024", "type": "percentage", "amount": 20, "currency": "USD", "percentage": 15, "expiry_date": "2024-12-31T23:59:59Z", "max_redemptions": 100, "duration": "repeating", "duration_in_months": 6, "applies_to_products": ["prod_123", "prod_456"], "redeem_count": 15}
+  createDiscount:
+    speakeasy-default-create-discount:
+      parameters:
+        header:
+          x-api-key: "<value>"
+      requestBody:
+        application/json: {"name": "Holiday Sale", "code": "HOLIDAY2024", "type": "percentage", "amount": 20, "currency": "USD", "percentage": 15, "expiry_date": "2024-12-31T23:59:59Z", "max_redemptions": 100, "duration": "repeating", "duration_in_months": 6, "applies_to_products": ["prod_123", "prod_456"]}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "mode": "prod", "object": "discount", "status": "active", "name": "Holiday Sale", "code": "HOLIDAY2024", "type": "percentage", "amount": 20, "currency": "USD", "percentage": 15, "expiry_date": "2024-12-31T23:59:59Z", "max_redemptions": 100, "duration": "repeating", "duration_in_months": 6, "applies_to_products": ["prod_123", "prod_456"], "redeem_count": 15}
+  deleteDiscount:
+    speakeasy-default-delete-discount:
+      parameters:
+        path:
+          id: "<id>"
+        header:
+          x-api-key: "<value>"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "mode": "test", "object": "discount", "status": "active", "name": "Holiday Sale", "code": "HOLIDAY2024", "type": "percentage", "amount": 20, "currency": "USD", "percentage": 15, "expiry_date": "2024-12-31T23:59:59Z", "max_redemptions": 100, "duration": "repeating", "duration_in_months": 6, "applies_to_products": ["prod_123", "prod_456"], "redeem_count": 15}
+  getTransactionById:
+    speakeasy-default-get-transaction-by-id:
+      parameters:
+        query:
+          transaction_id: "txn_1234567890"
+        header:
+          x-api-key: "<value>"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "mode": "test", "object": "transaction", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "USD", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 6117.34}
+  searchTransactions:
+    speakeasy-default-search-transactions:
+      parameters:
+        header:
+          x-api-key: "<value>"
+      responses:
+        "200":
+          application/json: {"items": [], "pagination": {"total_records": 0, "total_pages": 0, "current_page": 1, "next_page": 2, "prev_page": null}}
+  pauseSubscription:
+    speakeasy-default-pause-subscription:
+      parameters:
+        path:
+          id: "<id>"
+        header:
+          x-api-key: "<value>"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "mode": "prod", "object": "subscription", "product": {"id": "<id>", "mode": "sandbox", "object": "<value>", "name": "<value>", "description": "This is a sample product description.", "image_url": "https://example.com/image.jpg", "features": [{"id": "<id>", "type": "<value>", "description": "Get access to discord server."}], "price": 400, "currency": "USD", "billing_type": "recurring", "billing_period": "every-month", "status": "<value>", "tax_mode": "inclusive", "tax_category": "[\"saas\",\"digital-goods-service\",\"ebooks\"]", "product_url": "https://creem.io/product/prod_123123123123", "default_success_url": "https://example.com/?status=successful", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}, "customer": {"id": "<id>", "mode": "test", "object": "<value>", "email": "user@example.com", "name": "John Doe", "country": "US", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}, "collection_method": "charge_automatically", "status": "active", "last_transaction_id": "tran_3e6Z6TzvHKdsjEgXnGDEp0", "last_transaction": {"id": "<id>", "mode": "sandbox", "object": "transaction", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "USD", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 8744.24}, "last_transaction_date": "2024-09-12T12:34:56Z", "next_transaction_date": "2024-09-12T12:34:56Z", "current_period_start_date": "2024-09-12T12:34:56Z", "current_period_end_date": "2024-09-12T12:34:56Z", "canceled_at": "2024-09-12T12:34:56Z", "created_at": "2024-01-01T00:00:00Z", "updated_at": "2024-09-12T12:34:56Z"}
+  resumeSubscription:
+    speakeasy-default-resume-subscription:
+      parameters:
+        path:
+          id: "<id>"
+        header:
+          x-api-key: "<value>"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "mode": "sandbox", "object": "subscription", "product": "Licensed Wooden Chair", "customer": {"id": "<id>", "mode": "test", "object": "<value>", "email": "user@example.com", "name": "John Doe", "country": "US", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}, "collection_method": "charge_automatically", "status": "active", "last_transaction_id": "tran_3e6Z6TzvHKdsjEgXnGDEp0", "last_transaction": {"id": "<id>", "mode": "prod", "object": "transaction", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "USD", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 9943.21}, "last_transaction_date": "2024-09-12T12:34:56Z", "next_transaction_date": "2024-09-12T12:34:56Z", "current_period_start_date": "2024-09-12T12:34:56Z", "current_period_end_date": "2024-09-12T12:34:56Z", "canceled_at": "2024-09-12T12:34:56Z", "created_at": "2024-01-01T00:00:00Z", "updated_at": "2024-09-12T12:34:56Z"}
+examplesVersion: 1.0.2
+generatedTests: {}
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
@@ -285,202 +1552,3 @@ generatedFiles:
   - src/types/streams.ts
   - src/types/unrecognized.ts
   - tsconfig.json
-examples:
-  retrieveProduct:
-    speakeasy-default-retrieve-product:
-      parameters:
-        query:
-          product_id: "<id>"
-        header:
-          x-api-key: "<value>"
-      responses:
-        "200":
-          application/json: {"id": "<id>", "mode": "test", "object": "<value>", "name": "<value>", "description": "This is a sample product description.", "image_url": "https://example.com/image.jpg", "features": [{"id": "<id>", "type": "<value>", "description": "Get access to discord server."}], "price": 400, "currency": "USD", "billing_type": "recurring", "billing_period": "every-month", "status": "<value>", "tax_mode": "inclusive", "tax_category": "[\"saas\",\"digital-goods-service\",\"ebooks\"]", "product_url": "https://creem.io/product/prod_123123123123", "default_success_url": "https://example.com/?status=successful", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}
-  createProduct:
-    speakeasy-default-create-product:
-      parameters:
-        header:
-          x-api-key: "<value>"
-      requestBody:
-        application/json: {"name": "<value>", "image_url": "https://picsum.photos/200/300", "price": 400, "currency": "USD", "billing_type": "recurring", "billing_period": "every-month", "tax_mode": "inclusive", "tax_category": "[\"saas\",\"digital-goods-service\",\"ebooks\"]", "default_success_url": "https://example.com/?status=successful", "custom_field": [{"type": "text", "key": "<key>", "label": "<value>"}], "abandoned_cart_recovery_enabled": false}
-      responses:
-        "200":
-          application/json: {"id": "<id>", "mode": "sandbox", "object": "<value>", "name": "<value>", "description": "This is a sample product description.", "image_url": "https://example.com/image.jpg", "features": [{"id": "<id>", "type": "<value>", "description": "Get access to discord server."}], "price": 400, "currency": "USD", "billing_type": "recurring", "billing_period": "every-month", "status": "<value>", "tax_mode": "inclusive", "tax_category": "[\"saas\",\"digital-goods-service\",\"ebooks\"]", "product_url": "https://creem.io/product/prod_123123123123", "default_success_url": "https://example.com/?status=successful", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}
-  searchProducts:
-    speakeasy-default-search-products:
-      parameters:
-        header:
-          x-api-key: "<value>"
-      responses:
-        "200":
-          application/json: {"items": [], "pagination": {"total_records": 0, "total_pages": 0, "current_page": 1, "next_page": 2, "prev_page": null}}
-  listCustomers:
-    speakeasy-default-list-customers:
-      parameters:
-        header:
-          x-api-key: "<value>"
-      responses:
-        "200":
-          application/json: {"items": [], "pagination": {"total_records": 0, "total_pages": 0, "current_page": 1, "next_page": 2, "prev_page": null}}
-  retrieveCustomer:
-    speakeasy-default-retrieve-customer:
-      parameters:
-        header:
-          x-api-key: "<value>"
-      responses:
-        "200":
-          application/json: {"id": "<id>", "mode": "sandbox", "object": "<value>", "email": "user@example.com", "name": "John Doe", "country": "US", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}
-  generateCustomerLinks:
-    speakeasy-default-generate-customer-links:
-      parameters:
-        header:
-          x-api-key: "<value>"
-      requestBody:
-        application/json: {"customer_id": "<id>"}
-      responses:
-        "200":
-          application/json: {"customer_portal_link": "<value>"}
-  retrieveSubscription:
-    speakeasy-default-retrieve-subscription:
-      parameters:
-        query:
-          subscription_id: "<id>"
-        header:
-          x-api-key: "<value>"
-      responses:
-        "200":
-          application/json: {"id": "<id>", "mode": "prod", "object": "subscription", "product": "Gorgeous Fresh Towels", "customer": {"id": "<id>", "mode": "test", "object": "<value>", "email": "user@example.com", "name": "John Doe", "country": "US", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}, "collection_method": "charge_automatically", "status": "active", "last_transaction_id": "tran_3e6Z6TzvHKdsjEgXnGDEp0", "last_transaction": {"id": "<id>", "mode": "prod", "object": "transaction", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "USD", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 382.66}, "last_transaction_date": "2024-09-12T12:34:56Z", "next_transaction_date": "2024-09-12T12:34:56Z", "current_period_start_date": "2024-09-12T12:34:56Z", "current_period_end_date": "2024-09-12T12:34:56Z", "canceled_at": "2024-09-12T12:34:56Z", "created_at": "2024-01-01T00:00:00Z", "updated_at": "2024-09-12T12:34:56Z"}
-  cancelSubscription:
-    speakeasy-default-cancel-subscription:
-      parameters:
-        path:
-          id: "<id>"
-        header:
-          x-api-key: "<value>"
-      requestBody:
-        application/json: {"mode": "immediate", "onExecute": "cancel"}
-      responses:
-        "200":
-          application/json: {"id": "<id>", "mode": "test", "object": "subscription", "product": "Unbranded Soft Table", "customer": {"id": "<id>", "mode": "prod", "object": "<value>", "email": "user@example.com", "name": "John Doe", "country": "US", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}, "collection_method": "charge_automatically", "status": "active", "last_transaction_id": "tran_3e6Z6TzvHKdsjEgXnGDEp0", "last_transaction": {"id": "<id>", "mode": "sandbox", "object": "transaction", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "USD", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 174.01}, "last_transaction_date": "2024-09-12T12:34:56Z", "next_transaction_date": "2024-09-12T12:34:56Z", "current_period_start_date": "2024-09-12T12:34:56Z", "current_period_end_date": "2024-09-12T12:34:56Z", "canceled_at": "2024-09-12T12:34:56Z", "created_at": "2024-01-01T00:00:00Z", "updated_at": "2024-09-12T12:34:56Z"}
-  updateSubscription:
-    speakeasy-default-update-subscription:
-      parameters:
-        path:
-          id: "<id>"
-        header:
-          x-api-key: "<value>"
-      requestBody:
-        application/json: {"update_behavior": "proration-charge"}
-      responses:
-        "200":
-          application/json: {"id": "<id>", "mode": "prod", "object": "subscription", "product": "Unbranded Steel Table", "customer": {"id": "<id>", "mode": "test", "object": "<value>", "email": "user@example.com", "name": "John Doe", "country": "US", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}, "collection_method": "charge_automatically", "status": "active", "last_transaction_id": "tran_3e6Z6TzvHKdsjEgXnGDEp0", "last_transaction": {"id": "<id>", "mode": "test", "object": "transaction", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "USD", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 8102.12}, "last_transaction_date": "2024-09-12T12:34:56Z", "next_transaction_date": "2024-09-12T12:34:56Z", "current_period_start_date": "2024-09-12T12:34:56Z", "current_period_end_date": "2024-09-12T12:34:56Z", "canceled_at": "2024-09-12T12:34:56Z", "created_at": "2024-01-01T00:00:00Z", "updated_at": "2024-09-12T12:34:56Z"}
-  upgradeSubscription:
-    speakeasy-default-upgrade-subscription:
-      parameters:
-        path:
-          id: "<id>"
-        header:
-          x-api-key: "<value>"
-      requestBody:
-        application/json: {"product_id": "prod_123", "update_behavior": "proration-charge-immediately"}
-      responses:
-        "200":
-          application/json: {"id": "<id>", "mode": "prod", "object": "subscription", "product": "Handcrafted Cotton Towels", "customer": "<value>", "collection_method": "charge_automatically", "status": "active", "last_transaction_id": "tran_3e6Z6TzvHKdsjEgXnGDEp0", "last_transaction": {"id": "<id>", "mode": "test", "object": "transaction", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "USD", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 1773.86}, "last_transaction_date": "2024-09-12T12:34:56Z", "next_transaction_date": "2024-09-12T12:34:56Z", "current_period_start_date": "2024-09-12T12:34:56Z", "current_period_end_date": "2024-09-12T12:34:56Z", "canceled_at": "2024-09-12T12:34:56Z", "created_at": "2024-01-01T00:00:00Z", "updated_at": "2024-09-12T12:34:56Z"}
-  retrieveCheckout:
-    speakeasy-default-retrieve-checkout:
-      parameters:
-        query:
-          checkout_id: "<id>"
-        header:
-          x-api-key: "<value>"
-      responses:
-        "200":
-          application/json: {"id": "<id>", "mode": "test", "object": "<value>", "status": "completed", "product": {"id": "<id>", "mode": "test", "object": "<value>", "name": "<value>", "description": "This is a sample product description.", "image_url": "https://example.com/image.jpg", "features": [{"id": "<id>", "type": "<value>", "description": "Get access to discord server."}], "price": 400, "currency": "EUR", "billing_type": "recurring", "billing_period": "every-month", "status": "<value>", "tax_mode": "inclusive", "tax_category": "saas", "product_url": "https://creem.io/product/prod_123123123123", "default_success_url": "https://example.com/?status=successful", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}, "units": 1, "order": {"id": "<id>", "mode": "sandbox", "object": "<value>", "product": "Unbranded Rubber Chair", "transaction": "tx_1234567890", "discount": "dis_1234567890", "amount": 2000, "sub_total": 1800, "tax_amount": 200, "discount_amount": 100, "amount_due": 1900, "amount_paid": 1900, "currency": "USD", "fx_amount": 15, "fx_currency": "EUR", "fx_rate": 1.2, "status": "pending", "type": "recurring", "created_at": "2023-09-13T00:00:00Z", "updated_at": "2023-09-13T00:00:00Z"}, "subscription": {"id": "<id>", "mode": "test", "object": "subscription", "product": "Handcrafted Metal Pizza", "customer": {"id": "<id>", "mode": "test", "object": "<value>", "email": "user@example.com", "name": "John Doe", "country": "US", "created_at": "2023-01-01T00:00:00Z", "updated_at": "2023-01-01T00:00:00Z"}, "collection_method": "charge_automatically", "status": "active", "last_transaction_id": "tran_3e6Z6TzvHKdsjEgXnGDEp0", "last_transaction": {"id": "<id>", "mode": "test", "object": "transaction", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "EUR", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 8159.34}, "last_transaction_date": "2024-09-12T12:34:56Z", "next_transaction_date": "2024-09-12T12:34:56Z", "current_period_start_date": "2024-09-12T12:34:56Z", "current_period_end_date": "2024-09-12T12:34:56Z", "canceled_at": "2024-09-12T12:34:56Z", "created_at": "2024-01-01T00:00:00Z", "updated_at": "2024-09-12T12:34:56Z"}, "customer": "<value>", "success_url": "https://example.com/return", "feature": [{"license": {"id": "<id>", "mode": "test", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "expires_at": {}, "created_at": "2023-09-13T00:00:00Z", "instance": {"id": "<id>", "mode": "sandbox", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}}}], "metadata": {"userId": "user_123", "visitCount": 42, "lastVisit": "2023-04-01"}}
-  createCheckout:
-    speakeasy-default-create-checkout:
-      parameters:
-        header:
-          x-api-key: "<value>"
-      requestBody:
-        application/json: {"product_id": "prod_1234567890", "units": 1, "discount_code": "SUMMER2024", "customer": {"id": "cust_1234567890", "email": "user@example.com"}, "custom_field": [{"type": "text", "key": "<key>", "label": "<value>"}], "metadata": {"userId": "user_123", "visitCount": 42, "lastVisit": "2023-04-01"}}
-      responses:
-        "200":
-          application/json: {"id": "<id>", "mode": "prod", "object": "<value>", "status": "completed", "product": "Generic Bronze Bike", "units": 1, "order": {"id": "<id>", "mode": "sandbox", "object": "<value>", "product": "Recycled Frozen Keyboard", "transaction": "tx_1234567890", "discount": "dis_1234567890", "amount": 2000, "sub_total": 1800, "tax_amount": 200, "discount_amount": 100, "amount_due": 1900, "amount_paid": 1900, "currency": "USD", "fx_amount": 15, "fx_currency": "EUR", "fx_rate": 1.2, "status": "pending", "type": "recurring", "created_at": "2023-09-13T00:00:00Z", "updated_at": "2023-09-13T00:00:00Z"}, "subscription": "<value>", "customer": "<value>", "success_url": "https://example.com/return", "feature": [{"license": {"id": "<id>", "mode": "test", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "expires_at": {}, "created_at": "2023-09-13T00:00:00Z", "instance": {"id": "<id>", "mode": "sandbox", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}}}], "metadata": {"userId": "user_123", "visitCount": 42, "lastVisit": "2023-04-01"}}
-  activateLicense:
-    speakeasy-default-activate-license:
-      parameters:
-        header:
-          x-api-key: "<value>"
-      requestBody:
-        application/json: {"key": "<key>", "instance_name": "<value>"}
-      responses:
-        "200":
-          application/json: {"id": "<id>", "mode": "sandbox", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "expires_at": {}, "created_at": "2023-09-13T00:00:00Z", "instance": {"id": "<id>", "mode": "test", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}}
-  deactivateLicense:
-    speakeasy-default-deactivate-license:
-      parameters:
-        header:
-          x-api-key: "<value>"
-      requestBody:
-        application/json: {"key": "<key>", "instance_id": "<id>"}
-      responses:
-        "200":
-          application/json: {"id": "<id>", "mode": "test", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "expires_at": {}, "created_at": "2023-09-13T00:00:00Z", "instance": {"id": "<id>", "mode": "prod", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}}
-  validateLicense:
-    speakeasy-default-validate-license:
-      parameters:
-        header:
-          x-api-key: "<value>"
-      requestBody:
-        application/json: {"key": "<key>", "instance_id": "<id>"}
-      responses:
-        "200":
-          application/json: {"id": "<id>", "mode": "sandbox", "object": "<value>", "status": "active", "key": "ABC123-XYZ456-XYZ456-XYZ456", "activation": 5, "activation_limit": {}, "expires_at": {}, "created_at": "2023-09-13T00:00:00Z", "instance": {"id": "<id>", "mode": "prod", "object": "license-instance", "name": "My Customer License Instance", "status": "active", "created_at": "2023-09-13T00:00:00Z"}}
-  retrieveDiscount:
-    speakeasy-default-retrieve-discount:
-      parameters:
-        header:
-          x-api-key: "<value>"
-      responses:
-        "200":
-          application/json: {"id": "<id>", "mode": "sandbox", "object": "discount", "status": "active", "name": "Holiday Sale", "code": "HOLIDAY2024", "type": "percentage", "amount": 20, "currency": "USD", "percentage": 15, "expiry_date": "2024-12-31T23:59:59Z", "max_redemptions": 100, "duration": "repeating", "duration_in_months": 6, "applies_to_products": ["prod_123", "prod_456"], "redeem_count": 15}
-  createDiscount:
-    speakeasy-default-create-discount:
-      parameters:
-        header:
-          x-api-key: "<value>"
-      requestBody:
-        application/json: {"name": "Holiday Sale", "code": "HOLIDAY2024", "type": "percentage", "amount": 20, "currency": "USD", "percentage": 15, "expiry_date": "2024-12-31T23:59:59Z", "max_redemptions": 100, "duration": "repeating", "duration_in_months": 6, "applies_to_products": ["prod_123", "prod_456"]}
-      responses:
-        "200":
-          application/json: {"id": "<id>", "mode": "prod", "object": "discount", "status": "active", "name": "Holiday Sale", "code": "HOLIDAY2024", "type": "percentage", "amount": 20, "currency": "USD", "percentage": 15, "expiry_date": "2024-12-31T23:59:59Z", "max_redemptions": 100, "duration": "repeating", "duration_in_months": 6, "applies_to_products": ["prod_123", "prod_456"], "redeem_count": 15}
-  deleteDiscount:
-    speakeasy-default-delete-discount:
-      parameters:
-        path:
-          id: "<id>"
-        header:
-          x-api-key: "<value>"
-      responses:
-        "200":
-          application/json: {"id": "<id>", "mode": "test", "object": "discount", "status": "active", "name": "Holiday Sale", "code": "HOLIDAY2024", "type": "percentage", "amount": 20, "currency": "USD", "percentage": 15, "expiry_date": "2024-12-31T23:59:59Z", "max_redemptions": 100, "duration": "repeating", "duration_in_months": 6, "applies_to_products": ["prod_123", "prod_456"], "redeem_count": 15}
-  getTransactionById:
-    speakeasy-default-get-transaction-by-id:
-      parameters:
-        query:
-          transaction_id: "<id>"
-        header:
-          x-api-key: "<value>"
-      responses:
-        "200":
-          application/json: {"id": "<id>", "mode": "test", "object": "transaction", "amount": 2000, "amount_paid": 2000, "discount_amount": 2000, "currency": "USD", "type": "<value>", "tax_country": "US", "tax_amount": 2000, "status": "<value>", "refunded_amount": 2000, "created_at": 6117.34}
-  searchTransactions:
-    speakeasy-default-search-transactions:
-      parameters:
-        header:
-          x-api-key: "<value>"
-      responses:
-        "200":
-          application/json: {"items": [], "pagination": {"total_records": 0, "total_pages": 0, "current_page": 1, "next_page": 2, "prev_page": null}}
-examplesVersion: 1.0.2
-generatedTests: {}

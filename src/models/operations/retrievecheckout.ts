@@ -9,6 +9,9 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type RetrieveCheckoutRequest = {
+  /**
+   * The ID of the checkout session to retrieve.
+   */
   checkoutId: string;
 };
 

@@ -1,6 +1,6 @@
 # CancelSubscriptionRequestEntityMode
 
-The mode of cancellation (immediate or scheduled), default is immediate
+The mode of cancellation (immediate or scheduled), default can be configured in the store billing settings.
 
 ## Example Usage
 

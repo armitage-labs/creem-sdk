@@ -2,7 +2,7 @@ overlay: 1.0.0
 x-speakeasy-jsonpath: rfc9535
 info:
   title: Speakeasy Modifications
-  version: 0.0.2
+  version: 0.0.4
   x-speakeasy-metadata:
     after: ""
     before: ""
@@ -207,4 +207,24 @@ actions:
       before: sdk.<no_group>.validateLicense()
       created_at: 1764062816430
       reviewed_at: 1764063054051
+      type: method-name
+  - target: $["paths"]["/v1/subscriptions/{id}/pause"]["post"]
+    update:
+      x-speakeasy-group: subscriptions
+      x-speakeasy-name-override: pause
+    x-speakeasy-metadata:
+      after: sdk.subscriptions.pause()
+      before: sdk.<no_group>.pauseSubscription()
+      created_at: 1767356767151
+      reviewed_at: 1767356773024
+      type: method-name
+  - target: $["paths"]["/v1/subscriptions/{id}/resume"]["post"]
+    update:
+      x-speakeasy-group: subscriptions
+      x-speakeasy-name-override: resume
+    x-speakeasy-metadata:
+      after: sdk.subscriptions.resume()
+      before: sdk.<no_group>.resumeSubscription()
+      created_at: 1767356767151
+      reviewed_at: 1767356773024
       type: method-name

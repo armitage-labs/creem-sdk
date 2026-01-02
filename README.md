@@ -179,7 +179,7 @@ const creem = new Creem({
 });
 
 async function run() {
-  const result = await creem.products.get("<id>");
+  const result = await creem.products.get("prod_1234567890");
 
   console.log(result);
 }
@@ -209,7 +209,7 @@ const creem = new Creem({
 });
 
 async function run() {
-  const result = await creem.products.get("<id>");
+  const result = await creem.products.get("prod_1234567890");
 
   console.log(result);
 }
@@ -225,43 +225,45 @@ run();
 <details open>
 <summary>Available methods</summary>
 
-### [checkouts](docs/sdks/checkouts/README.md)
+### [Checkouts](docs/sdks/checkouts/README.md)
 
 * [retrieve](docs/sdks/checkouts/README.md#retrieve) - Retrieve a new checkout session.
 * [create](docs/sdks/checkouts/README.md#create) - Creates a new checkout session.
 
-### [customers](docs/sdks/customers/README.md)
+### [Customers](docs/sdks/customers/README.md)
 
 * [list](docs/sdks/customers/README.md#list) - List all customers
 * [retrieve](docs/sdks/customers/README.md#retrieve) - Retrieve a customer
 * [generateBillingLinks](docs/sdks/customers/README.md#generatebillinglinks) - Generate Customer Links
 
-### [discounts](docs/sdks/discounts/README.md)
+### [Discounts](docs/sdks/discounts/README.md)
 
 * [get](docs/sdks/discounts/README.md#get) - Retrieve discount
 * [create](docs/sdks/discounts/README.md#create) - Create a discount.
 * [delete](docs/sdks/discounts/README.md#delete) - Delete a discount.
 
-### [licenses](docs/sdks/licenses/README.md)
+### [Licenses](docs/sdks/licenses/README.md)
 
 * [activate](docs/sdks/licenses/README.md#activate) - Activates a license key.
 * [deactivate](docs/sdks/licenses/README.md#deactivate) - Deactivate a license key instance.
 * [validate](docs/sdks/licenses/README.md#validate) - Validates a license key or instance.
 
-### [products](docs/sdks/products/README.md)
+### [Products](docs/sdks/products/README.md)
 
 * [get](docs/sdks/products/README.md#get) - Retrieve a product
 * [create](docs/sdks/products/README.md#create) - Creates a new product.
 * [search](docs/sdks/products/README.md#search) - List all products
 
-### [subscriptions](docs/sdks/subscriptions/README.md)
+### [Subscriptions](docs/sdks/subscriptions/README.md)
 
 * [get](docs/sdks/subscriptions/README.md#get) - Retrieve a subscription
 * [cancel](docs/sdks/subscriptions/README.md#cancel) - Cancel a subscription.
 * [update](docs/sdks/subscriptions/README.md#update) - Update a subscription.
 * [upgrade](docs/sdks/subscriptions/README.md#upgrade) - Upgrade a subscription to a different product
+* [pause](docs/sdks/subscriptions/README.md#pause) - Pause a subscription.
+* [resume](docs/sdks/subscriptions/README.md#resume) - Resume a paused subscription.
 
-### [transactions](docs/sdks/transactions/README.md)
+### [Transactions](docs/sdks/transactions/README.md)
 
 * [getById](docs/sdks/transactions/README.md#getbyid) - Get a transaction by ID
 * [search](docs/sdks/transactions/README.md#search) - List all transactions
@@ -300,6 +302,8 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`productsSearch`](docs/sdks/products/README.md#search) - List all products
 - [`subscriptionsCancel`](docs/sdks/subscriptions/README.md#cancel) - Cancel a subscription.
 - [`subscriptionsGet`](docs/sdks/subscriptions/README.md#get) - Retrieve a subscription
+- [`subscriptionsPause`](docs/sdks/subscriptions/README.md#pause) - Pause a subscription.
+- [`subscriptionsResume`](docs/sdks/subscriptions/README.md#resume) - Resume a paused subscription.
 - [`subscriptionsUpdate`](docs/sdks/subscriptions/README.md#update) - Update a subscription.
 - [`subscriptionsUpgrade`](docs/sdks/subscriptions/README.md#upgrade) - Upgrade a subscription to a different product
 - [`transactionsGetById`](docs/sdks/transactions/README.md#getbyid) - Get a transaction by ID
@@ -322,7 +326,7 @@ const creem = new Creem({
 });
 
 async function run() {
-  const result = await creem.products.get("<id>", {
+  const result = await creem.products.get("prod_1234567890", {
     retries: {
       strategy: "backoff",
       backoff: {
@@ -361,7 +365,7 @@ const creem = new Creem({
 });
 
 async function run() {
-  const result = await creem.products.get("<id>");
+  const result = await creem.products.get("prod_1234567890");
 
   console.log(result);
 }
@@ -395,7 +399,7 @@ const creem = new Creem({
 
 async function run() {
   try {
-    const result = await creem.products.get("<id>");
+    const result = await creem.products.get("prod_1234567890");
 
     console.log(result);
   } catch (error) {
@@ -437,14 +441,14 @@ run();
 <!-- Start Server Selection [server] -->
 ## Server Selection
 
-### Select Server by Name
+### Select Server by Index
 
-You can override the default server globally by passing a server name to the `server: keyof typeof ServerList` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the names associated with the available servers:
+You can override the default server globally by passing a server index to the `serverIdx: number` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
-| Name         | Server                      | Description    |
-| ------------ | --------------------------- | -------------- |
-| `production` | `https://api.creem.io`      | Production API |
-| `test`       | `https://test-api.creem.io` | Test API       |
+| #   | Server                      | Description |
+| --- | --------------------------- | ----------- |
+| 0   | `https://api.creem.io`      |             |
+| 1   | `https://test-api.creem.io` |             |
 
 #### Example
 
@@ -452,12 +456,12 @@ You can override the default server globally by passing a server name to the `se
 import { Creem } from "creem";
 
 const creem = new Creem({
-  server: "production",
+  serverIdx: 0,
   apiKey: process.env["CREEM_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await creem.products.get("<id>");
+  const result = await creem.products.get("prod_1234567890");
 
   console.log(result);
 }
@@ -473,12 +477,12 @@ The default server can also be overridden globally by passing a URL to the `serv
 import { Creem } from "creem";
 
 const creem = new Creem({
-  serverURL: "https://api.creem.io",
+  serverURL: "https://test-api.creem.io",
   apiKey: process.env["CREEM_API_KEY"] ?? "",
 });
 
 async function run() {
-  const result = await creem.products.get("<id>");
+  const result = await creem.products.get("prod_1234567890");
 
   console.log(result);
 }

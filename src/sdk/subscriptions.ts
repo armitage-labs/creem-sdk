@@ -4,6 +4,8 @@
 
 import { subscriptionsCancel } from "../funcs/subscriptionsCancel.js";
 import { subscriptionsGet } from "../funcs/subscriptionsGet.js";
+import { subscriptionsPause } from "../funcs/subscriptionsPause.js";
+import { subscriptionsResume } from "../funcs/subscriptionsResume.js";
 import { subscriptionsUpdate } from "../funcs/subscriptionsUpdate.js";
 import { subscriptionsUpgrade } from "../funcs/subscriptionsUpgrade.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
@@ -70,6 +72,34 @@ export class Subscriptions extends ClientSDK {
       this,
       id,
       upgradeSubscriptionRequestEntity,
+      options,
+    ));
+  }
+
+  /**
+   * Pause a subscription.
+   */
+  async pause(
+    id: string,
+    options?: RequestOptions,
+  ): Promise<components.SubscriptionEntity> {
+    return unwrapAsync(subscriptionsPause(
+      this,
+      id,
+      options,
+    ));
+  }
+
+  /**
+   * Resume a paused subscription.
+   */
+  async resume(
+    id: string,
+    options?: RequestOptions,
+  ): Promise<components.SubscriptionEntity> {
+    return unwrapAsync(subscriptionsResume(
+      this,
+      id,
       options,
     ));
   }

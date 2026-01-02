@@ -9,14 +9,14 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
- * The mode of cancellation (immediate or scheduled), default is immediate
+ * The mode of cancellation (immediate or scheduled), default can be configured in the store billing settings.
  */
 export const CancelSubscriptionRequestEntityMode = {
   Immediate: "immediate",
   Scheduled: "scheduled",
 } as const;
 /**
- * The mode of cancellation (immediate or scheduled), default is immediate
+ * The mode of cancellation (immediate or scheduled), default can be configured in the store billing settings.
  */
 export type CancelSubscriptionRequestEntityMode = ClosedEnum<
   typeof CancelSubscriptionRequestEntityMode
@@ -36,7 +36,7 @@ export type OnExecute = ClosedEnum<typeof OnExecute>;
 
 export type CancelSubscriptionRequestEntity = {
   /**
-   * The mode of cancellation (immediate or scheduled), default is immediate
+   * The mode of cancellation (immediate or scheduled), default can be configured in the store billing settings.
    */
   mode?: CancelSubscriptionRequestEntityMode | undefined;
   /**

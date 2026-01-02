@@ -18,7 +18,7 @@ const creem = new Creem({
 });
 
 async function main() {
-  const result = await creem.products.get("<id>");
+  const result = await creem.products.get("prod_1234567890");
 
   console.log(result);
 }

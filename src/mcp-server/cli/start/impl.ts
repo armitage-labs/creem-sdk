@@ -19,7 +19,7 @@ interface StartCommandFlags {
   readonly tool?: string[];
   readonly "api-key"?: string | undefined;
   readonly "server-url"?: string;
-  readonly server?: SDKOptions["server"];
+  readonly "server-index"?: SDKOptions["serverIdx"];
   readonly "log-level": ConsoleLoggerLevel;
   readonly env?: [string, string][];
 }
@@ -49,7 +49,7 @@ async function startStdio(flags: StartCommandFlags) {
     allowedTools: flags.tool,
     ...{ apiKey: flags["api-key"] ?? "" },
     serverURL: flags["server-url"],
-    server: flags.server,
+    serverIdx: flags["server-index"],
   });
   await server.connect(transport);
 
@@ -69,7 +69,7 @@ async function startSSE(flags: StartCommandFlags) {
     allowedTools: flags.tool,
     ...{ apiKey: flags["api-key"] ?? "" },
     serverURL: flags["server-url"],
-    server: flags.server,
+    serverIdx: flags["server-index"],
   });
   let transport: SSEServerTransport | undefined;
   const controller = new AbortController();

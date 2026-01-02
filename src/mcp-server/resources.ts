@@ -9,7 +9,11 @@ import {
 } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { RequestHandlerExtra } from "@modelcontextprotocol/sdk/shared/protocol.js";
 import { Variables } from "@modelcontextprotocol/sdk/shared/uriTemplate.js";
-import { ReadResourceResult } from "@modelcontextprotocol/sdk/types.js";
+import {
+  ReadResourceResult,
+  ServerNotification,
+  ServerRequest,
+} from "@modelcontextprotocol/sdk/types.js";
 import { CreemCore } from "../core.js";
 import { ConsoleLogger } from "./console-logger.js";
 import { MCPScope } from "./scopes.js";
@@ -18,7 +22,7 @@ import { isAsyncIterable, isBinaryData, valueToBase64 } from "./shared.js";
 export type ReadResourceCallback = (
   client: CreemCore,
   uri: URL,
-  extra: RequestHandlerExtra,
+  extra: RequestHandlerExtra<ServerRequest, ServerNotification>,
 ) => ReadResourceResult | Promise<ReadResourceResult>;
 
 export type ResourceDefinition = {
@@ -34,7 +38,7 @@ export type ReadResourceTemplateCallback = (
   client: CreemCore,
   uri: URL,
   vars: Variables,
-  extra: RequestHandlerExtra,
+  extra: RequestHandlerExtra<ServerRequest, ServerNotification>,
 ) => ReadResourceResult | Promise<ReadResourceResult>;
 
 export type ResourceTemplateDefinition = {

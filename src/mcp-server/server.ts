@@ -29,6 +29,8 @@ import { tool$productsGet } from "./tools/productsGet.js";
 import { tool$productsSearch } from "./tools/productsSearch.js";
 import { tool$subscriptionsCancel } from "./tools/subscriptionsCancel.js";
 import { tool$subscriptionsGet } from "./tools/subscriptionsGet.js";
+import { tool$subscriptionsPause } from "./tools/subscriptionsPause.js";
+import { tool$subscriptionsResume } from "./tools/subscriptionsResume.js";
 import { tool$subscriptionsUpdate } from "./tools/subscriptionsUpdate.js";
 import { tool$subscriptionsUpgrade } from "./tools/subscriptionsUpgrade.js";
 import { tool$transactionsGetById } from "./tools/transactionsGetById.js";
@@ -40,17 +42,17 @@ export function createMCPServer(deps: {
   scopes?: MCPScope[] | undefined;
   serverURL?: string | undefined;
   apiKey?: SDKOptions["apiKey"] | undefined;
-  server?: SDKOptions["server"] | undefined;
+  serverIdx?: SDKOptions["serverIdx"] | undefined;
 }) {
   const server = new McpServer({
     name: "Creem",
-    version: "0.8.0",
+    version: "0.10.0",
   });
 
   const client = new CreemCore({
     apiKey: deps.apiKey,
     serverURL: deps.serverURL,
-    server: deps.server,
+    serverIdx: deps.serverIdx,
   });
 
   const scopes = new Set(deps.scopes);
@@ -84,6 +86,8 @@ export function createMCPServer(deps: {
   tool(tool$subscriptionsCancel);
   tool(tool$subscriptionsUpdate);
   tool(tool$subscriptionsUpgrade);
+  tool(tool$subscriptionsPause);
+  tool(tool$subscriptionsResume);
   tool(tool$checkoutsRetrieve);
   tool(tool$checkoutsCreate);
   tool(tool$licensesActivate);

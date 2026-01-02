@@ -29,7 +29,7 @@ const creem = new CreemCore({
 });
 
 async function run() {
-  const res = await productsGet(creem, "<id>");
+  const res = await productsGet(creem, "prod_1234567890");
   if (res.ok) {
     const { value: result } = res;
     console.log(result);

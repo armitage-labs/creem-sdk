@@ -6,12 +6,12 @@
 import { RetrieveCheckoutRequest } from "creem/models/operations";
 
 let value: RetrieveCheckoutRequest = {
-  checkoutId: "<id>",
+  checkoutId: "chk_1234567890",
 };
 ```
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `checkoutId`       | *string*           | :heavy_check_mark: | N/A                |
+| Field                                       | Type                                        | Required                                    | Description                                 | Example                                     |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| `checkoutId`                                | *string*                                    | :heavy_check_mark:                          | The ID of the checkout session to retrieve. | chk_1234567890                              |
