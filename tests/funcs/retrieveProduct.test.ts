@@ -11,6 +11,13 @@ import {
 
 // Create an actual instance of Creem for testing
 const creem = new Creem({
+  apiKey: TEST_API_KEY,
+  serverIdx: TEST_SERVER_IDX,
+});
+
+// Create an instance with invalid API key for auth error tests
+const creemWithInvalidKey = new Creem({
+  apiKey: "fail",
   serverIdx: TEST_SERVER_IDX,
 });
 
@@ -18,10 +25,7 @@ describe("retrieveProduct", () => {
   it("should handle API authentication errors", async () => {
     try {
       // Attempt to call SDK method with invalid API key
-      await creem.retrieveProduct({
-        xApiKey: "fail",
-        productId: TEST_PRODUCT_SUBSCRIPTION_ID,
-      });
+      await creemWithInvalidKey.products.get(TEST_PRODUCT_SUBSCRIPTION_ID);
       // If it succeeds, fail the test (we expect it to throw)
       fail("Expected an API error but none was thrown");
     } catch (error) {
@@ -33,10 +37,7 @@ describe("retrieveProduct", () => {
 
   it("should retrieve a product successfully", async () => {
     // When using the SDK instance directly, it returns ProductEntity
-    const result = await creem.retrieveProduct({
-      xApiKey: TEST_API_KEY,
-      productId: TEST_PRODUCT_SUBSCRIPTION_ID,
-    });
+    const result = await creem.products.get(TEST_PRODUCT_SUBSCRIPTION_ID);
 
     // Test direct SDK method
     expect(result).toHaveProperty("id", TEST_PRODUCT_SUBSCRIPTION_ID);
@@ -54,12 +55,15 @@ describe("retrieveProduct", () => {
   });
 
   it("should handle validation errors", async () => {
+    // Create an instance with empty API key
+    const creemWithEmptyKey = new Creem({
+      apiKey: "",
+      serverIdx: TEST_SERVER_IDX,
+    });
+
     try {
       // Use invalid input to trigger validation error
-      await creem.retrieveProduct({
-        xApiKey: "",
-        productId: TEST_PRODUCT_SUBSCRIPTION_ID,
-      });
+      await creemWithEmptyKey.products.get(TEST_PRODUCT_SUBSCRIPTION_ID);
       fail("Expected validation error but none was thrown");
     } catch (error) {
       expect(error).toBeInstanceOf(Error);
@@ -68,10 +72,7 @@ describe("retrieveProduct", () => {
 
   it("should handle request errors with non-existent product ID", async () => {
     try {
-      await creem.retrieveProduct({
-        xApiKey: TEST_API_KEY,
-        productId: "non-existent-product-id",
-      });
+      await creem.products.get("non-existent-product-id");
       fail("Expected error with invalid product ID but none was thrown");
     } catch (error) {
       expect(error).toBeDefined();

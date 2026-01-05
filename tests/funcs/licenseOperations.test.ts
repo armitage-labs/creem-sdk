@@ -12,6 +12,13 @@ import {
 
 // Create an actual instance of Creem for testing
 const creem = new Creem({
+  apiKey: TEST_API_KEY,
+  serverIdx: TEST_SERVER_IDX,
+});
+
+// Create an instance with invalid API key for auth error tests
+const creemWithInvalidKey = new Creem({
+  apiKey: "fail",
   serverIdx: TEST_SERVER_IDX,
 });
 
@@ -20,12 +27,9 @@ describe("License Key Operations", () => {
 
   it("should handle API authentication errors", async () => {
     try {
-      await creem.validateLicense({
-        xApiKey: "fail",
-        validateLicenseRequestEntity: {
-          key: TEST_LICENSE_KEY,
-          instanceId: "",
-        },
+      await creemWithInvalidKey.licenses.validate({
+        key: TEST_LICENSE_KEY,
+        instanceId: "",
       });
       fail("Expected an API error but none was thrown");
     } catch (error) {
@@ -35,12 +39,9 @@ describe("License Key Operations", () => {
   });
 
   it("should validate a license key successfully", async () => {
-    const result = await creem.validateLicense({
-      xApiKey: TEST_API_KEY,
-      validateLicenseRequestEntity: {
-        key: TEST_LICENSE_KEY,
-        instanceId: "",
-      },
+    const result = await creem.licenses.validate({
+      key: TEST_LICENSE_KEY,
+      instanceId: "",
     });
 
     // Test the response structure and content
@@ -54,12 +55,9 @@ describe("License Key Operations", () => {
   });
 
   it("should activate a license key successfully", async () => {
-    const result = await creem.activateLicense({
-      xApiKey: TEST_API_KEY,
-      activateLicenseRequestEntity: {
-        key: TEST_LICENSE_KEY,
-        instanceName: TEST_INSTANCE_NAME,
-      },
+    const result = await creem.licenses.activate({
+      key: TEST_LICENSE_KEY,
+      instanceName: TEST_INSTANCE_NAME,
     });
 
     // Test the response structure and content
@@ -83,12 +81,9 @@ describe("License Key Operations", () => {
     // Ensure we have an instanceId from the activation step
     expect(instanceId).toBeDefined();
 
-    const result = await creem.deactivateLicense({
-      xApiKey: TEST_API_KEY,
-      deactivateLicenseRequestEntity: {
-        key: TEST_LICENSE_KEY,
-        instanceId: instanceId ?? "",
-      },
+    const result = await creem.licenses.deactivate({
+      key: TEST_LICENSE_KEY,
+      instanceId: instanceId ?? "",
     });
 
     // Test the response structure and content
@@ -108,12 +103,9 @@ describe("License Key Operations", () => {
 
   it("should handle request errors with invalid license key", async () => {
     try {
-      await creem.validateLicense({
-        xApiKey: TEST_API_KEY,
-        validateLicenseRequestEntity: {
-          key: "invalid-license-key",
-          instanceId: "",
-        },
+      await creem.licenses.validate({
+        key: "invalid-license-key",
+        instanceId: "",
       });
       fail("Expected error with invalid license key but none was thrown");
     } catch (error) {
@@ -124,17 +116,15 @@ describe("License Key Operations", () => {
   it("should handle network errors gracefully", async () => {
     // Create a new instance with an invalid server URL to simulate network error
     const creemWithInvalidServer = new Creem({
+      apiKey: TEST_API_KEY,
       serverIdx: TEST_SERVER_IDX,
       serverURL: "http://invalid-url",
     });
 
     try {
-      await creemWithInvalidServer.validateLicense({
-        xApiKey: TEST_API_KEY,
-        validateLicenseRequestEntity: {
-          key: TEST_LICENSE_KEY,
-          instanceId: "",
-        },
+      await creemWithInvalidServer.licenses.validate({
+        key: TEST_LICENSE_KEY,
+        instanceId: "",
       });
       fail("Expected network error but none was thrown");
     } catch (error) {

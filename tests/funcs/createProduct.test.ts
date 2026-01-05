@@ -35,6 +35,13 @@ const SAMPLE_PRODUCT = {
 
 // Create an actual instance of Creem for testing
 const creem = new Creem({
+  apiKey: TEST_API_KEY,
+  serverIdx: TEST_SERVER_IDX,
+});
+
+// Create an instance with invalid API key for auth error tests
+const creemWithInvalidKey = new Creem({
+  apiKey: "fail",
   serverIdx: TEST_SERVER_IDX,
 });
 
@@ -42,10 +49,7 @@ describe("createProduct", () => {
   it("should handle API authentication errors", async () => {
     try {
       // Attempt to call SDK method with invalid API key
-      await creem.createProduct({
-        xApiKey: "fail",
-        createProductRequestEntity: SAMPLE_PRODUCT,
-      });
+      await creemWithInvalidKey.products.create(SAMPLE_PRODUCT);
       // If it succeeds, fail the test (we expect it to throw)
       fail("Expected an API error but none was thrown");
     } catch (error) {
@@ -57,10 +61,7 @@ describe("createProduct", () => {
 
   it("should create a product successfully", async () => {
     // When using the SDK instance directly, it returns ProductEntity
-    const result = await creem.createProduct({
-      xApiKey: TEST_API_KEY,
-      createProductRequestEntity: SAMPLE_PRODUCT,
-    });
+    const result = await creem.products.create(SAMPLE_PRODUCT);
 
     // Test direct SDK method
     expect(result).toHaveProperty("id");
@@ -94,12 +95,15 @@ describe("createProduct", () => {
   });
 
   it("should handle validation errors", async () => {
+    // Create an instance with empty API key
+    const creemWithEmptyKey = new Creem({
+      apiKey: "",
+      serverIdx: TEST_SERVER_IDX,
+    });
+
     try {
       // Use invalid input to trigger validation error
-      await creem.createProduct({
-        xApiKey: "",
-        createProductRequestEntity: SAMPLE_PRODUCT,
-      });
+      await creemWithEmptyKey.products.create(SAMPLE_PRODUCT);
       fail("Expected validation error but none was thrown");
     } catch (error) {
       expect(error).toBeInstanceOf(Error);
@@ -108,13 +112,10 @@ describe("createProduct", () => {
 
   it("should handle request errors with invalid product data", async () => {
     try {
-      await creem.createProduct({
-        xApiKey: TEST_API_KEY,
-        createProductRequestEntity: {
-          // Missing required fields
-          name: "Invalid Product",
-        } as any,
-      });
+      await creem.products.create({
+        // Missing required fields
+        name: "Invalid Product",
+      } as any);
       fail("Expected error with invalid product data but none was thrown");
     } catch (error) {
       expect(error).toBeDefined();
@@ -130,10 +131,7 @@ describe("createProduct", () => {
       billingType: "onetime",
     };
 
-    const result = await creem.createProduct({
-      xApiKey: TEST_API_KEY,
-      createProductRequestEntity: minimalProduct,
-    });
+    const result = await creem.products.create(minimalProduct);
 
     expect(result).toHaveProperty("id");
     expect(result).toHaveProperty("name", minimalProduct.name);

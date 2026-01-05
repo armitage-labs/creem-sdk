@@ -13,15 +13,20 @@ import {
 
 // Create an actual instance of Creem for testing
 const creem = new Creem({
+  apiKey: TEST_API_KEY,
+  serverIdx: TEST_SERVER_IDX,
+});
+
+// Create an instance with invalid API key for auth error tests
+const creemWithInvalidKey = new Creem({
+  apiKey: "fail",
   serverIdx: TEST_SERVER_IDX,
 });
 
 describe("searchTransactions", () => {
   it("should handle API authentication errors", async () => {
     try {
-      await creem.searchTransactions({
-        xApiKey: "fail",
-      });
+      await creemWithInvalidKey.transactions.search();
       fail("Expected an API error but none was thrown");
     } catch (error) {
       expect(error).toBeInstanceOf(APIError);
@@ -30,9 +35,7 @@ describe("searchTransactions", () => {
   });
 
   it("should search transactions with no filters successfully", async () => {
-    const result = await creem.searchTransactions({
-      xApiKey: TEST_API_KEY,
-    });
+    const result = await creem.transactions.search();
 
     // Test the response structure
     expect(result).toHaveProperty("items");
@@ -51,10 +54,7 @@ describe("searchTransactions", () => {
   });
 
   it("should search transactions by customer ID successfully", async () => {
-    const result = await creem.searchTransactions({
-      xApiKey: TEST_API_KEY,
-      customerId: TEST_CUSTOMER_ID,
-    });
+    const result = await creem.transactions.search(TEST_CUSTOMER_ID);
 
     // Test the response structure and content
     expect(result).toHaveProperty("items");
@@ -69,10 +69,7 @@ describe("searchTransactions", () => {
   });
 
   it("should search transactions by order ID successfully", async () => {
-    const result = await creem.searchTransactions({
-      xApiKey: TEST_API_KEY,
-      orderId: TEST_ORDER_ID,
-    });
+    const result = await creem.transactions.search(undefined, TEST_ORDER_ID);
 
     // Test the response structure and content
     expect(result).toHaveProperty("items");
@@ -87,10 +84,7 @@ describe("searchTransactions", () => {
   });
 
   it("should search transactions by product ID successfully", async () => {
-    const result = await creem.searchTransactions({
-      xApiKey: TEST_API_KEY,
-      productId: TEST_PRODUCT_SUBSCRIPTION_ID,
-    });
+    const result = await creem.transactions.search(undefined, undefined, TEST_PRODUCT_SUBSCRIPTION_ID);
 
     // Test the response structure
     expect(result).toHaveProperty("items");
@@ -101,11 +95,8 @@ describe("searchTransactions", () => {
     const pageSize = 10;
     const pageNumber = 1;
 
-    const result = await creem.searchTransactions({
-      xApiKey: TEST_API_KEY,
-      pageSize,
-      pageNumber,
-    });
+    // search(customerId, orderId, productId, pageNumber, pageSize)
+    const result = await creem.transactions.search(undefined, undefined, undefined, pageNumber, pageSize);
 
     // Test pagination structure
     expect(result.pagination).toHaveProperty("totalRecords");
@@ -119,14 +110,14 @@ describe("searchTransactions", () => {
   });
 
   it("should handle multiple filters together", async () => {
-    const result = await creem.searchTransactions({
-      xApiKey: TEST_API_KEY,
-      customerId: TEST_CUSTOMER_ID,
-      orderId: TEST_ORDER_ID,
-      productId: TEST_PRODUCT_SUBSCRIPTION_ID,
-      pageSize: 5,
-      pageNumber: 1,
-    });
+    // search(customerId, orderId, productId, pageNumber, pageSize)
+    const result = await creem.transactions.search(
+      TEST_CUSTOMER_ID,
+      TEST_ORDER_ID,
+      TEST_PRODUCT_SUBSCRIPTION_ID,
+      1,
+      5
+    );
 
     // Test the response structure
     expect(result).toHaveProperty("items");
@@ -145,14 +136,13 @@ describe("searchTransactions", () => {
   it("should handle network errors gracefully", async () => {
     // Create a new instance with an invalid server URL to simulate network error
     const creemWithInvalidServer = new Creem({
+      apiKey: TEST_API_KEY,
       serverIdx: TEST_SERVER_IDX,
       serverURL: "http://invalid-url",
     });
 
     try {
-      await creemWithInvalidServer.searchTransactions({
-        xApiKey: TEST_API_KEY,
-      });
+      await creemWithInvalidServer.transactions.search();
       fail("Expected network error but none was thrown");
     } catch (error) {
       expect(error).toBeDefined();

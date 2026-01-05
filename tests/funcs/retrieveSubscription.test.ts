@@ -10,6 +10,13 @@ import {
 
 // Create an actual instance of Creem for testing
 const creem = new Creem({
+  apiKey: TEST_API_KEY,
+  serverIdx: TEST_SERVER_IDX,
+});
+
+// Create an instance with invalid API key for auth error tests
+const creemWithInvalidKey = new Creem({
+  apiKey: "fail",
   serverIdx: TEST_SERVER_IDX,
 });
 
@@ -17,10 +24,7 @@ describe("retrieveSubscription", () => {
   it("should handle API authentication errors", async () => {
     try {
       // Attempt to call SDK method with invalid API key
-      await creem.retrieveSubscription({
-        xApiKey: "fail",
-        subscriptionId: TEST_SUBSCRIPTION_ID,
-      });
+      await creemWithInvalidKey.subscriptions.get(TEST_SUBSCRIPTION_ID);
       // If it succeeds, fail the test (we expect it to throw)
       fail("Expected an API error but none was thrown");
     } catch (error) {
@@ -31,10 +35,7 @@ describe("retrieveSubscription", () => {
   });
 
   it("should retrieve subscription successfully", async () => {
-    const result = await creem.retrieveSubscription({
-      xApiKey: TEST_API_KEY,
-      subscriptionId: TEST_SUBSCRIPTION_ID,
-    });
+    const result = await creem.subscriptions.get(TEST_SUBSCRIPTION_ID);
 
     // Test the response structure and content
     expect(result).toHaveProperty("id");
@@ -58,10 +59,7 @@ describe("retrieveSubscription", () => {
 
   it("should handle request errors with invalid subscription ID", async () => {
     try {
-      await creem.retrieveSubscription({
-        xApiKey: TEST_API_KEY,
-        subscriptionId: "non-existent-subscription-id",
-      });
+      await creem.subscriptions.get("non-existent-subscription-id");
       fail("Expected error with invalid subscription ID but none was thrown");
     } catch (error) {
       expect(error).toBeDefined();
@@ -71,15 +69,13 @@ describe("retrieveSubscription", () => {
   it("should handle network errors gracefully", async () => {
     // Create a new instance with an invalid server URL to simulate network error
     const creemWithInvalidServer = new Creem({
+      apiKey: TEST_API_KEY,
       serverIdx: TEST_SERVER_IDX,
       serverURL: "http://invalid-url",
     });
 
     try {
-      await creemWithInvalidServer.retrieveSubscription({
-        xApiKey: TEST_API_KEY,
-        subscriptionId: TEST_SUBSCRIPTION_ID,
-      });
+      await creemWithInvalidServer.subscriptions.get(TEST_SUBSCRIPTION_ID);
       fail("Expected network error but none was thrown");
     } catch (error) {
       expect(error).toBeDefined();

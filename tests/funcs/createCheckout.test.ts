@@ -11,18 +11,22 @@ import {
 
 // Create an actual instance of Creem for testing
 const creem = new Creem({
+  apiKey: TEST_API_KEY,
+  serverIdx: TEST_SERVER_IDX,
+});
+
+// Create an instance with invalid API key for auth error tests
+const creemWithInvalidKey = new Creem({
+  apiKey: "fail",
   serverIdx: TEST_SERVER_IDX,
 });
 
 describe("createCheckout", () => {
   it("should handle API authentication errors", async () => {
     try {
-      // Attempt to call SDK method with test API key
-      await creem.createCheckout({
-        xApiKey: "fail",
-        createCheckoutRequest: {
-          productId: TEST_PRODUCT_SUBSCRIPTION_ID,
-        },
+      // Attempt to call SDK method with invalid API key
+      await creemWithInvalidKey.checkouts.create({
+        productId: TEST_PRODUCT_SUBSCRIPTION_ID,
       });
       // If it succeeds, fail the test (we expect it to throw)
       fail("Expected an API error but none was thrown");
@@ -35,11 +39,8 @@ describe("createCheckout", () => {
 
   it("should create a new checkout session successfully", async () => {
     // When using the SDK instance directly, it returns CheckoutEntity
-    const result = await creem.createCheckout({
-      xApiKey: TEST_API_KEY,
-      createCheckoutRequest: {
-        productId: TEST_PRODUCT_SUBSCRIPTION_ID,
-      },
+    const result = await creem.checkouts.create({
+      productId: TEST_PRODUCT_SUBSCRIPTION_ID,
     });
 
     // Test direct SDK method (unwraps Result)
@@ -50,13 +51,16 @@ describe("createCheckout", () => {
   });
 
   it("should handle validation errors", async () => {
+    // Create an instance with empty API key
+    const creemWithEmptyKey = new Creem({
+      apiKey: "",
+      serverIdx: TEST_SERVER_IDX,
+    });
+
     try {
       // Use invalid input to trigger validation error
-      await creem.createCheckout({
-        xApiKey: "",
-        createCheckoutRequest: {
-          productId: TEST_PRODUCT_SUBSCRIPTION_ID,
-        },
+      await creemWithEmptyKey.checkouts.create({
+        productId: TEST_PRODUCT_SUBSCRIPTION_ID,
       });
       fail("Expected validation error but none was thrown");
     } catch (error) {
@@ -66,11 +70,8 @@ describe("createCheckout", () => {
 
   it("should handle request errors with invalid product ID", async () => {
     try {
-      await creem.createCheckout({
-        xApiKey: TEST_API_KEY,
-        createCheckoutRequest: {
-          productId: "non-existent-product-id",
-        },
+      await creem.checkouts.create({
+        productId: "non-existent-product-id",
       });
       fail("Expected error with invalid product ID but none was thrown");
     } catch (error) {
@@ -79,31 +80,28 @@ describe("createCheckout", () => {
   });
 
   it("should create checkout with advanced options successfully", async () => {
-    const result = await creem.createCheckout({
-      xApiKey: TEST_API_KEY,
-      createCheckoutRequest: {
-        requestId: "test_request_id",
-        productId: TEST_PRODUCT_SUBSCRIPTION_ID,
-        units: 2,
-        customer: {
-          email: "test@example.com",
-        },
-        customField: [
-          {
-            type: "text",
-            key: "thing",
-            label: "Thing",
-            optional: true,
-            text: {
-              maxLength: 100,
-              minLength: 0,
-            },
+    const result = await creem.checkouts.create({
+      requestId: "test_request_id",
+      productId: TEST_PRODUCT_SUBSCRIPTION_ID,
+      units: 2,
+      customer: {
+        email: "test@example.com",
+      },
+      customField: [
+        {
+          type: "text",
+          key: "thing",
+          label: "Thing",
+          optional: true,
+          text: {
+            maxLength: 100,
+            minLength: 0,
           },
-        ],
-        successUrl: "https://google.com",
-        metadata: {
-          userId: "myUserId",
         },
+      ],
+      successUrl: "https://google.com",
+      metadata: {
+        userId: "myUserId",
       },
     });
 

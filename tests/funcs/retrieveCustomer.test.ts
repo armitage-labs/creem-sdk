@@ -12,6 +12,13 @@ import {
 
 // Create an actual instance of Creem for testing
 const creem = new Creem({
+  apiKey: TEST_API_KEY,
+  serverIdx: TEST_SERVER_IDX,
+});
+
+// Create an instance with invalid API key for auth error tests
+const creemWithInvalidKey = new Creem({
+  apiKey: "fail",
   serverIdx: TEST_SERVER_IDX,
 });
 
@@ -19,10 +26,7 @@ describe("retrieveCustomer", () => {
   it("should handle API authentication errors", async () => {
     try {
       // Attempt to call SDK method with invalid API key
-      await creem.retrieveCustomer({
-        xApiKey: "fail",
-        customerId: TEST_CUSTOMER_ID,
-      });
+      await creemWithInvalidKey.customers.retrieve(TEST_CUSTOMER_ID);
       // If it succeeds, fail the test (we expect it to throw)
       fail("Expected an API error but none was thrown");
     } catch (error) {
@@ -33,10 +37,7 @@ describe("retrieveCustomer", () => {
   });
 
   it("should retrieve a customer by ID successfully", async () => {
-    const result = await creem.retrieveCustomer({
-      xApiKey: TEST_API_KEY,
-      customerId: TEST_CUSTOMER_ID,
-    });
+    const result = await creem.customers.retrieve(TEST_CUSTOMER_ID);
 
     // Test the response structure and content
     expect(result).toHaveProperty("id");
@@ -54,10 +55,7 @@ describe("retrieveCustomer", () => {
   });
 
   it("should retrieve a customer by email successfully", async () => {
-    const result = await creem.retrieveCustomer({
-      xApiKey: TEST_API_KEY,
-      email: TEST_CUSTOMER_EMAIL,
-    });
+    const result = await creem.customers.retrieve(undefined, TEST_CUSTOMER_EMAIL);
 
     // Test the response structure and content
     expect(result).toHaveProperty("id");
@@ -71,9 +69,7 @@ describe("retrieveCustomer", () => {
 
   it("should handle validation errors when neither ID nor email is provided", async () => {
     try {
-      await creem.retrieveCustomer({
-        xApiKey: TEST_API_KEY,
-      });
+      await creem.customers.retrieve();
       fail("Expected validation error but none was thrown");
     } catch (error) {
       expect(error).toBeDefined();
@@ -82,10 +78,7 @@ describe("retrieveCustomer", () => {
 
   it("should handle request errors with invalid customer ID", async () => {
     try {
-      await creem.retrieveCustomer({
-        xApiKey: TEST_API_KEY,
-        customerId: "non-existent-customer-id",
-      });
+      await creem.customers.retrieve("non-existent-customer-id");
       fail("Expected error with invalid customer ID but none was thrown");
     } catch (error) {
       expect(error).toBeDefined();
@@ -94,10 +87,7 @@ describe("retrieveCustomer", () => {
 
   it("should handle request errors with invalid email", async () => {
     try {
-      await creem.retrieveCustomer({
-        xApiKey: TEST_API_KEY,
-        email: "non-existent@email.com",
-      });
+      await creem.customers.retrieve(undefined, "non-existent@email.com");
       fail("Expected error with invalid email but none was thrown");
     } catch (error) {
       expect(error).toBeDefined();
