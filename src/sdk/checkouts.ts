@@ -10,7 +10,7 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class Checkouts extends ClientSDK {
   /**
-   * Retrieve a new checkout session.
+   * Retrieve a checkout session.
    */
   async retrieve(
     checkoutId: string,

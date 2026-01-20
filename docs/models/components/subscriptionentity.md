@@ -18,9 +18,9 @@ let value: SubscriptionEntity = {
     imageUrl: "https://example.com/image.jpg",
     features: [
       {
-        id: "<id>",
-        type: "<value>",
-        description: "Get access to discord server.",
+        id: "feat_abc123",
+        type: "file",
+        description: "Access to premium course materials.",
       },
     ],
     price: 400,
@@ -69,7 +69,7 @@ let value: SubscriptionEntity = {
 | Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   | Example                                                                                       |
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | `id`                                                                                          | *string*                                                                                      | :heavy_check_mark:                                                                            | Unique identifier for the object.                                                             |                                                                                               |
-| `mode`                                                                                        | [components.SubscriptionEntityMode](../../models/components/subscriptionentitymode.md)        | :heavy_check_mark:                                                                            | String representing the environment.                                                          |                                                                                               |
+| `mode`                                                                                        | [components.EnvironmentMode](../../models/components/environmentmode.md)                      | :heavy_check_mark:                                                                            | String representing the environment.                                                          |                                                                                               |
 | `object`                                                                                      | *string*                                                                                      | :heavy_check_mark:                                                                            | String representing the object's type. Objects of the same type share the same value.         | subscription                                                                                  |
 | `product`                                                                                     | *components.Product*                                                                          | :heavy_check_mark:                                                                            | The product associated with the subscription.                                                 |                                                                                               |
 | `customer`                                                                                    | *components.Customer*                                                                         | :heavy_check_mark:                                                                            | The customer who owns the subscription.                                                       |                                                                                               |

@@ -11,16 +11,14 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 /**
  * The mode of cancellation (immediate or scheduled), default can be configured in the store billing settings.
  */
-export const CancelSubscriptionRequestEntityMode = {
+export const Mode = {
   Immediate: "immediate",
   Scheduled: "scheduled",
 } as const;
 /**
  * The mode of cancellation (immediate or scheduled), default can be configured in the store billing settings.
  */
-export type CancelSubscriptionRequestEntityMode = ClosedEnum<
-  typeof CancelSubscriptionRequestEntityMode
->;
+export type Mode = ClosedEnum<typeof Mode>;
 
 /**
  * The action to execute when canceling (cancel or pause) when mode is scheduled, ignored when mode is immediate or not provided
@@ -38,7 +36,7 @@ export type CancelSubscriptionRequestEntity = {
   /**
    * The mode of cancellation (immediate or scheduled), default can be configured in the store billing settings.
    */
-  mode?: CancelSubscriptionRequestEntityMode | undefined;
+  mode?: Mode | undefined;
   /**
    * The action to execute when canceling (cancel or pause) when mode is scheduled, ignored when mode is immediate or not provided
    */
@@ -46,13 +44,12 @@ export type CancelSubscriptionRequestEntity = {
 };
 
 /** @internal */
-export const CancelSubscriptionRequestEntityMode$inboundSchema: z.ZodNativeEnum<
-  typeof CancelSubscriptionRequestEntityMode
-> = z.nativeEnum(CancelSubscriptionRequestEntityMode);
+export const Mode$inboundSchema: z.ZodNativeEnum<typeof Mode> = z.nativeEnum(
+  Mode,
+);
 /** @internal */
-export const CancelSubscriptionRequestEntityMode$outboundSchema:
-  z.ZodNativeEnum<typeof CancelSubscriptionRequestEntityMode> =
-    CancelSubscriptionRequestEntityMode$inboundSchema;
+export const Mode$outboundSchema: z.ZodNativeEnum<typeof Mode> =
+  Mode$inboundSchema;
 
 /** @internal */
 export const OnExecute$inboundSchema: z.ZodNativeEnum<typeof OnExecute> = z
@@ -67,7 +64,7 @@ export const CancelSubscriptionRequestEntity$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  mode: CancelSubscriptionRequestEntityMode$inboundSchema.optional(),
+  mode: Mode$inboundSchema.optional(),
   onExecute: OnExecute$inboundSchema.optional(),
 });
 /** @internal */
@@ -82,7 +79,7 @@ export const CancelSubscriptionRequestEntity$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CancelSubscriptionRequestEntity
 > = z.object({
-  mode: CancelSubscriptionRequestEntityMode$outboundSchema.optional(),
+  mode: Mode$outboundSchema.optional(),
   onExecute: OnExecute$outboundSchema.optional(),
 });
 

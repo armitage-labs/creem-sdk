@@ -11,8 +11,8 @@ import { Params, pathToFunc } from "./url.js";
  * Contains the list of servers available to the SDK
  */
 export const ServerList = [
-  "https://api.creem.io",
   "https://test-api.creem.io",
+  "https://api.creem.io",
 ] as const;
 
 export type SDKOptions = {
@@ -59,7 +59,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = {
   language: "typescript",
   openapiDocVersion: "v1",
-  sdkVersion: "0.10.2",
+  sdkVersion: "0.12.14",
   genVersion: "2.797.1",
-  userAgent: "speakeasy-sdk/typescript 0.10.2 2.797.1 v1 creem",
+  userAgent: "speakeasy-sdk/typescript 0.12.14 2.797.1 v1 creem",
 } as const;

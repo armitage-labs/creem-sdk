@@ -10,7 +10,13 @@ import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CancelSubscriptionRequest = {
+  /**
+   * The unique identifier of the subscription
+   */
   id: string;
+  /**
+   * Subscription cancellation options
+   */
   cancelSubscriptionRequestEntity: components.CancelSubscriptionRequestEntity;
 };
 

@@ -1,13 +1,13 @@
-# CustomerEntityMode
+# EnvironmentMode
 
 String representing the environment.
 
 ## Example Usage
 
 ```typescript
-import { CustomerEntityMode } from "creem/models/components";
+import { EnvironmentMode } from "creem/models/components";
 
-let value: CustomerEntityMode = "prod";
+let value: EnvironmentMode = "sandbox";
 ```
 
 ## Values

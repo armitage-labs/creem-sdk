@@ -13,3 +13,4 @@ let value: Checkbox = {};
 | Field                                          | Type                                           | Required                                       | Description                                    |
 | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
 | `label`                                        | *string*                                       | :heavy_minus_sign:                             | The markdown text to display for the checkbox. |
+| `value`                                        | *boolean*                                      | :heavy_minus_sign:                             | The value of the checkbox (checked or not).    |

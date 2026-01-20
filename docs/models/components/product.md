@@ -17,9 +17,9 @@ const value: components.ProductEntity = {
   imageUrl: "https://example.com/image.jpg",
   features: [
     {
-      id: "<id>",
-      type: "<value>",
-      description: "Get access to discord server.",
+      id: "feat_abc123",
+      type: "file",
+      description: "Access to premium course materials.",
     },
   ],
   price: 400,

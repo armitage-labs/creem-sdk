@@ -102,11 +102,18 @@ async function run() {
     taxMode: "inclusive",
     taxCategory: "[\"saas\",\"digital-goods-service\",\"ebooks\"]",
     defaultSuccessUrl: "https://example.com/?status=successful",
-    customField: [
+    customFields: [
       {
-        type: "text",
-        key: "<key>",
-        label: "<value>",
+        type: "checkbox",
+        key: "companyName",
+        label: "Company Name",
+        text: {
+          maxLength: 200,
+          minLength: 1,
+        },
+        checkbox: {
+          label: "I agree to the [terms and conditions](https://example.com/terms)",
+        },
       },
     ],
   });
@@ -142,11 +149,18 @@ async function run() {
     taxMode: "inclusive",
     taxCategory: "[\"saas\",\"digital-goods-service\",\"ebooks\"]",
     defaultSuccessUrl: "https://example.com/?status=successful",
-    customField: [
+    customFields: [
       {
-        type: "text",
-        key: "<key>",
-        label: "<value>",
+        type: "checkbox",
+        key: "companyName",
+        label: "Company Name",
+        text: {
+          maxLength: 200,
+          minLength: 1,
+        },
+        checkbox: {
+          label: "I agree to the [terms and conditions](https://example.com/terms)",
+        },
       },
     ],
   });
@@ -235,7 +249,7 @@ run();
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `pageNumber`                                                                                                                                                                   | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | The page number                                                                                                                                                                |
-| `pageSize`                                                                                                                                                                     | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | The the page size                                                                                                                                                              |
+| `pageSize`                                                                                                                                                                     | *number*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | The page size                                                                                                                                                                  |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |

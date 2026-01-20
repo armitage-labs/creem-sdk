@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -17,11 +18,15 @@ export const Security$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  apiKey: z.string().optional(),
+  ApiKey: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "ApiKey": "apiKey",
+  });
 });
 /** @internal */
 export type Security$Outbound = {
-  apiKey?: string | undefined;
+  ApiKey?: string | undefined;
 };
 
 /** @internal */
@@ -31,6 +36,10 @@ export const Security$outboundSchema: z.ZodType<
   Security
 > = z.object({
   apiKey: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    apiKey: "ApiKey",
+  });
 });
 
 export function securityToJSON(security: Security): string {

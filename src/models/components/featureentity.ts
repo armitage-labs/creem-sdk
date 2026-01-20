@@ -6,6 +6,11 @@ import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  ProductFeatureType,
+  ProductFeatureType$inboundSchema,
+  ProductFeatureType$outboundSchema,
+} from "./productfeaturetype.js";
 
 export type FeatureEntity = {
   /**
@@ -13,11 +18,11 @@ export type FeatureEntity = {
    */
   id: string;
   /**
-   * The feature type.
+   * The type of the feature: privateNote (custom note), file (downloadable files), or licenseKey (license key).
    */
-  type: string;
+  type: ProductFeatureType;
   /**
-   * A brief description of the feature
+   * A brief description of the feature.
    */
   description: string;
 };
@@ -29,7 +34,7 @@ export const FeatureEntity$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string(),
-  type: z.string(),
+  type: ProductFeatureType$inboundSchema,
   description: z.string(),
 });
 /** @internal */
@@ -46,7 +51,7 @@ export const FeatureEntity$outboundSchema: z.ZodType<
   FeatureEntity
 > = z.object({
   id: z.string(),
-  type: z.string(),
+  type: ProductFeatureType$outboundSchema,
   description: z.string(),
 });
 

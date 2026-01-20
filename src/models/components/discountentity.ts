@@ -8,19 +8,11 @@ import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-
-/**
- * String representing the environment.
- */
-export const DiscountEntityMode = {
-  Test: "test",
-  Prod: "prod",
-  Sandbox: "sandbox",
-} as const;
-/**
- * String representing the environment.
- */
-export type DiscountEntityMode = ClosedEnum<typeof DiscountEntityMode>;
+import {
+  EnvironmentMode,
+  EnvironmentMode$inboundSchema,
+  EnvironmentMode$outboundSchema,
+} from "./environmentmode.js";
 
 /**
  * The status of the discount (e.g., active, inactive).
@@ -69,7 +61,7 @@ export type DiscountEntity = {
   /**
    * String representing the environment.
    */
-  mode: DiscountEntityMode;
+  mode: EnvironmentMode;
   /**
    * A string representing the object’s type. Objects of the same type share the same value.
    */
@@ -129,15 +121,6 @@ export type DiscountEntity = {
 };
 
 /** @internal */
-export const DiscountEntityMode$inboundSchema: z.ZodNativeEnum<
-  typeof DiscountEntityMode
-> = z.nativeEnum(DiscountEntityMode);
-/** @internal */
-export const DiscountEntityMode$outboundSchema: z.ZodNativeEnum<
-  typeof DiscountEntityMode
-> = DiscountEntityMode$inboundSchema;
-
-/** @internal */
 export const DiscountEntityStatus$inboundSchema: z.ZodNativeEnum<
   typeof DiscountEntityStatus
 > = z.nativeEnum(DiscountEntityStatus);
@@ -169,7 +152,7 @@ export const DiscountEntity$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string(),
-  mode: DiscountEntityMode$inboundSchema,
+  mode: EnvironmentMode$inboundSchema,
   object: z.string(),
   status: DiscountEntityStatus$inboundSchema,
   name: z.string(),
@@ -221,7 +204,7 @@ export const DiscountEntity$outboundSchema: z.ZodType<
   DiscountEntity
 > = z.object({
   id: z.string(),
-  mode: DiscountEntityMode$outboundSchema,
+  mode: EnvironmentMode$outboundSchema,
   object: z.string(),
   status: DiscountEntityStatus$outboundSchema,
   name: z.string(),

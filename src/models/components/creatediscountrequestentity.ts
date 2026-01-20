@@ -5,38 +5,18 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-
-/**
- * The type of the discount, either "percentage" or "fixed".
- */
-export const CreateDiscountRequestEntityType = {
-  Percentage: "percentage",
-  Fixed: "fixed",
-} as const;
-/**
- * The type of the discount, either "percentage" or "fixed".
- */
-export type CreateDiscountRequestEntityType = ClosedEnum<
-  typeof CreateDiscountRequestEntityType
->;
-
-/**
- * The duration type for the discount.
- */
-export const CreateDiscountRequestEntityDuration = {
-  Forever: "forever",
-  Once: "once",
-  Repeating: "repeating",
-} as const;
-/**
- * The duration type for the discount.
- */
-export type CreateDiscountRequestEntityDuration = ClosedEnum<
-  typeof CreateDiscountRequestEntityDuration
->;
+import {
+  CouponDurationType,
+  CouponDurationType$inboundSchema,
+  CouponDurationType$outboundSchema,
+} from "./coupondurationtype.js";
+import {
+  DiscountType,
+  DiscountType$inboundSchema,
+  DiscountType$outboundSchema,
+} from "./discounttype.js";
 
 export type CreateDiscountRequestEntity = {
   /**
@@ -50,7 +30,7 @@ export type CreateDiscountRequestEntity = {
   /**
    * The type of the discount, either "percentage" or "fixed".
    */
-  type: CreateDiscountRequestEntityType;
+  type: DiscountType;
   /**
    * The fixed value for the discount. Only applicable if the type is "fixed".
    */
@@ -74,7 +54,7 @@ export type CreateDiscountRequestEntity = {
   /**
    * The duration type for the discount.
    */
-  duration: CreateDiscountRequestEntityDuration;
+  duration: CouponDurationType;
   /**
    * The number of months the discount is valid for. Only applicable if the duration is "repeating" and the product is a subscription.
    */
@@ -86,24 +66,6 @@ export type CreateDiscountRequestEntity = {
 };
 
 /** @internal */
-export const CreateDiscountRequestEntityType$inboundSchema: z.ZodNativeEnum<
-  typeof CreateDiscountRequestEntityType
-> = z.nativeEnum(CreateDiscountRequestEntityType);
-/** @internal */
-export const CreateDiscountRequestEntityType$outboundSchema: z.ZodNativeEnum<
-  typeof CreateDiscountRequestEntityType
-> = CreateDiscountRequestEntityType$inboundSchema;
-
-/** @internal */
-export const CreateDiscountRequestEntityDuration$inboundSchema: z.ZodNativeEnum<
-  typeof CreateDiscountRequestEntityDuration
-> = z.nativeEnum(CreateDiscountRequestEntityDuration);
-/** @internal */
-export const CreateDiscountRequestEntityDuration$outboundSchema:
-  z.ZodNativeEnum<typeof CreateDiscountRequestEntityDuration> =
-    CreateDiscountRequestEntityDuration$inboundSchema;
-
-/** @internal */
 export const CreateDiscountRequestEntity$inboundSchema: z.ZodType<
   CreateDiscountRequestEntity,
   z.ZodTypeDef,
@@ -111,14 +73,14 @@ export const CreateDiscountRequestEntity$inboundSchema: z.ZodType<
 > = z.object({
   name: z.string(),
   code: z.string().optional(),
-  type: CreateDiscountRequestEntityType$inboundSchema,
+  type: DiscountType$inboundSchema,
   amount: z.number().optional(),
   currency: z.string().optional(),
   percentage: z.number().optional(),
   expiry_date: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   max_redemptions: z.number().optional(),
-  duration: CreateDiscountRequestEntityDuration$inboundSchema,
+  duration: CouponDurationType$inboundSchema,
   duration_in_months: z.number().optional(),
   applies_to_products: z.array(z.string()),
 }).transform((v) => {
@@ -152,13 +114,13 @@ export const CreateDiscountRequestEntity$outboundSchema: z.ZodType<
 > = z.object({
   name: z.string(),
   code: z.string().optional(),
-  type: CreateDiscountRequestEntityType$outboundSchema,
+  type: DiscountType$outboundSchema,
   amount: z.number().optional(),
   currency: z.string().optional(),
   percentage: z.number().optional(),
   expiryDate: z.date().transform(v => v.toISOString()).optional(),
   maxRedemptions: z.number().optional(),
-  duration: CreateDiscountRequestEntityDuration$outboundSchema,
+  duration: CouponDurationType$outboundSchema,
   durationInMonths: z.number().optional(),
   appliesToProducts: z.array(z.string()),
 }).transform((v) => {

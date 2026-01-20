@@ -15,6 +15,11 @@ import {
   CustomerEntity$outboundSchema,
 } from "./customerentity.js";
 import {
+  EnvironmentMode,
+  EnvironmentMode$inboundSchema,
+  EnvironmentMode$outboundSchema,
+} from "./environmentmode.js";
+import {
   ProductEntity,
   ProductEntity$inboundSchema,
   ProductEntity$Outbound,
@@ -32,19 +37,6 @@ import {
   TransactionEntity$Outbound,
   TransactionEntity$outboundSchema,
 } from "./transactionentity.js";
-
-/**
- * String representing the environment.
- */
-export const SubscriptionEntityMode = {
-  Test: "test",
-  Prod: "prod",
-  Sandbox: "sandbox",
-} as const;
-/**
- * String representing the environment.
- */
-export type SubscriptionEntityMode = ClosedEnum<typeof SubscriptionEntityMode>;
 
 /**
  * The product associated with the subscription.
@@ -85,7 +77,7 @@ export type SubscriptionEntity = {
   /**
    * String representing the environment.
    */
-  mode: SubscriptionEntityMode;
+  mode: EnvironmentMode;
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
@@ -151,15 +143,6 @@ export type SubscriptionEntity = {
    */
   discount?: Discount | undefined;
 };
-
-/** @internal */
-export const SubscriptionEntityMode$inboundSchema: z.ZodNativeEnum<
-  typeof SubscriptionEntityMode
-> = z.nativeEnum(SubscriptionEntityMode);
-/** @internal */
-export const SubscriptionEntityMode$outboundSchema: z.ZodNativeEnum<
-  typeof SubscriptionEntityMode
-> = SubscriptionEntityMode$inboundSchema;
 
 /** @internal */
 export const Product$inboundSchema: z.ZodType<Product, z.ZodTypeDef, unknown> =
@@ -259,7 +242,7 @@ export const SubscriptionEntity$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string(),
-  mode: SubscriptionEntityMode$inboundSchema,
+  mode: EnvironmentMode$inboundSchema,
   object: z.string(),
   product: z.union([ProductEntity$inboundSchema, z.string()]),
   customer: z.union([CustomerEntity$inboundSchema, z.string()]),
@@ -329,7 +312,7 @@ export const SubscriptionEntity$outboundSchema: z.ZodType<
   SubscriptionEntity
 > = z.object({
   id: z.string(),
-  mode: SubscriptionEntityMode$outboundSchema,
+  mode: EnvironmentMode$outboundSchema,
   object: z.string(),
   product: z.union([ProductEntity$outboundSchema, z.string()]),
   customer: z.union([CustomerEntity$outboundSchema, z.string()]),

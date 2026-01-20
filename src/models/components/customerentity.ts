@@ -5,22 +5,13 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-
-/**
- * String representing the environment.
- */
-export const CustomerEntityMode = {
-  Test: "test",
-  Prod: "prod",
-  Sandbox: "sandbox",
-} as const;
-/**
- * String representing the environment.
- */
-export type CustomerEntityMode = ClosedEnum<typeof CustomerEntityMode>;
+import {
+  EnvironmentMode,
+  EnvironmentMode$inboundSchema,
+  EnvironmentMode$outboundSchema,
+} from "./environmentmode.js";
 
 export type CustomerEntity = {
   /**
@@ -30,7 +21,7 @@ export type CustomerEntity = {
   /**
    * String representing the environment.
    */
-  mode: CustomerEntityMode;
+  mode: EnvironmentMode;
   /**
    * String representing the object’s type. Objects of the same type share the same value.
    */
@@ -58,22 +49,13 @@ export type CustomerEntity = {
 };
 
 /** @internal */
-export const CustomerEntityMode$inboundSchema: z.ZodNativeEnum<
-  typeof CustomerEntityMode
-> = z.nativeEnum(CustomerEntityMode);
-/** @internal */
-export const CustomerEntityMode$outboundSchema: z.ZodNativeEnum<
-  typeof CustomerEntityMode
-> = CustomerEntityMode$inboundSchema;
-
-/** @internal */
 export const CustomerEntity$inboundSchema: z.ZodType<
   CustomerEntity,
   z.ZodTypeDef,
   unknown
 > = z.object({
   id: z.string(),
-  mode: CustomerEntityMode$inboundSchema,
+  mode: EnvironmentMode$inboundSchema,
   object: z.string(),
   email: z.string(),
   name: z.string().optional(),
@@ -105,7 +87,7 @@ export const CustomerEntity$outboundSchema: z.ZodType<
   CustomerEntity
 > = z.object({
   id: z.string(),
-  mode: CustomerEntityMode$outboundSchema,
+  mode: EnvironmentMode$outboundSchema,
   object: z.string(),
   email: z.string(),
   name: z.string().optional(),

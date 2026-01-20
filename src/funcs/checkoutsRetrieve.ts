@@ -26,7 +26,7 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Retrieve a new checkout session.
+ * Retrieve a checkout session.
  */
 export function checkoutsRetrieve(
   client: CreemCore,
@@ -134,7 +134,7 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["4XX", "5XX"],
+    errorCodes: ["400", "401", "404", "4XX", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -155,7 +155,7 @@ async function $do(
     | SDKValidationError
   >(
     M.json(200, components.CheckoutEntity$inboundSchema),
-    M.fail("4XX"),
+    M.fail([400, 401, 404, "4XX"]),
     M.fail("5XX"),
   )(response, req);
   if (!result.ok) {

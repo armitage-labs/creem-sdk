@@ -12,6 +12,10 @@ export type Checkbox = {
    * The markdown text to display for the checkbox.
    */
   label?: string | undefined;
+  /**
+   * The value of the checkbox (checked or not).
+   */
+  value?: boolean | undefined;
 };
 
 /** @internal */
@@ -21,10 +25,12 @@ export const Checkbox$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   label: z.string().optional(),
+  value: z.boolean().optional(),
 });
 /** @internal */
 export type Checkbox$Outbound = {
   label?: string | undefined;
+  value?: boolean | undefined;
 };
 
 /** @internal */
@@ -34,6 +40,7 @@ export const Checkbox$outboundSchema: z.ZodType<
   Checkbox
 > = z.object({
   label: z.string().optional(),
+  value: z.boolean().optional(),
 });
 
 export function checkboxToJSON(checkbox: Checkbox): string {

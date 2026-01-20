@@ -19,9 +19,9 @@ let value: CheckoutEntity = {
     imageUrl: "https://example.com/image.jpg",
     features: [
       {
-        id: "<id>",
-        type: "<value>",
-        description: "Get access to discord server.",
+        id: "feat_abc123",
+        type: "file",
+        description: "Access to premium course materials.",
       },
     ],
     price: 400,
@@ -71,9 +71,9 @@ let value: CheckoutEntity = {
       imageUrl: "https://example.com/image.jpg",
       features: [
         {
-          id: "<id>",
-          type: "<value>",
-          description: "Get access to discord server.",
+          id: "feat_abc123",
+          type: "file",
+          description: "Access to premium course materials.",
         },
       ],
       price: 400,
@@ -137,7 +137,15 @@ let value: CheckoutEntity = {
   successUrl: "https://example.com/return",
   feature: [
     {
-      license: {
+      id: "feat_abc123",
+      description: "Get access to the full course materials.",
+      type: "file",
+      privateNote:
+        "Thank you for your purchase! Here is your access code: XYZ123",
+      file: {
+        files: [],
+      },
+      licenseKey: {
         id: "<id>",
         mode: "prod",
         object: "<value>",
@@ -147,14 +155,7 @@ let value: CheckoutEntity = {
         activationLimit: {},
         expiresAt: {},
         createdAt: new Date("2023-09-13T00:00:00Z"),
-        instance: {
-          id: "<id>",
-          mode: "prod",
-          object: "license-instance",
-          name: "My Customer License Instance",
-          status: "active",
-          createdAt: new Date("2023-09-13T00:00:00Z"),
-        },
+        instance: null,
       },
     },
   ],
@@ -171,7 +172,7 @@ let value: CheckoutEntity = {
 | Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           | Example                                                                               |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | `id`                                                                                  | *string*                                                                              | :heavy_check_mark:                                                                    | Unique identifier for the object.                                                     |                                                                                       |
-| `mode`                                                                                | [components.CheckoutEntityMode](../../models/components/checkoutentitymode.md)        | :heavy_check_mark:                                                                    | String representing the environment.                                                  |                                                                                       |
+| `mode`                                                                                | [components.EnvironmentMode](../../models/components/environmentmode.md)              | :heavy_check_mark:                                                                    | String representing the environment.                                                  |                                                                                       |
 | `object`                                                                              | *string*                                                                              | :heavy_check_mark:                                                                    | String representing the object's type. Objects of the same type share the same value. |                                                                                       |
 | `status`                                                                              | [components.CheckoutEntityStatus](../../models/components/checkoutentitystatus.md)    | :heavy_check_mark:                                                                    | Status of the checkout.                                                               | completed                                                                             |
 | `requestId`                                                                           | *string*                                                                              | :heavy_minus_sign:                                                                    | Identify and track each checkout request.                                             |                                                                                       |

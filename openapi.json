@@ -15,14 +15,6 @@
               "example": "prod_1234567890",
               "type": "string"
             }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -35,24 +27,33 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request - Invalid input parameters"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing API key"
+          },
+          "404": {
+            "description": "Not Found - Resource does not exist"
           }
-        }
+        },
+        "tags": [
+          "Products"
+        ],
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
       },
       "post": {
         "operationId": "createProduct",
         "summary": "Creates a new product.",
-        "parameters": [
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "required": true,
+          "description": "Product creation payload",
           "content": {
             "application/json": {
               "schema": {
@@ -71,8 +72,25 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request - Invalid input parameters"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing API key"
+          },
+          "404": {
+            "description": "Not Found - Resource does not exist"
           }
-        }
+        },
+        "tags": [
+          "Products"
+        ],
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
       }
     },
     "/v1/products/search": {
@@ -93,17 +111,9 @@
             "name": "page_size",
             "required": false,
             "in": "query",
-            "description": "The the page size",
+            "description": "The page size",
             "schema": {
               "type": "number"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -117,8 +127,25 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request - Invalid input parameters"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing API key"
+          },
+          "404": {
+            "description": "Not Found - Resource does not exist"
           }
-        }
+        },
+        "tags": [
+          "Products"
+        ],
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
       }
     },
     "/v1/customers/list": {
@@ -143,14 +170,6 @@
             "schema": {
               "type": "number"
             }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -163,8 +182,25 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request - Invalid input parameters"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing API key"
+          },
+          "404": {
+            "description": "Not Found - Resource does not exist"
           }
-        }
+        },
+        "tags": [
+          "Customers"
+        ],
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
       }
     },
     "/v1/customers": {
@@ -189,14 +225,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -209,26 +237,35 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request - Invalid input parameters"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing API key"
+          },
+          "404": {
+            "description": "Not Found - Resource does not exist"
           }
-        }
+        },
+        "tags": [
+          "Customers"
+        ],
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
       }
     },
     "/v1/customers/billing": {
       "post": {
         "operationId": "generateCustomerLinks",
         "summary": "Generate Customer Links",
-        "parameters": [
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "required": true,
+          "description": "Customer portal link generation request",
           "content": {
             "application/json": {
               "schema": {
@@ -239,7 +276,7 @@
         },
         "responses": {
           "200": {
-            "description": "Successfully generate customer links",
+            "description": "Successfully generated customer links",
             "content": {
               "application/json": {
                 "schema": {
@@ -247,8 +284,25 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request - Invalid input parameters"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing API key"
+          },
+          "404": {
+            "description": "Not Found - Resource does not exist"
           }
-        }
+        },
+        "tags": [
+          "Customers"
+        ],
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
       }
     },
     "/v1/subscriptions": {
@@ -265,14 +319,6 @@
               "example": "sub_1234567890",
               "type": "string"
             }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -285,8 +331,25 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request - Invalid input parameters"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing API key"
+          },
+          "404": {
+            "description": "Not Found - Resource does not exist"
           }
-        }
+        },
+        "tags": [
+          "Subscriptions"
+        ],
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
       }
     },
     "/v1/subscriptions/{id}/cancel": {
@@ -298,14 +361,7 @@
             "name": "id",
             "required": true,
             "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "required": true,
+            "description": "The unique identifier of the subscription",
             "schema": {
               "type": "string"
             }
@@ -313,6 +369,7 @@
         ],
         "requestBody": {
           "required": true,
+          "description": "Subscription cancellation options",
           "content": {
             "application/json": {
               "schema": {
@@ -331,8 +388,25 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request - Invalid input parameters"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing API key"
+          },
+          "404": {
+            "description": "Not Found - Resource does not exist"
           }
-        }
+        },
+        "tags": [
+          "Subscriptions"
+        ],
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
       }
     },
     "/v1/subscriptions/{id}": {
@@ -344,14 +418,7 @@
             "name": "id",
             "required": true,
             "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "required": true,
+            "description": "The unique identifier of the subscription",
             "schema": {
               "type": "string"
             }
@@ -359,6 +426,7 @@
         ],
         "requestBody": {
           "required": true,
+          "description": "Subscription update payload",
           "content": {
             "application/json": {
               "schema": {
@@ -369,7 +437,7 @@
         },
         "responses": {
           "200": {
-            "description": "Successfully update a subscription",
+            "description": "Successfully updated a subscription",
             "content": {
               "application/json": {
                 "schema": {
@@ -377,8 +445,25 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request - Invalid input parameters"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing API key"
+          },
+          "404": {
+            "description": "Not Found - Resource does not exist"
           }
-        }
+        },
+        "tags": [
+          "Subscriptions"
+        ],
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
       }
     },
     "/v1/subscriptions/{id}/upgrade": {
@@ -390,14 +475,7 @@
             "name": "id",
             "required": true,
             "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "required": true,
+            "description": "The unique identifier of the subscription",
             "schema": {
               "type": "string"
             }
@@ -405,6 +483,7 @@
         ],
         "requestBody": {
           "required": true,
+          "description": "Subscription upgrade payload",
           "content": {
             "application/json": {
               "schema": {
@@ -423,8 +502,25 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request - Invalid input parameters"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing API key"
+          },
+          "404": {
+            "description": "Not Found - Resource does not exist"
           }
-        }
+        },
+        "tags": [
+          "Subscriptions"
+        ],
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
       }
     },
     "/v1/subscriptions/{id}/pause": {
@@ -436,14 +532,7 @@
             "name": "id",
             "required": true,
             "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "required": true,
+            "description": "The unique identifier of the subscription",
             "schema": {
               "type": "string"
             }
@@ -459,8 +548,25 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request - Invalid input parameters"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing API key"
+          },
+          "404": {
+            "description": "Not Found - Resource does not exist"
           }
-        }
+        },
+        "tags": [
+          "Subscriptions"
+        ],
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
       }
     },
     "/v1/subscriptions/{id}/resume": {
@@ -472,14 +578,7 @@
             "name": "id",
             "required": true,
             "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "required": true,
+            "description": "The unique identifier of the subscription",
             "schema": {
               "type": "string"
             }
@@ -495,14 +594,31 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request - Invalid input parameters"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing API key"
+          },
+          "404": {
+            "description": "Not Found - Resource does not exist"
           }
-        }
+        },
+        "tags": [
+          "Subscriptions"
+        ],
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
       }
     },
     "/v1/checkouts": {
       "get": {
         "operationId": "retrieveCheckout",
-        "summary": "Retrieve a new checkout session.",
+        "summary": "Retrieve a checkout session.",
         "parameters": [
           {
             "name": "checkout_id",
@@ -513,19 +629,11 @@
               "example": "chk_1234567890",
               "type": "string"
             }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
           "200": {
-            "description": "Successfully retrieved the subscription",
+            "description": "Successfully retrieved the checkout session",
             "content": {
               "application/json": {
                 "schema": {
@@ -533,22 +641,30 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request - Invalid input parameters"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing API key"
+          },
+          "404": {
+            "description": "Not Found - Resource does not exist"
           }
-        }
+        },
+        "tags": [
+          "Checkouts"
+        ],
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
       },
       "post": {
         "operationId": "createCheckout",
         "summary": "Creates a new checkout session.",
-        "parameters": [
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "required": true,
           "description": "Create checkout request payload",
@@ -570,26 +686,35 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request - Invalid input parameters"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing API key"
+          },
+          "404": {
+            "description": "Not Found - Resource does not exist"
           }
-        }
+        },
+        "tags": [
+          "Checkouts"
+        ],
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
       }
     },
     "/v1/licenses/activate": {
       "post": {
         "operationId": "activateLicense",
         "summary": "Activates a license key.",
-        "parameters": [
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "required": true,
+          "description": "License activation request payload",
           "content": {
             "application/json": {
               "schema": {
@@ -608,26 +733,35 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request - Invalid input parameters"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing API key"
+          },
+          "404": {
+            "description": "Not Found - Resource does not exist"
           }
-        }
+        },
+        "tags": [
+          "Licenses"
+        ],
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
       }
     },
     "/v1/licenses/deactivate": {
       "post": {
         "operationId": "deactivateLicense",
         "summary": "Deactivate a license key instance.",
-        "parameters": [
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "required": true,
+          "description": "License deactivation request payload",
           "content": {
             "application/json": {
               "schema": {
@@ -646,26 +780,35 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request - Invalid input parameters"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing API key"
+          },
+          "404": {
+            "description": "Not Found - Resource does not exist"
           }
-        }
+        },
+        "tags": [
+          "Licenses"
+        ],
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
       }
     },
     "/v1/licenses/validate": {
       "post": {
         "operationId": "validateLicense",
         "summary": "Validates a license key or instance.",
-        "parameters": [
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "required": true,
+          "description": "License validation request payload",
           "content": {
             "application/json": {
               "schema": {
@@ -684,8 +827,25 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request - Invalid input parameters"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing API key"
+          },
+          "404": {
+            "description": "Not Found - Resource does not exist"
           }
-        }
+        },
+        "tags": [
+          "Licenses"
+        ],
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
       }
     },
     "/v1/discounts": {
@@ -710,14 +870,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -730,24 +882,33 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request - Invalid input parameters"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing API key"
+          },
+          "404": {
+            "description": "Not Found - Resource does not exist"
           }
-        }
+        },
+        "tags": [
+          "Discounts"
+        ],
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
       },
       "post": {
         "operationId": "createDiscount",
         "summary": "Create a discount.",
-        "parameters": [
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "required": true,
+          "description": "Discount creation payload",
           "content": {
             "application/json": {
               "schema": {
@@ -766,8 +927,25 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request - Invalid input parameters"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing API key"
+          },
+          "404": {
+            "description": "Not Found - Resource does not exist"
           }
-        }
+        },
+        "tags": [
+          "Discounts"
+        ],
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
       }
     },
     "/v1/discounts/{id}/delete": {
@@ -779,14 +957,7 @@
             "name": "id",
             "required": true,
             "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "required": true,
+            "description": "The unique identifier of the discount to delete",
             "schema": {
               "type": "string"
             }
@@ -802,8 +973,25 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request - Invalid input parameters"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing API key"
+          },
+          "404": {
+            "description": "Not Found - Resource does not exist"
           }
-        }
+        },
+        "tags": [
+          "Discounts"
+        ],
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
       }
     },
     "/v1/transactions": {
@@ -820,14 +1008,6 @@
               "example": "txn_1234567890",
               "type": "string"
             }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -841,10 +1021,24 @@
               }
             }
           },
+          "400": {
+            "description": "Bad Request - Invalid input parameters"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing API key"
+          },
           "404": {
-            "description": "Transaction not found"
+            "description": "Not Found - Resource does not exist"
           }
-        }
+        },
+        "tags": [
+          "Transactions"
+        ],
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
       }
     },
     "/v1/transactions/search": {
@@ -892,17 +1086,9 @@
             "name": "page_size",
             "required": false,
             "in": "query",
-            "description": "The the page size",
+            "description": "The page size",
             "schema": {
               "type": "number"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -916,50 +1102,96 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request - Invalid input parameters"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing API key"
+          },
+          "404": {
+            "description": "Not Found - Resource does not exist"
           }
-        }
+        },
+        "tags": [
+          "Transactions"
+        ],
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
       }
     }
   },
   "info": {
     "title": "Creem API",
-    "description": "Creem is an all-in-one platform for managing subscriptions and recurring revenue, tailored specifically for today's SaaS companies. It enables you to boost revenue, enhance customer retention, and scale your operations seamlessly.'",
+    "description": "Creem is an all-in-one platform for managing subscriptions and recurring revenue, tailored specifically for today's SaaS companies. It enables you to boost revenue, enhance customer retention, and scale your operations seamlessly.",
     "version": "v1",
-    "contact": {}
+    "contact": {
+      "name": "Creem Support",
+      "url": "https://creem.io",
+      "email": "support@creem.io"
+    },
+    "license": {
+      "name": "Commercial",
+      "url": "https://creem.io/terms"
+    },
+    "termsOfService": "https://creem.io/terms"
   },
   "tags": [],
   "servers": [
     {
-      "url": "https://api.creem.io"
+      "url": "https://test-api.creem.io"
     },
     {
-      "url": "https://test-api.creem.io"
+      "url": "https://api.creem.io"
     }
   ],
   "components": {
     "securitySchemes": {
-      "basic": {
-        "type": "http",
-        "scheme": "basic",
-        "description": "Basic auth required for admin endpoints."
+      "ApiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key",
+        "description": "API key for authentication. You can find your API key in the Creem dashboard under Settings > API Keys."
       }
     },
     "schemas": {
+      "EnvironmentMode": {
+        "type": "string",
+        "description": "String representing the environment.",
+        "enum": [
+          "test",
+          "prod",
+          "sandbox"
+        ]
+      },
+      "ProductFeatureType": {
+        "type": "string",
+        "description": "The type of the feature: privateNote (custom note), file (downloadable files), or licenseKey (license key).",
+        "enum": [
+          "custom",
+          "file",
+          "licenseKey"
+        ]
+      },
       "FeatureEntity": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
-            "description": "Unique identifier for the feature."
+            "description": "Unique identifier for the feature.",
+            "example": "feat_abc123"
           },
           "type": {
-            "type": "string",
-            "description": "The feature type."
+            "example": "licenseKey",
+            "$ref": "#/components/schemas/ProductFeatureType"
           },
           "description": {
             "type": "string",
-            "description": "A brief description of the feature",
-            "example": "Get access to discord server."
+            "description": "A brief description of the feature.",
+            "example": "Access to premium course materials."
           }
         },
         "required": [
@@ -976,13 +1208,7 @@
             "description": "Unique identifier for the object."
           },
           "mode": {
-            "type": "string",
-            "enum": [
-              "test",
-              "prod",
-              "sandbox"
-            ],
-            "description": "String representing the environment."
+            "$ref": "#/components/schemas/EnvironmentMode"
           },
           "object": {
             "type": "string",
@@ -1151,25 +1377,36 @@
           "pagination"
         ]
       },
-      "Text": {
+      "CustomFieldRequestType": {
+        "type": "string",
+        "description": "The type of the field.",
+        "enum": [
+          "text",
+          "checkbox"
+        ]
+      },
+      "TextFieldConfig": {
         "type": "object",
         "properties": {
           "max_length": {
             "type": "number",
-            "description": "Maximum character length constraint for the input."
+            "description": "Maximum character length constraint for the input.",
+            "example": 200
           },
           "min_length": {
             "type": "number",
-            "description": "Minimum character length requirement for the input."
+            "description": "Minimum character length requirement for the input.",
+            "example": 1
           }
         }
       },
-      "Checkbox": {
+      "CheckboxFieldConfig": {
         "type": "object",
         "properties": {
           "label": {
             "type": "string",
-            "description": "The markdown text to display for the checkbox."
+            "description": "The markdown text to display for the checkbox.",
+            "example": "I agree to the [terms and conditions](https://example.com/terms)"
           }
         }
       },
@@ -1177,33 +1414,30 @@
         "type": "object",
         "properties": {
           "type": {
-            "type": "string",
-            "description": "The type of the field.",
-            "enum": [
-              "text",
-              "checkbox"
-            ],
-            "example": "text"
+            "example": "text",
+            "$ref": "#/components/schemas/CustomFieldRequestType"
           },
           "key": {
             "type": "string",
             "description": "Unique key for custom field. Must be unique to this field, alphanumeric, and up to 200 characters.",
+            "example": "companyName",
             "maxLength": 200
           },
           "label": {
             "type": "string",
-            "description": "The label for the field, displayed to the customer, up to 50 characters",
-            "maxLength": 200
+            "description": "The label for the field, displayed to the customer, up to 50 characters.",
+            "example": "Company Name",
+            "maxLength": 50
           },
           "optional": {
             "type": "boolean",
             "description": "Whether the customer is required to complete the field. Defaults to `false`"
           },
           "text": {
-            "description": "Configuration for type of text field.",
+            "description": "Configuration for text field type.",
             "allOf": [
               {
-                "$ref": "#/components/schemas/Text"
+                "$ref": "#/components/schemas/TextFieldConfig"
               }
             ]
           },
@@ -1211,7 +1445,7 @@
             "description": "Configuration for checkbox field type.",
             "allOf": [
               {
-                "$ref": "#/components/schemas/Checkbox"
+                "$ref": "#/components/schemas/CheckboxFieldConfig"
               }
             ]
           }
@@ -1278,7 +1512,7 @@
             "description": "The URL to which the user will be redirected after successfull payment.",
             "example": "https://example.com/?status=successful"
           },
-          "custom_field": {
+          "custom_fields": {
             "description": "Collect additional information from your customer using custom fields during checkout. Up to 3 fields are supported.",
             "type": "array",
             "items": {
@@ -1306,13 +1540,7 @@
             "description": "Unique identifier for the object."
           },
           "mode": {
-            "type": "string",
-            "enum": [
-              "test",
-              "prod",
-              "sandbox"
-            ],
-            "description": "String representing the environment."
+            "$ref": "#/components/schemas/EnvironmentMode"
           },
           "object": {
             "type": "string",
@@ -1413,13 +1641,7 @@
             "description": "Unique identifier for the object."
           },
           "mode": {
-            "type": "string",
-            "enum": [
-              "test",
-              "prod",
-              "sandbox"
-            ],
-            "description": "String representing the environment."
+            "$ref": "#/components/schemas/EnvironmentMode"
           },
           "object": {
             "type": "string",
@@ -1452,13 +1674,7 @@
             "description": "Unique identifier for the object."
           },
           "mode": {
-            "type": "string",
-            "enum": [
-              "test",
-              "prod",
-              "sandbox"
-            ],
-            "description": "String representing the environment."
+            "$ref": "#/components/schemas/EnvironmentMode"
           },
           "object": {
             "type": "string",
@@ -1561,13 +1777,7 @@
             "description": "Unique identifier for the object."
           },
           "mode": {
-            "type": "string",
-            "enum": [
-              "test",
-              "prod",
-              "sandbox"
-            ],
-            "description": "String representing the environment."
+            "$ref": "#/components/schemas/EnvironmentMode"
           },
           "object": {
             "type": "string",
@@ -1791,13 +2001,7 @@
             "description": "Unique identifier for the object."
           },
           "mode": {
-            "type": "string",
-            "enum": [
-              "test",
-              "prod",
-              "sandbox"
-            ],
-            "description": "String representing the environment."
+            "$ref": "#/components/schemas/EnvironmentMode"
           },
           "object": {
             "type": "string",
@@ -1919,16 +2123,49 @@
           "updated_at"
         ]
       },
+      "CustomFieldType": {
+        "type": "string",
+        "description": "The type of the field.",
+        "enum": [
+          "text",
+          "checkbox"
+        ]
+      },
+      "Text": {
+        "type": "object",
+        "properties": {
+          "max_length": {
+            "type": "number",
+            "description": "Maximum character length constraint for the input."
+          },
+          "minimum_length": {
+            "type": "number",
+            "description": "Minimum character length requirement for the input."
+          },
+          "value": {
+            "type": "string",
+            "description": "The value of the input."
+          }
+        }
+      },
+      "Checkbox": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "description": "The markdown text to display for the checkbox."
+          },
+          "value": {
+            "type": "boolean",
+            "description": "The value of the checkbox (checked or not)."
+          }
+        }
+      },
       "CustomField": {
         "type": "object",
         "properties": {
           "type": {
-            "type": "string",
-            "description": "The type of the field.",
-            "enum": [
-              "text",
-              "checkbox"
-            ]
+            "$ref": "#/components/schemas/CustomFieldType"
           },
           "key": {
             "type": "string",
@@ -1967,6 +2204,58 @@
           "label"
         ]
       },
+      "FeatureFileEntity": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the file.",
+            "example": "file_abc123"
+          },
+          "file_name": {
+            "type": "string",
+            "description": "The name of the file.",
+            "example": "ebook.pdf"
+          },
+          "url": {
+            "type": "string",
+            "description": "The URL to download the file.",
+            "example": "https://storage.creem.io/files/ebook.pdf"
+          },
+          "type": {
+            "type": "string",
+            "description": "The MIME type of the file.",
+            "example": "application/pdf"
+          },
+          "size": {
+            "type": "number",
+            "description": "The size of the file in bytes.",
+            "example": 1024000
+          }
+        },
+        "required": [
+          "id",
+          "file_name",
+          "url",
+          "type",
+          "size"
+        ]
+      },
+      "FileFeatureEntity": {
+        "type": "object",
+        "properties": {
+          "files": {
+            "description": "List of downloadable files.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FeatureFileEntity"
+            }
+          }
+        },
+        "required": [
+          "files"
+        ]
+      },
       "LicenseInstanceEntity": {
         "type": "object",
         "properties": {
@@ -1975,13 +2264,7 @@
             "description": "Unique identifier for the object."
           },
           "mode": {
-            "type": "string",
-            "enum": [
-              "test",
-              "prod",
-              "sandbox"
-            ],
-            "description": "String representing the environment."
+            "$ref": "#/components/schemas/EnvironmentMode"
           },
           "object": {
             "type": "string",
@@ -2026,13 +2309,7 @@
             "description": "Unique identifier for the object."
           },
           "mode": {
-            "type": "string",
-            "enum": [
-              "test",
-              "prod",
-              "sandbox"
-            ],
-            "description": "String representing the environment."
+            "$ref": "#/components/schemas/EnvironmentMode"
           },
           "object": {
             "type": "string",
@@ -2100,7 +2377,34 @@
       "ProductFeatureEntity": {
         "type": "object",
         "properties": {
-          "license": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the feature.",
+            "example": "feat_abc123"
+          },
+          "description": {
+            "type": "string",
+            "description": "A brief description of the feature.",
+            "example": "Get access to the full course materials."
+          },
+          "type": {
+            "example": "licenseKey",
+            "$ref": "#/components/schemas/ProductFeatureType"
+          },
+          "private_note": {
+            "type": "string",
+            "description": "Private note from the seller. This is only visible to the customer after purchase.",
+            "example": "Thank you for your purchase! Here is your access code: XYZ123"
+          },
+          "file": {
+            "description": "File feature data containing downloadable files.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FileFeatureEntity"
+              }
+            ]
+          },
+          "license_key": {
             "description": "License key issued for the order.",
             "allOf": [
               {
@@ -2110,7 +2414,8 @@
           }
         },
         "required": [
-          "license"
+          "description",
+          "type"
         ]
       },
       "CheckoutEntity": {
@@ -2121,13 +2426,7 @@
             "description": "Unique identifier for the object."
           },
           "mode": {
-            "type": "string",
-            "enum": [
-              "test",
-              "prod",
-              "sandbox"
-            ],
-            "description": "String representing the environment."
+            "$ref": "#/components/schemas/EnvironmentMode"
           },
           "object": {
             "type": "string",
@@ -2275,14 +2574,14 @@
             "example": "SUMMER2024"
           },
           "customer": {
-            "description": "Customer data for checkout session. This will prefill the customer info on the checkout page",
+            "description": "Customer data for checkout session. This will prefill the customer info on the checkout page.",
             "allOf": [
               {
                 "$ref": "#/components/schemas/CustomerRequestEntity"
               }
             ]
           },
-          "custom_field": {
+          "custom_fields": {
             "description": "Collect additional information from your customer using custom fields. Up to 3 fields are supported.",
             "type": "array",
             "items": {
@@ -2367,13 +2666,7 @@
             "description": "Unique identifier for the object."
           },
           "mode": {
-            "type": "string",
-            "enum": [
-              "test",
-              "prod",
-              "sandbox"
-            ],
-            "description": "String representing the environment."
+            "$ref": "#/components/schemas/EnvironmentMode"
           },
           "object": {
             "type": "string",
@@ -2478,6 +2771,23 @@
           "type"
         ]
       },
+      "DiscountType": {
+        "type": "string",
+        "description": "The type of the discount, either \"percentage\" or \"fixed\".",
+        "enum": [
+          "percentage",
+          "fixed"
+        ]
+      },
+      "CouponDurationType": {
+        "type": "string",
+        "description": "The duration type for the discount.",
+        "enum": [
+          "forever",
+          "once",
+          "repeating"
+        ]
+      },
       "CreateDiscountRequestEntity": {
         "type": "object",
         "properties": {
@@ -2492,12 +2802,7 @@
             "example": "HOLIDAY2024"
           },
           "type": {
-            "type": "string",
-            "description": "The type of the discount, either \"percentage\" or \"fixed\".",
-            "enum": [
-              "percentage",
-              "fixed"
-            ]
+            "$ref": "#/components/schemas/DiscountType"
           },
           "amount": {
             "type": "number",
@@ -2526,14 +2831,8 @@
             "example": 100
           },
           "duration": {
-            "type": "string",
-            "description": "The duration type for the discount.",
-            "enum": [
-              "forever",
-              "once",
-              "repeating"
-            ],
-            "example": "repeating"
+            "example": "repeating",
+            "$ref": "#/components/schemas/CouponDurationType"
           },
           "duration_in_months": {
             "type": "number",
@@ -2584,5 +2883,9 @@
         ]
       }
     }
+  },
+  "externalDocs": {
+    "description": "Creem Documentation",
+    "url": "https://docs.creem.io"
   }
 }

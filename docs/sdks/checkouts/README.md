@@ -4,12 +4,12 @@
 
 ### Available Operations
 
-* [retrieve](#retrieve) - Retrieve a new checkout session.
+* [retrieve](#retrieve) - Retrieve a checkout session.
 * [create](#create) - Creates a new checkout session.
 
 ## retrieve
 
-Retrieve a new checkout session.
+Retrieve a checkout session.
 
 ### Example Usage
 
@@ -99,11 +99,18 @@ async function run() {
       id: "cust_1234567890",
       email: "user@example.com",
     },
-    customField: [
+    customFields: [
       {
         type: "text",
-        key: "<key>",
-        label: "<value>",
+        key: "companyName",
+        label: "Company Name",
+        text: {
+          maxLength: 200,
+          minLength: 1,
+        },
+        checkbox: {
+          label: "I agree to the [terms and conditions](https://example.com/terms)",
+        },
       },
     ],
     metadata: {
@@ -142,11 +149,18 @@ async function run() {
       id: "cust_1234567890",
       email: "user@example.com",
     },
-    customField: [
+    customFields: [
       {
         type: "text",
-        key: "<key>",
-        label: "<value>",
+        key: "companyName",
+        label: "Company Name",
+        text: {
+          maxLength: 200,
+          minLength: 1,
+        },
+        checkbox: {
+          label: "I agree to the [terms and conditions](https://example.com/terms)",
+        },
       },
     ],
     metadata: {

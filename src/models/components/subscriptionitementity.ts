@@ -5,24 +5,13 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-
-/**
- * String representing the environment.
- */
-export const SubscriptionItemEntityMode = {
-  Test: "test",
-  Prod: "prod",
-  Sandbox: "sandbox",
-} as const;
-/**
- * String representing the environment.
- */
-export type SubscriptionItemEntityMode = ClosedEnum<
-  typeof SubscriptionItemEntityMode
->;
+import {
+  EnvironmentMode,
+  EnvironmentMode$inboundSchema,
+  EnvironmentMode$outboundSchema,
+} from "./environmentmode.js";
 
 export type SubscriptionItemEntity = {
   /**
@@ -32,7 +21,7 @@ export type SubscriptionItemEntity = {
   /**
    * String representing the environment.
    */
-  mode: SubscriptionItemEntityMode;
+  mode: EnvironmentMode;
   /**
    * String representing the object’s type. Objects of the same type share the same value.
    */
@@ -52,22 +41,13 @@ export type SubscriptionItemEntity = {
 };
 
 /** @internal */
-export const SubscriptionItemEntityMode$inboundSchema: z.ZodNativeEnum<
-  typeof SubscriptionItemEntityMode
-> = z.nativeEnum(SubscriptionItemEntityMode);
-/** @internal */
-export const SubscriptionItemEntityMode$outboundSchema: z.ZodNativeEnum<
-  typeof SubscriptionItemEntityMode
-> = SubscriptionItemEntityMode$inboundSchema;
-
-/** @internal */
 export const SubscriptionItemEntity$inboundSchema: z.ZodType<
   SubscriptionItemEntity,
   z.ZodTypeDef,
   unknown
 > = z.object({
   id: z.string(),
-  mode: SubscriptionItemEntityMode$inboundSchema,
+  mode: EnvironmentMode$inboundSchema,
   object: z.string(),
   product_id: z.string().optional(),
   price_id: z.string().optional(),
@@ -95,7 +75,7 @@ export const SubscriptionItemEntity$outboundSchema: z.ZodType<
   SubscriptionItemEntity
 > = z.object({
   id: z.string(),
-  mode: SubscriptionItemEntityMode$outboundSchema,
+  mode: EnvironmentMode$outboundSchema,
   object: z.string(),
   productId: z.string().optional(),
   priceId: z.string().optional(),

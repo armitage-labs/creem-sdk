@@ -136,7 +136,7 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["4XX", "5XX"],
+    errorCodes: ["400", "401", "404", "4XX", "5XX"],
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -157,7 +157,7 @@ async function $do(
     | SDKValidationError
   >(
     M.json(200, components.SubscriptionEntity$inboundSchema),
-    M.fail("4XX"),
+    M.fail([400, 401, 404, "4XX"]),
     M.fail("5XX"),
   )(response, req);
   if (!result.ok) {

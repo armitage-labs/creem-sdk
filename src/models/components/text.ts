@@ -16,35 +16,42 @@ export type Text = {
   /**
    * Minimum character length requirement for the input.
    */
-  minLength?: number | undefined;
+  minimumLength?: number | undefined;
+  /**
+   * The value of the input.
+   */
+  value?: string | undefined;
 };
 
 /** @internal */
 export const Text$inboundSchema: z.ZodType<Text, z.ZodTypeDef, unknown> = z
   .object({
     max_length: z.number().optional(),
-    min_length: z.number().optional(),
+    minimum_length: z.number().optional(),
+    value: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
       "max_length": "maxLength",
-      "min_length": "minLength",
+      "minimum_length": "minimumLength",
     });
   });
 /** @internal */
 export type Text$Outbound = {
   max_length?: number | undefined;
-  min_length?: number | undefined;
+  minimum_length?: number | undefined;
+  value?: string | undefined;
 };
 
 /** @internal */
 export const Text$outboundSchema: z.ZodType<Text$Outbound, z.ZodTypeDef, Text> =
   z.object({
     maxLength: z.number().optional(),
-    minLength: z.number().optional(),
+    minimumLength: z.number().optional(),
+    value: z.string().optional(),
   }).transform((v) => {
     return remap$(v, {
       maxLength: "max_length",
-      minLength: "min_length",
+      minimumLength: "minimum_length",
     });
   });
 

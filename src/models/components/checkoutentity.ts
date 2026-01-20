@@ -21,6 +21,11 @@ import {
   CustomField$outboundSchema,
 } from "./customfield.js";
 import {
+  EnvironmentMode,
+  EnvironmentMode$inboundSchema,
+  EnvironmentMode$outboundSchema,
+} from "./environmentmode.js";
+import {
   OrderEntity,
   OrderEntity$inboundSchema,
   OrderEntity$Outbound,
@@ -44,19 +49,6 @@ import {
   SubscriptionEntity$Outbound,
   SubscriptionEntity$outboundSchema,
 } from "./subscriptionentity.js";
-
-/**
- * String representing the environment.
- */
-export const CheckoutEntityMode = {
-  Test: "test",
-  Prod: "prod",
-  Sandbox: "sandbox",
-} as const;
-/**
- * String representing the environment.
- */
-export type CheckoutEntityMode = ClosedEnum<typeof CheckoutEntityMode>;
 
 /**
  * Status of the checkout.
@@ -95,7 +87,7 @@ export type CheckoutEntity = {
   /**
    * String representing the environment.
    */
-  mode: CheckoutEntityMode;
+  mode: EnvironmentMode;
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
@@ -149,15 +141,6 @@ export type CheckoutEntity = {
    */
   metadata?: { [k: string]: any } | undefined;
 };
-
-/** @internal */
-export const CheckoutEntityMode$inboundSchema: z.ZodNativeEnum<
-  typeof CheckoutEntityMode
-> = z.nativeEnum(CheckoutEntityMode);
-/** @internal */
-export const CheckoutEntityMode$outboundSchema: z.ZodNativeEnum<
-  typeof CheckoutEntityMode
-> = CheckoutEntityMode$inboundSchema;
 
 /** @internal */
 export const CheckoutEntityStatus$inboundSchema: z.ZodNativeEnum<
@@ -270,7 +253,7 @@ export const CheckoutEntity$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string(),
-  mode: CheckoutEntityMode$inboundSchema,
+  mode: EnvironmentMode$inboundSchema,
   object: z.string(),
   status: CheckoutEntityStatus$inboundSchema,
   request_id: z.string().optional(),
@@ -319,7 +302,7 @@ export const CheckoutEntity$outboundSchema: z.ZodType<
   CheckoutEntity
 > = z.object({
   id: z.string(),
-  mode: CheckoutEntityMode$outboundSchema,
+  mode: EnvironmentMode$outboundSchema,
   object: z.string(),
   status: CheckoutEntityStatus$outboundSchema,
   requestId: z.string().optional(),

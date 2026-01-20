@@ -3,21 +3,53 @@
  */
 
 import * as z from "zod/v3";
+import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  FileFeatureEntity,
+  FileFeatureEntity$inboundSchema,
+  FileFeatureEntity$Outbound,
+  FileFeatureEntity$outboundSchema,
+} from "./filefeatureentity.js";
 import {
   LicenseEntity,
   LicenseEntity$inboundSchema,
   LicenseEntity$Outbound,
   LicenseEntity$outboundSchema,
 } from "./licenseentity.js";
+import {
+  ProductFeatureType,
+  ProductFeatureType$inboundSchema,
+  ProductFeatureType$outboundSchema,
+} from "./productfeaturetype.js";
 
 export type ProductFeatureEntity = {
   /**
+   * Unique identifier for the feature.
+   */
+  id?: string | undefined;
+  /**
+   * A brief description of the feature.
+   */
+  description: string;
+  /**
+   * The type of the feature: privateNote (custom note), file (downloadable files), or licenseKey (license key).
+   */
+  type: ProductFeatureType;
+  /**
+   * Private note from the seller. This is only visible to the customer after purchase.
+   */
+  privateNote?: string | undefined;
+  /**
+   * File feature data containing downloadable files.
+   */
+  file?: FileFeatureEntity | undefined;
+  /**
    * License key issued for the order.
    */
-  license: LicenseEntity;
+  licenseKey?: LicenseEntity | undefined;
 };
 
 /** @internal */
@@ -26,11 +58,26 @@ export const ProductFeatureEntity$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  license: LicenseEntity$inboundSchema,
+  id: z.string().optional(),
+  description: z.string(),
+  type: ProductFeatureType$inboundSchema,
+  private_note: z.string().optional(),
+  file: FileFeatureEntity$inboundSchema.optional(),
+  license_key: LicenseEntity$inboundSchema.optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "private_note": "privateNote",
+    "license_key": "licenseKey",
+  });
 });
 /** @internal */
 export type ProductFeatureEntity$Outbound = {
-  license: LicenseEntity$Outbound;
+  id?: string | undefined;
+  description: string;
+  type: string;
+  private_note?: string | undefined;
+  file?: FileFeatureEntity$Outbound | undefined;
+  license_key?: LicenseEntity$Outbound | undefined;
 };
 
 /** @internal */
@@ -39,7 +86,17 @@ export const ProductFeatureEntity$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ProductFeatureEntity
 > = z.object({
-  license: LicenseEntity$outboundSchema,
+  id: z.string().optional(),
+  description: z.string(),
+  type: ProductFeatureType$outboundSchema,
+  privateNote: z.string().optional(),
+  file: FileFeatureEntity$outboundSchema.optional(),
+  licenseKey: LicenseEntity$outboundSchema.optional(),
+}).transform((v) => {
+  return remap$(v, {
+    privateNote: "private_note",
+    licenseKey: "license_key",
+  });
 });
 
 export function productFeatureEntityToJSON(

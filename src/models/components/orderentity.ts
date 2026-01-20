@@ -8,19 +8,11 @@ import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-
-/**
- * String representing the environment.
- */
-export const OrderEntityMode = {
-  Test: "test",
-  Prod: "prod",
-  Sandbox: "sandbox",
-} as const;
-/**
- * String representing the environment.
- */
-export type OrderEntityMode = ClosedEnum<typeof OrderEntityMode>;
+import {
+  EnvironmentMode,
+  EnvironmentMode$inboundSchema,
+  EnvironmentMode$outboundSchema,
+} from "./environmentmode.js";
 
 /**
  * Current status of the order.
@@ -37,14 +29,14 @@ export type OrderEntityStatus = ClosedEnum<typeof OrderEntityStatus>;
 /**
  * The type of order. This can specify whether it's a regular purchase, subscription, etc.
  */
-export const OrderEntityType = {
+export const Type = {
   Recurring: "recurring",
   Onetime: "onetime",
 } as const;
 /**
  * The type of order. This can specify whether it's a regular purchase, subscription, etc.
  */
-export type OrderEntityType = ClosedEnum<typeof OrderEntityType>;
+export type Type = ClosedEnum<typeof Type>;
 
 export type OrderEntity = {
   /**
@@ -54,7 +46,7 @@ export type OrderEntity = {
   /**
    * String representing the environment.
    */
-  mode: OrderEntityMode;
+  mode: EnvironmentMode;
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
@@ -122,7 +114,7 @@ export type OrderEntity = {
   /**
    * The type of order. This can specify whether it's a regular purchase, subscription, etc.
    */
-  type: OrderEntityType;
+  type: Type;
   /**
    * The affiliate associated with the order, if applicable.
    */
@@ -138,15 +130,6 @@ export type OrderEntity = {
 };
 
 /** @internal */
-export const OrderEntityMode$inboundSchema: z.ZodNativeEnum<
-  typeof OrderEntityMode
-> = z.nativeEnum(OrderEntityMode);
-/** @internal */
-export const OrderEntityMode$outboundSchema: z.ZodNativeEnum<
-  typeof OrderEntityMode
-> = OrderEntityMode$inboundSchema;
-
-/** @internal */
 export const OrderEntityStatus$inboundSchema: z.ZodNativeEnum<
   typeof OrderEntityStatus
 > = z.nativeEnum(OrderEntityStatus);
@@ -156,13 +139,12 @@ export const OrderEntityStatus$outboundSchema: z.ZodNativeEnum<
 > = OrderEntityStatus$inboundSchema;
 
 /** @internal */
-export const OrderEntityType$inboundSchema: z.ZodNativeEnum<
-  typeof OrderEntityType
-> = z.nativeEnum(OrderEntityType);
+export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
+  Type,
+);
 /** @internal */
-export const OrderEntityType$outboundSchema: z.ZodNativeEnum<
-  typeof OrderEntityType
-> = OrderEntityType$inboundSchema;
+export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> =
+  Type$inboundSchema;
 
 /** @internal */
 export const OrderEntity$inboundSchema: z.ZodType<
@@ -171,7 +153,7 @@ export const OrderEntity$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string(),
-  mode: OrderEntityMode$inboundSchema,
+  mode: EnvironmentMode$inboundSchema,
   object: z.string(),
   customer: z.string().optional(),
   product: z.string(),
@@ -188,7 +170,7 @@ export const OrderEntity$inboundSchema: z.ZodType<
   fx_currency: z.string().optional(),
   fx_rate: z.number().optional(),
   status: OrderEntityStatus$inboundSchema,
-  type: OrderEntityType$inboundSchema,
+  type: Type$inboundSchema,
   affiliate: z.string().optional(),
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
@@ -239,7 +221,7 @@ export const OrderEntity$outboundSchema: z.ZodType<
   OrderEntity
 > = z.object({
   id: z.string(),
-  mode: OrderEntityMode$outboundSchema,
+  mode: EnvironmentMode$outboundSchema,
   object: z.string(),
   customer: z.string().optional(),
   product: z.string(),
@@ -256,7 +238,7 @@ export const OrderEntity$outboundSchema: z.ZodType<
   fxCurrency: z.string().optional(),
   fxRate: z.number().optional(),
   status: OrderEntityStatus$outboundSchema,
-  type: OrderEntityType$outboundSchema,
+  type: Type$outboundSchema,
   affiliate: z.string().optional(),
   createdAt: z.date().transform(v => v.toISOString()),
   updatedAt: z.date().transform(v => v.toISOString()),

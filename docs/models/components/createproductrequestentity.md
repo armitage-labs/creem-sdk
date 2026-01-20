@@ -15,11 +15,19 @@ let value: CreateProductRequestEntity = {
   taxMode: "inclusive",
   taxCategory: "[\"saas\",\"digital-goods-service\",\"ebooks\"]",
   defaultSuccessUrl: "https://example.com/?status=successful",
-  customField: [
+  customFields: [
     {
       type: "text",
-      key: "<key>",
-      label: "<value>",
+      key: "companyName",
+      label: "Company Name",
+      text: {
+        maxLength: 200,
+        minLength: 1,
+      },
+      checkbox: {
+        label:
+          "I agree to the [terms and conditions](https://example.com/terms)",
+      },
     },
   ],
 };
@@ -39,5 +47,5 @@ let value: CreateProductRequestEntity = {
 | `taxMode`                                                                                                                                                                     | *string*                                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                            | Specifies the tax calculation mode for the transaction. If set to "inclusive," the tax is included in the price. If set to "exclusive," the tax is added on top of the price. | inclusive                                                                                                                                                                     |
 | `taxCategory`                                                                                                                                                                 | *string*                                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                            | Categorizes the type of product or service for tax purposes. This helps determine the applicable tax rules based on the nature of the item or service.                        | [<br/>"saas",<br/>"digital-goods-service",<br/>"ebooks"<br/>]                                                                                                                 |
 | `defaultSuccessUrl`                                                                                                                                                           | *string*                                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                            | The URL to which the user will be redirected after successfull payment.                                                                                                       | https://example.com/?status=successful                                                                                                                                        |
-| `customField`                                                                                                                                                                 | [components.CustomFieldRequestEntity](../../models/components/customfieldrequestentity.md)[]                                                                                  | :heavy_minus_sign:                                                                                                                                                            | Collect additional information from your customer using custom fields during checkout. Up to 3 fields are supported.                                                          |                                                                                                                                                                               |
+| `customFields`                                                                                                                                                                | [components.CustomFieldRequestEntity](../../models/components/customfieldrequestentity.md)[]                                                                                  | :heavy_minus_sign:                                                                                                                                                            | Collect additional information from your customer using custom fields during checkout. Up to 3 fields are supported.                                                          |                                                                                                                                                                               |
 | `abandonedCartRecoveryEnabled`                                                                                                                                                | *boolean*                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                            | Enable abandoned cart recovery for this product                                                                                                                               |                                                                                                                                                                               |

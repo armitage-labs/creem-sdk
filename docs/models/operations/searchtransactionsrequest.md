@@ -16,4 +16,4 @@ let value: SearchTransactionsRequest = {};
 | `orderId`          | *string*           | :heavy_minus_sign: | The order id       |
 | `productId`        | *string*           | :heavy_minus_sign: | The product id     |
 | `pageNumber`       | *number*           | :heavy_minus_sign: | The page number    |
-| `pageSize`         | *number*           | :heavy_minus_sign: | The the page size  |
+| `pageSize`         | *number*           | :heavy_minus_sign: | The page size      |

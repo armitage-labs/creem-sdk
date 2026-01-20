@@ -8,19 +8,11 @@ import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-
-/**
- * String representing the environment.
- */
-export const LicenseEntityMode = {
-  Test: "test",
-  Prod: "prod",
-  Sandbox: "sandbox",
-} as const;
-/**
- * String representing the environment.
- */
-export type LicenseEntityMode = ClosedEnum<typeof LicenseEntityMode>;
+import {
+  EnvironmentMode,
+  EnvironmentMode$inboundSchema,
+  EnvironmentMode$outboundSchema,
+} from "./environmentmode.js";
 
 /**
  * The current status of the license key.
@@ -47,21 +39,6 @@ export type ActivationLimit = {};
 export type ExpiresAt = {};
 
 /**
- * String representing the environment.
- */
-export const LicenseEntityInstanceMode = {
-  Test: "test",
-  Prod: "prod",
-  Sandbox: "sandbox",
-} as const;
-/**
- * String representing the environment.
- */
-export type LicenseEntityInstanceMode = ClosedEnum<
-  typeof LicenseEntityInstanceMode
->;
-
-/**
  * The status of the license instance.
  */
 export const LicenseEntityInstanceStatus = {
@@ -86,7 +63,7 @@ export type Instance = {
   /**
    * String representing the environment.
    */
-  mode: LicenseEntityInstanceMode;
+  mode: EnvironmentMode;
   /**
    * A string representing the object’s type. Objects of the same type share the same value.
    */
@@ -113,7 +90,7 @@ export type LicenseEntity = {
   /**
    * String representing the environment.
    */
-  mode: LicenseEntityMode;
+  mode: EnvironmentMode;
   /**
    * A string representing the object’s type. Objects of the same type share the same value.
    */
@@ -147,15 +124,6 @@ export type LicenseEntity = {
    */
   instance?: Instance | null | undefined;
 };
-
-/** @internal */
-export const LicenseEntityMode$inboundSchema: z.ZodNativeEnum<
-  typeof LicenseEntityMode
-> = z.nativeEnum(LicenseEntityMode);
-/** @internal */
-export const LicenseEntityMode$outboundSchema: z.ZodNativeEnum<
-  typeof LicenseEntityMode
-> = LicenseEntityMode$inboundSchema;
 
 /** @internal */
 export const LicenseEntityStatus$inboundSchema: z.ZodNativeEnum<
@@ -227,15 +195,6 @@ export function expiresAtFromJSON(
 }
 
 /** @internal */
-export const LicenseEntityInstanceMode$inboundSchema: z.ZodNativeEnum<
-  typeof LicenseEntityInstanceMode
-> = z.nativeEnum(LicenseEntityInstanceMode);
-/** @internal */
-export const LicenseEntityInstanceMode$outboundSchema: z.ZodNativeEnum<
-  typeof LicenseEntityInstanceMode
-> = LicenseEntityInstanceMode$inboundSchema;
-
-/** @internal */
 export const LicenseEntityInstanceStatus$inboundSchema: z.ZodNativeEnum<
   typeof LicenseEntityInstanceStatus
 > = z.nativeEnum(LicenseEntityInstanceStatus);
@@ -251,7 +210,7 @@ export const Instance$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string(),
-  mode: LicenseEntityInstanceMode$inboundSchema,
+  mode: EnvironmentMode$inboundSchema,
   object: z.string(),
   name: z.string(),
   status: LicenseEntityInstanceStatus$inboundSchema,
@@ -278,7 +237,7 @@ export const Instance$outboundSchema: z.ZodType<
   Instance
 > = z.object({
   id: z.string(),
-  mode: LicenseEntityInstanceMode$outboundSchema,
+  mode: EnvironmentMode$outboundSchema,
   object: z.string(),
   name: z.string(),
   status: LicenseEntityInstanceStatus$outboundSchema,
@@ -309,7 +268,7 @@ export const LicenseEntity$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string(),
-  mode: LicenseEntityMode$inboundSchema,
+  mode: EnvironmentMode$inboundSchema,
   object: z.string(),
   status: LicenseEntityStatus$inboundSchema,
   key: z.string(),
@@ -347,7 +306,7 @@ export const LicenseEntity$outboundSchema: z.ZodType<
   LicenseEntity
 > = z.object({
   id: z.string(),
-  mode: LicenseEntityMode$outboundSchema,
+  mode: EnvironmentMode$outboundSchema,
   object: z.string(),
   status: LicenseEntityStatus$outboundSchema,
   key: z.string(),

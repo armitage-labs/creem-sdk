@@ -1,4 +1,4 @@
-# creem
+# Creem
 
 Developer-friendly & type-safe Typescript SDK specifically catered to leverage _creem_ API.
 
@@ -10,22 +10,18 @@ Developer-friendly & type-safe Typescript SDK specifically catered to leverage _
 </div>
 
 <br /><br />
-
-## Summary
-
-Creem API: Creem is an all-in-one platform for managing subscriptions and recurring revenue, tailored specifically for today's SaaS companies. It enables you to boost revenue, enhance customer retention, and scale your operations seamlessly.'
-
-<!-- End Summary [summary] -->
 <!-- Start Summary [summary] -->
 ## Summary
 
-Creem API: Creem is an all-in-one platform for managing subscriptions and recurring revenue, tailored specifically for today's SaaS companies. It enables you to boost revenue, enhance customer retention, and scale your operations seamlessly.'
+Creem API: Creem is an all-in-one platform for managing subscriptions and recurring revenue, tailored specifically for today's SaaS companies. It enables you to boost revenue, enhance customer retention, and scale your operations seamlessly.
+
+For more information about the API: [Creem Documentation](https://docs.creem.io)
 <!-- End Summary [summary] -->
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
 <!-- $toc-max-depth=2 -->
-* [creem](#creem)
+* [Creem](#creem)
   * [SDK Installation](#sdk-installation)
   * [Requirements](#requirements)
   * [SDK Example Usage](#sdk-example-usage)
@@ -227,7 +223,7 @@ run();
 
 ### [Checkouts](docs/sdks/checkouts/README.md)
 
-* [retrieve](docs/sdks/checkouts/README.md#retrieve) - Retrieve a new checkout session.
+* [retrieve](docs/sdks/checkouts/README.md#retrieve) - Retrieve a checkout session.
 * [create](docs/sdks/checkouts/README.md#create) - Creates a new checkout session.
 
 ### [Customers](docs/sdks/customers/README.md)
@@ -287,7 +283,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 <summary>Available standalone functions</summary>
 
 - [`checkoutsCreate`](docs/sdks/checkouts/README.md#create) - Creates a new checkout session.
-- [`checkoutsRetrieve`](docs/sdks/checkouts/README.md#retrieve) - Retrieve a new checkout session.
+- [`checkoutsRetrieve`](docs/sdks/checkouts/README.md#retrieve) - Retrieve a checkout session.
 - [`customersGenerateBillingLinks`](docs/sdks/customers/README.md#generatebillinglinks) - Generate Customer Links
 - [`customersList`](docs/sdks/customers/README.md#list) - List all customers
 - [`customersRetrieve`](docs/sdks/customers/README.md#retrieve) - Retrieve a customer
@@ -447,8 +443,8 @@ You can override the default server globally by passing a server index to the `s
 
 | #   | Server                      | Description |
 | --- | --------------------------- | ----------- |
-| 0   | `https://api.creem.io`      |             |
-| 1   | `https://test-api.creem.io` |             |
+| 0   | `https://test-api.creem.io` |             |
+| 1   | `https://api.creem.io`      |             |
 
 #### Example
 
@@ -477,7 +473,7 @@ The default server can also be overridden globally by passing a URL to the `serv
 import { Creem } from "creem";
 
 const creem = new Creem({
-  serverURL: "https://test-api.creem.io",
+  serverURL: "https://api.creem.io",
   apiKey: process.env["CREEM_API_KEY"] ?? "",
 });
 

@@ -14,7 +14,7 @@ export type SearchProductsRequest = {
    */
   pageNumber?: number | undefined;
   /**
-   * The the page size
+   * The page size
    */
   pageSize?: number | undefined;
 };

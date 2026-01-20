@@ -38,13 +38,13 @@ export type CreateCheckoutRequest = {
    */
   discountCode?: string | undefined;
   /**
-   * Customer data for checkout session. This will prefill the customer info on the checkout page
+   * Customer data for checkout session. This will prefill the customer info on the checkout page.
    */
   customer?: CustomerRequestEntity | undefined;
   /**
    * Collect additional information from your customer using custom fields. Up to 3 fields are supported.
    */
-  customField?: Array<CustomFieldRequestEntity> | undefined;
+  customFields?: Array<CustomFieldRequestEntity> | undefined;
   /**
    * The URL to which the user will be redirected after the checkout process is completed.
    */
@@ -66,7 +66,7 @@ export const CreateCheckoutRequest$inboundSchema: z.ZodType<
   units: z.number().optional(),
   discount_code: z.string().optional(),
   customer: CustomerRequestEntity$inboundSchema.optional(),
-  custom_field: z.array(CustomFieldRequestEntity$inboundSchema).optional(),
+  custom_fields: z.array(CustomFieldRequestEntity$inboundSchema).optional(),
   success_url: z.string().optional(),
   metadata: z.record(z.any()).optional(),
 }).transform((v) => {
@@ -74,7 +74,7 @@ export const CreateCheckoutRequest$inboundSchema: z.ZodType<
     "request_id": "requestId",
     "product_id": "productId",
     "discount_code": "discountCode",
-    "custom_field": "customField",
+    "custom_fields": "customFields",
     "success_url": "successUrl",
   });
 });
@@ -85,7 +85,7 @@ export type CreateCheckoutRequest$Outbound = {
   units?: number | undefined;
   discount_code?: string | undefined;
   customer?: CustomerRequestEntity$Outbound | undefined;
-  custom_field?: Array<CustomFieldRequestEntity$Outbound> | undefined;
+  custom_fields?: Array<CustomFieldRequestEntity$Outbound> | undefined;
   success_url?: string | undefined;
   metadata?: { [k: string]: any } | undefined;
 };
@@ -101,7 +101,7 @@ export const CreateCheckoutRequest$outboundSchema: z.ZodType<
   units: z.number().optional(),
   discountCode: z.string().optional(),
   customer: CustomerRequestEntity$outboundSchema.optional(),
-  customField: z.array(CustomFieldRequestEntity$outboundSchema).optional(),
+  customFields: z.array(CustomFieldRequestEntity$outboundSchema).optional(),
   successUrl: z.string().optional(),
   metadata: z.record(z.any()).optional(),
 }).transform((v) => {
@@ -109,7 +109,7 @@ export const CreateCheckoutRequest$outboundSchema: z.ZodType<
     requestId: "request_id",
     productId: "product_id",
     discountCode: "discount_code",
-    customField: "custom_field",
+    customFields: "custom_fields",
     successUrl: "success_url",
   });
 });

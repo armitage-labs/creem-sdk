@@ -4,7 +4,6 @@
 
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -14,23 +13,16 @@ import {
   Checkbox$outboundSchema,
 } from "./checkbox.js";
 import {
+  CustomFieldType,
+  CustomFieldType$inboundSchema,
+  CustomFieldType$outboundSchema,
+} from "./customfieldtype.js";
+import {
   Text,
   Text$inboundSchema,
   Text$Outbound,
   Text$outboundSchema,
 } from "./text.js";
-
-/**
- * The type of the field.
- */
-export const CustomFieldType = {
-  Text: "text",
-  Checkbox: "checkbox",
-} as const;
-/**
- * The type of the field.
- */
-export type CustomFieldType = ClosedEnum<typeof CustomFieldType>;
 
 export type CustomField = {
   /**
@@ -58,15 +50,6 @@ export type CustomField = {
    */
   checkbox?: Checkbox | undefined;
 };
-
-/** @internal */
-export const CustomFieldType$inboundSchema: z.ZodNativeEnum<
-  typeof CustomFieldType
-> = z.nativeEnum(CustomFieldType);
-/** @internal */
-export const CustomFieldType$outboundSchema: z.ZodNativeEnum<
-  typeof CustomFieldType
-> = CustomFieldType$inboundSchema;
 
 /** @internal */
 export const CustomField$inboundSchema: z.ZodType<

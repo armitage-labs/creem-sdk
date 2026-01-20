@@ -4,45 +4,37 @@
 
 import * as z from "zod/v3";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  Checkbox,
-  Checkbox$inboundSchema,
-  Checkbox$Outbound,
-  Checkbox$outboundSchema,
-} from "./checkbox.js";
+  CheckboxFieldConfig,
+  CheckboxFieldConfig$inboundSchema,
+  CheckboxFieldConfig$Outbound,
+  CheckboxFieldConfig$outboundSchema,
+} from "./checkboxfieldconfig.js";
 import {
-  Text,
-  Text$inboundSchema,
-  Text$Outbound,
-  Text$outboundSchema,
-} from "./text.js";
-
-/**
- * The type of the field.
- */
-export const Type = {
-  Text: "text",
-  Checkbox: "checkbox",
-} as const;
-/**
- * The type of the field.
- */
-export type Type = ClosedEnum<typeof Type>;
+  CustomFieldRequestType,
+  CustomFieldRequestType$inboundSchema,
+  CustomFieldRequestType$outboundSchema,
+} from "./customfieldrequesttype.js";
+import {
+  TextFieldConfig,
+  TextFieldConfig$inboundSchema,
+  TextFieldConfig$Outbound,
+  TextFieldConfig$outboundSchema,
+} from "./textfieldconfig.js";
 
 export type CustomFieldRequestEntity = {
   /**
    * The type of the field.
    */
-  type: Type;
+  type: CustomFieldRequestType;
   /**
    * Unique key for custom field. Must be unique to this field, alphanumeric, and up to 200 characters.
    */
   key: string;
   /**
-   * The label for the field, displayed to the customer, up to 50 characters
+   * The label for the field, displayed to the customer, up to 50 characters.
    */
   label: string;
   /**
@@ -50,22 +42,14 @@ export type CustomFieldRequestEntity = {
    */
   optional?: boolean | undefined;
   /**
-   * Configuration for type of text field.
+   * Configuration for text field type.
    */
-  text?: Text | undefined;
+  text?: TextFieldConfig | undefined;
   /**
    * Configuration for checkbox field type.
    */
-  checkbox?: Checkbox | undefined;
+  checkbox?: CheckboxFieldConfig | undefined;
 };
-
-/** @internal */
-export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
-  Type,
-);
-/** @internal */
-export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> =
-  Type$inboundSchema;
 
 /** @internal */
 export const CustomFieldRequestEntity$inboundSchema: z.ZodType<
@@ -73,12 +57,12 @@ export const CustomFieldRequestEntity$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  type: Type$inboundSchema,
+  type: CustomFieldRequestType$inboundSchema,
   key: z.string(),
   label: z.string(),
   optional: z.boolean().optional(),
-  text: Text$inboundSchema.optional(),
-  checkbox: Checkbox$inboundSchema.optional(),
+  text: TextFieldConfig$inboundSchema.optional(),
+  checkbox: CheckboxFieldConfig$inboundSchema.optional(),
 });
 /** @internal */
 export type CustomFieldRequestEntity$Outbound = {
@@ -86,8 +70,8 @@ export type CustomFieldRequestEntity$Outbound = {
   key: string;
   label: string;
   optional?: boolean | undefined;
-  text?: Text$Outbound | undefined;
-  checkbox?: Checkbox$Outbound | undefined;
+  text?: TextFieldConfig$Outbound | undefined;
+  checkbox?: CheckboxFieldConfig$Outbound | undefined;
 };
 
 /** @internal */
@@ -96,12 +80,12 @@ export const CustomFieldRequestEntity$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CustomFieldRequestEntity
 > = z.object({
-  type: Type$outboundSchema,
+  type: CustomFieldRequestType$outboundSchema,
   key: z.string(),
   label: z.string(),
   optional: z.boolean().optional(),
-  text: Text$outboundSchema.optional(),
-  checkbox: Checkbox$outboundSchema.optional(),
+  text: TextFieldConfig$outboundSchema.optional(),
+  checkbox: CheckboxFieldConfig$outboundSchema.optional(),
 });
 
 export function customFieldRequestEntityToJSON(

@@ -5,22 +5,13 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-
-/**
- * String representing the environment.
- */
-export const TransactionEntityMode = {
-  Test: "test",
-  Prod: "prod",
-  Sandbox: "sandbox",
-} as const;
-/**
- * String representing the environment.
- */
-export type TransactionEntityMode = ClosedEnum<typeof TransactionEntityMode>;
+import {
+  EnvironmentMode,
+  EnvironmentMode$inboundSchema,
+  EnvironmentMode$outboundSchema,
+} from "./environmentmode.js";
 
 export type TransactionEntity = {
   /**
@@ -30,7 +21,7 @@ export type TransactionEntity = {
   /**
    * String representing the environment.
    */
-  mode: TransactionEntityMode;
+  mode: EnvironmentMode;
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
@@ -102,22 +93,13 @@ export type TransactionEntity = {
 };
 
 /** @internal */
-export const TransactionEntityMode$inboundSchema: z.ZodNativeEnum<
-  typeof TransactionEntityMode
-> = z.nativeEnum(TransactionEntityMode);
-/** @internal */
-export const TransactionEntityMode$outboundSchema: z.ZodNativeEnum<
-  typeof TransactionEntityMode
-> = TransactionEntityMode$inboundSchema;
-
-/** @internal */
 export const TransactionEntity$inboundSchema: z.ZodType<
   TransactionEntity,
   z.ZodTypeDef,
   unknown
 > = z.object({
   id: z.string(),
-  mode: TransactionEntityMode$inboundSchema,
+  mode: EnvironmentMode$inboundSchema,
   object: z.string(),
   amount: z.number(),
   amount_paid: z.number().optional(),
@@ -177,7 +159,7 @@ export const TransactionEntity$outboundSchema: z.ZodType<
   TransactionEntity
 > = z.object({
   id: z.string(),
-  mode: TransactionEntityMode$outboundSchema,
+  mode: EnvironmentMode$outboundSchema,
   object: z.string(),
   amount: z.number(),
   amountPaid: z.number().optional(),
