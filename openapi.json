@@ -1519,6 +1519,14 @@
               "$ref": "#/components/schemas/CustomFieldRequestEntity"
             }
           },
+          "custom_field": {
+            "description": "DEPRECATED: Use `custom_fields` instead. Collect additional information from your customer using custom fields during checkout. Up to 3 fields are supported.",
+            "deprecated": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldRequestEntity"
+            }
+          },
           "abandoned_cart_recovery_enabled": {
             "type": "boolean",
             "description": "Enable abandoned cart recovery for this product",
@@ -2583,6 +2591,14 @@
           },
           "custom_fields": {
             "description": "Collect additional information from your customer using custom fields. Up to 3 fields are supported.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldRequestEntity"
+            }
+          },
+          "custom_field": {
+            "description": "DEPRECATED: Use `custom_fields` instead. Collect additional information from your customer using custom fields. Up to 3 fields are supported.",
+            "deprecated": true,
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CustomFieldRequestEntity"

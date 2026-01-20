@@ -46,6 +46,12 @@ export type CreateCheckoutRequest = {
    */
   customFields?: Array<CustomFieldRequestEntity> | undefined;
   /**
+   * DEPRECATED: Use `custom_fields` instead. Collect additional information from your customer using custom fields. Up to 3 fields are supported.
+   *
+   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   */
+  customField?: Array<CustomFieldRequestEntity> | undefined;
+  /**
    * The URL to which the user will be redirected after the checkout process is completed.
    */
   successUrl?: string | undefined;
@@ -67,6 +73,7 @@ export const CreateCheckoutRequest$inboundSchema: z.ZodType<
   discount_code: z.string().optional(),
   customer: CustomerRequestEntity$inboundSchema.optional(),
   custom_fields: z.array(CustomFieldRequestEntity$inboundSchema).optional(),
+  custom_field: z.array(CustomFieldRequestEntity$inboundSchema).optional(),
   success_url: z.string().optional(),
   metadata: z.record(z.any()).optional(),
 }).transform((v) => {
@@ -75,6 +82,7 @@ export const CreateCheckoutRequest$inboundSchema: z.ZodType<
     "product_id": "productId",
     "discount_code": "discountCode",
     "custom_fields": "customFields",
+    "custom_field": "customField",
     "success_url": "successUrl",
   });
 });
@@ -86,6 +94,7 @@ export type CreateCheckoutRequest$Outbound = {
   discount_code?: string | undefined;
   customer?: CustomerRequestEntity$Outbound | undefined;
   custom_fields?: Array<CustomFieldRequestEntity$Outbound> | undefined;
+  custom_field?: Array<CustomFieldRequestEntity$Outbound> | undefined;
   success_url?: string | undefined;
   metadata?: { [k: string]: any } | undefined;
 };
@@ -102,6 +111,7 @@ export const CreateCheckoutRequest$outboundSchema: z.ZodType<
   discountCode: z.string().optional(),
   customer: CustomerRequestEntity$outboundSchema.optional(),
   customFields: z.array(CustomFieldRequestEntity$outboundSchema).optional(),
+  customField: z.array(CustomFieldRequestEntity$outboundSchema).optional(),
   successUrl: z.string().optional(),
   metadata: z.record(z.any()).optional(),
 }).transform((v) => {
@@ -110,6 +120,7 @@ export const CreateCheckoutRequest$outboundSchema: z.ZodType<
     productId: "product_id",
     discountCode: "discount_code",
     customFields: "custom_fields",
+    customField: "custom_field",
     successUrl: "success_url",
   });
 });
