@@ -33,11 +33,11 @@ export type ProductFeatureEntity = {
   /**
    * A brief description of the feature.
    */
-  description: string;
+  description?: string | undefined;
   /**
    * The type of the feature: privateNote (custom note), file (downloadable files), or licenseKey (license key).
    */
-  type: ProductFeatureType;
+  type?: ProductFeatureType | undefined;
   /**
    * Private note from the seller. This is only visible to the customer after purchase.
    */
@@ -59,8 +59,8 @@ export const ProductFeatureEntity$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string().optional(),
-  description: z.string(),
-  type: ProductFeatureType$inboundSchema,
+  description: z.string().optional(),
+  type: ProductFeatureType$inboundSchema.optional(),
   private_note: z.string().optional(),
   file: FileFeatureEntity$inboundSchema.optional(),
   license_key: LicenseEntity$inboundSchema.optional(),
@@ -73,8 +73,8 @@ export const ProductFeatureEntity$inboundSchema: z.ZodType<
 /** @internal */
 export type ProductFeatureEntity$Outbound = {
   id?: string | undefined;
-  description: string;
-  type: string;
+  description?: string | undefined;
+  type?: string | undefined;
   private_note?: string | undefined;
   file?: FileFeatureEntity$Outbound | undefined;
   license_key?: LicenseEntity$Outbound | undefined;
@@ -87,8 +87,8 @@ export const ProductFeatureEntity$outboundSchema: z.ZodType<
   ProductFeatureEntity
 > = z.object({
   id: z.string().optional(),
-  description: z.string(),
-  type: ProductFeatureType$outboundSchema,
+  description: z.string().optional(),
+  type: ProductFeatureType$outboundSchema.optional(),
   privateNote: z.string().optional(),
   file: FileFeatureEntity$outboundSchema.optional(),
   licenseKey: LicenseEntity$outboundSchema.optional(),

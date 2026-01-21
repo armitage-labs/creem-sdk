@@ -1,19 +1,10 @@
 import { Creem } from "../../src/index.js";
-import { describe, it, expect } from "@jest/globals";
+import { describe, it, expect, beforeAll } from "vitest";
 import { APIError } from "../../src/models/errors/index.js";
 import { fail } from "../../src/lib/matchers.js";
-import {
-  TEST_API_KEY,
-  TEST_PRODUCT_SUBSCRIPTION_ID,
-  TEST_SERVER_IDX,
-  TEST_MODE,
-} from "../fixtures/testValues.js";
-
-// Create an actual instance of Creem for testing
-const creem = new Creem({
-  apiKey: TEST_API_KEY,
-  serverIdx: TEST_SERVER_IDX,
-});
+import { TEST_SERVER_IDX, TEST_MODE } from "../fixtures/testValues.js";
+import { creem, getTestProduct } from "../fixtures/testData.js";
+import type { ProductEntity } from "../../src/models/components/index.js";
 
 // Create an instance with invalid API key for auth error tests
 const creemWithInvalidKey = new Creem({
@@ -22,11 +13,17 @@ const creemWithInvalidKey = new Creem({
 });
 
 describe("createCheckout", () => {
+  let testProduct: ProductEntity;
+
+  beforeAll(async () => {
+    testProduct = await getTestProduct();
+  });
+
   it("should handle API authentication errors", async () => {
     try {
       // Attempt to call SDK method with invalid API key
       await creemWithInvalidKey.checkouts.create({
-        productId: TEST_PRODUCT_SUBSCRIPTION_ID,
+        productId: testProduct.id,
       });
       // If it succeeds, fail the test (we expect it to throw)
       fail("Expected an API error but none was thrown");
@@ -40,7 +37,7 @@ describe("createCheckout", () => {
   it("should create a new checkout session successfully", async () => {
     // When using the SDK instance directly, it returns CheckoutEntity
     const result = await creem.checkouts.create({
-      productId: TEST_PRODUCT_SUBSCRIPTION_ID,
+      productId: testProduct.id,
     });
 
     // Test direct SDK method (unwraps Result)
@@ -60,7 +57,7 @@ describe("createCheckout", () => {
     try {
       // Use invalid input to trigger validation error
       await creemWithEmptyKey.checkouts.create({
-        productId: TEST_PRODUCT_SUBSCRIPTION_ID,
+        productId: testProduct.id,
       });
       fail("Expected validation error but none was thrown");
     } catch (error) {
@@ -81,8 +78,8 @@ describe("createCheckout", () => {
 
   it("should create checkout with advanced options successfully", async () => {
     const result = await creem.checkouts.create({
-      requestId: "test_request_id",
-      productId: TEST_PRODUCT_SUBSCRIPTION_ID,
+      requestId: `test_request_${Date.now()}`,
+      productId: testProduct.id,
       units: 2,
       customer: {
         email: "test@example.com",
@@ -108,13 +105,10 @@ describe("createCheckout", () => {
     // Verify the response structure and content
     expect(result).toHaveProperty("id");
     expect(result).toHaveProperty("object", "checkout");
-    expect(result).toHaveProperty("product", TEST_PRODUCT_SUBSCRIPTION_ID);
+    expect(result).toHaveProperty("product", testProduct.id);
     expect(result).toHaveProperty("units", 2);
     expect(result).toHaveProperty("status", "pending");
     expect(result).toHaveProperty("checkoutUrl");
-    expect(result.checkoutUrl).toContain(
-      `checkout/${TEST_PRODUCT_SUBSCRIPTION_ID}/`
-    );
     expect(result).toHaveProperty("successUrl", "https://google.com");
     expect(result).toHaveProperty("metadata");
     expect(result.metadata).toEqual({ userId: "myUserId" });

@@ -139,15 +139,22 @@ let value: CheckoutEntity = {
     {
       id: "feat_abc123",
       description: "Get access to the full course materials.",
-      type: "file",
       privateNote:
         "Thank you for your purchase! Here is your access code: XYZ123",
       file: {
-        files: [],
+        files: [
+          {
+            id: "file_abc123",
+            fileName: "ebook.pdf",
+            url: "https://storage.creem.io/files/ebook.pdf",
+            type: "application/pdf",
+            size: 1024000,
+          },
+        ],
       },
       licenseKey: {
         id: "<id>",
-        mode: "prod",
+        mode: "test",
         object: "<value>",
         status: "active",
         key: "ABC123-XYZ456-XYZ456-XYZ456",
@@ -155,7 +162,14 @@ let value: CheckoutEntity = {
         activationLimit: {},
         expiresAt: {},
         createdAt: new Date("2023-09-13T00:00:00Z"),
-        instance: null,
+        instance: {
+          id: "<id>",
+          mode: "test",
+          object: "license-instance",
+          name: "My Customer License Instance",
+          status: "active",
+          createdAt: new Date("2023-09-13T00:00:00Z"),
+        },
       },
     },
   ],

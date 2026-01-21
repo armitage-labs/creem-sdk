@@ -1,5 +1,7 @@
 // Test API Keys
-export const TEST_API_KEY: string = process.env.TEST_API_KEY || "creem_fail";
+export const TEST_API_KEY: string = process.env.TEST_API_KEY || (() => {
+  throw new Error("TEST_API_KEY environment variable is required");
+})();
 export const INVALID_API_KEY: string = "creem_fail";
 
 // Test Customer Data

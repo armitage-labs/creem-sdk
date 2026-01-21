@@ -443,8 +443,8 @@ You can override the default server globally by passing a server index to the `s
 
 | #   | Server                      | Description |
 | --- | --------------------------- | ----------- |
-| 0   | `https://test-api.creem.io` |             |
-| 1   | `https://api.creem.io`      |             |
+| 0   | `https://api.creem.io`      |             |
+| 1   | `https://test-api.creem.io` |             |
 
 #### Example
 
@@ -473,7 +473,7 @@ The default server can also be overridden globally by passing a URL to the `serv
 import { Creem } from "creem";
 
 const creem = new Creem({
-  serverURL: "https://api.creem.io",
+  serverURL: "https://test-api.creem.io",
   apiKey: process.env["CREEM_API_KEY"] ?? "",
 });
 

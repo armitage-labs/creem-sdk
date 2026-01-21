@@ -17,7 +17,7 @@ let value: LicenseEntity = {
   createdAt: new Date("2023-09-13T00:00:00Z"),
   instance: {
     id: "<id>",
-    mode: "sandbox",
+    mode: "test",
     object: "license-instance",
     name: "My Customer License Instance",
     status: "active",

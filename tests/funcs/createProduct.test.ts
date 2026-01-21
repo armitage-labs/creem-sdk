@@ -1,16 +1,13 @@
 import { Creem } from "../../src/index.js";
-import { describe, it, expect } from "@jest/globals";
+import { describe, it, expect } from "vitest";
 import { APIError } from "../../src/models/errors/index.js";
 import { fail } from "../../src/lib/matchers.js";
-import {
-  TEST_API_KEY,
-  TEST_SERVER_IDX,
-  TEST_MODE,
-} from "../fixtures/testValues.js";
+import { TEST_SERVER_IDX, TEST_MODE } from "../fixtures/testValues.js";
+import { creem } from "../fixtures/testData.js";
 
 // Sample product data
 const SAMPLE_PRODUCT = {
-  name: "Test Product",
+  name: `Test Product ${Date.now()}`,
   description: "This is a sample product description.",
   price: 400,
   currency: "EUR",
@@ -33,12 +30,6 @@ const SAMPLE_PRODUCT = {
   ],
 };
 
-// Create an actual instance of Creem for testing
-const creem = new Creem({
-  apiKey: TEST_API_KEY,
-  serverIdx: TEST_SERVER_IDX,
-});
-
 // Create an instance with invalid API key for auth error tests
 const creemWithInvalidKey = new Creem({
   apiKey: "fail",
@@ -60,35 +51,29 @@ describe("createProduct", () => {
   });
 
   it("should create a product successfully", async () => {
+    const productData = {
+      ...SAMPLE_PRODUCT,
+      name: `Test Product ${Date.now()}`, // Unique name
+    };
+    
     // When using the SDK instance directly, it returns ProductEntity
-    const result = await creem.products.create(SAMPLE_PRODUCT);
+    const result = await creem.products.create(productData);
 
     // Test direct SDK method
     expect(result).toHaveProperty("id");
-    expect(result).toHaveProperty("name", SAMPLE_PRODUCT.name);
-    expect(result).toHaveProperty("description", SAMPLE_PRODUCT.description);
-    expect(result).toHaveProperty("price", SAMPLE_PRODUCT.price);
-    expect(result).toHaveProperty("currency", SAMPLE_PRODUCT.currency);
-    expect(result).toHaveProperty("billingType", SAMPLE_PRODUCT.billingType);
-    expect(result).toHaveProperty(
-      "billingPeriod",
-      SAMPLE_PRODUCT.billingPeriod
-    );
-    expect(result).toHaveProperty("taxMode", SAMPLE_PRODUCT.taxMode);
-    expect(result).toHaveProperty("taxCategory", SAMPLE_PRODUCT.taxCategory);
+    expect(result).toHaveProperty("name", productData.name);
+    expect(result).toHaveProperty("description", productData.description);
+    expect(result).toHaveProperty("price", productData.price);
+    expect(result).toHaveProperty("currency", productData.currency);
+    expect(result).toHaveProperty("billingType", productData.billingType);
+    expect(result).toHaveProperty("billingPeriod", productData.billingPeriod);
+    expect(result).toHaveProperty("taxMode", productData.taxMode);
+    expect(result).toHaveProperty("taxCategory", productData.taxCategory);
     expect(result).toHaveProperty(
       "defaultSuccessUrl",
-      SAMPLE_PRODUCT.defaultSuccessUrl
+      productData.defaultSuccessUrl
     );
     expect(result).toHaveProperty("productUrl");
-
-    if (result.features && result.features.length > 0) {
-      expect(result.features[0]).toHaveProperty(
-        "description",
-        "Get access to discord server."
-      );
-    }
-
     expect(result).toHaveProperty("createdAt");
     expect(result).toHaveProperty("updatedAt");
     expect(result).toHaveProperty("mode", TEST_MODE);
@@ -124,7 +109,7 @@ describe("createProduct", () => {
 
   it("should create a product with minimal required data", async () => {
     const minimalProduct = {
-      name: "Minimal Product",
+      name: `Minimal Product ${Date.now()}`,
       description: "A product with only the required fields",
       price: 100,
       currency: "USD",

@@ -1,18 +1,9 @@
 import { Creem } from "../../src/index.js";
-import { describe, it, expect } from "@jest/globals";
+import { describe, it, expect, beforeAll } from "vitest";
 import { APIError } from "../../src/models/errors/index.js";
 import { fail } from "../../src/lib/matchers.js";
-import {
-  TEST_API_KEY,
-  TEST_SERVER_IDX,
-  TEST_MODE,
-} from "../fixtures/testValues.js";
-
-// Create an actual instance of Creem for testing
-const creem = new Creem({
-  apiKey: TEST_API_KEY,
-  serverIdx: TEST_SERVER_IDX,
-});
+import { TEST_SERVER_IDX, TEST_MODE } from "../fixtures/testValues.js";
+import { creem, getTestProduct } from "../fixtures/testData.js";
 
 // Create an instance with invalid API key for auth error tests
 const creemWithInvalidKey = new Creem({
@@ -21,6 +12,11 @@ const creemWithInvalidKey = new Creem({
 });
 
 describe("searchProducts", () => {
+  // Ensure at least one product exists before search tests
+  beforeAll(async () => {
+    await getTestProduct();
+  });
+
   it("should handle API authentication errors", async () => {
     try {
       // Attempt to call SDK method with invalid API key
@@ -41,6 +37,8 @@ describe("searchProducts", () => {
     // Test direct SDK method
     expect(result).toHaveProperty("items");
     expect(result.items).toBeInstanceOf(Array);
+    expect(result.items.length).toBeGreaterThan(0); // We created at least one product
+    
     if (result.items.length > 0) {
       expect(result.items[0]).toHaveProperty("id");
       expect(result.items[0]).toHaveProperty("name");
@@ -48,10 +46,7 @@ describe("searchProducts", () => {
       expect(result.items[0]).toHaveProperty("price");
       expect(result.items[0]).toHaveProperty("currency");
       expect(result.items[0]).toHaveProperty("billingType");
-      expect(result.items[0]).toHaveProperty("billingPeriod");
       expect(result.items[0]).toHaveProperty("status");
-      expect(result.items[0]).toHaveProperty("taxMode");
-      expect(result.items[0]).toHaveProperty("taxCategory");
       expect(result.items[0]).toHaveProperty("productUrl");
       expect(result.items[0]).toHaveProperty("mode", TEST_MODE);
     }

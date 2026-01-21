@@ -1,13 +1,7 @@
 {
   "name": "creem",
-  "version": "0.13.1",
+  "version": "0.13.5",
   "author": "Speakeasy",
-  "scripts": {
-    "lint": "eslint --cache --max-warnings=0 src",
-    "build:mcp": "bun src/mcp-server/build.mts",
-    "build": "npm run build:mcp && tshy",
-    "prepublishOnly": "npm run build"
-  },
   "type": "module",
   "bin": {
     "mcp": "bin/mcp-server.js"
@@ -28,24 +22,29 @@
     }
   },
   "sideEffects": false,
+  "scripts": {
+    "lint": "eslint --cache --max-warnings=0 src",
+    "build:mcp": "bun src/mcp-server/build.mts",
+    "build": "npm run build:mcp && tshy",
+    "prepublishOnly": "npm run build",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
   "peerDependencies": {},
   "devDependencies": {
     "@eslint/js": "^9.19.0",
-    "@jest/globals": "^29.7.0",
     "@stricli/core": "^1.1.1",
     "@types/express": "^4.17.21",
-    "@types/jest": "^29.5.14",
     "bun": "1.2.17",
     "bun-types": "1.2.17",
     "dotenv": "^16.5.0",
     "eslint": "^9.19.0",
     "express": "^4.21.2",
     "globals": "^15.14.0",
-    "jest": "^29.7.0",
-    "ts-jest": "^29.3.2",
     "tshy": "^2.0.0",
     "typescript": "~5.8.3",
-    "typescript-eslint": "^8.26.0"
+    "typescript-eslint": "^8.26.0",
+    "vitest": "^3.0.0"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.25.2",

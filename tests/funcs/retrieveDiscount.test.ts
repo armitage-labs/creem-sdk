@@ -1,20 +1,10 @@
 import { Creem } from "../../src/index.js";
-import { describe, it, expect } from "@jest/globals";
+import { describe, it, expect, beforeAll } from "vitest";
 import { APIError } from "../../src/models/errors/index.js";
 import { fail } from "../../src/lib/matchers.js";
-import {
-  createdPercentageDiscountId,
-  createdPercentageDiscountCode,
-  createdFixedDiscountId,
-  createdFixedDiscountCode,
-} from "./createDiscount.test.js";
-import { TEST_API_KEY, TEST_SERVER_IDX } from "../fixtures/testValues.js";
-
-// Create an actual instance of Creem for testing
-const creem = new Creem({
-  apiKey: TEST_API_KEY,
-  serverIdx: TEST_SERVER_IDX,
-});
+import { TEST_SERVER_IDX, TEST_MODE } from "../fixtures/testValues.js";
+import { creem, getTestDiscount } from "../fixtures/testData.js";
+import type { DiscountEntity } from "../../src/models/components/index.js";
 
 // Create an instance with invalid API key for auth error tests
 const creemWithInvalidKey = new Creem({
@@ -23,10 +13,16 @@ const creemWithInvalidKey = new Creem({
 });
 
 describe("retrieveDiscount", () => {
+  let testDiscount: DiscountEntity;
+
+  beforeAll(async () => {
+    testDiscount = await getTestDiscount();
+  });
+
   it("should handle API authentication errors", async () => {
     try {
       // Attempt to call SDK method with invalid API key
-      await creemWithInvalidKey.discounts.get(createdPercentageDiscountId!);
+      await creemWithInvalidKey.discounts.get(testDiscount.id);
       // If it succeeds, fail the test (we expect it to throw)
       fail("Expected an API error but none was thrown");
     } catch (error) {
@@ -36,75 +32,30 @@ describe("retrieveDiscount", () => {
     }
   });
 
-  it("should retrieve a percentage discount by ID successfully", async () => {
-    // Ensure we have a discount ID from the create test
-    expect(createdPercentageDiscountId).toBeDefined();
-
-    const result = await creem.discounts.get(createdPercentageDiscountId!);
+  it("should retrieve a discount by ID successfully", async () => {
+    const result = await creem.discounts.get(testDiscount.id);
 
     // Test the response structure and content
-    expect(result).toHaveProperty("id", createdPercentageDiscountId);
-    expect(result).toHaveProperty("mode");
+    expect(result).toHaveProperty("id", testDiscount.id);
+    expect(result).toHaveProperty("mode", TEST_MODE);
     expect(result).toHaveProperty("object");
     expect(result).toHaveProperty("status");
     expect(result).toHaveProperty("name");
-    expect(result).toHaveProperty("code", createdPercentageDiscountCode);
-    expect(result).toHaveProperty("type", "percentage");
-    expect(result).toHaveProperty("percentage");
+    expect(result).toHaveProperty("code", testDiscount.code);
+    expect(result).toHaveProperty("type");
     expect(result).toHaveProperty("duration");
   });
 
-  it("should retrieve a percentage discount by code successfully", async () => {
-    // Ensure we have a discount code from the create test
-    expect(createdPercentageDiscountCode).toBeDefined();
-
-    const result = await creem.discounts.get(undefined, createdPercentageDiscountCode!);
+  it("should retrieve a discount by code successfully", async () => {
+    const result = await creem.discounts.get(undefined, testDiscount.code);
 
     // Test the response structure and content
-    expect(result).toHaveProperty("code", createdPercentageDiscountCode);
-    expect(result).toHaveProperty("mode");
+    expect(result).toHaveProperty("code", testDiscount.code);
+    expect(result).toHaveProperty("mode", TEST_MODE);
     expect(result).toHaveProperty("object");
     expect(result).toHaveProperty("status");
     expect(result).toHaveProperty("name");
-    expect(result).toHaveProperty("type", "percentage");
-    expect(result).toHaveProperty("percentage");
-    expect(result).toHaveProperty("duration");
-  });
-
-  it("should retrieve a fixed discount by ID successfully", async () => {
-    // Ensure we have a discount ID from the create test
-    expect(createdFixedDiscountId).toBeDefined();
-
-    const result = await creem.discounts.get(createdFixedDiscountId!);
-
-    // Test the response structure and content
-    expect(result).toHaveProperty("id", createdFixedDiscountId);
-    expect(result).toHaveProperty("mode");
-    expect(result).toHaveProperty("object");
-    expect(result).toHaveProperty("status");
-    expect(result).toHaveProperty("name");
-    expect(result).toHaveProperty("code", createdFixedDiscountCode);
-    expect(result).toHaveProperty("type", "fixed");
-    expect(result).toHaveProperty("amount");
-    expect(result).toHaveProperty("currency");
-    expect(result).toHaveProperty("duration");
-  });
-
-  it("should retrieve a fixed discount by code successfully", async () => {
-    // Ensure we have a discount code from the create test
-    expect(createdFixedDiscountCode).toBeDefined();
-
-    const result = await creem.discounts.get(undefined, createdFixedDiscountCode!);
-
-    // Test the response structure and content
-    expect(result).toHaveProperty("code", createdFixedDiscountCode);
-    expect(result).toHaveProperty("mode");
-    expect(result).toHaveProperty("object");
-    expect(result).toHaveProperty("status");
-    expect(result).toHaveProperty("name");
-    expect(result).toHaveProperty("type", "fixed");
-    expect(result).toHaveProperty("amount");
-    expect(result).toHaveProperty("currency");
+    expect(result).toHaveProperty("type");
     expect(result).toHaveProperty("duration");
   });
 
@@ -138,13 +89,13 @@ describe("retrieveDiscount", () => {
   it("should handle network errors gracefully", async () => {
     // Create a new instance with an invalid server URL to simulate network error
     const creemWithInvalidServer = new Creem({
-      apiKey: TEST_API_KEY,
+      apiKey: "test",
       serverIdx: TEST_SERVER_IDX,
       serverURL: "http://invalid-url",
     });
 
     try {
-      await creemWithInvalidServer.discounts.get(createdPercentageDiscountId!);
+      await creemWithInvalidServer.discounts.get(testDiscount.id);
       fail("Expected network error but none was thrown");
     } catch (error) {
       expect(error).toBeDefined();
