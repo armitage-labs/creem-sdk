@@ -14,7 +14,7 @@ targets:
         sourceRevisionDigest: sha256:90a430baa3189ece9613f5d5d44ed4683a560228df160d69c3d7b99172337170
         sourceBlobDigest: sha256:94c6b8302931f27bb3e6cfe520a18033f56fcce528ce42f7995f1aa947e9302e
         codeSamplesNamespace: creem-api-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:2cc1a688b657caffa21722ab719246be9fb82035f04a3d022bd8f1b65e9fd8a9
+        codeSamplesRevisionDigest: sha256:cae33fcb93eba27075cdca78dbcaabcf9fe495f150eee444790de6123d414308
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
