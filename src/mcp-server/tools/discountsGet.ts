@@ -13,7 +13,9 @@ const args = {
 
 export const tool$discountsGet: ToolDefinition<typeof args> = {
   name: "discounts-get",
-  description: `Retrieve discount`,
+  description: `Retrieve discount
+
+Retrieve discount code details by ID or code. Check usage limits, expiration, and discount amount.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await discountsGet(

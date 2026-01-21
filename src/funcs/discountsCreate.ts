@@ -26,6 +26,9 @@ import { Result } from "../types/fp.js";
 
 /**
  * Create a discount.
+ *
+ * @remarks
+ * Create promotional discount codes for products. Set percentage or fixed amount discounts with expiration dates.
  */
 export function discountsCreate(
   client: CreemCore,

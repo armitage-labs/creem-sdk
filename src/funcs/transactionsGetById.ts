@@ -27,6 +27,9 @@ import { Result } from "../types/fp.js";
 
 /**
  * Get a transaction by ID
+ *
+ * @remarks
+ * Retrieve a single transaction by ID. View payment details, status, and associated order information.
  */
 export function transactionsGetById(
   client: CreemCore,

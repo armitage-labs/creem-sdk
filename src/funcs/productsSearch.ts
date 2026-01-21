@@ -27,6 +27,9 @@ import { Result } from "../types/fp.js";
 
 /**
  * List all products
+ *
+ * @remarks
+ * Search and retrieve a paginated list of products. Filter by status, billing type, and other criteria.
  */
 export function productsSearch(
   client: CreemCore,

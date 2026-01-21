@@ -12,7 +12,9 @@ const args = {
 
 export const tool$subscriptionsGet: ToolDefinition<typeof args> = {
   name: "subscriptions-get",
-  description: `Retrieve a subscription`,
+  description: `Retrieve a subscription
+
+Retrieve subscription details by ID. View status, billing cycle, customer info, and payment history.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await subscriptionsGet(

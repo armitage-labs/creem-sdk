@@ -11,6 +11,9 @@ import { unwrapAsync } from "../types/fp.js";
 export class Transactions extends ClientSDK {
   /**
    * Get a transaction by ID
+   *
+   * @remarks
+   * Retrieve a single transaction by ID. View payment details, status, and associated order information.
    */
   async getById(
     transactionId: string,
@@ -25,6 +28,9 @@ export class Transactions extends ClientSDK {
 
   /**
    * List all transactions
+   *
+   * @remarks
+   * Search and retrieve payment transactions. Filter by customer, product, date range, and status.
    */
   async search(
     customerId?: string | undefined,

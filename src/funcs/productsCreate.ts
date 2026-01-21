@@ -26,6 +26,9 @@ import { Result } from "../types/fp.js";
 
 /**
  * Creates a new product.
+ *
+ * @remarks
+ * Create a new product for one-time payments or subscriptions. Configure pricing, billing cycles, and features.
  */
 export function productsCreate(
   client: CreemCore,

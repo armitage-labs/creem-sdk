@@ -26,6 +26,9 @@ import { Result } from "../types/fp.js";
 
 /**
  * Generate Customer Links
+ *
+ * @remarks
+ * Generate a customer portal link for managing billing, subscriptions, and payment methods.
  */
 export function customersGenerateBillingLinks(
   client: CreemCore,

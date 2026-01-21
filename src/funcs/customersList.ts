@@ -27,6 +27,9 @@ import { Result } from "../types/fp.js";
 
 /**
  * List all customers
+ *
+ * @remarks
+ * Retrieve a paginated list of all customers. Filter and search through your customer base.
  */
 export function customersList(
   client: CreemCore,

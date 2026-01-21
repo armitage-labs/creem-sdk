@@ -13,7 +13,9 @@ const args = {
 
 export const tool$customersRetrieve: ToolDefinition<typeof args> = {
   name: "customers-retrieve",
-  description: `Retrieve a customer`,
+  description: `Retrieve a customer
+
+Retrieve customer information by ID or email. View purchase history, subscriptions, and profile details.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await customersRetrieve(

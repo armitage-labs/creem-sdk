@@ -37,13 +37,3 @@ jobs:
         env:
           TEST_API_KEY: ${{ secrets.TEST_API_KEY }}
         run: yarn test
-
-      - name: Upload test results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results-node-${{ matrix.node-version }}
-          path: |
-            coverage/
-            test-results/
-          retention-days: 7

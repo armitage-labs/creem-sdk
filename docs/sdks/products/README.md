@@ -10,7 +10,7 @@
 
 ## get
 
-Retrieve a product
+Retrieve product details by ID. View pricing, billing type, status, and product configuration.
 
 ### Example Usage
 
@@ -79,7 +79,7 @@ run();
 
 ## create
 
-Creates a new product.
+Create a new product for one-time payments or subscriptions. Configure pricing, billing cycles, and features.
 
 ### Example Usage
 
@@ -196,7 +196,7 @@ run();
 
 ## search
 
-List all products
+Search and retrieve a paginated list of products. Filter by status, billing type, and other criteria.
 
 ### Example Usage
 

@@ -12,7 +12,9 @@ const args = {
 
 export const tool$customersGenerateBillingLinks: ToolDefinition<typeof args> = {
   name: "customers-generate-billing-links",
-  description: `Generate Customer Links`,
+  description: `Generate Customer Links
+
+Generate a customer portal link for managing billing, subscriptions, and payment methods.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await customersGenerateBillingLinks(

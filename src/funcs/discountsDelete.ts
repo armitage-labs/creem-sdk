@@ -27,6 +27,9 @@ import { Result } from "../types/fp.js";
 
 /**
  * Delete a discount.
+ *
+ * @remarks
+ * Permanently delete a discount code. Prevent further usage of the discount.
  */
 export function discountsDelete(
   client: CreemCore,

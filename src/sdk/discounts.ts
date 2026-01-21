@@ -12,6 +12,9 @@ import { unwrapAsync } from "../types/fp.js";
 export class Discounts extends ClientSDK {
   /**
    * Retrieve discount
+   *
+   * @remarks
+   * Retrieve discount code details by ID or code. Check usage limits, expiration, and discount amount.
    */
   async get(
     discountId?: string | undefined,
@@ -28,6 +31,9 @@ export class Discounts extends ClientSDK {
 
   /**
    * Create a discount.
+   *
+   * @remarks
+   * Create promotional discount codes for products. Set percentage or fixed amount discounts with expiration dates.
    */
   async create(
     request: components.CreateDiscountRequestEntity,
@@ -42,6 +48,9 @@ export class Discounts extends ClientSDK {
 
   /**
    * Delete a discount.
+   *
+   * @remarks
+   * Permanently delete a discount code. Prevent further usage of the discount.
    */
   async delete(
     id: string,

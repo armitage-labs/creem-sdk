@@ -27,6 +27,9 @@ import { Result } from "../types/fp.js";
 
 /**
  * Pause a subscription.
+ *
+ * @remarks
+ * Temporarily pause a subscription. Stop billing while retaining the subscription for later resumption.
  */
 export function subscriptionsPause(
   client: CreemCore,

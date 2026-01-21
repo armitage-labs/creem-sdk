@@ -15,6 +15,9 @@ import { unwrapAsync } from "../types/fp.js";
 export class Subscriptions extends ClientSDK {
   /**
    * Retrieve a subscription
+   *
+   * @remarks
+   * Retrieve subscription details by ID. View status, billing cycle, customer info, and payment history.
    */
   async get(
     subscriptionId: string,
@@ -29,6 +32,9 @@ export class Subscriptions extends ClientSDK {
 
   /**
    * Cancel a subscription.
+   *
+   * @remarks
+   * Cancel an active subscription immediately or schedule cancellation at period end.
    */
   async cancel(
     id: string,
@@ -45,6 +51,9 @@ export class Subscriptions extends ClientSDK {
 
   /**
    * Update a subscription.
+   *
+   * @remarks
+   * Modify subscription details like units, seats, or add-ons. Support proration and immediate billing options.
    */
   async update(
     id: string,
@@ -61,6 +70,9 @@ export class Subscriptions extends ClientSDK {
 
   /**
    * Upgrade a subscription to a different product
+   *
+   * @remarks
+   * Upgrade a subscription to a different product or plan. Handle proration and plan changes seamlessly.
    */
   async upgrade(
     id: string,
@@ -78,6 +90,9 @@ export class Subscriptions extends ClientSDK {
 
   /**
    * Pause a subscription.
+   *
+   * @remarks
+   * Temporarily pause a subscription. Stop billing while retaining the subscription for later resumption.
    */
   async pause(
     id: string,
@@ -92,6 +107,9 @@ export class Subscriptions extends ClientSDK {
 
   /**
    * Resume a paused subscription.
+   *
+   * @remarks
+   * Resume a previously paused subscription. Restart billing and restore access to the subscription.
    */
   async resume(
     id: string,

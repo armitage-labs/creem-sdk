@@ -12,7 +12,9 @@ const args = {
 
 export const tool$subscriptionsPause: ToolDefinition<typeof args> = {
   name: "subscriptions-pause",
-  description: `Pause a subscription.`,
+  description: `Pause a subscription.
+
+Temporarily pause a subscription. Stop billing while retaining the subscription for later resumption.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await subscriptionsPause(

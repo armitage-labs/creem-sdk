@@ -12,7 +12,9 @@ const args = {
 
 export const tool$discountsDelete: ToolDefinition<typeof args> = {
   name: "discounts-delete",
-  description: `Delete a discount.`,
+  description: `Delete a discount.
+
+Permanently delete a discount code. Prevent further usage of the discount.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await discountsDelete(

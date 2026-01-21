@@ -13,7 +13,7 @@
 
 ## get
 
-Retrieve a subscription
+Retrieve subscription details by ID. View status, billing cycle, customer info, and payment history.
 
 ### Example Usage
 
@@ -82,7 +82,7 @@ run();
 
 ## cancel
 
-Cancel a subscription.
+Cancel an active subscription immediately or schedule cancellation at period end.
 
 ### Example Usage
 
@@ -158,7 +158,7 @@ run();
 
 ## update
 
-Update a subscription.
+Modify subscription details like units, seats, or add-ons. Support proration and immediate billing options.
 
 ### Example Usage
 
@@ -228,7 +228,7 @@ run();
 
 ## upgrade
 
-Upgrade a subscription to a different product
+Upgrade a subscription to a different product or plan. Handle proration and plan changes seamlessly.
 
 ### Example Usage
 
@@ -302,7 +302,7 @@ run();
 
 ## pause
 
-Pause a subscription.
+Temporarily pause a subscription. Stop billing while retaining the subscription for later resumption.
 
 ### Example Usage
 
@@ -371,7 +371,7 @@ run();
 
 ## resume
 
-Resume a paused subscription.
+Resume a previously paused subscription. Restart billing and restore access to the subscription.
 
 ### Example Usage
 

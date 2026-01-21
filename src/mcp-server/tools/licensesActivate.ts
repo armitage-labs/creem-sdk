@@ -12,7 +12,9 @@ const args = {
 
 export const tool$licensesActivate: ToolDefinition<typeof args> = {
   name: "licenses-activate",
-  description: `Activates a license key.`,
+  description: `Activates a license key.
+
+Activate a license key for a specific device or instance. Register new activations and track usage limits.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await licensesActivate(

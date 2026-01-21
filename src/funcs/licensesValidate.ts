@@ -26,6 +26,9 @@ import { Result } from "../types/fp.js";
 
 /**
  * Validates a license key or instance.
+ *
+ * @remarks
+ * Verify if a license key is valid and active for a specific instance. Check activation status and expiration.
  */
 export function licensesValidate(
   client: CreemCore,

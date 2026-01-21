@@ -31,7 +31,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 0.13.5
+  version: 0.13.6
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
@@ -41,7 +41,7 @@ typescript:
     peerDependencies: {}
   additionalPackageJSON: {}
   additionalScripts:
-    test: vitest run,
+    test: vitest run
     test:watch: vitest
   alwaysIncludeInboundAndOutbound: false
   author: Speakeasy

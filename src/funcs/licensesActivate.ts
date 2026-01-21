@@ -26,6 +26,9 @@ import { Result } from "../types/fp.js";
 
 /**
  * Activates a license key.
+ *
+ * @remarks
+ * Activate a license key for a specific device or instance. Register new activations and track usage limits.
  */
 export function licensesActivate(
   client: CreemCore,

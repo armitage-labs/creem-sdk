@@ -9,7 +9,7 @@
 
 ## retrieve
 
-Retrieve a checkout session.
+Retrieve details of a checkout session by ID. View status, customer info, and payment details.
 
 ### Example Usage
 
@@ -78,7 +78,7 @@ run();
 
 ## create
 
-Creates a new checkout session.
+Create a new checkout session to accept one-time payments or start subscriptions. Returns a checkout URL to redirect customers.
 
 ### Example Usage
 

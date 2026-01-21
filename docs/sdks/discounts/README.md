@@ -10,7 +10,7 @@
 
 ## get
 
-Retrieve discount
+Retrieve discount code details by ID or code. Check usage limits, expiration, and discount amount.
 
 ### Example Usage
 
@@ -80,7 +80,7 @@ run();
 
 ## create
 
-Create a discount.
+Create promotional discount codes for products. Set percentage or fixed amount discounts with expiration dates.
 
 ### Example Usage
 
@@ -179,7 +179,7 @@ run();
 
 ## delete
 
-Delete a discount.
+Permanently delete a discount code. Prevent further usage of the discount.
 
 ### Example Usage
 

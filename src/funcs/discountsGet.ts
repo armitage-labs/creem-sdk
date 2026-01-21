@@ -27,6 +27,9 @@ import { Result } from "../types/fp.js";
 
 /**
  * Retrieve discount
+ *
+ * @remarks
+ * Retrieve discount code details by ID or code. Check usage limits, expiration, and discount amount.
  */
 export function discountsGet(
   client: CreemCore,

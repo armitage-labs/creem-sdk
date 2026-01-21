@@ -13,7 +13,9 @@ const args = {
 
 export const tool$customersList: ToolDefinition<typeof args> = {
   name: "customers-list",
-  description: `List all customers`,
+  description: `List all customers
+
+Retrieve a paginated list of all customers. Filter and search through your customer base.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await customersList(

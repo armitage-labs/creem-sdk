@@ -12,7 +12,9 @@ const args = {
 
 export const tool$licensesValidate: ToolDefinition<typeof args> = {
   name: "licenses-validate",
-  description: `Validates a license key or instance.`,
+  description: `Validates a license key or instance.
+
+Verify if a license key is valid and active for a specific instance. Check activation status and expiration.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await licensesValidate(

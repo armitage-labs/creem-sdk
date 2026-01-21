@@ -27,6 +27,9 @@ import { Result } from "../types/fp.js";
 
 /**
  * Cancel a subscription.
+ *
+ * @remarks
+ * Cancel an active subscription immediately or schedule cancellation at period end.
  */
 export function subscriptionsCancel(
   client: CreemCore,

@@ -12,7 +12,9 @@ const args = {
 
 export const tool$checkoutsCreate: ToolDefinition<typeof args> = {
   name: "checkouts-create",
-  description: `Creates a new checkout session.`,
+  description: `Creates a new checkout session.
+
+Create a new checkout session to accept one-time payments or start subscriptions. Returns a checkout URL to redirect customers.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await checkoutsCreate(

@@ -10,7 +10,7 @@
 
 ## activate
 
-Activates a license key.
+Activate a license key for a specific device or instance. Register new activations and track usage limits.
 
 ### Example Usage
 
@@ -85,7 +85,7 @@ run();
 
 ## deactivate
 
-Deactivate a license key instance.
+Remove a device activation from a license key. Free up activation slots for new devices.
 
 ### Example Usage
 
@@ -160,7 +160,7 @@ run();
 
 ## validate
 
-Validates a license key or instance.
+Verify if a license key is valid and active for a specific instance. Check activation status and expiration.
 
 ### Example Usage
 

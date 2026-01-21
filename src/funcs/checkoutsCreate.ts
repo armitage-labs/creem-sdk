@@ -26,6 +26,9 @@ import { Result } from "../types/fp.js";
 
 /**
  * Creates a new checkout session.
+ *
+ * @remarks
+ * Create a new checkout session to accept one-time payments or start subscriptions. Returns a checkout URL to redirect customers.
  */
 export function checkoutsCreate(
   client: CreemCore,

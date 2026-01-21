@@ -27,6 +27,9 @@ import { Result } from "../types/fp.js";
 
 /**
  * Retrieve a product
+ *
+ * @remarks
+ * Retrieve product details by ID. View pricing, billing type, status, and product configuration.
  */
 export function productsGet(
   client: CreemCore,

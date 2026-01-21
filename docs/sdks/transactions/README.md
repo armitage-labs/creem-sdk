@@ -9,7 +9,7 @@
 
 ## getById
 
-Get a transaction by ID
+Retrieve a single transaction by ID. View payment details, status, and associated order information.
 
 ### Example Usage
 
@@ -78,7 +78,7 @@ run();
 
 ## search
 
-List all transactions
+Search and retrieve payment transactions. Filter by customer, product, date range, and status.
 
 ### Example Usage
 

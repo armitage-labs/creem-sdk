@@ -13,7 +13,9 @@ const args = {
 
 export const tool$productsSearch: ToolDefinition<typeof args> = {
   name: "products-search",
-  description: `List all products`,
+  description: `List all products
+
+Search and retrieve a paginated list of products. Filter by status, billing type, and other criteria.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await productsSearch(

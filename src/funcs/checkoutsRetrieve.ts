@@ -27,6 +27,9 @@ import { Result } from "../types/fp.js";
 
 /**
  * Retrieve a checkout session.
+ *
+ * @remarks
+ * Retrieve details of a checkout session by ID. View status, customer info, and payment details.
  */
 export function checkoutsRetrieve(
   client: CreemCore,

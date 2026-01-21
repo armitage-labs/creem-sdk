@@ -12,6 +12,9 @@ import { unwrapAsync } from "../types/fp.js";
 export class Customers extends ClientSDK {
   /**
    * List all customers
+   *
+   * @remarks
+   * Retrieve a paginated list of all customers. Filter and search through your customer base.
    */
   async list(
     pageNumber?: number | undefined,
@@ -28,6 +31,9 @@ export class Customers extends ClientSDK {
 
   /**
    * Retrieve a customer
+   *
+   * @remarks
+   * Retrieve customer information by ID or email. View purchase history, subscriptions, and profile details.
    */
   async retrieve(
     customerId?: string | undefined,
@@ -44,6 +50,9 @@ export class Customers extends ClientSDK {
 
   /**
    * Generate Customer Links
+   *
+   * @remarks
+   * Generate a customer portal link for managing billing, subscriptions, and payment methods.
    */
   async generateBillingLinks(
     request: components.CreateCustomerPortalLinkRequestEntity,

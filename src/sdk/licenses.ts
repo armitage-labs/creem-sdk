@@ -12,6 +12,9 @@ import { unwrapAsync } from "../types/fp.js";
 export class Licenses extends ClientSDK {
   /**
    * Activates a license key.
+   *
+   * @remarks
+   * Activate a license key for a specific device or instance. Register new activations and track usage limits.
    */
   async activate(
     request: components.ActivateLicenseRequestEntity,
@@ -26,6 +29,9 @@ export class Licenses extends ClientSDK {
 
   /**
    * Deactivate a license key instance.
+   *
+   * @remarks
+   * Remove a device activation from a license key. Free up activation slots for new devices.
    */
   async deactivate(
     request: components.DeactivateLicenseRequestEntity,
@@ -40,6 +46,9 @@ export class Licenses extends ClientSDK {
 
   /**
    * Validates a license key or instance.
+   *
+   * @remarks
+   * Verify if a license key is valid and active for a specific instance. Check activation status and expiration.
    */
   async validate(
     request: components.ValidateLicenseRequestEntity,

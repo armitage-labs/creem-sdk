@@ -27,6 +27,9 @@ import { Result } from "../types/fp.js";
 
 /**
  * Upgrade a subscription to a different product
+ *
+ * @remarks
+ * Upgrade a subscription to a different product or plan. Handle proration and plan changes seamlessly.
  */
 export function subscriptionsUpgrade(
   client: CreemCore,

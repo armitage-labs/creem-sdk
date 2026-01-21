@@ -27,6 +27,9 @@ import { Result } from "../types/fp.js";
 
 /**
  * Retrieve a subscription
+ *
+ * @remarks
+ * Retrieve subscription details by ID. View status, billing cycle, customer info, and payment history.
  */
 export function subscriptionsGet(
   client: CreemCore,

@@ -12,7 +12,9 @@ const args = {
 
 export const tool$transactionsGetById: ToolDefinition<typeof args> = {
   name: "transactions-get-by-id",
-  description: `Get a transaction by ID`,
+  description: `Get a transaction by ID
+
+Retrieve a single transaction by ID. View payment details, status, and associated order information.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await transactionsGetById(

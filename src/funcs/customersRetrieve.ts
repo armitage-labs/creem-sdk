@@ -27,6 +27,9 @@ import { Result } from "../types/fp.js";
 
 /**
  * Retrieve a customer
+ *
+ * @remarks
+ * Retrieve customer information by ID or email. View purchase history, subscriptions, and profile details.
  */
 export function customersRetrieve(
   client: CreemCore,

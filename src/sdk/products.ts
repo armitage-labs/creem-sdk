@@ -12,6 +12,9 @@ import { unwrapAsync } from "../types/fp.js";
 export class Products extends ClientSDK {
   /**
    * Retrieve a product
+   *
+   * @remarks
+   * Retrieve product details by ID. View pricing, billing type, status, and product configuration.
    */
   async get(
     productId: string,
@@ -26,6 +29,9 @@ export class Products extends ClientSDK {
 
   /**
    * Creates a new product.
+   *
+   * @remarks
+   * Create a new product for one-time payments or subscriptions. Configure pricing, billing cycles, and features.
    */
   async create(
     request: components.CreateProductRequestEntity,
@@ -40,6 +46,9 @@ export class Products extends ClientSDK {
 
   /**
    * List all products
+   *
+   * @remarks
+   * Search and retrieve a paginated list of products. Filter by status, billing type, and other criteria.
    */
   async search(
     pageNumber?: number | undefined,

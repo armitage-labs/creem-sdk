@@ -12,7 +12,9 @@ const args = {
 
 export const tool$checkoutsRetrieve: ToolDefinition<typeof args> = {
   name: "checkouts-retrieve",
-  description: `Retrieve a checkout session.`,
+  description: `Retrieve a checkout session.
+
+Retrieve details of a checkout session by ID. View status, customer info, and payment details.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await checkoutsRetrieve(

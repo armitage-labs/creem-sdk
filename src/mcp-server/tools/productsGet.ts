@@ -12,7 +12,9 @@ const args = {
 
 export const tool$productsGet: ToolDefinition<typeof args> = {
   name: "products-get",
-  description: `Retrieve a product`,
+  description: `Retrieve a product
+
+Retrieve product details by ID. View pricing, billing type, status, and product configuration.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await productsGet(

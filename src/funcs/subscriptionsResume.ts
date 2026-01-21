@@ -27,6 +27,9 @@ import { Result } from "../types/fp.js";
 
 /**
  * Resume a paused subscription.
+ *
+ * @remarks
+ * Resume a previously paused subscription. Restart billing and restore access to the subscription.
  */
 export function subscriptionsResume(
   client: CreemCore,

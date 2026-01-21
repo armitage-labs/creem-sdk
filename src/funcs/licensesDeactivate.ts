@@ -26,6 +26,9 @@ import { Result } from "../types/fp.js";
 
 /**
  * Deactivate a license key instance.
+ *
+ * @remarks
+ * Remove a device activation from a license key. Free up activation slots for new devices.
  */
 export function licensesDeactivate(
   client: CreemCore,

@@ -11,6 +11,9 @@ import { unwrapAsync } from "../types/fp.js";
 export class Checkouts extends ClientSDK {
   /**
    * Retrieve a checkout session.
+   *
+   * @remarks
+   * Retrieve details of a checkout session by ID. View status, customer info, and payment details.
    */
   async retrieve(
     checkoutId: string,
@@ -25,6 +28,9 @@ export class Checkouts extends ClientSDK {
 
   /**
    * Creates a new checkout session.
+   *
+   * @remarks
+   * Create a new checkout session to accept one-time payments or start subscriptions. Returns a checkout URL to redirect customers.
    */
   async create(
     request: components.CreateCheckoutRequest,

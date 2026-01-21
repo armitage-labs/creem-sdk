@@ -27,6 +27,9 @@ import { Result } from "../types/fp.js";
 
 /**
  * List all transactions
+ *
+ * @remarks
+ * Search and retrieve payment transactions. Filter by customer, product, date range, and status.
  */
 export function transactionsSearch(
   client: CreemCore,

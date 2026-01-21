@@ -10,7 +10,7 @@
 
 ## list
 
-List all customers
+Retrieve a paginated list of all customers. Filter and search through your customer base.
 
 ### Example Usage
 
@@ -80,7 +80,7 @@ run();
 
 ## retrieve
 
-Retrieve a customer
+Retrieve customer information by ID or email. View purchase history, subscriptions, and profile details.
 
 ### Example Usage
 
@@ -150,7 +150,7 @@ run();
 
 ## generateBillingLinks
 
-Generate Customer Links
+Generate a customer portal link for managing billing, subscriptions, and payment methods.
 
 ### Example Usage
 

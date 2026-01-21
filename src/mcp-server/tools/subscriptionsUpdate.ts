@@ -15,7 +15,9 @@ const args = {
 
 export const tool$subscriptionsUpdate: ToolDefinition<typeof args> = {
   name: "subscriptions-update",
-  description: `Update a subscription.`,
+  description: `Update a subscription.
+
+Modify subscription details like units, seats, or add-ons. Support proration and immediate billing options.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await subscriptionsUpdate(

@@ -27,6 +27,9 @@ import { Result } from "../types/fp.js";
 
 /**
  * Update a subscription.
+ *
+ * @remarks
+ * Modify subscription details like units, seats, or add-ons. Support proration and immediate billing options.
  */
 export function subscriptionsUpdate(
   client: CreemCore,

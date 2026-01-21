@@ -12,7 +12,9 @@ const args = {
 
 export const tool$discountsCreate: ToolDefinition<typeof args> = {
   name: "discounts-create",
-  description: `Create a discount.`,
+  description: `Create a discount.
+
+Create promotional discount codes for products. Set percentage or fixed amount discounts with expiration dates.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await discountsCreate(

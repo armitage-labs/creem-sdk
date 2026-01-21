@@ -5,6 +5,7 @@
       "get": {
         "operationId": "retrieveProduct",
         "summary": "Retrieve a product",
+        "description": "Retrieve product details by ID. View pricing, billing type, status, and product configuration.",
         "parameters": [
           {
             "name": "product_id",
@@ -50,6 +51,7 @@
       "post": {
         "operationId": "createProduct",
         "summary": "Creates a new product.",
+        "description": "Create a new product for one-time payments or subscriptions. Configure pricing, billing cycles, and features.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -97,6 +99,7 @@
       "get": {
         "operationId": "searchProducts",
         "summary": "List all products",
+        "description": "Search and retrieve a paginated list of products. Filter by status, billing type, and other criteria.",
         "parameters": [
           {
             "name": "page_number",
@@ -152,6 +155,7 @@
       "get": {
         "operationId": "listCustomers",
         "summary": "List all customers",
+        "description": "Retrieve a paginated list of all customers. Filter and search through your customer base.",
         "parameters": [
           {
             "name": "page_number",
@@ -207,6 +211,7 @@
       "get": {
         "operationId": "retrieveCustomer",
         "summary": "Retrieve a customer",
+        "description": "Retrieve customer information by ID or email. View purchase history, subscriptions, and profile details.",
         "parameters": [
           {
             "name": "customer_id",
@@ -262,6 +267,7 @@
       "post": {
         "operationId": "generateCustomerLinks",
         "summary": "Generate Customer Links",
+        "description": "Generate a customer portal link for managing billing, subscriptions, and payment methods.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -309,6 +315,7 @@
       "get": {
         "operationId": "retrieveSubscription",
         "summary": "Retrieve a subscription",
+        "description": "Retrieve subscription details by ID. View status, billing cycle, customer info, and payment history.",
         "parameters": [
           {
             "name": "subscription_id",
@@ -356,6 +363,7 @@
       "post": {
         "operationId": "cancelSubscription",
         "summary": "Cancel a subscription.",
+        "description": "Cancel an active subscription immediately or schedule cancellation at period end.",
         "parameters": [
           {
             "name": "id",
@@ -413,6 +421,7 @@
       "post": {
         "operationId": "updateSubscription",
         "summary": "Update a subscription.",
+        "description": "Modify subscription details like units, seats, or add-ons. Support proration and immediate billing options.",
         "parameters": [
           {
             "name": "id",
@@ -470,6 +479,7 @@
       "post": {
         "operationId": "upgradeSubscription",
         "summary": "Upgrade a subscription to a different product",
+        "description": "Upgrade a subscription to a different product or plan. Handle proration and plan changes seamlessly.",
         "parameters": [
           {
             "name": "id",
@@ -527,6 +537,7 @@
       "post": {
         "operationId": "pauseSubscription",
         "summary": "Pause a subscription.",
+        "description": "Temporarily pause a subscription. Stop billing while retaining the subscription for later resumption.",
         "parameters": [
           {
             "name": "id",
@@ -573,6 +584,7 @@
       "post": {
         "operationId": "resumeSubscription",
         "summary": "Resume a paused subscription.",
+        "description": "Resume a previously paused subscription. Restart billing and restore access to the subscription.",
         "parameters": [
           {
             "name": "id",
@@ -619,6 +631,7 @@
       "get": {
         "operationId": "retrieveCheckout",
         "summary": "Retrieve a checkout session.",
+        "description": "Retrieve details of a checkout session by ID. View status, customer info, and payment details.",
         "parameters": [
           {
             "name": "checkout_id",
@@ -664,6 +677,7 @@
       "post": {
         "operationId": "createCheckout",
         "summary": "Creates a new checkout session.",
+        "description": "Create a new checkout session to accept one-time payments or start subscriptions. Returns a checkout URL to redirect customers.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -711,6 +725,7 @@
       "post": {
         "operationId": "activateLicense",
         "summary": "Activates a license key.",
+        "description": "Activate a license key for a specific device or instance. Register new activations and track usage limits.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -758,6 +773,7 @@
       "post": {
         "operationId": "deactivateLicense",
         "summary": "Deactivate a license key instance.",
+        "description": "Remove a device activation from a license key. Free up activation slots for new devices.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -805,6 +821,7 @@
       "post": {
         "operationId": "validateLicense",
         "summary": "Validates a license key or instance.",
+        "description": "Verify if a license key is valid and active for a specific instance. Check activation status and expiration.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -852,6 +869,7 @@
       "get": {
         "operationId": "retrieveDiscount",
         "summary": "Retrieve discount",
+        "description": "Retrieve discount code details by ID or code. Check usage limits, expiration, and discount amount.",
         "parameters": [
           {
             "name": "discount_id",
@@ -905,6 +923,7 @@
       "post": {
         "operationId": "createDiscount",
         "summary": "Create a discount.",
+        "description": "Create promotional discount codes for products. Set percentage or fixed amount discounts with expiration dates.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -952,6 +971,7 @@
       "delete": {
         "operationId": "deleteDiscount",
         "summary": "Delete a discount.",
+        "description": "Permanently delete a discount code. Prevent further usage of the discount.",
         "parameters": [
           {
             "name": "id",
@@ -998,6 +1018,7 @@
       "get": {
         "operationId": "getTransactionById",
         "summary": "Get a transaction by ID",
+        "description": "Retrieve a single transaction by ID. View payment details, status, and associated order information.",
         "parameters": [
           {
             "name": "transaction_id",
@@ -1045,6 +1066,7 @@
       "get": {
         "operationId": "searchTransactions",
         "summary": "List all transactions",
+        "description": "Search and retrieve payment transactions. Filter by customer, product, date range, and status.",
         "parameters": [
           {
             "name": "customer_id",
@@ -2414,6 +2436,15 @@
           },
           "license_key": {
             "description": "License key issued for the order.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LicenseEntity"
+              }
+            ]
+          },
+          "license": {
+            "description": "DEPRECATED: Use `license_key` instead. License key issued for the order.",
+            "deprecated": true,
             "allOf": [
               {
                 "$ref": "#/components/schemas/LicenseEntity"

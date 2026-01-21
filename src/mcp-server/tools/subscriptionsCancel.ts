@@ -15,7 +15,9 @@ const args = {
 
 export const tool$subscriptionsCancel: ToolDefinition<typeof args> = {
   name: "subscriptions-cancel",
-  description: `Cancel a subscription.`,
+  description: `Cancel a subscription.
+
+Cancel an active subscription immediately or schedule cancellation at period end.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await subscriptionsCancel(
