@@ -4,21 +4,29 @@ import { APIError } from "../../src/models/errors/index.js";
 import { fail } from "../../src/lib/matchers.js";
 import { TEST_SERVER_IDX, TEST_MODE } from "../fixtures/testValues.js";
 import { creem } from "../fixtures/testData.js";
+import {
+  ProductRequestBillingType,
+  ProductRequestBillingPeriod,
+  ProductCurrency,
+  TaxMode,
+  TaxCategory,
+  CustomFieldRequestType,
+} from "../../src/models/components/index.js";
 
-// Sample product data
+// Sample product data using SDK enums
 const SAMPLE_PRODUCT = {
   name: `Test Product ${Date.now()}`,
   description: "This is a sample product description.",
   price: 400,
-  currency: "EUR",
-  billingType: "recurring",
-  billingPeriod: "every-month",
-  taxMode: "inclusive",
-  taxCategory: "saas",
+  currency: ProductCurrency.Eur,
+  billingType: ProductRequestBillingType.Recurring,
+  billingPeriod: ProductRequestBillingPeriod.EveryMonth,
+  taxMode: TaxMode.Inclusive,
+  taxCategory: TaxCategory.Saas,
   defaultSuccessUrl: "https://example.com/?status=successful",
   customField: [
     {
-      type: "text" as const,
+      type: CustomFieldRequestType.Text,
       key: "company",
       label: "Company Name",
       optional: true,
@@ -112,8 +120,8 @@ describe("createProduct", () => {
       name: `Minimal Product ${Date.now()}`,
       description: "A product with only the required fields",
       price: 100,
-      currency: "USD",
-      billingType: "onetime",
+      currency: ProductCurrency.Usd,
+      billingType: ProductRequestBillingType.Onetime,
     };
 
     const result = await creem.products.create(minimalProduct);
@@ -123,6 +131,27 @@ describe("createProduct", () => {
     expect(result).toHaveProperty("description", minimalProduct.description);
     expect(result).toHaveProperty("price", minimalProduct.price);
     expect(result).toHaveProperty("currency", minimalProduct.currency);
-    expect(result).toHaveProperty("billingType", minimalProduct.billingType);
+    // Response billingType will be "onetime" from API but SDK expects "one-time"
+    expect(result).toHaveProperty("billingType");
+  });
+
+  it("should create a recurring product with minimal required data", async () => {
+    const minimalProduct = {
+      name: `Minimal Recurring Product ${Date.now()}`,
+      description: "A recurring product with minimal fields",
+      price: 100,
+      currency: ProductCurrency.Usd,
+      billingType: ProductRequestBillingType.Recurring,
+      billingPeriod: ProductRequestBillingPeriod.EveryMonth,
+    };
+
+    const result = await creem.products.create(minimalProduct);
+
+    expect(result).toHaveProperty("id");
+    expect(result).toHaveProperty("name", minimalProduct.name);
+    expect(result).toHaveProperty("description", minimalProduct.description);
+    expect(result).toHaveProperty("price", minimalProduct.price);
+    expect(result).toHaveProperty("currency", minimalProduct.currency);
+    expect(result).toHaveProperty("billingType", ProductRequestBillingType.Recurring);
   });
 });

@@ -4,6 +4,7 @@ import { APIError } from "../../src/models/errors/index.js";
 import { fail } from "../../src/lib/matchers.js";
 import { TEST_SERVER_IDX, TEST_MODE } from "../fixtures/testValues.js";
 import { creem, getTestProduct } from "../fixtures/testData.js";
+import { ProductBillingType } from "../../src/models/components/index.js";
 
 // Create an instance with invalid API key for auth error tests
 const creemWithInvalidKey = new Creem({
@@ -46,6 +47,10 @@ describe("searchProducts", () => {
       expect(result.items[0]).toHaveProperty("price");
       expect(result.items[0]).toHaveProperty("currency");
       expect(result.items[0]).toHaveProperty("billingType");
+      // billingType should be one of ProductBillingType values
+      expect([ProductBillingType.Recurring, ProductBillingType.OneTime]).toContain(
+        result.items[0].billingType
+      );
       expect(result.items[0]).toHaveProperty("status");
       expect(result.items[0]).toHaveProperty("productUrl");
       expect(result.items[0]).toHaveProperty("mode", TEST_MODE);

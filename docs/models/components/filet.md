@@ -1,11 +1,13 @@
-# FileFeatureEntity
+# FileT
+
+File feature data containing downloadable files.
 
 ## Example Usage
 
 ```typescript
-import { FileFeatureEntity } from "creem/models/components";
+import { FileT } from "creem/models/components";
 
-let value: FileFeatureEntity = {
+let value: FileT = {
   files: [
     {
       id: "file_abc123",

@@ -1241,6 +1241,50 @@
           "description"
         ]
       },
+      "ProductBillingType": {
+        "type": "string",
+        "description": "Indicates the billing method for the customer. It can either be a `recurring` billing cycle or a `onetime` payment.",
+        "enum": [
+          "recurring",
+          "onetime"
+        ]
+      },
+      "ProductBillingPeriod": {
+        "type": "string",
+        "description": "Billing period",
+        "enum": [
+          "every-month",
+          "every-three-months",
+          "every-six-months",
+          "every-year",
+          "once"
+        ]
+      },
+      "ProductStatus": {
+        "type": "string",
+        "description": "Status of the product",
+        "enum": [
+          "active",
+          "archived"
+        ]
+      },
+      "TaxMode": {
+        "type": "string",
+        "description": "Specifies the tax calculation mode for the transaction. If set to \"inclusive,\" the tax is included in the price. If set to \"exclusive,\" the tax is added on top of the price.",
+        "enum": [
+          "inclusive",
+          "exclusive"
+        ]
+      },
+      "TaxCategory": {
+        "type": "string",
+        "description": "Categorizes the type of product or service for tax purposes. This helps determine the applicable tax rules based on the nature of the item or service.",
+        "enum": [
+          "saas",
+          "digital-goods-service",
+          "ebooks"
+        ]
+      },
       "ProductEntity": {
         "type": "object",
         "properties": {
@@ -1287,32 +1331,23 @@
             "example": "USD"
           },
           "billing_type": {
-            "type": "string",
-            "description": "Indicates the billing method for the customer. It can either be a `recurring` billing cycle or a `onetime` payment.",
-            "example": "recurring"
+            "example": "recurring",
+            "$ref": "#/components/schemas/ProductBillingType"
           },
           "billing_period": {
-            "type": "string",
-            "description": "Billing period",
-            "example": "every-month"
+            "example": "every-month",
+            "$ref": "#/components/schemas/ProductBillingPeriod"
           },
           "status": {
-            "type": "string",
-            "description": "Status of the product"
+            "$ref": "#/components/schemas/ProductStatus"
           },
           "tax_mode": {
-            "type": "string",
-            "description": "Specifies the tax calculation mode for the transaction. If set to \"inclusive,\" the tax is included in the price. If set to \"exclusive,\" the tax is added on top of the price.",
-            "example": "inclusive"
+            "example": "inclusive",
+            "$ref": "#/components/schemas/TaxMode"
           },
           "tax_category": {
-            "type": "string",
-            "description": "Categorizes the type of product or service for tax purposes. This helps determine the applicable tax rules based on the nature of the item or service.",
-            "example": [
-              "saas",
-              "digital-goods-service",
-              "ebooks"
-            ]
+            "example": "saas",
+            "$ref": "#/components/schemas/TaxCategory"
           },
           "product_url": {
             "type": "string",
@@ -1418,6 +1453,33 @@
           "pagination"
         ]
       },
+      "ProductCurrency": {
+        "type": "string",
+        "description": "Three-letter ISO currency code, in uppercase. Must be a supported currency.",
+        "enum": [
+          "EUR",
+          "USD"
+        ]
+      },
+      "ProductRequestBillingType": {
+        "type": "string",
+        "description": "Indicates the billing method for the customer. It can either be a `recurring` billing cycle or a `onetime` payment.",
+        "enum": [
+          "recurring",
+          "onetime"
+        ]
+      },
+      "ProductRequestBillingPeriod": {
+        "type": "string",
+        "description": "Billing period, required if billing_type is recurring",
+        "enum": [
+          "once",
+          "every-month",
+          "every-three-months",
+          "every-six-months",
+          "every-year"
+        ]
+      },
       "CustomFieldRequestType": {
         "type": "string",
         "description": "The type of the field.",
@@ -1520,33 +1582,24 @@
             "minimum": 100
           },
           "currency": {
-            "type": "string",
-            "description": "Three-letter ISO currency code, in uppercase. Must be a supported currency.",
-            "example": "USD"
+            "example": "USD",
+            "$ref": "#/components/schemas/ProductCurrency"
           },
           "billing_type": {
-            "type": "string",
-            "description": "Indicates the billing method for the customer. It can either be a `recurring` billing cycle or a `onetime` payment.",
-            "example": "recurring"
+            "example": "recurring",
+            "$ref": "#/components/schemas/ProductRequestBillingType"
           },
           "billing_period": {
-            "type": "string",
-            "description": "Billing period, required if billing_type is recurring",
-            "example": "every-month"
+            "example": "every-month",
+            "$ref": "#/components/schemas/ProductRequestBillingPeriod"
           },
           "tax_mode": {
-            "type": "string",
-            "description": "Specifies the tax calculation mode for the transaction. If set to \"inclusive,\" the tax is included in the price. If set to \"exclusive,\" the tax is added on top of the price.",
-            "example": "inclusive"
+            "example": "inclusive",
+            "$ref": "#/components/schemas/TaxMode"
           },
           "tax_category": {
-            "type": "string",
-            "description": "Categorizes the type of product or service for tax purposes. This helps determine the applicable tax rules based on the nature of the item or service.",
-            "example": [
-              "saas",
-              "digital-goods-service",
-              "ebooks"
-            ]
+            "example": "saas",
+            "$ref": "#/components/schemas/TaxCategory"
           },
           "default_success_url": {
             "type": "string",
@@ -1603,7 +1656,8 @@
           "name": {
             "type": "string",
             "description": "Customer name.",
-            "example": "John Doe"
+            "example": "John Doe",
+            "nullable": true
           },
           "country": {
             "type": "string",
@@ -1706,13 +1760,55 @@
           },
           "units": {
             "type": "number",
-            "description": "The number of units for the subscription item."
+            "description": "The number of units for the subscription item.",
+            "nullable": true
           }
         },
         "required": [
           "id",
           "mode",
           "object"
+        ]
+      },
+      "SubscriptionCollectionMethod": {
+        "type": "string",
+        "description": "The method used for collecting payments for the subscription.",
+        "enum": [
+          "charge_automatically"
+        ]
+      },
+      "SubscriptionStatus": {
+        "type": "string",
+        "description": "The current status of the subscription.",
+        "enum": [
+          "active",
+          "canceled",
+          "unpaid",
+          "paused",
+          "trialing",
+          "scheduled_cancel"
+        ]
+      },
+      "TransactionType": {
+        "type": "string",
+        "description": "The type of transaction. payment(one time payments) and invoice(subscription)",
+        "enum": [
+          "payment",
+          "invoice"
+        ]
+      },
+      "TransactionStatus": {
+        "type": "string",
+        "description": "Status of the transaction.",
+        "enum": [
+          "pending",
+          "paid",
+          "refunded",
+          "partialRefund",
+          "chargedBack",
+          "uncollectible",
+          "declined",
+          "void"
         ]
       },
       "TransactionEntity": {
@@ -1738,12 +1834,14 @@
           "amount_paid": {
             "type": "number",
             "description": "The amount the customer paid in cents. 1000 = $10.00",
-            "example": 2000
+            "example": 2000,
+            "nullable": true
           },
           "discount_amount": {
             "type": "number",
             "description": "The discount amount in cents. 1000 = $10.00",
-            "example": 2000
+            "example": 2000,
+            "nullable": true
           },
           "currency": {
             "type": "string",
@@ -1751,23 +1849,23 @@
             "example": "USD"
           },
           "type": {
-            "type": "string",
-            "description": "The type of transaction. payment(one time payments) and invoice(subscription)"
+            "$ref": "#/components/schemas/TransactionType"
           },
           "tax_country": {
             "type": "string",
             "description": "The ISO alpha-2 country code where tax is collected.",
             "example": "US",
-            "pattern": "^[A-Z]{2}$"
+            "pattern": "^[A-Z]{2}$",
+            "nullable": true
           },
           "tax_amount": {
             "type": "number",
             "description": "The sale tax amount in cents. 1000 = $10.00",
-            "example": 2000
+            "example": 2000,
+            "nullable": true
           },
           "status": {
-            "type": "string",
-            "description": "Status of the transaction."
+            "$ref": "#/components/schemas/TransactionStatus"
           },
           "refunded_amount": {
             "type": "number",
@@ -1863,22 +1961,12 @@
             }
           },
           "collection_method": {
-            "type": "string",
-            "description": "The method used for collecting payments for the subscription.",
-            "example": "charge_automatically"
+            "example": "charge_automatically",
+            "$ref": "#/components/schemas/SubscriptionCollectionMethod"
           },
           "status": {
-            "type": "string",
-            "description": "The current status of the subscription.",
-            "enum": [
-              "active",
-              "canceled",
-              "unpaid",
-              "paused",
-              "trialing",
-              "scheduled_cancel"
-            ],
-            "example": "active"
+            "example": "active",
+            "$ref": "#/components/schemas/SubscriptionStatus"
           },
           "last_transaction_id": {
             "type": "string",
@@ -2042,6 +2130,22 @@
           "product_id"
         ]
       },
+      "OrderStatus": {
+        "type": "string",
+        "description": "Current status of the order.",
+        "enum": [
+          "pending",
+          "paid"
+        ]
+      },
+      "OrderType": {
+        "type": "string",
+        "description": "The type of order. This can specify whether it's a regular purchase, subscription, etc.",
+        "enum": [
+          "recurring",
+          "onetime"
+        ]
+      },
       "OrderEntity": {
         "type": "object",
         "properties": {
@@ -2058,7 +2162,8 @@
           },
           "customer": {
             "type": "string",
-            "description": "The customer who placed the order."
+            "description": "The customer who placed the order.",
+            "nullable": true
           },
           "product": {
             "type": "string",
@@ -2067,12 +2172,14 @@
           "transaction": {
             "type": "string",
             "description": "The transaction ID of the order",
-            "example": "tx_1234567890"
+            "example": "tx_1234567890",
+            "nullable": true
           },
           "discount": {
             "type": "string",
             "description": "The discount ID of the order",
-            "example": "dis_1234567890"
+            "example": "dis_1234567890",
+            "nullable": true
           },
           "amount": {
             "type": "number",
@@ -2112,39 +2219,33 @@
           "fx_amount": {
             "type": "number",
             "description": "The amount in the foreign currency, if applicable.",
-            "example": 15
+            "example": 15,
+            "nullable": true
           },
           "fx_currency": {
             "type": "string",
             "description": "Three-letter ISO code of the foreign currency, if applicable.",
-            "example": "EUR"
+            "example": "EUR",
+            "nullable": true
           },
           "fx_rate": {
             "type": "number",
             "description": "The exchange rate used for converting between currencies, if applicable.",
-            "example": 1.2
+            "example": 1.2,
+            "nullable": true
           },
           "status": {
-            "type": "string",
-            "description": "Current status of the order.",
-            "enum": [
-              "pending",
-              "paid"
-            ],
-            "example": "pending"
+            "example": "pending",
+            "$ref": "#/components/schemas/OrderStatus"
           },
           "type": {
-            "type": "string",
-            "description": "The type of order. This can specify whether it's a regular purchase, subscription, etc.",
             "example": "recurring",
-            "enum": [
-              "recurring",
-              "onetime"
-            ]
+            "$ref": "#/components/schemas/OrderType"
           },
           "affiliate": {
             "type": "string",
-            "description": "The affiliate associated with the order, if applicable."
+            "description": "The affiliate associated with the order, if applicable.",
+            "nullable": true
           },
           "created_at": {
             "format": "date-time",
@@ -2185,15 +2286,18 @@
         "properties": {
           "max_length": {
             "type": "number",
-            "description": "Maximum character length constraint for the input."
+            "description": "Maximum character length constraint for the input.",
+            "nullable": true
           },
           "minimum_length": {
             "type": "number",
-            "description": "Minimum character length requirement for the input."
+            "description": "Minimum character length requirement for the input.",
+            "nullable": true
           },
           "value": {
             "type": "string",
-            "description": "The value of the input."
+            "description": "The value of the input.",
+            "nullable": true
           }
         }
       },
@@ -2202,11 +2306,13 @@
         "properties": {
           "label": {
             "type": "string",
-            "description": "The markdown text to display for the checkbox."
+            "description": "The markdown text to display for the checkbox.",
+            "nullable": true
           },
           "value": {
             "type": "boolean",
-            "description": "The value of the checkbox (checked or not)."
+            "description": "The value of the checkbox (checked or not).",
+            "nullable": true
           }
         }
       },
@@ -2228,10 +2334,12 @@
           },
           "optional": {
             "type": "boolean",
-            "description": "Whether the customer is required to complete the field. Defaults to `false`."
+            "description": "Whether the customer is required to complete the field. Defaults to `false`.",
+            "nullable": true
           },
           "text": {
             "description": "Configuration for text field type.",
+            "nullable": true,
             "allOf": [
               {
                 "$ref": "#/components/schemas/Text"
@@ -2240,6 +2348,7 @@
           },
           "checkbox": {
             "description": "Configuration for checkbox field type.",
+            "nullable": true,
             "allOf": [
               {
                 "$ref": "#/components/schemas/Checkbox"
@@ -2305,6 +2414,16 @@
           "files"
         ]
       },
+      "LicenseStatus": {
+        "type": "string",
+        "description": "The current status of the license key.",
+        "enum": [
+          "inactive",
+          "active",
+          "expired",
+          "disabled"
+        ]
+      },
       "LicenseInstanceEntity": {
         "type": "object",
         "properties": {
@@ -2365,15 +2484,8 @@
             "description": "A string representing the object’s type. Objects of the same type share the same value."
           },
           "status": {
-            "type": "string",
-            "description": "The current status of the license key.",
-            "enum": [
-              "inactive",
-              "active",
-              "expired",
-              "disabled"
-            ],
-            "example": "active"
+            "example": "active",
+            "$ref": "#/components/schemas/LicenseStatus"
           },
           "key": {
             "type": "string",
@@ -2386,15 +2498,16 @@
             "example": 5
           },
           "activation_limit": {
-            "type": "object",
+            "type": "number",
             "description": "The activation limit. Null if activations are unlimited.",
             "example": 1,
             "nullable": true
           },
           "expires_at": {
-            "type": "object",
+            "type": "string",
             "description": "The date the license key expires. Null if it does not have an expiration date.",
             "example": "2023-09-13T00:00:00Z",
+            "format": "date-time",
             "nullable": true
           },
           "created_at": {
@@ -2429,24 +2542,29 @@
           "id": {
             "type": "string",
             "description": "Unique identifier for the feature.",
-            "example": "feat_abc123"
+            "example": "feat_abc123",
+            "nullable": true
           },
           "description": {
             "type": "string",
             "description": "A brief description of the feature.",
-            "example": "Get access to the full course materials."
+            "example": "Get access to the full course materials.",
+            "nullable": true
           },
           "type": {
             "example": "licenseKey",
+            "nullable": true,
             "$ref": "#/components/schemas/ProductFeatureType"
           },
           "private_note": {
             "type": "string",
             "description": "Private note from the seller. This is only visible to the customer after purchase.",
-            "example": "Thank you for your purchase! Here is your access code: XYZ123"
+            "example": "Thank you for your purchase! Here is your access code: XYZ123",
+            "nullable": true
           },
           "file": {
             "description": "File feature data containing downloadable files.",
+            "nullable": true,
             "allOf": [
               {
                 "$ref": "#/components/schemas/FileFeatureEntity"
@@ -2455,6 +2573,7 @@
           },
           "license_key": {
             "description": "License key issued for the order.",
+            "nullable": true,
             "allOf": [
               {
                 "$ref": "#/components/schemas/LicenseEntity"
@@ -2463,6 +2582,7 @@
           },
           "license": {
             "description": "DEPRECATED: Use `license_key` instead. License key issued for the order.",
+            "nullable": true,
             "deprecated": true,
             "allOf": [
               {

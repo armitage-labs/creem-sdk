@@ -5,7 +5,6 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -13,30 +12,16 @@ import {
   EnvironmentMode$inboundSchema,
   EnvironmentMode$outboundSchema,
 } from "./environmentmode.js";
-
-/**
- * Current status of the order.
- */
-export const OrderEntityStatus = {
-  Pending: "pending",
-  Paid: "paid",
-} as const;
-/**
- * Current status of the order.
- */
-export type OrderEntityStatus = ClosedEnum<typeof OrderEntityStatus>;
-
-/**
- * The type of order. This can specify whether it's a regular purchase, subscription, etc.
- */
-export const Type = {
-  Recurring: "recurring",
-  Onetime: "onetime",
-} as const;
-/**
- * The type of order. This can specify whether it's a regular purchase, subscription, etc.
- */
-export type Type = ClosedEnum<typeof Type>;
+import {
+  OrderStatus,
+  OrderStatus$inboundSchema,
+  OrderStatus$outboundSchema,
+} from "./orderstatus.js";
+import {
+  OrderType,
+  OrderType$inboundSchema,
+  OrderType$outboundSchema,
+} from "./ordertype.js";
 
 export type OrderEntity = {
   /**
@@ -54,7 +39,7 @@ export type OrderEntity = {
   /**
    * The customer who placed the order.
    */
-  customer?: string | undefined;
+  customer?: string | null | undefined;
   /**
    * The product associated with the order.
    */
@@ -62,11 +47,11 @@ export type OrderEntity = {
   /**
    * The transaction ID of the order
    */
-  transaction?: string | undefined;
+  transaction?: string | null | undefined;
   /**
    * The discount ID of the order
    */
-  discount?: string | undefined;
+  discount?: string | null | undefined;
   /**
    * The total amount of the order in cents. 1000 = $10.00
    */
@@ -98,27 +83,27 @@ export type OrderEntity = {
   /**
    * The amount in the foreign currency, if applicable.
    */
-  fxAmount?: number | undefined;
+  fxAmount?: number | null | undefined;
   /**
    * Three-letter ISO code of the foreign currency, if applicable.
    */
-  fxCurrency?: string | undefined;
+  fxCurrency?: string | null | undefined;
   /**
    * The exchange rate used for converting between currencies, if applicable.
    */
-  fxRate?: number | undefined;
+  fxRate?: number | null | undefined;
   /**
    * Current status of the order.
    */
-  status: OrderEntityStatus;
+  status: OrderStatus;
   /**
    * The type of order. This can specify whether it's a regular purchase, subscription, etc.
    */
-  type: Type;
+  type: OrderType;
   /**
    * The affiliate associated with the order, if applicable.
    */
-  affiliate?: string | undefined;
+  affiliate?: string | null | undefined;
   /**
    * Creation date of the order
    */
@@ -130,23 +115,6 @@ export type OrderEntity = {
 };
 
 /** @internal */
-export const OrderEntityStatus$inboundSchema: z.ZodNativeEnum<
-  typeof OrderEntityStatus
-> = z.nativeEnum(OrderEntityStatus);
-/** @internal */
-export const OrderEntityStatus$outboundSchema: z.ZodNativeEnum<
-  typeof OrderEntityStatus
-> = OrderEntityStatus$inboundSchema;
-
-/** @internal */
-export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
-  Type,
-);
-/** @internal */
-export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> =
-  Type$inboundSchema;
-
-/** @internal */
 export const OrderEntity$inboundSchema: z.ZodType<
   OrderEntity,
   z.ZodTypeDef,
@@ -155,10 +123,10 @@ export const OrderEntity$inboundSchema: z.ZodType<
   id: z.string(),
   mode: EnvironmentMode$inboundSchema,
   object: z.string(),
-  customer: z.string().optional(),
+  customer: z.nullable(z.string()).optional(),
   product: z.string(),
-  transaction: z.string().optional(),
-  discount: z.string().optional(),
+  transaction: z.nullable(z.string()).optional(),
+  discount: z.nullable(z.string()).optional(),
   amount: z.number(),
   sub_total: z.number().optional(),
   tax_amount: z.number().optional(),
@@ -166,12 +134,12 @@ export const OrderEntity$inboundSchema: z.ZodType<
   amount_due: z.number().optional(),
   amount_paid: z.number().optional(),
   currency: z.string(),
-  fx_amount: z.number().optional(),
-  fx_currency: z.string().optional(),
-  fx_rate: z.number().optional(),
-  status: OrderEntityStatus$inboundSchema,
-  type: Type$inboundSchema,
-  affiliate: z.string().optional(),
+  fx_amount: z.nullable(z.number()).optional(),
+  fx_currency: z.nullable(z.string()).optional(),
+  fx_rate: z.nullable(z.number()).optional(),
+  status: OrderStatus$inboundSchema,
+  type: OrderType$inboundSchema,
+  affiliate: z.nullable(z.string()).optional(),
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
 }).transform((v) => {
@@ -193,10 +161,10 @@ export type OrderEntity$Outbound = {
   id: string;
   mode: string;
   object: string;
-  customer?: string | undefined;
+  customer?: string | null | undefined;
   product: string;
-  transaction?: string | undefined;
-  discount?: string | undefined;
+  transaction?: string | null | undefined;
+  discount?: string | null | undefined;
   amount: number;
   sub_total?: number | undefined;
   tax_amount?: number | undefined;
@@ -204,12 +172,12 @@ export type OrderEntity$Outbound = {
   amount_due?: number | undefined;
   amount_paid?: number | undefined;
   currency: string;
-  fx_amount?: number | undefined;
-  fx_currency?: string | undefined;
-  fx_rate?: number | undefined;
+  fx_amount?: number | null | undefined;
+  fx_currency?: string | null | undefined;
+  fx_rate?: number | null | undefined;
   status: string;
   type: string;
-  affiliate?: string | undefined;
+  affiliate?: string | null | undefined;
   created_at: string;
   updated_at: string;
 };
@@ -223,10 +191,10 @@ export const OrderEntity$outboundSchema: z.ZodType<
   id: z.string(),
   mode: EnvironmentMode$outboundSchema,
   object: z.string(),
-  customer: z.string().optional(),
+  customer: z.nullable(z.string()).optional(),
   product: z.string(),
-  transaction: z.string().optional(),
-  discount: z.string().optional(),
+  transaction: z.nullable(z.string()).optional(),
+  discount: z.nullable(z.string()).optional(),
   amount: z.number(),
   subTotal: z.number().optional(),
   taxAmount: z.number().optional(),
@@ -234,12 +202,12 @@ export const OrderEntity$outboundSchema: z.ZodType<
   amountDue: z.number().optional(),
   amountPaid: z.number().optional(),
   currency: z.string(),
-  fxAmount: z.number().optional(),
-  fxCurrency: z.string().optional(),
-  fxRate: z.number().optional(),
-  status: OrderEntityStatus$outboundSchema,
-  type: Type$outboundSchema,
-  affiliate: z.string().optional(),
+  fxAmount: z.nullable(z.number()).optional(),
+  fxCurrency: z.nullable(z.string()).optional(),
+  fxRate: z.nullable(z.number()).optional(),
+  status: OrderStatus$outboundSchema,
+  type: OrderType$outboundSchema,
+  affiliate: z.nullable(z.string()).optional(),
   createdAt: z.date().transform(v => v.toISOString()),
   updatedAt: z.date().transform(v => v.toISOString()),
 }).transform((v) => {

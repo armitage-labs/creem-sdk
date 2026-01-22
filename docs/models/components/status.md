@@ -1,17 +1,17 @@
 # Status
 
-The current status of the subscription.
+Status of the checkout.
 
 ## Example Usage
 
 ```typescript
 import { Status } from "creem/models/components";
 
-let value: Status = "active";
+let value: Status = "completed";
 ```
 
 ## Values
 
 ```typescript
-"active" | "canceled" | "unpaid" | "paused" | "trialing" | "scheduled_cancel"
+"pending" | "processing" | "completed" | "expired"
 ```

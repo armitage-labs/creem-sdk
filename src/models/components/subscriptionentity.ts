@@ -5,7 +5,6 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -26,11 +25,21 @@ import {
   ProductEntity$outboundSchema,
 } from "./productentity.js";
 import {
+  SubscriptionCollectionMethod,
+  SubscriptionCollectionMethod$inboundSchema,
+  SubscriptionCollectionMethod$outboundSchema,
+} from "./subscriptioncollectionmethod.js";
+import {
   SubscriptionItemEntity,
   SubscriptionItemEntity$inboundSchema,
   SubscriptionItemEntity$Outbound,
   SubscriptionItemEntity$outboundSchema,
 } from "./subscriptionitementity.js";
+import {
+  SubscriptionStatus,
+  SubscriptionStatus$inboundSchema,
+  SubscriptionStatus$outboundSchema,
+} from "./subscriptionstatus.js";
 import {
   TransactionEntity,
   TransactionEntity$inboundSchema,
@@ -47,22 +56,6 @@ export type Product = ProductEntity | string;
  * The customer who owns the subscription.
  */
 export type Customer = CustomerEntity | string;
-
-/**
- * The current status of the subscription.
- */
-export const Status = {
-  Active: "active",
-  Canceled: "canceled",
-  Unpaid: "unpaid",
-  Paused: "paused",
-  Trialing: "trialing",
-  ScheduledCancel: "scheduled_cancel",
-} as const;
-/**
- * The current status of the subscription.
- */
-export type Status = ClosedEnum<typeof Status>;
 
 /**
  * The discount code applied to the subscription, if any.
@@ -97,11 +90,11 @@ export type SubscriptionEntity = {
   /**
    * The method used for collecting payments for the subscription.
    */
-  collectionMethod: string;
+  collectionMethod: SubscriptionCollectionMethod;
   /**
    * The current status of the subscription.
    */
-  status: Status;
+  status: SubscriptionStatus;
   /**
    * The ID of the last paid transaction.
    */
@@ -200,13 +193,6 @@ export function customerFromJSON(
 }
 
 /** @internal */
-export const Status$inboundSchema: z.ZodNativeEnum<typeof Status> = z
-  .nativeEnum(Status);
-/** @internal */
-export const Status$outboundSchema: z.ZodNativeEnum<typeof Status> =
-  Status$inboundSchema;
-
-/** @internal */
 export const Discount$inboundSchema: z.ZodType<
   Discount,
   z.ZodTypeDef,
@@ -247,8 +233,8 @@ export const SubscriptionEntity$inboundSchema: z.ZodType<
   product: z.union([ProductEntity$inboundSchema, z.string()]),
   customer: z.union([CustomerEntity$inboundSchema, z.string()]),
   items: z.array(SubscriptionItemEntity$inboundSchema).optional(),
-  collection_method: z.string(),
-  status: Status$inboundSchema,
+  collection_method: SubscriptionCollectionMethod$inboundSchema,
+  status: SubscriptionStatus$inboundSchema,
   last_transaction_id: z.string().optional(),
   last_transaction: TransactionEntity$inboundSchema.optional(),
   last_transaction_date: z.string().datetime({ offset: true }).transform(v =>
@@ -317,8 +303,8 @@ export const SubscriptionEntity$outboundSchema: z.ZodType<
   product: z.union([ProductEntity$outboundSchema, z.string()]),
   customer: z.union([CustomerEntity$outboundSchema, z.string()]),
   items: z.array(SubscriptionItemEntity$outboundSchema).optional(),
-  collectionMethod: z.string(),
-  status: Status$outboundSchema,
+  collectionMethod: SubscriptionCollectionMethod$outboundSchema,
+  status: SubscriptionStatus$outboundSchema,
   lastTransactionId: z.string().optional(),
   lastTransaction: TransactionEntity$outboundSchema.optional(),
   lastTransactionDate: z.date().transform(v => v.toISOString()).optional(),

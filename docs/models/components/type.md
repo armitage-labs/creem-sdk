@@ -1,17 +1,17 @@
 # Type
 
-The type of order. This can specify whether it's a regular purchase, subscription, etc.
+The type of the discount, either "percentage" or "fixed".
 
 ## Example Usage
 
 ```typescript
 import { Type } from "creem/models/components";
 
-let value: Type = "recurring";
+let value: Type = "percentage";
 ```
 
 ## Values
 
 ```typescript
-"recurring" | "onetime"
+"percentage" | "fixed"
 ```

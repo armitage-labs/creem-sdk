@@ -13,12 +13,12 @@ let value: TransactionEntity = {
   amountPaid: 2000,
   discountAmount: 2000,
   currency: "USD",
-  type: "<value>",
+  type: "payment",
   taxCountry: "US",
   taxAmount: 2000,
-  status: "<value>",
+  status: "paid",
   refundedAmount: 2000,
-  createdAt: 719.45,
+  createdAt: 2042.79,
 };
 ```
 
@@ -33,10 +33,10 @@ let value: TransactionEntity = {
 | `amountPaid`                                                                          | *number*                                                                              | :heavy_minus_sign:                                                                    | The amount the customer paid in cents. 1000 = $10.00                                  | 2000                                                                                  |
 | `discountAmount`                                                                      | *number*                                                                              | :heavy_minus_sign:                                                                    | The discount amount in cents. 1000 = $10.00                                           | 2000                                                                                  |
 | `currency`                                                                            | *string*                                                                              | :heavy_check_mark:                                                                    | Three-letter ISO currency code, in uppercase. Must be a supported currency.           | USD                                                                                   |
-| `type`                                                                                | *string*                                                                              | :heavy_check_mark:                                                                    | The type of transaction. payment(one time payments) and invoice(subscription)         |                                                                                       |
+| `type`                                                                                | [components.TransactionType](../../models/components/transactiontype.md)              | :heavy_check_mark:                                                                    | The type of transaction. payment(one time payments) and invoice(subscription)         |                                                                                       |
 | `taxCountry`                                                                          | *string*                                                                              | :heavy_minus_sign:                                                                    | The ISO alpha-2 country code where tax is collected.                                  | US                                                                                    |
 | `taxAmount`                                                                           | *number*                                                                              | :heavy_minus_sign:                                                                    | The sale tax amount in cents. 1000 = $10.00                                           | 2000                                                                                  |
-| `status`                                                                              | *string*                                                                              | :heavy_check_mark:                                                                    | Status of the transaction.                                                            |                                                                                       |
+| `status`                                                                              | [components.TransactionStatus](../../models/components/transactionstatus.md)          | :heavy_check_mark:                                                                    | Status of the transaction.                                                            |                                                                                       |
 | `refundedAmount`                                                                      | *number*                                                                              | :heavy_minus_sign:                                                                    | The amount that has been refunded in cents. 1000 = $10.00                             | 2000                                                                                  |
 | `order`                                                                               | *string*                                                                              | :heavy_minus_sign:                                                                    | The order associated with the transaction.                                            |                                                                                       |
 | `subscription`                                                                        | *string*                                                                              | :heavy_minus_sign:                                                                    | The subscription associated with the transaction.                                     |                                                                                       |

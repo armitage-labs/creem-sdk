@@ -33,7 +33,7 @@ export type CustomerEntity = {
   /**
    * Customer name.
    */
-  name?: string | undefined;
+  name?: string | null | undefined;
   /**
    * The ISO alpha-2 country code for the customer.
    */
@@ -58,7 +58,7 @@ export const CustomerEntity$inboundSchema: z.ZodType<
   mode: EnvironmentMode$inboundSchema,
   object: z.string(),
   email: z.string(),
-  name: z.string().optional(),
+  name: z.nullable(z.string()).optional(),
   country: z.string(),
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
@@ -74,7 +74,7 @@ export type CustomerEntity$Outbound = {
   mode: string;
   object: string;
   email: string;
-  name?: string | undefined;
+  name?: string | null | undefined;
   country: string;
   created_at: string;
   updated_at: string;
@@ -90,7 +90,7 @@ export const CustomerEntity$outboundSchema: z.ZodType<
   mode: EnvironmentMode$outboundSchema,
   object: z.string(),
   email: z.string(),
-  name: z.string().optional(),
+  name: z.nullable(z.string()).optional(),
   country: z.string(),
   createdAt: z.date().transform(v => v.toISOString()),
   updatedAt: z.date().transform(v => v.toISOString()),

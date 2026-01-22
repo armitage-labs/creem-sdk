@@ -98,9 +98,6 @@ async function run() {
     price: 400,
     currency: "USD",
     billingType: "recurring",
-    billingPeriod: "every-month",
-    taxMode: "inclusive",
-    taxCategory: "[\"saas\",\"digital-goods-service\",\"ebooks\"]",
     defaultSuccessUrl: "https://example.com/?status=successful",
     customFields: [
       {
@@ -145,9 +142,6 @@ async function run() {
     price: 400,
     currency: "USD",
     billingType: "recurring",
-    billingPeriod: "every-month",
-    taxMode: "inclusive",
-    taxCategory: "[\"saas\",\"digital-goods-service\",\"ebooks\"]",
     defaultSuccessUrl: "https://example.com/?status=successful",
     customFields: [
       {

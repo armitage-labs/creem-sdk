@@ -53,7 +53,7 @@ import {
 /**
  * Status of the checkout.
  */
-export const CheckoutEntityStatus = {
+export const Status = {
   Pending: "pending",
   Processing: "processing",
   Completed: "completed",
@@ -62,7 +62,7 @@ export const CheckoutEntityStatus = {
 /**
  * Status of the checkout.
  */
-export type CheckoutEntityStatus = ClosedEnum<typeof CheckoutEntityStatus>;
+export type Status = ClosedEnum<typeof Status>;
 
 /**
  * The product associated with the checkout session.
@@ -95,7 +95,7 @@ export type CheckoutEntity = {
   /**
    * Status of the checkout.
    */
-  status: CheckoutEntityStatus;
+  status: Status;
   /**
    * Identify and track each checkout request.
    */
@@ -143,13 +143,11 @@ export type CheckoutEntity = {
 };
 
 /** @internal */
-export const CheckoutEntityStatus$inboundSchema: z.ZodNativeEnum<
-  typeof CheckoutEntityStatus
-> = z.nativeEnum(CheckoutEntityStatus);
+export const Status$inboundSchema: z.ZodNativeEnum<typeof Status> = z
+  .nativeEnum(Status);
 /** @internal */
-export const CheckoutEntityStatus$outboundSchema: z.ZodNativeEnum<
-  typeof CheckoutEntityStatus
-> = CheckoutEntityStatus$inboundSchema;
+export const Status$outboundSchema: z.ZodNativeEnum<typeof Status> =
+  Status$inboundSchema;
 
 /** @internal */
 export const CheckoutEntityProduct$inboundSchema: z.ZodType<
@@ -255,7 +253,7 @@ export const CheckoutEntity$inboundSchema: z.ZodType<
   id: z.string(),
   mode: EnvironmentMode$inboundSchema,
   object: z.string(),
-  status: CheckoutEntityStatus$inboundSchema,
+  status: Status$inboundSchema,
   request_id: z.string().optional(),
   product: z.union([ProductEntity$inboundSchema, z.string()]),
   units: z.number().default(1),
@@ -304,7 +302,7 @@ export const CheckoutEntity$outboundSchema: z.ZodType<
   id: z.string(),
   mode: EnvironmentMode$outboundSchema,
   object: z.string(),
-  status: CheckoutEntityStatus$outboundSchema,
+  status: Status$outboundSchema,
   requestId: z.string().optional(),
   product: z.union([ProductEntity$outboundSchema, z.string()]),
   units: z.number().default(1),

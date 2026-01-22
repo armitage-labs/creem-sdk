@@ -3,26 +3,47 @@
  */
 
 import * as z from "zod/v3";
+import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Checkbox,
-  Checkbox$inboundSchema,
-  Checkbox$Outbound,
-  Checkbox$outboundSchema,
-} from "./checkbox.js";
 import {
   CustomFieldType,
   CustomFieldType$inboundSchema,
   CustomFieldType$outboundSchema,
 } from "./customfieldtype.js";
-import {
-  Text,
-  Text$inboundSchema,
-  Text$Outbound,
-  Text$outboundSchema,
-} from "./text.js";
+
+/**
+ * Configuration for text field type.
+ */
+export type Text = {
+  /**
+   * Maximum character length constraint for the input.
+   */
+  maxLength?: number | null | undefined;
+  /**
+   * Minimum character length requirement for the input.
+   */
+  minimumLength?: number | null | undefined;
+  /**
+   * The value of the input.
+   */
+  value?: string | null | undefined;
+};
+
+/**
+ * Configuration for checkbox field type.
+ */
+export type Checkbox = {
+  /**
+   * The markdown text to display for the checkbox.
+   */
+  label?: string | null | undefined;
+  /**
+   * The value of the checkbox (checked or not).
+   */
+  value?: boolean | null | undefined;
+};
 
 export type CustomField = {
   /**
@@ -40,16 +61,99 @@ export type CustomField = {
   /**
    * Whether the customer is required to complete the field. Defaults to `false`.
    */
-  optional?: boolean | undefined;
+  optional?: boolean | null | undefined;
   /**
    * Configuration for text field type.
    */
-  text?: Text | undefined;
+  text?: Text | null | undefined;
   /**
    * Configuration for checkbox field type.
    */
-  checkbox?: Checkbox | undefined;
+  checkbox?: Checkbox | null | undefined;
 };
+
+/** @internal */
+export const Text$inboundSchema: z.ZodType<Text, z.ZodTypeDef, unknown> = z
+  .object({
+    max_length: z.nullable(z.number()).optional(),
+    minimum_length: z.nullable(z.number()).optional(),
+    value: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      "max_length": "maxLength",
+      "minimum_length": "minimumLength",
+    });
+  });
+/** @internal */
+export type Text$Outbound = {
+  max_length?: number | null | undefined;
+  minimum_length?: number | null | undefined;
+  value?: string | null | undefined;
+};
+
+/** @internal */
+export const Text$outboundSchema: z.ZodType<Text$Outbound, z.ZodTypeDef, Text> =
+  z.object({
+    maxLength: z.nullable(z.number()).optional(),
+    minimumLength: z.nullable(z.number()).optional(),
+    value: z.nullable(z.string()).optional(),
+  }).transform((v) => {
+    return remap$(v, {
+      maxLength: "max_length",
+      minimumLength: "minimum_length",
+    });
+  });
+
+export function textToJSON(text: Text): string {
+  return JSON.stringify(Text$outboundSchema.parse(text));
+}
+export function textFromJSON(
+  jsonString: string,
+): SafeParseResult<Text, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Text$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Text' from JSON`,
+  );
+}
+
+/** @internal */
+export const Checkbox$inboundSchema: z.ZodType<
+  Checkbox,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  label: z.nullable(z.string()).optional(),
+  value: z.nullable(z.boolean()).optional(),
+});
+/** @internal */
+export type Checkbox$Outbound = {
+  label?: string | null | undefined;
+  value?: boolean | null | undefined;
+};
+
+/** @internal */
+export const Checkbox$outboundSchema: z.ZodType<
+  Checkbox$Outbound,
+  z.ZodTypeDef,
+  Checkbox
+> = z.object({
+  label: z.nullable(z.string()).optional(),
+  value: z.nullable(z.boolean()).optional(),
+});
+
+export function checkboxToJSON(checkbox: Checkbox): string {
+  return JSON.stringify(Checkbox$outboundSchema.parse(checkbox));
+}
+export function checkboxFromJSON(
+  jsonString: string,
+): SafeParseResult<Checkbox, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Checkbox$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Checkbox' from JSON`,
+  );
+}
 
 /** @internal */
 export const CustomField$inboundSchema: z.ZodType<
@@ -60,18 +164,18 @@ export const CustomField$inboundSchema: z.ZodType<
   type: CustomFieldType$inboundSchema,
   key: z.string(),
   label: z.string(),
-  optional: z.boolean().optional(),
-  text: Text$inboundSchema.optional(),
-  checkbox: Checkbox$inboundSchema.optional(),
+  optional: z.nullable(z.boolean()).optional(),
+  text: z.nullable(z.lazy(() => Text$inboundSchema)).optional(),
+  checkbox: z.nullable(z.lazy(() => Checkbox$inboundSchema)).optional(),
 });
 /** @internal */
 export type CustomField$Outbound = {
   type: string;
   key: string;
   label: string;
-  optional?: boolean | undefined;
-  text?: Text$Outbound | undefined;
-  checkbox?: Checkbox$Outbound | undefined;
+  optional?: boolean | null | undefined;
+  text?: Text$Outbound | null | undefined;
+  checkbox?: Checkbox$Outbound | null | undefined;
 };
 
 /** @internal */
@@ -83,9 +187,9 @@ export const CustomField$outboundSchema: z.ZodType<
   type: CustomFieldType$outboundSchema,
   key: z.string(),
   label: z.string(),
-  optional: z.boolean().optional(),
-  text: Text$outboundSchema.optional(),
-  checkbox: Checkbox$outboundSchema.optional(),
+  optional: z.nullable(z.boolean()).optional(),
+  text: z.nullable(z.lazy(() => Text$outboundSchema)).optional(),
+  checkbox: z.nullable(z.lazy(() => Checkbox$outboundSchema)).optional(),
 });
 
 export function customFieldToJSON(customField: CustomField): string {

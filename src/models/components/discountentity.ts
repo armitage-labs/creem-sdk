@@ -31,14 +31,14 @@ export type DiscountEntityStatus = ClosedEnum<typeof DiscountEntityStatus>;
 /**
  * The type of the discount, either "percentage" or "fixed".
  */
-export const DiscountEntityType = {
+export const Type = {
   Percentage: "percentage",
   Fixed: "fixed",
 } as const;
 /**
  * The type of the discount, either "percentage" or "fixed".
  */
-export type DiscountEntityType = ClosedEnum<typeof DiscountEntityType>;
+export type Type = ClosedEnum<typeof Type>;
 
 /**
  * The duration type for the discount.
@@ -81,7 +81,7 @@ export type DiscountEntity = {
   /**
    * The type of the discount, either "percentage" or "fixed".
    */
-  type: DiscountEntityType;
+  type: Type;
   /**
    * The amount of the discount. Can be a percentage or a fixed amount.
    */
@@ -130,13 +130,12 @@ export const DiscountEntityStatus$outboundSchema: z.ZodNativeEnum<
 > = DiscountEntityStatus$inboundSchema;
 
 /** @internal */
-export const DiscountEntityType$inboundSchema: z.ZodNativeEnum<
-  typeof DiscountEntityType
-> = z.nativeEnum(DiscountEntityType);
+export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
+  Type,
+);
 /** @internal */
-export const DiscountEntityType$outboundSchema: z.ZodNativeEnum<
-  typeof DiscountEntityType
-> = DiscountEntityType$inboundSchema;
+export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> =
+  Type$inboundSchema;
 
 /** @internal */
 export const Duration$inboundSchema: z.ZodNativeEnum<typeof Duration> = z
@@ -157,7 +156,7 @@ export const DiscountEntity$inboundSchema: z.ZodType<
   status: DiscountEntityStatus$inboundSchema,
   name: z.string(),
   code: z.string(),
-  type: DiscountEntityType$inboundSchema,
+  type: Type$inboundSchema,
   amount: z.number().optional(),
   currency: z.string().optional(),
   percentage: z.number().optional(),
@@ -209,7 +208,7 @@ export const DiscountEntity$outboundSchema: z.ZodType<
   status: DiscountEntityStatus$outboundSchema,
   name: z.string(),
   code: z.string(),
-  type: DiscountEntityType$outboundSchema,
+  type: Type$outboundSchema,
   amount: z.number().optional(),
   currency: z.string().optional(),
   percentage: z.number().optional(),

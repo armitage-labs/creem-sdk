@@ -12,6 +12,16 @@ import {
   EnvironmentMode$inboundSchema,
   EnvironmentMode$outboundSchema,
 } from "./environmentmode.js";
+import {
+  TransactionStatus,
+  TransactionStatus$inboundSchema,
+  TransactionStatus$outboundSchema,
+} from "./transactionstatus.js";
+import {
+  TransactionType,
+  TransactionType$inboundSchema,
+  TransactionType$outboundSchema,
+} from "./transactiontype.js";
 
 export type TransactionEntity = {
   /**
@@ -33,11 +43,11 @@ export type TransactionEntity = {
   /**
    * The amount the customer paid in cents. 1000 = $10.00
    */
-  amountPaid?: number | undefined;
+  amountPaid?: number | null | undefined;
   /**
    * The discount amount in cents. 1000 = $10.00
    */
-  discountAmount?: number | undefined;
+  discountAmount?: number | null | undefined;
   /**
    * Three-letter ISO currency code, in uppercase. Must be a supported currency.
    */
@@ -45,19 +55,19 @@ export type TransactionEntity = {
   /**
    * The type of transaction. payment(one time payments) and invoice(subscription)
    */
-  type: string;
+  type: TransactionType;
   /**
    * The ISO alpha-2 country code where tax is collected.
    */
-  taxCountry?: string | undefined;
+  taxCountry?: string | null | undefined;
   /**
    * The sale tax amount in cents. 1000 = $10.00
    */
-  taxAmount?: number | undefined;
+  taxAmount?: number | null | undefined;
   /**
    * Status of the transaction.
    */
-  status: string;
+  status: TransactionStatus;
   /**
    * The amount that has been refunded in cents. 1000 = $10.00
    */
@@ -102,13 +112,13 @@ export const TransactionEntity$inboundSchema: z.ZodType<
   mode: EnvironmentMode$inboundSchema,
   object: z.string(),
   amount: z.number(),
-  amount_paid: z.number().optional(),
-  discount_amount: z.number().optional(),
+  amount_paid: z.nullable(z.number()).optional(),
+  discount_amount: z.nullable(z.number()).optional(),
   currency: z.string(),
-  type: z.string(),
-  tax_country: z.string().optional(),
-  tax_amount: z.number().optional(),
-  status: z.string(),
+  type: TransactionType$inboundSchema,
+  tax_country: z.nullable(z.string()).optional(),
+  tax_amount: z.nullable(z.number()).optional(),
+  status: TransactionStatus$inboundSchema,
   refunded_amount: z.nullable(z.number()).optional(),
   order: z.nullable(z.string()).optional(),
   subscription: z.nullable(z.string()).optional(),
@@ -135,12 +145,12 @@ export type TransactionEntity$Outbound = {
   mode: string;
   object: string;
   amount: number;
-  amount_paid?: number | undefined;
-  discount_amount?: number | undefined;
+  amount_paid?: number | null | undefined;
+  discount_amount?: number | null | undefined;
   currency: string;
   type: string;
-  tax_country?: string | undefined;
-  tax_amount?: number | undefined;
+  tax_country?: string | null | undefined;
+  tax_amount?: number | null | undefined;
   status: string;
   refunded_amount?: number | null | undefined;
   order?: string | null | undefined;
@@ -162,13 +172,13 @@ export const TransactionEntity$outboundSchema: z.ZodType<
   mode: EnvironmentMode$outboundSchema,
   object: z.string(),
   amount: z.number(),
-  amountPaid: z.number().optional(),
-  discountAmount: z.number().optional(),
+  amountPaid: z.nullable(z.number()).optional(),
+  discountAmount: z.nullable(z.number()).optional(),
   currency: z.string(),
-  type: z.string(),
-  taxCountry: z.string().optional(),
-  taxAmount: z.number().optional(),
-  status: z.string(),
+  type: TransactionType$outboundSchema,
+  taxCountry: z.nullable(z.string()).optional(),
+  taxAmount: z.nullable(z.number()).optional(),
+  status: TransactionStatus$outboundSchema,
   refundedAmount: z.nullable(z.number()).optional(),
   order: z.nullable(z.string()).optional(),
   subscription: z.nullable(z.string()).optional(),
