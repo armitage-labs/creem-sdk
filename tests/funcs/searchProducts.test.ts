@@ -48,7 +48,7 @@ describe("searchProducts", () => {
       expect(result.items[0]).toHaveProperty("currency");
       expect(result.items[0]).toHaveProperty("billingType");
       // billingType should be one of ProductBillingType values
-      expect([ProductBillingType.Recurring, ProductBillingType.OneTime]).toContain(
+      expect([ProductBillingType.Recurring, ProductBillingType.Onetime]).toContain(
         result.items[0].billingType
       );
       expect(result.items[0]).toHaveProperty("status");
