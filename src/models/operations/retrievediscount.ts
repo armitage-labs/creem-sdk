@@ -10,11 +10,11 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type RetrieveDiscountRequest = {
   /**
-   * The unique identifier of the discount (provide either discount_id OR discount_code)
+   * The unique identifier of the discount (provide either discount_id OR discount_code).
    */
   discountId?: string | undefined;
   /**
-   * The unique discount code (provide either discount_id OR discount_code)
+   * The unique discount code (provide either discount_id OR discount_code).
    */
   discountCode?: string | undefined;
 };

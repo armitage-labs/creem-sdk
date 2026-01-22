@@ -12,6 +12,6 @@ let value: RetrieveProductRequest = {
 
 ## Fields
 
-| Field                                | Type                                 | Required                             | Description                          | Example                              |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| `productId`                          | *string*                             | :heavy_check_mark:                   | The unique identifier of the product | prod_1234567890                      |
+| Field                                 | Type                                  | Required                              | Description                           | Example                               |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| `productId`                           | *string*                              | :heavy_check_mark:                    | The unique identifier of the product. | prod_1234567890                       |

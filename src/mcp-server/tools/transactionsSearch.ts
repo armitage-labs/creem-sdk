@@ -10,8 +10,8 @@ const args = {
   customerId: z.string().optional(),
   orderId: z.string().optional(),
   productId: z.string().optional(),
-  pageNumber: z.number().optional(),
-  pageSize: z.number().optional(),
+  pageNumber: z.number().default(1),
+  pageSize: z.number().default(10),
 };
 
 export const tool$transactionsSearch: ToolDefinition<typeof args> = {

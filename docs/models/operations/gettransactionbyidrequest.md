@@ -12,6 +12,6 @@ let value: GetTransactionByIdRequest = {
 
 ## Fields
 
-| Field                                    | Type                                     | Required                                 | Description                              | Example                                  |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| `transactionId`                          | *string*                                 | :heavy_check_mark:                       | The unique identifier of the transaction | txn_1234567890                           |
+| Field                                     | Type                                      | Required                                  | Description                               | Example                                   |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| `transactionId`                           | *string*                                  | :heavy_check_mark:                        | The unique identifier of the transaction. | txn_1234567890                            |

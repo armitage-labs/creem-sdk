@@ -10,11 +10,11 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ListCustomersRequest = {
   /**
-   * The page number
+   * The page number for pagination.
    */
   pageNumber?: number | undefined;
   /**
-   * The page size
+   * The number of items per page.
    */
   pageSize?: number | undefined;
 };
@@ -25,8 +25,8 @@ export const ListCustomersRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  page_number: z.number().optional(),
-  page_size: z.number().optional(),
+  page_number: z.number().default(1),
+  page_size: z.number().default(50),
 }).transform((v) => {
   return remap$(v, {
     "page_number": "pageNumber",
@@ -35,8 +35,8 @@ export const ListCustomersRequest$inboundSchema: z.ZodType<
 });
 /** @internal */
 export type ListCustomersRequest$Outbound = {
-  page_number?: number | undefined;
-  page_size?: number | undefined;
+  page_number: number;
+  page_size: number;
 };
 
 /** @internal */
@@ -45,8 +45,8 @@ export const ListCustomersRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListCustomersRequest
 > = z.object({
-  pageNumber: z.number().optional(),
-  pageSize: z.number().optional(),
+  pageNumber: z.number().default(1),
+  pageSize: z.number().default(50),
 }).transform((v) => {
   return remap$(v, {
     pageNumber: "page_number",
