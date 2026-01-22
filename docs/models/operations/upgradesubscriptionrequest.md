@@ -7,7 +7,6 @@ import { UpgradeSubscriptionRequest } from "creem/models/operations";
 
 let value: UpgradeSubscriptionRequest = {
   id: "<id>",
-  xApiKey: "<value>",
   upgradeSubscriptionRequestEntity: {
     productId: "prod_123",
   },
@@ -18,6 +17,5 @@ let value: UpgradeSubscriptionRequest = {
 
 | Field                                                                                                      | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `id`                                                                                                       | *string*                                                                                                   | :heavy_check_mark:                                                                                         | N/A                                                                                                        |
-| `xApiKey`                                                                                                  | *string*                                                                                                   | :heavy_check_mark:                                                                                         | N/A                                                                                                        |
-| `upgradeSubscriptionRequestEntity`                                                                         | [components.UpgradeSubscriptionRequestEntity](../../models/components/upgradesubscriptionrequestentity.md) | :heavy_check_mark:                                                                                         | N/A                                                                                                        |
+| `id`                                                                                                       | *string*                                                                                                   | :heavy_check_mark:                                                                                         | The unique identifier of the subscription                                                                  |
+| `upgradeSubscriptionRequestEntity`                                                                         | [components.UpgradeSubscriptionRequestEntity](../../models/components/upgradesubscriptionrequestentity.md) | :heavy_check_mark:                                                                                         | Subscription upgrade payload                                                                               |

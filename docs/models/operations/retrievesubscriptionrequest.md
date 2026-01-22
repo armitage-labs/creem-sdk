@@ -6,14 +6,12 @@
 import { RetrieveSubscriptionRequest } from "creem/models/operations";
 
 let value: RetrieveSubscriptionRequest = {
-  subscriptionId: "<id>",
-  xApiKey: "<value>",
+  subscriptionId: "sub_1234567890",
 };
 ```
 
 ## Fields
 
-| Field                                     | Type                                      | Required                                  | Description                               |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| `subscriptionId`                          | *string*                                  | :heavy_check_mark:                        | The unique identifier of the subscription |
-| `xApiKey`                                 | *string*                                  | :heavy_check_mark:                        | N/A                                       |
+| Field                                     | Type                                      | Required                                  | Description                               | Example                                   |
+| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
+| `subscriptionId`                          | *string*                                  | :heavy_check_mark:                        | The unique identifier of the subscription | sub_1234567890                            |

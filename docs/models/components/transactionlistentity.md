@@ -14,7 +14,7 @@ let value: TransactionListEntity = {
       amount: 2000,
       amountPaid: 2000,
       discountAmount: 2000,
-      currency: "EUR",
+      currency: "USD",
       type: "<value>",
       taxCountry: "US",
       taxAmount: 2000,

@@ -6,14 +6,12 @@
 import { RetrieveProductRequest } from "creem/models/operations";
 
 let value: RetrieveProductRequest = {
-  productId: "<id>",
-  xApiKey: "<value>",
+  productId: "prod_1234567890",
 };
 ```
 
 ## Fields
 
-| Field                                | Type                                 | Required                             | Description                          |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| `productId`                          | *string*                             | :heavy_check_mark:                   | The unique identifier of the product |
-| `xApiKey`                            | *string*                             | :heavy_check_mark:                   | N/A                                  |
+| Field                                | Type                                 | Required                             | Description                          | Example                              |
+| ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
+| `productId`                          | *string*                             | :heavy_check_mark:                   | The unique identifier of the product | prod_1234567890                      |

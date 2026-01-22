@@ -1,37 +1,15 @@
 import { Creem } from "../../src/index.js";
-import { describe, it, expect } from "@jest/globals";
+import { describe, it, expect, beforeAll } from "vitest";
 import { APIError } from "../../src/models/errors/index.js";
 import { fail } from "../../src/lib/matchers.js";
 import * as components from "../../src/models/components/index.js";
-import {
-  TEST_API_KEY,
-  TEST_PRODUCT_SUBSCRIPTION_ID,
-  TEST_SERVER_IDX,
-  TEST_MODE,
-} from "../fixtures/testValues.js";
+import { TEST_SERVER_IDX, TEST_MODE } from "../fixtures/testValues.js";
+import { creem, getTestProduct } from "../fixtures/testData.js";
+import type { ProductEntity } from "../../src/models/components/index.js";
 
-// Global test variables
-// Sample percentage discount data
-const SAMPLE_PERCENTAGE_DISCOUNT: components.CreateDiscountRequestEntity = {
-  name: "Test Percentage Discount",
-  type: components.CreateDiscountRequestEntityType.Percentage,
-  percentage: 20,
-  duration: components.CreateDiscountRequestEntityDuration.Forever,
-  appliesToProducts: [TEST_PRODUCT_SUBSCRIPTION_ID],
-};
-
-// Sample fixed discount data
-const SAMPLE_FIXED_DISCOUNT: components.CreateDiscountRequestEntity = {
-  name: "Test Fixed Discount",
-  type: components.CreateDiscountRequestEntityType.Fixed,
-  amount: 1000,
-  currency: "EUR",
-  duration: components.CreateDiscountRequestEntityDuration.Once,
-  appliesToProducts: [TEST_PRODUCT_SUBSCRIPTION_ID],
-};
-
-// Create an actual instance of Creem for testing
-const creem = new Creem({
+// Create an instance with invalid API key for auth error tests
+const creemWithInvalidKey = new Creem({
+  apiKey: "fail",
   serverIdx: TEST_SERVER_IDX,
 });
 
@@ -42,12 +20,23 @@ export let createdFixedDiscountId: string | undefined;
 export let createdFixedDiscountCode: string | undefined;
 
 describe("createDiscount - Percentage Discounts", () => {
+  let testProduct: ProductEntity;
+  let samplePercentageDiscount: components.CreateDiscountRequestEntity;
+
+  beforeAll(async () => {
+    testProduct = await getTestProduct();
+    samplePercentageDiscount = {
+      name: `Test Percentage Discount ${Date.now()}`,
+      type: components.DiscountType.Percentage,
+      percentage: 20,
+      duration: components.CouponDurationType.Forever,
+      appliesToProducts: [testProduct.id],
+    };
+  });
+
   it("should handle API authentication errors", async () => {
     try {
-      await creem.createDiscount({
-        xApiKey: "fail",
-        createDiscountRequestEntity: SAMPLE_PERCENTAGE_DISCOUNT,
-      });
+      await creemWithInvalidKey.discounts.create(samplePercentageDiscount);
       fail("Expected an API error but none was thrown");
     } catch (error) {
       expect(error).toBeInstanceOf(APIError);
@@ -56,10 +45,7 @@ describe("createDiscount - Percentage Discounts", () => {
   });
 
   it("should create a percentage discount successfully", async () => {
-    const result = await creem.createDiscount({
-      xApiKey: TEST_API_KEY,
-      createDiscountRequestEntity: SAMPLE_PERCENTAGE_DISCOUNT,
-    });
+    const result = await creem.discounts.create(samplePercentageDiscount);
 
     // Store the created discount ID and code
     createdPercentageDiscountId = result.id;
@@ -69,35 +55,32 @@ describe("createDiscount - Percentage Discounts", () => {
     expect(result).toHaveProperty("mode", TEST_MODE);
     expect(result).toHaveProperty("object");
     expect(result).toHaveProperty("status", "active");
-    expect(result).toHaveProperty("name", SAMPLE_PERCENTAGE_DISCOUNT.name);
+    expect(result).toHaveProperty("name", samplePercentageDiscount.name);
     expect(result).toHaveProperty("code");
-    expect(result).toHaveProperty("type", SAMPLE_PERCENTAGE_DISCOUNT.type);
+    expect(result).toHaveProperty("type", samplePercentageDiscount.type);
     expect(result).toHaveProperty(
       "percentage",
-      SAMPLE_PERCENTAGE_DISCOUNT.percentage
+      samplePercentageDiscount.percentage
     );
     expect(result).toHaveProperty(
       "duration",
-      SAMPLE_PERCENTAGE_DISCOUNT.duration
+      samplePercentageDiscount.duration
     );
   });
 
   it("should create a percentage discount with advanced options successfully", async () => {
     const advancedDiscount: components.CreateDiscountRequestEntity = {
-      name: "Advanced Percentage Discount",
-      type: components.CreateDiscountRequestEntityType.Percentage,
+      name: `Adv Pct Disc ${Date.now()}`.slice(0, 40),
+      type: components.DiscountType.Percentage,
       percentage: 15,
-      duration: components.CreateDiscountRequestEntityDuration.Repeating,
+      duration: components.CouponDurationType.Repeating,
       durationInMonths: 3,
       maxRedemptions: 100,
       expiryDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days from now
-      appliesToProducts: [TEST_PRODUCT_SUBSCRIPTION_ID],
+      appliesToProducts: [testProduct.id],
     };
 
-    const result = await creem.createDiscount({
-      xApiKey: TEST_API_KEY,
-      createDiscountRequestEntity: advancedDiscount,
-    });
+    const result = await creem.discounts.create(advancedDiscount);
 
     expect(result).toHaveProperty("id");
     expect(result).toHaveProperty("name", advancedDiscount.name);
@@ -116,11 +99,14 @@ describe("createDiscount - Percentage Discounts", () => {
   });
 
   it("should handle validation errors", async () => {
+    // Create an instance with empty API key
+    const creemWithEmptyKey = new Creem({
+      apiKey: "",
+      serverIdx: TEST_SERVER_IDX,
+    });
+
     try {
-      await creem.createDiscount({
-        xApiKey: "",
-        createDiscountRequestEntity: SAMPLE_PERCENTAGE_DISCOUNT,
-      });
+      await creemWithEmptyKey.discounts.create(samplePercentageDiscount);
       fail("Expected validation error but none was thrown");
     } catch (error) {
       expect(error).toBeInstanceOf(Error);
@@ -129,13 +115,10 @@ describe("createDiscount - Percentage Discounts", () => {
 
   it("should handle request errors with invalid discount data", async () => {
     try {
-      await creem.createDiscount({
-        xApiKey: TEST_API_KEY,
-        createDiscountRequestEntity: {
-          // Missing required fields
-          name: "Invalid Discount",
-        } as any,
-      });
+      await creem.discounts.create({
+        // Missing required fields
+        name: "Invalid Discount",
+      } as any);
       fail("Expected error with invalid discount data but none was thrown");
     } catch (error) {
       expect(error).toBeDefined();
@@ -144,41 +127,50 @@ describe("createDiscount - Percentage Discounts", () => {
 });
 
 describe("createDiscount - Fixed Amount Discounts", () => {
+  let testProduct: ProductEntity;
+  let sampleFixedDiscount: components.CreateDiscountRequestEntity;
+
+  beforeAll(async () => {
+    testProduct = await getTestProduct();
+    sampleFixedDiscount = {
+      name: `Test Fixed Discount ${Date.now()}`,
+      type: components.DiscountType.Fixed,
+      amount: 1000,
+      currency: "EUR",
+      duration: components.CouponDurationType.Once,
+      appliesToProducts: [testProduct.id],
+    };
+  });
+
   it("should create a fixed amount discount successfully", async () => {
-    const result = await creem.createDiscount({
-      xApiKey: TEST_API_KEY,
-      createDiscountRequestEntity: SAMPLE_FIXED_DISCOUNT,
-    });
+    const result = await creem.discounts.create(sampleFixedDiscount);
 
     // Store the created discount ID and code
     createdFixedDiscountId = result.id;
     createdFixedDiscountCode = result.code;
 
     expect(result).toHaveProperty("id");
-    expect(result).toHaveProperty("name", SAMPLE_FIXED_DISCOUNT.name);
-    expect(result).toHaveProperty("type", SAMPLE_FIXED_DISCOUNT.type);
-    expect(result).toHaveProperty("amount", SAMPLE_FIXED_DISCOUNT.amount);
-    expect(result).toHaveProperty("currency", SAMPLE_FIXED_DISCOUNT.currency);
-    expect(result).toHaveProperty("duration", SAMPLE_FIXED_DISCOUNT.duration);
+    expect(result).toHaveProperty("name", sampleFixedDiscount.name);
+    expect(result).toHaveProperty("type", sampleFixedDiscount.type);
+    expect(result).toHaveProperty("amount", sampleFixedDiscount.amount);
+    expect(result).toHaveProperty("currency", sampleFixedDiscount.currency);
+    expect(result).toHaveProperty("duration", sampleFixedDiscount.duration);
   });
 
   it("should create a fixed amount discount with advanced options successfully", async () => {
     const advancedFixedDiscount: components.CreateDiscountRequestEntity = {
-      name: "Advanced Fixed Discount",
-      type: components.CreateDiscountRequestEntityType.Fixed,
+      name: `Adv Fixed Disc ${Date.now()}`.slice(0, 40),
+      type: components.DiscountType.Fixed,
       amount: 2000,
       currency: "EUR",
-      duration: components.CreateDiscountRequestEntityDuration.Repeating,
+      duration: components.CouponDurationType.Repeating,
       durationInMonths: 3,
       maxRedemptions: 100,
       expiryDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days from now
-      appliesToProducts: [TEST_PRODUCT_SUBSCRIPTION_ID],
+      appliesToProducts: [testProduct.id],
     };
 
-    const result = await creem.createDiscount({
-      xApiKey: TEST_API_KEY,
-      createDiscountRequestEntity: advancedFixedDiscount,
-    });
+    const result = await creem.discounts.create(advancedFixedDiscount);
 
     expect(result).toHaveProperty("id");
     expect(result).toHaveProperty("name", advancedFixedDiscount.name);
@@ -199,14 +191,11 @@ describe("createDiscount - Fixed Amount Discounts", () => {
 
   it("should handle validation errors for fixed discounts", async () => {
     try {
-      await creem.createDiscount({
-        xApiKey: TEST_API_KEY,
-        createDiscountRequestEntity: {
-          name: "Invalid Fixed Discount",
-          type: components.CreateDiscountRequestEntityType.Fixed,
-          // Missing required amount and currency
-        } as any,
-      });
+      await creem.discounts.create({
+        name: "Invalid Fixed Discount",
+        type: components.DiscountType.Fixed,
+        // Missing required amount and currency
+      } as any);
       fail(
         "Expected error with invalid fixed discount data but none was thrown"
       );

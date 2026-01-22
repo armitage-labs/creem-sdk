@@ -16,41 +16,51 @@ generation:
     requestResponseComponentNamesFeb2024: true
     securityFeb2025: true
     sharedErrorComponentsApr2025: false
+    sharedNestedComponentsJan2026: false
   auth:
     oAuth2ClientCredentialsEnabled: false
     oAuth2PasswordEnabled: false
     hoistGlobalSecurity: true
+  schemas:
+    allOfMergeStrategy: shallowMerge
+  requestBodyFieldName: ""
+  persistentEdits:
+    enabled: never
   tests:
     generateTests: true
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 0.4.0
+  version: 1.0.1
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
     devDependencies:
-      '@jest/globals': ^29.7.0
-      '@types/jest': ^29.5.14
       dotenv: ^16.5.0
-      jest: ^29.7.0
-      ts-jest: ^29.3.2
+      vitest: ^3.0.0
     peerDependencies: {}
-  additionalPackageJSON:
-    scripts:
-      test: npx jest
+  additionalPackageJSON: {}
+  additionalScripts:
+    test: vitest run
+    test:watch: vitest
+  alwaysIncludeInboundAndOutbound: false
   author: Speakeasy
   baseErrorName: CreemError
   clientServerStatusCodesAsErrors: true
-  constFieldsAlwaysOptional: true
+  constFieldsAlwaysOptional: false
   defaultErrorName: APIError
   enableCustomCodeRegions: false
   enableMCPServer: true
   enableReactQuery: false
   enumFormat: union
   envVarPrefix: CREEM
+  exportZodModelNamespace: false
+  flatAdditionalProperties: false
   flattenGlobalSecurity: true
   flatteningOrder: parameters-first
+  formStringArrayEncodeMode: encoded-string
+  forwardCompatibleEnumsByDefault: false
+  forwardCompatibleUnionsByDefault: "false"
   generateExamples: true
   imports:
     option: openapi
@@ -60,16 +70,23 @@ typescript:
       operations: models/operations
       shared: models/components
       webhooks: models/webhooks
+  inferUnionDiscriminators: true
   inputModelSuffix: input
   jsonpath: rfc9535
-  maxMethodParams: 0
+  laxMode: strict
+  maxMethodParams: 99
   methodArguments: require-security-and-request
   modelPropertyCasing: camel
   moduleFormat: dual
+  multipartArrayFormat: legacy
   outputModelSuffix: output
   packageName: creem
+  preApplyUnionDiscriminators: true
+  preserveModelFieldNames: false
   responseFormat: flat
   sseFlatResponse: false
   templateVersion: v2
+  unionStrategy: left-to-right
   usageSDKInitImports: []
   useIndexModules: true
+  zodVersion: v3

@@ -19,18 +19,18 @@ let value: CheckoutEntity = {
     imageUrl: "https://example.com/image.jpg",
     features: [
       {
-        id: "<id>",
-        type: "<value>",
-        description: "Get access to discord server.",
+        id: "feat_abc123",
+        type: "file",
+        description: "Access to premium course materials.",
       },
     ],
     price: 400,
-    currency: "EUR",
+    currency: "USD",
     billingType: "recurring",
     billingPeriod: "every-month",
     status: "<value>",
     taxMode: "inclusive",
-    taxCategory: "saas",
+    taxCategory: "[\"saas\",\"digital-goods-service\",\"ebooks\"]",
     productUrl: "https://creem.io/product/prod_123123123123",
     defaultSuccessUrl: "https://example.com/?status=successful",
     createdAt: new Date("2023-01-01T00:00:00Z"),
@@ -49,7 +49,7 @@ let value: CheckoutEntity = {
     discountAmount: 100,
     amountDue: 1900,
     amountPaid: 1900,
-    currency: "EUR",
+    currency: "USD",
     fxAmount: 15,
     fxCurrency: "EUR",
     fxRate: 1.2,
@@ -71,18 +71,18 @@ let value: CheckoutEntity = {
       imageUrl: "https://example.com/image.jpg",
       features: [
         {
-          id: "<id>",
-          type: "<value>",
-          description: "Get access to discord server.",
+          id: "feat_abc123",
+          type: "file",
+          description: "Access to premium course materials.",
         },
       ],
       price: 400,
-      currency: "EUR",
+      currency: "USD",
       billingType: "recurring",
       billingPeriod: "every-month",
       status: "<value>",
       taxMode: "inclusive",
-      taxCategory: "saas",
+      taxCategory: "[\"saas\",\"digital-goods-service\",\"ebooks\"]",
       productUrl: "https://creem.io/product/prod_123123123123",
       defaultSuccessUrl: "https://example.com/?status=successful",
       createdAt: new Date("2023-01-01T00:00:00Z"),
@@ -108,7 +108,7 @@ let value: CheckoutEntity = {
       amount: 2000,
       amountPaid: 2000,
       discountAmount: 2000,
-      currency: "EUR",
+      currency: "USD",
       type: "<value>",
       taxCountry: "US",
       taxAmount: 2000,
@@ -137,9 +137,24 @@ let value: CheckoutEntity = {
   successUrl: "https://example.com/return",
   feature: [
     {
-      license: {
+      id: "feat_abc123",
+      description: "Get access to the full course materials.",
+      privateNote:
+        "Thank you for your purchase! Here is your access code: XYZ123",
+      file: {
+        files: [
+          {
+            id: "file_abc123",
+            fileName: "ebook.pdf",
+            url: "https://storage.creem.io/files/ebook.pdf",
+            type: "application/pdf",
+            size: 1024000,
+          },
+        ],
+      },
+      licenseKey: {
         id: "<id>",
-        mode: "prod",
+        mode: "test",
         object: "<value>",
         status: "active",
         key: "ABC123-XYZ456-XYZ456-XYZ456",
@@ -149,7 +164,7 @@ let value: CheckoutEntity = {
         createdAt: new Date("2023-09-13T00:00:00Z"),
         instance: {
           id: "<id>",
-          mode: "prod",
+          mode: "test",
           object: "license-instance",
           name: "My Customer License Instance",
           status: "active",
@@ -171,7 +186,7 @@ let value: CheckoutEntity = {
 | Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           | Example                                                                               |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | `id`                                                                                  | *string*                                                                              | :heavy_check_mark:                                                                    | Unique identifier for the object.                                                     |                                                                                       |
-| `mode`                                                                                | [components.CheckoutEntityMode](../../models/components/checkoutentitymode.md)        | :heavy_check_mark:                                                                    | String representing the environment.                                                  |                                                                                       |
+| `mode`                                                                                | [components.EnvironmentMode](../../models/components/environmentmode.md)              | :heavy_check_mark:                                                                    | String representing the environment.                                                  |                                                                                       |
 | `object`                                                                              | *string*                                                                              | :heavy_check_mark:                                                                    | String representing the object's type. Objects of the same type share the same value. |                                                                                       |
 | `status`                                                                              | [components.CheckoutEntityStatus](../../models/components/checkoutentitystatus.md)    | :heavy_check_mark:                                                                    | Status of the checkout.                                                               | completed                                                                             |
 | `requestId`                                                                           | *string*                                                                              | :heavy_minus_sign:                                                                    | Identify and track each checkout request.                                             |                                                                                       |

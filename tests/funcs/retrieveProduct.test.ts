@@ -1,27 +1,28 @@
 import { Creem } from "../../src/index.js";
-import { describe, it, expect } from "@jest/globals";
+import { describe, it, expect, beforeAll } from "vitest";
 import { APIError } from "../../src/models/errors/index.js";
 import { fail } from "../../src/lib/matchers.js";
-import {
-  TEST_API_KEY,
-  TEST_PRODUCT_SUBSCRIPTION_ID,
-  TEST_SERVER_IDX,
-  TEST_MODE,
-} from "../fixtures/testValues.js";
+import { TEST_SERVER_IDX, TEST_MODE } from "../fixtures/testValues.js";
+import { creem, getTestProduct } from "../fixtures/testData.js";
+import type { ProductEntity } from "../../src/models/components/index.js";
 
-// Create an actual instance of Creem for testing
-const creem = new Creem({
+// Create an instance with invalid API key for auth error tests
+const creemWithInvalidKey = new Creem({
+  apiKey: "fail",
   serverIdx: TEST_SERVER_IDX,
 });
 
 describe("retrieveProduct", () => {
+  let testProduct: ProductEntity;
+
+  beforeAll(async () => {
+    testProduct = await getTestProduct();
+  });
+
   it("should handle API authentication errors", async () => {
     try {
       // Attempt to call SDK method with invalid API key
-      await creem.retrieveProduct({
-        xApiKey: "fail",
-        productId: TEST_PRODUCT_SUBSCRIPTION_ID,
-      });
+      await creemWithInvalidKey.products.get(testProduct.id);
       // If it succeeds, fail the test (we expect it to throw)
       fail("Expected an API error but none was thrown");
     } catch (error) {
@@ -33,33 +34,30 @@ describe("retrieveProduct", () => {
 
   it("should retrieve a product successfully", async () => {
     // When using the SDK instance directly, it returns ProductEntity
-    const result = await creem.retrieveProduct({
-      xApiKey: TEST_API_KEY,
-      productId: TEST_PRODUCT_SUBSCRIPTION_ID,
-    });
+    const result = await creem.products.get(testProduct.id);
 
     // Test direct SDK method
-    expect(result).toHaveProperty("id", TEST_PRODUCT_SUBSCRIPTION_ID);
+    expect(result).toHaveProperty("id", testProduct.id);
     expect(result).toHaveProperty("name");
     expect(result).toHaveProperty("description");
-    expect(result).toHaveProperty("price", 100000);
-    expect(result).toHaveProperty("currency", "EUR");
-    expect(result).toHaveProperty("billingType", "recurring");
-    expect(result).toHaveProperty("billingPeriod", "every-month");
-    expect(result).toHaveProperty("status", "active");
-    expect(result).toHaveProperty("taxMode", "exclusive");
-    expect(result).toHaveProperty("taxCategory", "saas");
+    expect(result).toHaveProperty("price");
+    expect(result).toHaveProperty("currency");
+    expect(result).toHaveProperty("billingType");
+    expect(result).toHaveProperty("status");
     expect(result).toHaveProperty("productUrl");
     expect(result).toHaveProperty("mode", TEST_MODE);
   });
 
   it("should handle validation errors", async () => {
+    // Create an instance with empty API key
+    const creemWithEmptyKey = new Creem({
+      apiKey: "",
+      serverIdx: TEST_SERVER_IDX,
+    });
+
     try {
       // Use invalid input to trigger validation error
-      await creem.retrieveProduct({
-        xApiKey: "",
-        productId: TEST_PRODUCT_SUBSCRIPTION_ID,
-      });
+      await creemWithEmptyKey.products.get(testProduct.id);
       fail("Expected validation error but none was thrown");
     } catch (error) {
       expect(error).toBeInstanceOf(Error);
@@ -68,10 +66,7 @@ describe("retrieveProduct", () => {
 
   it("should handle request errors with non-existent product ID", async () => {
     try {
-      await creem.retrieveProduct({
-        xApiKey: TEST_API_KEY,
-        productId: "non-existent-product-id",
-      });
+      await creem.products.get("non-existent-product-id");
       fail("Expected error with invalid product ID but none was thrown");
     } catch (error) {
       expect(error).toBeDefined();
