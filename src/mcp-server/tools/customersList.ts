@@ -7,8 +7,8 @@ import { customersList } from "../../funcs/customersList.js";
 import { formatResult, ToolDefinition } from "../tools.js";
 
 const args = {
-  pageNumber: z.number().optional(),
-  pageSize: z.number().optional(),
+  pageNumber: z.number().default(1),
+  pageSize: z.number().default(50),
 };
 
 export const tool$customersList: ToolDefinition<typeof args> = {

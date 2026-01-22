@@ -10,7 +10,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetTransactionByIdRequest = {
   /**
-   * The unique identifier of the transaction
+   * The unique identifier of the transaction.
    */
   transactionId: string;
 };

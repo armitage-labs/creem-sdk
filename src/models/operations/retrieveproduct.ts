@@ -10,7 +10,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type RetrieveProductRequest = {
   /**
-   * The unique identifier of the product
+   * The unique identifier of the product.
    */
   productId: string;
 };

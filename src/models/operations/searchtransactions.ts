@@ -10,23 +10,23 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type SearchTransactionsRequest = {
   /**
-   * The customer id
+   * Filter transactions by customer ID.
    */
   customerId?: string | undefined;
   /**
-   * The order id
+   * Filter transactions by order ID.
    */
   orderId?: string | undefined;
   /**
-   * The product id
+   * Filter transactions by product ID.
    */
   productId?: string | undefined;
   /**
-   * The page number
+   * The page number for pagination.
    */
   pageNumber?: number | undefined;
   /**
-   * The page size
+   * The number of items per page.
    */
   pageSize?: number | undefined;
 };
@@ -40,8 +40,8 @@ export const SearchTransactionsRequest$inboundSchema: z.ZodType<
   customer_id: z.string().optional(),
   order_id: z.string().optional(),
   product_id: z.string().optional(),
-  page_number: z.number().optional(),
-  page_size: z.number().optional(),
+  page_number: z.number().default(1),
+  page_size: z.number().default(10),
 }).transform((v) => {
   return remap$(v, {
     "customer_id": "customerId",
@@ -56,8 +56,8 @@ export type SearchTransactionsRequest$Outbound = {
   customer_id?: string | undefined;
   order_id?: string | undefined;
   product_id?: string | undefined;
-  page_number?: number | undefined;
-  page_size?: number | undefined;
+  page_number: number;
+  page_size: number;
 };
 
 /** @internal */
@@ -69,8 +69,8 @@ export const SearchTransactionsRequest$outboundSchema: z.ZodType<
   customerId: z.string().optional(),
   orderId: z.string().optional(),
   productId: z.string().optional(),
-  pageNumber: z.number().optional(),
-  pageSize: z.number().optional(),
+  pageNumber: z.number().default(1),
+  pageSize: z.number().default(10),
 }).transform((v) => {
   return remap$(v, {
     customerId: "customer_id",

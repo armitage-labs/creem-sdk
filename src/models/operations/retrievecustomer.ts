@@ -10,11 +10,11 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type RetrieveCustomerRequest = {
   /**
-   * The unique identifier of the customer
+   * The unique identifier of the customer.
    */
   customerId?: string | undefined;
   /**
-   * The unique email of the customer
+   * The email address of the customer.
    */
   email?: string | undefined;
 };

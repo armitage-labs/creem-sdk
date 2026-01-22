@@ -11,7 +11,7 @@
             "name": "product_id",
             "required": true,
             "in": "query",
-            "description": "The unique identifier of the product",
+            "description": "The unique identifier of the product.",
             "schema": {
               "example": "prod_1234567890",
               "type": "string"
@@ -105,8 +105,10 @@
             "name": "page_number",
             "required": false,
             "in": "query",
-            "description": "The page number",
+            "description": "The page number for pagination.",
             "schema": {
+              "default": 1,
+              "example": 1,
               "type": "number"
             }
           },
@@ -114,8 +116,10 @@
             "name": "page_size",
             "required": false,
             "in": "query",
-            "description": "The page size",
+            "description": "The number of items per page.",
             "schema": {
+              "default": 10,
+              "example": 10,
               "type": "number"
             }
           }
@@ -161,8 +165,10 @@
             "name": "page_number",
             "required": false,
             "in": "query",
-            "description": "The page number",
+            "description": "The page number for pagination.",
             "schema": {
+              "default": 1,
+              "example": 1,
               "type": "number"
             }
           },
@@ -170,8 +176,10 @@
             "name": "page_size",
             "required": false,
             "in": "query",
-            "description": "The page size",
+            "description": "The number of items per page.",
             "schema": {
+              "default": 50,
+              "example": 50,
               "type": "number"
             }
           }
@@ -217,8 +225,9 @@
             "name": "customer_id",
             "required": false,
             "in": "query",
-            "description": "The unique identifier of the customer",
+            "description": "The unique identifier of the customer.",
             "schema": {
+              "example": "cust_1234567890",
               "type": "string"
             }
           },
@@ -226,8 +235,9 @@
             "name": "email",
             "required": false,
             "in": "query",
-            "description": "The unique email of the customer",
+            "description": "The email address of the customer.",
             "schema": {
+              "example": "customer@example.com",
               "type": "string"
             }
           }
@@ -875,8 +885,9 @@
             "name": "discount_id",
             "required": false,
             "in": "query",
-            "description": "The unique identifier of the discount (provide either discount_id OR discount_code)",
+            "description": "The unique identifier of the discount (provide either discount_id OR discount_code).",
             "schema": {
+              "example": "disc_1234567890",
               "type": "string"
             }
           },
@@ -884,8 +895,9 @@
             "name": "discount_code",
             "required": false,
             "in": "query",
-            "description": "The unique discount code (provide either discount_id OR discount_code)",
+            "description": "The unique discount code (provide either discount_id OR discount_code).",
             "schema": {
+              "example": "SAVE20",
               "type": "string"
             }
           }
@@ -1024,7 +1036,7 @@
             "name": "transaction_id",
             "required": true,
             "in": "query",
-            "description": "The unique identifier of the transaction",
+            "description": "The unique identifier of the transaction.",
             "schema": {
               "example": "txn_1234567890",
               "type": "string"
@@ -1072,8 +1084,9 @@
             "name": "customer_id",
             "required": false,
             "in": "query",
-            "description": "The customer id",
+            "description": "Filter transactions by customer ID.",
             "schema": {
+              "example": "cust_1234567890",
               "type": "string"
             }
           },
@@ -1081,8 +1094,9 @@
             "name": "order_id",
             "required": false,
             "in": "query",
-            "description": "The order id",
+            "description": "Filter transactions by order ID.",
             "schema": {
+              "example": "ord_1234567890",
               "type": "string"
             }
           },
@@ -1090,8 +1104,9 @@
             "name": "product_id",
             "required": false,
             "in": "query",
-            "description": "The product id",
+            "description": "Filter transactions by product ID.",
             "schema": {
+              "example": "prod_1234567890",
               "type": "string"
             }
           },
@@ -1099,8 +1114,10 @@
             "name": "page_number",
             "required": false,
             "in": "query",
-            "description": "The page number",
+            "description": "The page number for pagination.",
             "schema": {
+              "default": 1,
+              "example": 1,
               "type": "number"
             }
           },
@@ -1108,8 +1125,10 @@
             "name": "page_size",
             "required": false,
             "in": "query",
-            "description": "The page size",
+            "description": "The number of items per page.",
             "schema": {
+              "default": 10,
+              "example": 10,
               "type": "number"
             }
           }
