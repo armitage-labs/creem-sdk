@@ -13,44 +13,23 @@ import {
   EnvironmentMode$inboundSchema,
   EnvironmentMode$outboundSchema,
 } from "./environmentmode.js";
-
-/**
- * The current status of the license key.
- */
-export const LicenseEntityStatus = {
-  Inactive: "inactive",
-  Active: "active",
-  Expired: "expired",
-  Disabled: "disabled",
-} as const;
-/**
- * The current status of the license key.
- */
-export type LicenseEntityStatus = ClosedEnum<typeof LicenseEntityStatus>;
-
-/**
- * The activation limit. Null if activations are unlimited.
- */
-export type ActivationLimit = {};
-
-/**
- * The date the license key expires. Null if it does not have an expiration date.
- */
-export type ExpiresAt = {};
+import {
+  LicenseStatus,
+  LicenseStatus$inboundSchema,
+  LicenseStatus$outboundSchema,
+} from "./licensestatus.js";
 
 /**
  * The status of the license instance.
  */
-export const LicenseEntityInstanceStatus = {
+export const LicenseEntityStatus = {
   Active: "active",
   Deactivated: "deactivated",
 } as const;
 /**
  * The status of the license instance.
  */
-export type LicenseEntityInstanceStatus = ClosedEnum<
-  typeof LicenseEntityInstanceStatus
->;
+export type LicenseEntityStatus = ClosedEnum<typeof LicenseEntityStatus>;
 
 /**
  * Associated license instances.
@@ -75,7 +54,7 @@ export type Instance = {
   /**
    * The status of the license instance.
    */
-  status: LicenseEntityInstanceStatus;
+  status: LicenseEntityStatus;
   /**
    * The creation date of the license instance.
    */
@@ -98,7 +77,7 @@ export type LicenseEntity = {
   /**
    * The current status of the license key.
    */
-  status: LicenseEntityStatus;
+  status: LicenseStatus;
   /**
    * The license key.
    */
@@ -110,11 +89,11 @@ export type LicenseEntity = {
   /**
    * The activation limit. Null if activations are unlimited.
    */
-  activationLimit?: ActivationLimit | null | undefined;
+  activationLimit?: number | null | undefined;
   /**
    * The date the license key expires. Null if it does not have an expiration date.
    */
-  expiresAt?: ExpiresAt | null | undefined;
+  expiresAt?: Date | null | undefined;
   /**
    * The creation date of the license key.
    */
@@ -135,75 +114,6 @@ export const LicenseEntityStatus$outboundSchema: z.ZodNativeEnum<
 > = LicenseEntityStatus$inboundSchema;
 
 /** @internal */
-export const ActivationLimit$inboundSchema: z.ZodType<
-  ActivationLimit,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-/** @internal */
-export type ActivationLimit$Outbound = {};
-
-/** @internal */
-export const ActivationLimit$outboundSchema: z.ZodType<
-  ActivationLimit$Outbound,
-  z.ZodTypeDef,
-  ActivationLimit
-> = z.object({});
-
-export function activationLimitToJSON(
-  activationLimit: ActivationLimit,
-): string {
-  return JSON.stringify(ActivationLimit$outboundSchema.parse(activationLimit));
-}
-export function activationLimitFromJSON(
-  jsonString: string,
-): SafeParseResult<ActivationLimit, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ActivationLimit$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ActivationLimit' from JSON`,
-  );
-}
-
-/** @internal */
-export const ExpiresAt$inboundSchema: z.ZodType<
-  ExpiresAt,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-/** @internal */
-export type ExpiresAt$Outbound = {};
-
-/** @internal */
-export const ExpiresAt$outboundSchema: z.ZodType<
-  ExpiresAt$Outbound,
-  z.ZodTypeDef,
-  ExpiresAt
-> = z.object({});
-
-export function expiresAtToJSON(expiresAt: ExpiresAt): string {
-  return JSON.stringify(ExpiresAt$outboundSchema.parse(expiresAt));
-}
-export function expiresAtFromJSON(
-  jsonString: string,
-): SafeParseResult<ExpiresAt, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => ExpiresAt$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ExpiresAt' from JSON`,
-  );
-}
-
-/** @internal */
-export const LicenseEntityInstanceStatus$inboundSchema: z.ZodNativeEnum<
-  typeof LicenseEntityInstanceStatus
-> = z.nativeEnum(LicenseEntityInstanceStatus);
-/** @internal */
-export const LicenseEntityInstanceStatus$outboundSchema: z.ZodNativeEnum<
-  typeof LicenseEntityInstanceStatus
-> = LicenseEntityInstanceStatus$inboundSchema;
-
-/** @internal */
 export const Instance$inboundSchema: z.ZodType<
   Instance,
   z.ZodTypeDef,
@@ -213,7 +123,7 @@ export const Instance$inboundSchema: z.ZodType<
   mode: EnvironmentMode$inboundSchema,
   object: z.string(),
   name: z.string(),
-  status: LicenseEntityInstanceStatus$inboundSchema,
+  status: LicenseEntityStatus$inboundSchema,
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
 }).transform((v) => {
   return remap$(v, {
@@ -240,7 +150,7 @@ export const Instance$outboundSchema: z.ZodType<
   mode: EnvironmentMode$outboundSchema,
   object: z.string(),
   name: z.string(),
-  status: LicenseEntityInstanceStatus$outboundSchema,
+  status: LicenseEntityStatus$outboundSchema,
   createdAt: z.date().transform(v => v.toISOString()),
 }).transform((v) => {
   return remap$(v, {
@@ -270,12 +180,13 @@ export const LicenseEntity$inboundSchema: z.ZodType<
   id: z.string(),
   mode: EnvironmentMode$inboundSchema,
   object: z.string(),
-  status: LicenseEntityStatus$inboundSchema,
+  status: LicenseStatus$inboundSchema,
   key: z.string(),
   activation: z.number(),
-  activation_limit: z.nullable(z.lazy(() => ActivationLimit$inboundSchema))
-    .optional(),
-  expires_at: z.nullable(z.lazy(() => ExpiresAt$inboundSchema)).optional(),
+  activation_limit: z.nullable(z.number()).optional(),
+  expires_at: z.nullable(
+    z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  ).optional(),
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   instance: z.nullable(z.lazy(() => Instance$inboundSchema)).optional(),
 }).transform((v) => {
@@ -293,8 +204,8 @@ export type LicenseEntity$Outbound = {
   status: string;
   key: string;
   activation: number;
-  activation_limit?: ActivationLimit$Outbound | null | undefined;
-  expires_at?: ExpiresAt$Outbound | null | undefined;
+  activation_limit?: number | null | undefined;
+  expires_at?: string | null | undefined;
   created_at: string;
   instance?: Instance$Outbound | null | undefined;
 };
@@ -308,12 +219,11 @@ export const LicenseEntity$outboundSchema: z.ZodType<
   id: z.string(),
   mode: EnvironmentMode$outboundSchema,
   object: z.string(),
-  status: LicenseEntityStatus$outboundSchema,
+  status: LicenseStatus$outboundSchema,
   key: z.string(),
   activation: z.number(),
-  activationLimit: z.nullable(z.lazy(() => ActivationLimit$outboundSchema))
-    .optional(),
-  expiresAt: z.nullable(z.lazy(() => ExpiresAt$outboundSchema)).optional(),
+  activationLimit: z.nullable(z.number()).optional(),
+  expiresAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
   createdAt: z.date().transform(v => v.toISOString()),
   instance: z.nullable(z.lazy(() => Instance$outboundSchema)).optional(),
 }).transform((v) => {

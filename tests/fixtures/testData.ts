@@ -5,7 +5,15 @@
 import { Creem } from "../../src/index.js";
 import { TEST_API_KEY, TEST_SERVER_IDX } from "./testValues.js";
 import type { ProductEntity, DiscountEntity, CheckoutEntity } from "../../src/models/components/index.js";
-import { DiscountType, CouponDurationType } from "../../src/models/components/index.js";
+import {
+  DiscountType,
+  CouponDurationType,
+  ProductRequestBillingType,
+  ProductRequestBillingPeriod,
+  ProductCurrency,
+  TaxMode,
+  TaxCategory,
+} from "../../src/models/components/index.js";
 
 // Shared Creem client instance
 export const creem = new Creem({
@@ -34,11 +42,11 @@ export async function getTestProduct(): Promise<ProductEntity> {
     name: `Test Product ${Date.now()}`,
     description: "Test subscription product for SDK tests",
     price: 1000, // $10.00
-    currency: "EUR",
-    billingType: "recurring",
-    billingPeriod: "every-month",
-    taxMode: "inclusive",
-    taxCategory: "saas",
+    currency: ProductCurrency.Eur,
+    billingType: ProductRequestBillingType.Recurring,
+    billingPeriod: ProductRequestBillingPeriod.EveryMonth,
+    taxMode: TaxMode.Inclusive,
+    taxCategory: TaxCategory.Saas,
     defaultSuccessUrl: "https://example.com/success",
   });
 
@@ -48,6 +56,11 @@ export async function getTestProduct(): Promise<ProductEntity> {
 
 /**
  * Get or create a test one-time product.
+ * 
+ * NOTE: This function currently fails due to a mismatch between the SDK and API:
+ * - ProductRequestBillingType uses "onetime" for requests (correct)
+ * - ProductBillingType expects "one-time" for responses, but API returns "onetime"
+ * This will be fixed when the SDK is regenerated.
  */
 export async function getTestOneTimeProduct(): Promise<ProductEntity> {
   if (cachedOneTimeProduct) {
@@ -60,10 +73,10 @@ export async function getTestOneTimeProduct(): Promise<ProductEntity> {
     name: `Test One-Time Product ${Date.now()}`,
     description: "Test one-time product for SDK tests",
     price: 500, // $5.00
-    currency: "EUR",
-    billingType: "onetime",
-    taxMode: "inclusive",
-    taxCategory: "saas",
+    currency: ProductCurrency.Eur,
+    billingType: ProductRequestBillingType.Onetime,
+    taxMode: TaxMode.Inclusive,
+    taxCategory: TaxCategory.Saas,
   });
 
   console.log(`[Test Setup] Created test one-time product: ${cachedOneTimeProduct.id}`);

@@ -1,5 +1,7 @@
 # Text
 
+Configuration for text field type.
+
 ## Example Usage
 
 ```typescript

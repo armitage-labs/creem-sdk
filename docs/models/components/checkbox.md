@@ -1,5 +1,7 @@
 # Checkbox
 
+Configuration for checkbox field type.
+
 ## Example Usage
 
 ```typescript

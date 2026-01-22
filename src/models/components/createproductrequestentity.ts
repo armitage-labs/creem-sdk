@@ -13,6 +13,31 @@ import {
   CustomFieldRequestEntity$Outbound,
   CustomFieldRequestEntity$outboundSchema,
 } from "./customfieldrequestentity.js";
+import {
+  ProductCurrency,
+  ProductCurrency$inboundSchema,
+  ProductCurrency$outboundSchema,
+} from "./productcurrency.js";
+import {
+  ProductRequestBillingPeriod,
+  ProductRequestBillingPeriod$inboundSchema,
+  ProductRequestBillingPeriod$outboundSchema,
+} from "./productrequestbillingperiod.js";
+import {
+  ProductRequestBillingType,
+  ProductRequestBillingType$inboundSchema,
+  ProductRequestBillingType$outboundSchema,
+} from "./productrequestbillingtype.js";
+import {
+  TaxCategory,
+  TaxCategory$inboundSchema,
+  TaxCategory$outboundSchema,
+} from "./taxcategory.js";
+import {
+  TaxMode,
+  TaxMode$inboundSchema,
+  TaxMode$outboundSchema,
+} from "./taxmode.js";
 
 export type CreateProductRequestEntity = {
   /**
@@ -34,23 +59,23 @@ export type CreateProductRequestEntity = {
   /**
    * Three-letter ISO currency code, in uppercase. Must be a supported currency.
    */
-  currency: string;
+  currency: ProductCurrency;
   /**
    * Indicates the billing method for the customer. It can either be a `recurring` billing cycle or a `onetime` payment.
    */
-  billingType: string;
+  billingType: ProductRequestBillingType;
   /**
    * Billing period, required if billing_type is recurring
    */
-  billingPeriod?: string | undefined;
+  billingPeriod?: ProductRequestBillingPeriod | undefined;
   /**
    * Specifies the tax calculation mode for the transaction. If set to "inclusive," the tax is included in the price. If set to "exclusive," the tax is added on top of the price.
    */
-  taxMode?: string | undefined;
+  taxMode?: TaxMode | undefined;
   /**
    * Categorizes the type of product or service for tax purposes. This helps determine the applicable tax rules based on the nature of the item or service.
    */
-  taxCategory?: string | undefined;
+  taxCategory?: TaxCategory | undefined;
   /**
    * The URL to which the user will be redirected after successfull payment.
    */
@@ -81,11 +106,11 @@ export const CreateProductRequestEntity$inboundSchema: z.ZodType<
   description: z.string().optional(),
   image_url: z.string().optional(),
   price: z.number().int(),
-  currency: z.string(),
-  billing_type: z.string(),
-  billing_period: z.string().optional(),
-  tax_mode: z.string().optional(),
-  tax_category: z.string().optional(),
+  currency: ProductCurrency$inboundSchema,
+  billing_type: ProductRequestBillingType$inboundSchema,
+  billing_period: ProductRequestBillingPeriod$inboundSchema.optional(),
+  tax_mode: TaxMode$inboundSchema.optional(),
+  tax_category: TaxCategory$inboundSchema.optional(),
   default_success_url: z.string().optional(),
   custom_fields: z.array(CustomFieldRequestEntity$inboundSchema).optional(),
   custom_field: z.array(CustomFieldRequestEntity$inboundSchema).optional(),
@@ -130,11 +155,11 @@ export const CreateProductRequestEntity$outboundSchema: z.ZodType<
   description: z.string().optional(),
   imageUrl: z.string().optional(),
   price: z.number().int(),
-  currency: z.string(),
-  billingType: z.string(),
-  billingPeriod: z.string().optional(),
-  taxMode: z.string().optional(),
-  taxCategory: z.string().optional(),
+  currency: ProductCurrency$outboundSchema,
+  billingType: ProductRequestBillingType$outboundSchema,
+  billingPeriod: ProductRequestBillingPeriod$outboundSchema.optional(),
+  taxMode: TaxMode$outboundSchema.optional(),
+  taxCategory: TaxCategory$outboundSchema.optional(),
   defaultSuccessUrl: z.string().optional(),
   customFields: z.array(CustomFieldRequestEntity$outboundSchema).optional(),
   customField: z.array(CustomFieldRequestEntity$outboundSchema).optional(),

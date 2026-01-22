@@ -37,7 +37,7 @@ export type SubscriptionItemEntity = {
   /**
    * The number of units for the subscription item.
    */
-  units?: number | undefined;
+  units?: number | null | undefined;
 };
 
 /** @internal */
@@ -51,7 +51,7 @@ export const SubscriptionItemEntity$inboundSchema: z.ZodType<
   object: z.string(),
   product_id: z.string().optional(),
   price_id: z.string().optional(),
-  units: z.number().optional(),
+  units: z.nullable(z.number()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "product_id": "productId",
@@ -65,7 +65,7 @@ export type SubscriptionItemEntity$Outbound = {
   object: string;
   product_id?: string | undefined;
   price_id?: string | undefined;
-  units?: number | undefined;
+  units?: number | null | undefined;
 };
 
 /** @internal */
@@ -79,7 +79,7 @@ export const SubscriptionItemEntity$outboundSchema: z.ZodType<
   object: z.string(),
   productId: z.string().optional(),
   priceId: z.string().optional(),
-  units: z.number().optional(),
+  units: z.nullable(z.number()).optional(),
 }).transform((v) => {
   return remap$(v, {
     productId: "product_id",

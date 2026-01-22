@@ -18,6 +18,31 @@ import {
   FeatureEntity$Outbound,
   FeatureEntity$outboundSchema,
 } from "./featureentity.js";
+import {
+  ProductBillingPeriod,
+  ProductBillingPeriod$inboundSchema,
+  ProductBillingPeriod$outboundSchema,
+} from "./productbillingperiod.js";
+import {
+  ProductBillingType,
+  ProductBillingType$inboundSchema,
+  ProductBillingType$outboundSchema,
+} from "./productbillingtype.js";
+import {
+  ProductStatus,
+  ProductStatus$inboundSchema,
+  ProductStatus$outboundSchema,
+} from "./productstatus.js";
+import {
+  TaxCategory,
+  TaxCategory$inboundSchema,
+  TaxCategory$outboundSchema,
+} from "./taxcategory.js";
+import {
+  TaxMode,
+  TaxMode$inboundSchema,
+  TaxMode$outboundSchema,
+} from "./taxmode.js";
 
 export type ProductEntity = {
   /**
@@ -59,23 +84,23 @@ export type ProductEntity = {
   /**
    * Indicates the billing method for the customer. It can either be a `recurring` billing cycle or a `onetime` payment.
    */
-  billingType: string;
+  billingType: ProductBillingType;
   /**
    * Billing period
    */
-  billingPeriod: string;
+  billingPeriod: ProductBillingPeriod;
   /**
    * Status of the product
    */
-  status: string;
+  status: ProductStatus;
   /**
    * Specifies the tax calculation mode for the transaction. If set to "inclusive," the tax is included in the price. If set to "exclusive," the tax is added on top of the price.
    */
-  taxMode: string;
+  taxMode: TaxMode;
   /**
    * Categorizes the type of product or service for tax purposes. This helps determine the applicable tax rules based on the nature of the item or service.
    */
-  taxCategory: string;
+  taxCategory: TaxCategory;
   /**
    * The product page you can redirect your customers to for express checkout.
    */
@@ -109,11 +134,11 @@ export const ProductEntity$inboundSchema: z.ZodType<
   features: z.array(FeatureEntity$inboundSchema).optional(),
   price: z.number(),
   currency: z.string(),
-  billing_type: z.string(),
-  billing_period: z.string(),
-  status: z.string(),
-  tax_mode: z.string(),
-  tax_category: z.string(),
+  billing_type: ProductBillingType$inboundSchema,
+  billing_period: ProductBillingPeriod$inboundSchema,
+  status: ProductStatus$inboundSchema,
+  tax_mode: TaxMode$inboundSchema,
+  tax_category: TaxCategory$inboundSchema,
   product_url: z.string().optional(),
   default_success_url: z.nullable(z.string()).optional(),
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
@@ -168,11 +193,11 @@ export const ProductEntity$outboundSchema: z.ZodType<
   features: z.array(FeatureEntity$outboundSchema).optional(),
   price: z.number(),
   currency: z.string(),
-  billingType: z.string(),
-  billingPeriod: z.string(),
-  status: z.string(),
-  taxMode: z.string(),
-  taxCategory: z.string(),
+  billingType: ProductBillingType$outboundSchema,
+  billingPeriod: ProductBillingPeriod$outboundSchema,
+  status: ProductStatus$outboundSchema,
+  taxMode: TaxMode$outboundSchema,
+  taxCategory: TaxCategory$outboundSchema,
   productUrl: z.string().optional(),
   defaultSuccessUrl: z.nullable(z.string()).optional(),
   createdAt: z.date().transform(v => v.toISOString()),

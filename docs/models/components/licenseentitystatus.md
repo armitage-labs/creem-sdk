@@ -1,6 +1,6 @@
 # LicenseEntityStatus
 
-The current status of the license key.
+The status of the license instance.
 
 ## Example Usage
 
@@ -13,5 +13,5 @@ let value: LicenseEntityStatus = "active";
 ## Values
 
 ```typescript
-"inactive" | "active" | "expired" | "disabled"
+"active" | "deactivated"
 ```
