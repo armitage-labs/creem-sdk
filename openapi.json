@@ -2949,6 +2949,7 @@
             "type": "string",
             "description": "The status of the discount (e.g., active, inactive).",
             "enum": [
+              "deleted",
               "active",
               "draft",
               "expired",
