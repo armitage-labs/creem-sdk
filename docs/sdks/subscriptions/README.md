@@ -9,7 +9,7 @@
 * [update](#update) - Update a subscription.
 * [upgrade](#upgrade) - Upgrade a subscription to a different product
 * [pause](#pause) - Pause a subscription.
-* [resume](#resume) - Resume a paused subscription.
+* [resume](#resume) - Resume a subscription.
 
 ## get
 
@@ -371,7 +371,7 @@ run();
 
 ## resume
 
-Resume a previously paused subscription. Restart billing and restore access to the subscription.
+Resume a subscription. Subscription must be in paused or scheduled_cancel status.
 
 ### Example Usage
 

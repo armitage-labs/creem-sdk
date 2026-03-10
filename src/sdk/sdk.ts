@@ -8,6 +8,7 @@ import { Customers } from "./customers.js";
 import { Discounts } from "./discounts.js";
 import { Licenses } from "./licenses.js";
 import { Products } from "./products.js";
+import { Stats } from "./stats.js";
 import { Subscriptions } from "./subscriptions.js";
 import { Transactions } from "./transactions.js";
 
@@ -45,5 +46,10 @@ export class Creem extends ClientSDK {
   private _transactions?: Transactions;
   get transactions(): Transactions {
     return (this._transactions ??= new Transactions(this._options));
+  }
+
+  private _stats?: Stats;
+  get stats(): Stats {
+    return (this._stats ??= new Stats(this._options));
   }
 }

@@ -13,5 +13,5 @@ let value: DiscountEntityStatus = "active";
 ## Values
 
 ```typescript
-"active" | "draft" | "expired" | "scheduled"
+"deleted" | "active" | "draft" | "expired" | "scheduled"
 ```

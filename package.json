@@ -1,9 +1,10 @@
 {
   "name": "creem",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "author": "Speakeasy",
   "repository": {
-    "url": "https://github.com/armitage-labs/creem-sdk"
+    "type": "git",
+    "url": "https://github.com/armitage-labs/creem-sdk.git"
   },
   "type": "module",
   "bin": {

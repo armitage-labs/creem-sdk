@@ -106,10 +106,10 @@ export class Subscriptions extends ClientSDK {
   }
 
   /**
-   * Resume a paused subscription.
+   * Resume a subscription.
    *
    * @remarks
-   * Resume a previously paused subscription. Restart billing and restore access to the subscription.
+   * Resume a subscription. Subscription must be in paused or scheduled_cancel status.
    */
   async resume(
     id: string,

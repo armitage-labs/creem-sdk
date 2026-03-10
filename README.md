@@ -250,6 +250,10 @@ run();
 * [create](docs/sdks/products/README.md#create) - Creates a new product.
 * [search](docs/sdks/products/README.md#search) - List all products
 
+### [Stats](docs/sdks/stats/README.md)
+
+* [getMetricsSummary](docs/sdks/stats/README.md#getmetricssummary) - Get store metrics summary
+
 ### [Subscriptions](docs/sdks/subscriptions/README.md)
 
 * [get](docs/sdks/subscriptions/README.md#get) - Retrieve a subscription
@@ -257,7 +261,7 @@ run();
 * [update](docs/sdks/subscriptions/README.md#update) - Update a subscription.
 * [upgrade](docs/sdks/subscriptions/README.md#upgrade) - Upgrade a subscription to a different product
 * [pause](docs/sdks/subscriptions/README.md#pause) - Pause a subscription.
-* [resume](docs/sdks/subscriptions/README.md#resume) - Resume a paused subscription.
+* [resume](docs/sdks/subscriptions/README.md#resume) - Resume a subscription.
 
 ### [Transactions](docs/sdks/transactions/README.md)
 
@@ -296,10 +300,11 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`productsCreate`](docs/sdks/products/README.md#create) - Creates a new product.
 - [`productsGet`](docs/sdks/products/README.md#get) - Retrieve a product
 - [`productsSearch`](docs/sdks/products/README.md#search) - List all products
+- [`statsGetMetricsSummary`](docs/sdks/stats/README.md#getmetricssummary) - Get store metrics summary
 - [`subscriptionsCancel`](docs/sdks/subscriptions/README.md#cancel) - Cancel a subscription.
 - [`subscriptionsGet`](docs/sdks/subscriptions/README.md#get) - Retrieve a subscription
 - [`subscriptionsPause`](docs/sdks/subscriptions/README.md#pause) - Pause a subscription.
-- [`subscriptionsResume`](docs/sdks/subscriptions/README.md#resume) - Resume a paused subscription.
+- [`subscriptionsResume`](docs/sdks/subscriptions/README.md#resume) - Resume a subscription.
 - [`subscriptionsUpdate`](docs/sdks/subscriptions/README.md#update) - Update a subscription.
 - [`subscriptionsUpgrade`](docs/sdks/subscriptions/README.md#upgrade) - Upgrade a subscription to a different product
 - [`transactionsGetById`](docs/sdks/transactions/README.md#getbyid) - Get a transaction by ID
