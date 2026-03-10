@@ -1,5 +1,4 @@
 <!-- Start SDK Example Usage [usage] -->
-
 ```typescript
 import { Creem } from "creem";
 
