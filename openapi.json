@@ -593,8 +593,8 @@
     "/v1/subscriptions/{id}/resume": {
       "post": {
         "operationId": "resumeSubscription",
-        "summary": "Resume a paused subscription.",
-        "description": "Resume a previously paused subscription. Restart billing and restore access to the subscription.",
+        "summary": "Resume a subscription.",
+        "description": "Resume a subscription. Subscription must be in paused or scheduled_cancel status.",
         "parameters": [
           {
             "name": "id",
@@ -1163,6 +1163,88 @@
           }
         ]
       }
+    },
+    "/v1/stats/summary": {
+      "get": {
+        "operationId": "getMetricsSummary",
+        "summary": "Get store metrics summary",
+        "description": "Retrieve aggregated store metrics including counts, revenue, and MRR. When startDate and endDate are provided, totals are filtered to that date range. When interval is also provided, the response includes a periods array with time-series data points grouped by that interval. The periods array starts from the store's first transaction or startDate, whichever is later, to avoid empty leading buckets. All monetary amounts are in cents (integer, no decimals).",
+        "parameters": [
+          {
+            "name": "startDate",
+            "required": false,
+            "in": "query",
+            "description": "Start of the date range as a Unix timestamp in milliseconds (e.g. 1740614400000). When provided with endDate, filters totals to this range. Required when interval is specified.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "endDate",
+            "required": false,
+            "in": "query",
+            "description": "End of the date range as a Unix timestamp in milliseconds (e.g. 1772150400000). When provided with startDate, filters totals to this range. Required when interval is specified.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "interval",
+            "required": false,
+            "in": "query",
+            "description": "Groups time-series data into buckets of this size. Requires startDate and endDate. Returns a periods array with one entry per bucket containing grossRevenue and netRevenue.",
+            "schema": {
+              "enum": [
+                "day",
+                "week",
+                "month"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "currency",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "EUR",
+                "USD"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved store metrics summary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatsSummaryEntity"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Invalid input parameters"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or missing API key"
+          },
+          "404": {
+            "description": "Not Found - Resource does not exist"
+          }
+        },
+        "tags": [
+          "Stats"
+        ],
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ]
+      }
     }
   },
   "info": {
@@ -1285,6 +1367,95 @@
           "ebooks"
         ]
       },
+      "CustomFieldType": {
+        "type": "string",
+        "description": "The type of the field.",
+        "enum": [
+          "text",
+          "checkbox"
+        ]
+      },
+      "Text": {
+        "type": "object",
+        "properties": {
+          "max_length": {
+            "type": "number",
+            "description": "Maximum character length constraint for the input.",
+            "nullable": true
+          },
+          "minimum_length": {
+            "type": "number",
+            "description": "Minimum character length requirement for the input.",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "description": "The value of the input.",
+            "nullable": true
+          }
+        }
+      },
+      "Checkbox": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "description": "The markdown text to display for the checkbox.",
+            "nullable": true
+          },
+          "value": {
+            "type": "boolean",
+            "description": "The value of the checkbox (checked or not).",
+            "nullable": true
+          }
+        }
+      },
+      "CustomField": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/CustomFieldType"
+          },
+          "key": {
+            "type": "string",
+            "description": "Unique key for custom field. Must be unique to this field, alphanumeric, and up to 200 characters.",
+            "maxLength": 200
+          },
+          "label": {
+            "type": "string",
+            "description": "The label for the field, displayed to the customer, up to 50 characters",
+            "maxLength": 200
+          },
+          "optional": {
+            "type": "boolean",
+            "description": "Whether the customer is required to complete the field. Defaults to `false`.",
+            "nullable": true
+          },
+          "text": {
+            "description": "Configuration for text field type.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Text"
+              }
+            ]
+          },
+          "checkbox": {
+            "description": "Configuration for checkbox field type.",
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Checkbox"
+              }
+            ]
+          }
+        },
+        "required": [
+          "type",
+          "key",
+          "label"
+        ]
+      },
       "ProductEntity": {
         "type": "object",
         "properties": {
@@ -1359,6 +1530,14 @@
             "description": "The URL to which the user will be redirected after successfull payment.",
             "example": "https://example.com/?status=successful",
             "nullable": true
+          },
+          "custom_fields": {
+            "description": "Custom fields configured for the product. Collect additional information from your customer during checkout.",
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomField"
+            }
           },
           "created_at": {
             "format": "date-time",
@@ -2273,95 +2452,6 @@
           "updated_at"
         ]
       },
-      "CustomFieldType": {
-        "type": "string",
-        "description": "The type of the field.",
-        "enum": [
-          "text",
-          "checkbox"
-        ]
-      },
-      "Text": {
-        "type": "object",
-        "properties": {
-          "max_length": {
-            "type": "number",
-            "description": "Maximum character length constraint for the input.",
-            "nullable": true
-          },
-          "minimum_length": {
-            "type": "number",
-            "description": "Minimum character length requirement for the input.",
-            "nullable": true
-          },
-          "value": {
-            "type": "string",
-            "description": "The value of the input.",
-            "nullable": true
-          }
-        }
-      },
-      "Checkbox": {
-        "type": "object",
-        "properties": {
-          "label": {
-            "type": "string",
-            "description": "The markdown text to display for the checkbox.",
-            "nullable": true
-          },
-          "value": {
-            "type": "boolean",
-            "description": "The value of the checkbox (checked or not).",
-            "nullable": true
-          }
-        }
-      },
-      "CustomField": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "$ref": "#/components/schemas/CustomFieldType"
-          },
-          "key": {
-            "type": "string",
-            "description": "Unique key for custom field. Must be unique to this field, alphanumeric, and up to 200 characters.",
-            "maxLength": 200
-          },
-          "label": {
-            "type": "string",
-            "description": "The label for the field, displayed to the customer, up to 50 characters",
-            "maxLength": 200
-          },
-          "optional": {
-            "type": "boolean",
-            "description": "Whether the customer is required to complete the field. Defaults to `false`.",
-            "nullable": true
-          },
-          "text": {
-            "description": "Configuration for text field type.",
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Text"
-              }
-            ]
-          },
-          "checkbox": {
-            "description": "Configuration for checkbox field type.",
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Checkbox"
-              }
-            ]
-          }
-        },
-        "required": [
-          "type",
-          "key",
-          "label"
-        ]
-      },
       "FeatureFileEntity": {
         "type": "object",
         "properties": {
@@ -3062,6 +3152,157 @@
         "required": [
           "items",
           "pagination"
+        ]
+      },
+      "StatsMetricTotalsEntity": {
+        "type": "object",
+        "properties": {
+          "totalProducts": {
+            "type": "number",
+            "description": "Total number of products in the store",
+            "example": 12
+          },
+          "totalSubscriptions": {
+            "type": "number",
+            "description": "Total number of subscriptions within the queried date range",
+            "example": 48
+          },
+          "totalCustomers": {
+            "type": "number",
+            "description": "Total number of customers within the queried date range",
+            "example": 35
+          },
+          "totalPayments": {
+            "type": "number",
+            "description": "Total number of payments within the queried date range",
+            "example": 62
+          },
+          "activeSubscriptions": {
+            "type": "number",
+            "description": "Number of currently active subscriptions",
+            "example": 21
+          },
+          "totalRevenue": {
+            "type": "number",
+            "description": "Total gross revenue in cents within the queried date range",
+            "example": 553939
+          },
+          "totalNetRevenue": {
+            "type": "number",
+            "description": "Total net revenue in cents within the queried date range (after fees and taxes)",
+            "example": 478094
+          },
+          "netMonthlyRecurringRevenue": {
+            "type": "number",
+            "description": "Net monthly recurring revenue in cents (after estimated fees)",
+            "example": 89500
+          },
+          "monthlyRecurringRevenue": {
+            "type": "number",
+            "description": "Gross monthly recurring revenue in cents",
+            "example": 94200
+          }
+        },
+        "required": [
+          "totalProducts",
+          "totalSubscriptions",
+          "totalCustomers",
+          "totalPayments",
+          "activeSubscriptions",
+          "totalRevenue",
+          "totalNetRevenue",
+          "netMonthlyRecurringRevenue",
+          "monthlyRecurringRevenue"
+        ]
+      },
+      "StatsMetricPeriodEntity": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "number",
+            "description": "Start of the period as a Unix timestamp in milliseconds (e.g. Monday of that week for weekly intervals)",
+            "example": 1765152000000
+          },
+          "grossRevenue": {
+            "type": "number",
+            "description": "Gross revenue in cents for this period",
+            "example": 125958
+          },
+          "netRevenue": {
+            "type": "number",
+            "description": "Net revenue in cents for this period (after fees and taxes)",
+            "example": 122173
+          }
+        },
+        "required": [
+          "timestamp",
+          "grossRevenue",
+          "netRevenue"
+        ]
+      },
+      "StatsSummaryEntity": {
+        "type": "object",
+        "properties": {
+          "totals": {
+            "description": "Aggregated totals for the queried date range",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StatsMetricTotalsEntity"
+              }
+            ]
+          },
+          "periods": {
+            "description": "Time-series data points grouped by the requested interval. Only present when interval, startDate, and endDate are provided.",
+            "example": [
+              {
+                "timestamp": 1763337600000,
+                "grossRevenue": 2999,
+                "netRevenue": 2909
+              },
+              {
+                "timestamp": 1763942400000,
+                "grossRevenue": 32989,
+                "netRevenue": 31998
+              },
+              {
+                "timestamp": 1764547200000,
+                "grossRevenue": 47984,
+                "netRevenue": 46542
+              },
+              {
+                "timestamp": 1765152000000,
+                "grossRevenue": 125958,
+                "netRevenue": 122173
+              },
+              {
+                "timestamp": 1765756800000,
+                "grossRevenue": 343968,
+                "netRevenue": 278372
+              },
+              {
+                "timestamp": 1766361600000,
+                "grossRevenue": 0,
+                "netRevenue": 0
+              },
+              {
+                "timestamp": 1766966400000,
+                "grossRevenue": 0,
+                "netRevenue": 0
+              },
+              {
+                "timestamp": 1767571200000,
+                "grossRevenue": 225240,
+                "netRevenue": 192096
+              }
+            ],
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StatsMetricPeriodEntity"
+            }
+          }
+        },
+        "required": [
+          "totals"
         ]
       }
     }
