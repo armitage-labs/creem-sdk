@@ -12,9 +12,9 @@ const args = {
 
 export const tool$subscriptionsResume: ToolDefinition<typeof args> = {
   name: "subscriptions-resume",
-  description: `Resume a paused subscription.
+  description: `Resume a subscription.
 
-Resume a previously paused subscription. Restart billing and restore access to the subscription.`,
+Resume a subscription. Subscription must be in paused or scheduled_cancel status.`,
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await subscriptionsResume(

@@ -4,6 +4,7 @@
 
 export * from "./cancelsubscription.js";
 export * from "./deletediscount.js";
+export * from "./getmetricssummary.js";
 export * from "./gettransactionbyid.js";
 export * from "./listcustomers.js";
 export * from "./pausesubscription.js";

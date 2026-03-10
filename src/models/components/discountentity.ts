@@ -18,6 +18,7 @@ import {
  * The status of the discount (e.g., active, inactive).
  */
 export const DiscountEntityStatus = {
+  Deleted: "deleted",
   Active: "active",
   Draft: "draft",
   Expired: "expired",

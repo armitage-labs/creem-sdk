@@ -61,8 +61,9 @@ describe("MCP Server", () => {
     // licenses: activate, deactivate, validate (3)
     // discounts: get, create, delete (3)
     // transactions: getById, search (2)
-    // Total: 22 tools
-    expect(toolRegistrationCalls.length).toBe(22);
+    // stats: getMetricsSummary (1)
+    // Total: 23 tools
+    expect(toolRegistrationCalls.length).toBe(23);
   });
 
   it("should create server with custom server URL", () => {

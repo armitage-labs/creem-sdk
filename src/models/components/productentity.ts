@@ -8,6 +8,12 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
+  CustomField,
+  CustomField$inboundSchema,
+  CustomField$Outbound,
+  CustomField$outboundSchema,
+} from "./customfield.js";
+import {
   EnvironmentMode,
   EnvironmentMode$inboundSchema,
   EnvironmentMode$outboundSchema,
@@ -110,6 +116,10 @@ export type ProductEntity = {
    */
   defaultSuccessUrl?: string | null | undefined;
   /**
+   * Custom fields configured for the product. Collect additional information from your customer during checkout.
+   */
+  customFields?: Array<CustomField> | null | undefined;
+  /**
    * Creation date of the product
    */
   createdAt: Date;
@@ -141,6 +151,7 @@ export const ProductEntity$inboundSchema: z.ZodType<
   tax_category: TaxCategory$inboundSchema,
   product_url: z.string().optional(),
   default_success_url: z.nullable(z.string()).optional(),
+  custom_fields: z.nullable(z.array(CustomField$inboundSchema)).optional(),
   created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
 }).transform((v) => {
@@ -152,6 +163,7 @@ export const ProductEntity$inboundSchema: z.ZodType<
     "tax_category": "taxCategory",
     "product_url": "productUrl",
     "default_success_url": "defaultSuccessUrl",
+    "custom_fields": "customFields",
     "created_at": "createdAt",
     "updated_at": "updatedAt",
   });
@@ -174,6 +186,7 @@ export type ProductEntity$Outbound = {
   tax_category: string;
   product_url?: string | undefined;
   default_success_url?: string | null | undefined;
+  custom_fields?: Array<CustomField$Outbound> | null | undefined;
   created_at: string;
   updated_at: string;
 };
@@ -200,6 +213,7 @@ export const ProductEntity$outboundSchema: z.ZodType<
   taxCategory: TaxCategory$outboundSchema,
   productUrl: z.string().optional(),
   defaultSuccessUrl: z.nullable(z.string()).optional(),
+  customFields: z.nullable(z.array(CustomField$outboundSchema)).optional(),
   createdAt: z.date().transform(v => v.toISOString()),
   updatedAt: z.date().transform(v => v.toISOString()),
 }).transform((v) => {
@@ -211,6 +225,7 @@ export const ProductEntity$outboundSchema: z.ZodType<
     taxCategory: "tax_category",
     productUrl: "product_url",
     defaultSuccessUrl: "default_success_url",
+    customFields: "custom_fields",
     createdAt: "created_at",
     updatedAt: "updated_at",
   });
