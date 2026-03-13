@@ -24,13 +24,20 @@ let value: ProductFeatureEntity = {
     id: "<id>",
     mode: "test",
     object: "<value>",
-    status: "active",
+    status: "disabled",
     key: "ABC123-XYZ456-XYZ456-XYZ456",
     activation: 5,
     activationLimit: 1,
     expiresAt: new Date("2023-09-13T00:00:00Z"),
     createdAt: new Date("2023-09-13T00:00:00Z"),
-    instance: null,
+    instance: {
+      id: "<id>",
+      mode: "test",
+      object: "license-instance",
+      name: "My Customer License Instance",
+      status: "active",
+      createdAt: new Date("2023-09-13T00:00:00Z"),
+    },
   },
 };
 ```
