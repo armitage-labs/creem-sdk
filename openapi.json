@@ -2774,8 +2774,16 @@
             "example": "https://example.com/return",
             "nullable": true
           },
+          "license_keys": {
+            "description": "License keys issued for the order.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LicenseEntity"
+            }
+          },
           "feature": {
-            "description": "Features issued for the order.",
+            "description": "DEPRECATED: Use `license_keys` instead. Features issued for the order.",
+            "deprecated": true,
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ProductFeatureEntity"
