@@ -26,6 +26,12 @@ import {
   EnvironmentMode$outboundSchema,
 } from "./environmentmode.js";
 import {
+  LicenseEntity,
+  LicenseEntity$inboundSchema,
+  LicenseEntity$Outbound,
+  LicenseEntity$outboundSchema,
+} from "./licenseentity.js";
+import {
   OrderEntity,
   OrderEntity$inboundSchema,
   OrderEntity$Outbound,
@@ -133,7 +139,13 @@ export type CheckoutEntity = {
    */
   successUrl?: string | null | undefined;
   /**
-   * Features issued for the order.
+   * License keys issued for the order.
+   */
+  licenseKeys?: Array<LicenseEntity> | undefined;
+  /**
+   * DEPRECATED: Use `license_keys` instead. Features issued for the order.
+   *
+   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
    */
   feature?: Array<ProductFeatureEntity> | undefined;
   /**
@@ -264,6 +276,7 @@ export const CheckoutEntity$inboundSchema: z.ZodType<
   custom_fields: z.array(CustomField$inboundSchema).optional(),
   checkout_url: z.string().optional(),
   success_url: z.nullable(z.string()).optional(),
+  license_keys: z.array(LicenseEntity$inboundSchema).optional(),
   feature: z.array(ProductFeatureEntity$inboundSchema).optional(),
   metadata: z.record(z.any()).optional(),
 }).transform((v) => {
@@ -272,6 +285,7 @@ export const CheckoutEntity$inboundSchema: z.ZodType<
     "custom_fields": "customFields",
     "checkout_url": "checkoutUrl",
     "success_url": "successUrl",
+    "license_keys": "licenseKeys",
   });
 });
 /** @internal */
@@ -289,6 +303,7 @@ export type CheckoutEntity$Outbound = {
   custom_fields?: Array<CustomField$Outbound> | undefined;
   checkout_url?: string | undefined;
   success_url?: string | null | undefined;
+  license_keys?: Array<LicenseEntity$Outbound> | undefined;
   feature?: Array<ProductFeatureEntity$Outbound> | undefined;
   metadata?: { [k: string]: any } | undefined;
 };
@@ -313,6 +328,7 @@ export const CheckoutEntity$outboundSchema: z.ZodType<
   customFields: z.array(CustomField$outboundSchema).optional(),
   checkoutUrl: z.string().optional(),
   successUrl: z.nullable(z.string()).optional(),
+  licenseKeys: z.array(LicenseEntity$outboundSchema).optional(),
   feature: z.array(ProductFeatureEntity$outboundSchema).optional(),
   metadata: z.record(z.any()).optional(),
 }).transform((v) => {
@@ -321,6 +337,7 @@ export const CheckoutEntity$outboundSchema: z.ZodType<
     customFields: "custom_fields",
     checkoutUrl: "checkout_url",
     successUrl: "success_url",
+    licenseKeys: "license_keys",
   });
 });
 
