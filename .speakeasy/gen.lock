@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 091f072e-89b5-4c97-b605-63f1bf64ee97
 management:
-  docChecksum: 18f06b0244f527bd94e07cdb0f857c58
+  docChecksum: bc859c96a7bcbf4c8af18bc25078c235
   docVersion: v1
-  speakeasyVersion: 1.753.0
-  generationVersion: 2.862.0
-  releaseVersion: 1.4.2
-  configChecksum: cc78ce802a1b3549c267b7c8ce130b22
+  speakeasyVersion: 1.755.1
+  generationVersion: 2.865.2
+  releaseVersion: 1.4.3
+  configChecksum: 43842679837171c58bf31aedf5e1370c
   repoURL: https://github.com/armitage-labs/creem-sdk.git
   installationURL: https://github.com/armitage-labs/creem-sdk
   published: true
@@ -274,6 +274,8 @@ trackedFiles:
     id: a3e9d39a5879
     last_write_checksum: sha1:3223b5268f77b9c939a59a5663ff8bc7ebbfa5df
     pristine_git_object: 511c90d69614f263f009aa87c87d29589f1c9883
+  docs/models/components/subscriptionlistentity.md:
+    last_write_checksum: sha1:039a65159a23188c116967ca364fded87330a7b9
   docs/models/components/subscriptionstatus.md:
     last_write_checksum: sha1:2feb0929d0974010c60dec64f88b50eb8c50d536
   docs/models/components/taxcategory.md:
@@ -378,6 +380,8 @@ trackedFiles:
     id: c2b3f4ec5379
     last_write_checksum: sha1:37a6c22e12a52c8ac6e5db63c25fd60708e248a7
     pristine_git_object: c4a6570893311b03895aac22542931ccc3859c41
+  docs/models/operations/searchsubscriptionsrequest.md:
+    last_write_checksum: sha1:6aa13a2937d2a8b4f4e729e43f9e045603d6f201
   docs/models/operations/searchtransactionsrequest.md:
     id: 2bb8a7f7a3c8
     last_write_checksum: sha1:54b4dc3068e187de34e72603ef325f411424bcd0
@@ -414,7 +418,7 @@ trackedFiles:
     last_write_checksum: sha1:d643afa689ebee3c54836eda9cfb53ee5e2f5c45
   docs/sdks/subscriptions/README.md:
     id: 298b9ab3c3e0
-    last_write_checksum: sha1:7ebce76857324f8313986d34914e6aae0e3f9de1
+    last_write_checksum: sha1:b4ab7b0ac25bed3122bfb97dc2a39b2bdb20453e
     pristine_git_object: ee93e52a2de62da609c4b3736e97595520fdcba4
   docs/sdks/transactions/README.md:
     id: 85592abe3c6b
@@ -440,11 +444,11 @@ trackedFiles:
     last_write_checksum: sha1:f365e8683dec3c0eb457d1863badea30ebd4b76d
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:835b81381ede4c75231f68a75df13b0943bdff7a
+    last_write_checksum: sha1:0563e064c1b409fab8b1029886ab76cd30f7ee66
     pristine_git_object: e5888a4c7af0aee5100b8d817f757e0d44eddad1
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:114a91ad021b27aea8ab53e593d44bd9f4501932
+    last_write_checksum: sha1:d9ee09930caacfbefcf36708d5c00e3934a72e05
     pristine_git_object: 4904751d275b1cbba4d414fee5ca96961af59a8c
   src/core.ts:
     id: f431fdbcd144
@@ -488,6 +492,8 @@ trackedFiles:
     last_write_checksum: sha1:150c9054152d0826dd17ea0e99790ea8b33449cc
   src/funcs/subscriptionsResume.ts:
     last_write_checksum: sha1:8a1c722cc401ac94da99d7a11239d06e2c4fd4bc
+  src/funcs/subscriptionsSearchSubscriptions.ts:
+    last_write_checksum: sha1:d89302a5bfdc4b01aabdfba01ed981cbe866d01f
   src/funcs/subscriptionsUpdate.ts:
     last_write_checksum: sha1:f3f174fe894d9ac284fab7a2a99b46b439599439
   src/funcs/subscriptionsUpgrade.ts:
@@ -518,7 +524,7 @@ trackedFiles:
     pristine_git_object: 0aebd8b0a4867e35cb3348fc52921c3c0b4725b7
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:2cd308d3094b6ebe28485c70d1703bf108f2d301
+    last_write_checksum: sha1:09d2b3e42370d3afcaaf02977c36e778b84d8fac
     pristine_git_object: 21c35be9d8c1ab94c37377361515b326d654872b
   src/lib/dlv.ts:
     id: b1988214835a
@@ -602,7 +608,7 @@ trackedFiles:
     pristine_git_object: 0955a573c2ce989d63c737410ab8cc28706d9f74
   src/mcp-server/mcp-server.ts:
     id: aabbc4ab07c1
-    last_write_checksum: sha1:754e7bb91abbe95b73589313c039081b93c30271
+    last_write_checksum: sha1:7568c824be0115cb35240e2dfcbb0ed459a547d5
     pristine_git_object: 4153fdc4ac7a39fd057e811c809b67b84b86cb9b
   src/mcp-server/prompts.ts:
     id: 26f3d73cbf31
@@ -618,7 +624,7 @@ trackedFiles:
     pristine_git_object: c25696d4c4f70e081fa5d87ad6891874c509a577
   src/mcp-server/server.ts:
     id: 2784dd48e82a
-    last_write_checksum: sha1:b17a3d2d3fd240f90814383d982762219f0ed99c
+    last_write_checksum: sha1:49ae4c195f99b5c6ecbf12666f87bb55d5873622
     pristine_git_object: 93c59790bc4d517a18cdd7e83fe3a2dceffda1c5
   src/mcp-server/shared.ts:
     id: 074e80d4be1e
@@ -666,6 +672,8 @@ trackedFiles:
     last_write_checksum: sha1:6b48acda5e7afdddebaa1677355043aafe0c91b4
   src/mcp-server/tools/subscriptionsResume.ts:
     last_write_checksum: sha1:411a3ff4dddfb1aa7a595178a340c55bd55b49b2
+  src/mcp-server/tools/subscriptionsSearchSubscriptions.ts:
+    last_write_checksum: sha1:8fb1d1ade8958c89bf2c3cb90ebe89a053a16eff
   src/mcp-server/tools/subscriptionsUpdate.ts:
     last_write_checksum: sha1:edbe85067cec5abab3fb080da8e2a4b5910edfee
   src/mcp-server/tools/subscriptionsUpgrade.ts:
@@ -754,7 +762,7 @@ trackedFiles:
     last_write_checksum: sha1:3559b9f220abdc49f90a65c44b761bdce790927c
   src/models/components/index.ts:
     id: 0aa842dce54d
-    last_write_checksum: sha1:3d3f2cf3e39614c0bc06e405b37534050c1dda1b
+    last_write_checksum: sha1:fb804a9b87e89dbdc71b17ec76e78875f2669c81
     pristine_git_object: 1087c422faa5594a8ec19160f7299d1afeeee9a4
   src/models/components/licenseentity.ts:
     id: 233af4f00429
@@ -818,6 +826,8 @@ trackedFiles:
     id: ab7f5c1e62c5
     last_write_checksum: sha1:12bae76a59baf5c55ad394a71e4ecc916ce8f706
     pristine_git_object: f9b278dd401d43c63ba708f0b8b5333883fcb53a
+  src/models/components/subscriptionlistentity.ts:
+    last_write_checksum: sha1:ea3011904387a584ff72bdc37973b9803641a1f6
   src/models/components/subscriptionstatus.ts:
     last_write_checksum: sha1:b14d0001a4f9388623b726b82eab87431274f990
   src/models/components/taxcategory.ts:
@@ -894,7 +904,7 @@ trackedFiles:
     pristine_git_object: 8bb83e0a5f1efcbc99fe37b658f3884459dcbd72
   src/models/operations/index.ts:
     id: 0d9ffaf774d2
-    last_write_checksum: sha1:3ab3cf1dc1eac893b2fc7c924beeee3fa320706c
+    last_write_checksum: sha1:c6d802d47797e687509f5de875aa19d737ce456b
     pristine_git_object: b913dce8f9e69774c040f831d83754a78616264a
   src/models/operations/listcustomers.ts:
     id: fa5992922803
@@ -932,6 +942,8 @@ trackedFiles:
     id: f7be5bc8e0b2
     last_write_checksum: sha1:c4697e83ad1bcd6f86711d00ad63fe7bb54f27ef
     pristine_git_object: 5d883473b6467b12b60da14f420290d986808496
+  src/models/operations/searchsubscriptions.ts:
+    last_write_checksum: sha1:53cbed11d76517b318d217735ad2ff39e3f3aaa7
   src/models/operations/searchtransactions.ts:
     id: 9e0cf81e2211
     last_write_checksum: sha1:04f35e081b134b21508f4adf5e09f1c18f601f0e
@@ -976,7 +988,7 @@ trackedFiles:
     last_write_checksum: sha1:881eed039b3ccc6e856ffb87caf7d988affc74f3
   src/sdk/subscriptions.ts:
     id: fb904d08fb20
-    last_write_checksum: sha1:5cf9d67b54d2232bc0ae07cc85941b4a1599d7af
+    last_write_checksum: sha1:711345785521403c04b5427f168fd1272c3e3ca1
     pristine_git_object: f6b11f119bb5a545a1672797f1d487b52ddcfcb6
   src/sdk/transactions.ts:
     id: bcd7a9b32ed7
@@ -1483,12 +1495,20 @@ examples:
       responses:
         "200":
           application/json: {"totals": {"totalProducts": 12, "totalSubscriptions": 48, "totalCustomers": 35, "totalPayments": 62, "activeSubscriptions": 21, "totalRevenue": 553939, "totalNetRevenue": 478094, "netMonthlyRecurringRevenue": 89500, "monthlyRecurringRevenue": 94200}, "periods": [{"timestamp": 1763337600000, "grossRevenue": 2999, "netRevenue": 2909}, {"timestamp": 1763942400000, "grossRevenue": 32989, "netRevenue": 31998}, {"timestamp": 1764547200000, "grossRevenue": 47984, "netRevenue": 46542}, {"timestamp": 1765152000000, "grossRevenue": 125958, "netRevenue": 122173}, {"timestamp": 1765756800000, "grossRevenue": 343968, "netRevenue": 278372}, {"timestamp": 1766361600000, "grossRevenue": 0, "netRevenue": 0}, {"timestamp": 1766966400000, "grossRevenue": 0, "netRevenue": 0}, {"timestamp": 1767571200000, "grossRevenue": 225240, "netRevenue": 192096}]}
+  searchSubscriptions:
+    speakeasy-default-search-subscriptions:
+      parameters:
+        query:
+          page_number: 1
+          page_size: 10
+      responses:
+        "200":
+          application/json: {"items": [], "pagination": {"total_records": 0, "total_pages": 0, "current_page": 1, "next_page": 2, "prev_page": null}}
 examplesVersion: 1.0.2
 generatedTests: {}
 releaseNotes: |
   ## Typescript SDK Changes:
-  * `creem.checkouts.retrieve()`:  `response.licenseKeys` **Added**
-  * `creem.checkouts.create()`:  `response.licenseKeys` **Added**
+  * `creem.subscriptions.searchSubscriptions()`: **Added**
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json

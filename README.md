@@ -262,6 +262,7 @@ run();
 * [upgrade](docs/sdks/subscriptions/README.md#upgrade) - Upgrade a subscription to a different product
 * [pause](docs/sdks/subscriptions/README.md#pause) - Pause a subscription.
 * [resume](docs/sdks/subscriptions/README.md#resume) - Resume a subscription.
+* [searchSubscriptions](docs/sdks/subscriptions/README.md#searchsubscriptions) - List all subscriptions
 
 ### [Transactions](docs/sdks/transactions/README.md)
 
@@ -305,6 +306,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`subscriptionsGet`](docs/sdks/subscriptions/README.md#get) - Retrieve a subscription
 - [`subscriptionsPause`](docs/sdks/subscriptions/README.md#pause) - Pause a subscription.
 - [`subscriptionsResume`](docs/sdks/subscriptions/README.md#resume) - Resume a subscription.
+- [`subscriptionsSearchSubscriptions`](docs/sdks/subscriptions/README.md#searchsubscriptions) - List all subscriptions
 - [`subscriptionsUpdate`](docs/sdks/subscriptions/README.md#update) - Update a subscription.
 - [`subscriptionsUpgrade`](docs/sdks/subscriptions/README.md#upgrade) - Upgrade a subscription to a different product
 - [`transactionsGetById`](docs/sdks/transactions/README.md#getbyid) - Get a transaction by ID
