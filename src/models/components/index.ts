@@ -48,6 +48,7 @@ export * from "./statssummaryentity.js";
 export * from "./subscriptioncollectionmethod.js";
 export * from "./subscriptionentity.js";
 export * from "./subscriptionitementity.js";
+export * from "./subscriptionlistentity.js";
 export * from "./subscriptionstatus.js";
 export * from "./taxcategory.js";
 export * from "./taxmode.js";

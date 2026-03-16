@@ -15,6 +15,7 @@ export * from "./retrievediscount.js";
 export * from "./retrieveproduct.js";
 export * from "./retrievesubscription.js";
 export * from "./searchproducts.js";
+export * from "./searchsubscriptions.js";
 export * from "./searchtransactions.js";
 export * from "./updatesubscription.js";
 export * from "./upgradesubscription.js";
