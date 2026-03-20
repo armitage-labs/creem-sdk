@@ -66,6 +66,7 @@ let value: CheckoutEntity = {
       id: "<id>",
       mode: "prod",
       object: "<value>",
+      productId: "prod_abc123",
       status: "expired",
       key: "ABC123-XYZ456-XYZ456-XYZ456",
       activation: 5,

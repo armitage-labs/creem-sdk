@@ -24,6 +24,7 @@ let value: ProductFeatureEntity = {
     id: "<id>",
     mode: "test",
     object: "<value>",
+    productId: "prod_abc123",
     status: "disabled",
     key: "ABC123-XYZ456-XYZ456-XYZ456",
     activation: 5,
