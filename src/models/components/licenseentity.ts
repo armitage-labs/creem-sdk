@@ -75,6 +75,10 @@ export type LicenseEntity = {
    */
   object: string;
   /**
+   * The ID of the product this license belongs to.
+   */
+  productId: string;
+  /**
    * The current status of the license key.
    */
   status: LicenseStatus;
@@ -180,6 +184,7 @@ export const LicenseEntity$inboundSchema: z.ZodType<
   id: z.string(),
   mode: EnvironmentMode$inboundSchema,
   object: z.string(),
+  product_id: z.string(),
   status: LicenseStatus$inboundSchema,
   key: z.string(),
   activation: z.number(),
@@ -191,6 +196,7 @@ export const LicenseEntity$inboundSchema: z.ZodType<
   instance: z.nullable(z.lazy(() => Instance$inboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
+    "product_id": "productId",
     "activation_limit": "activationLimit",
     "expires_at": "expiresAt",
     "created_at": "createdAt",
@@ -201,6 +207,7 @@ export type LicenseEntity$Outbound = {
   id: string;
   mode: string;
   object: string;
+  product_id: string;
   status: string;
   key: string;
   activation: number;
@@ -219,6 +226,7 @@ export const LicenseEntity$outboundSchema: z.ZodType<
   id: z.string(),
   mode: EnvironmentMode$outboundSchema,
   object: z.string(),
+  productId: z.string(),
   status: LicenseStatus$outboundSchema,
   key: z.string(),
   activation: z.number(),
@@ -228,6 +236,7 @@ export const LicenseEntity$outboundSchema: z.ZodType<
   instance: z.nullable(z.lazy(() => Instance$outboundSchema)).optional(),
 }).transform((v) => {
   return remap$(v, {
+    productId: "product_id",
     activationLimit: "activation_limit",
     expiresAt: "expires_at",
     createdAt: "created_at",

@@ -101,6 +101,10 @@ export type LicenseKey = {
    */
   object: string;
   /**
+   * The ID of the product this license belongs to.
+   */
+  productId: string;
+  /**
    * The current status of the license key.
    */
   status: LicenseStatus;
@@ -192,6 +196,10 @@ export type License = {
    * A string representing the object’s type. Objects of the same type share the same value.
    */
   object: string;
+  /**
+   * The ID of the product this license belongs to.
+   */
+  productId: string;
   /**
    * The current status of the license key.
    */
@@ -369,6 +377,7 @@ export const LicenseKey$inboundSchema: z.ZodType<
   id: z.string(),
   mode: EnvironmentMode$inboundSchema,
   object: z.string(),
+  product_id: z.string(),
   status: LicenseStatus$inboundSchema,
   key: z.string(),
   activation: z.number(),
@@ -381,6 +390,7 @@ export const LicenseKey$inboundSchema: z.ZodType<
     .optional(),
 }).transform((v) => {
   return remap$(v, {
+    "product_id": "productId",
     "activation_limit": "activationLimit",
     "expires_at": "expiresAt",
     "created_at": "createdAt",
@@ -391,6 +401,7 @@ export type LicenseKey$Outbound = {
   id: string;
   mode: string;
   object: string;
+  product_id: string;
   status: string;
   key: string;
   activation: number;
@@ -409,6 +420,7 @@ export const LicenseKey$outboundSchema: z.ZodType<
   id: z.string(),
   mode: EnvironmentMode$outboundSchema,
   object: z.string(),
+  productId: z.string(),
   status: LicenseStatus$outboundSchema,
   key: z.string(),
   activation: z.number(),
@@ -420,6 +432,7 @@ export const LicenseKey$outboundSchema: z.ZodType<
   ).optional(),
 }).transform((v) => {
   return remap$(v, {
+    productId: "product_id",
     activationLimit: "activation_limit",
     expiresAt: "expires_at",
     createdAt: "created_at",
@@ -519,6 +532,7 @@ export const License$inboundSchema: z.ZodType<License, z.ZodTypeDef, unknown> =
     id: z.string(),
     mode: EnvironmentMode$inboundSchema,
     object: z.string(),
+    product_id: z.string(),
     status: LicenseStatus$inboundSchema,
     key: z.string(),
     activation: z.number(),
@@ -534,6 +548,7 @@ export const License$inboundSchema: z.ZodType<License, z.ZodTypeDef, unknown> =
     ).optional(),
   }).transform((v) => {
     return remap$(v, {
+      "product_id": "productId",
       "activation_limit": "activationLimit",
       "expires_at": "expiresAt",
       "created_at": "createdAt",
@@ -544,6 +559,7 @@ export type License$Outbound = {
   id: string;
   mode: string;
   object: string;
+  product_id: string;
   status: string;
   key: string;
   activation: number;
@@ -562,6 +578,7 @@ export const License$outboundSchema: z.ZodType<
   id: z.string(),
   mode: EnvironmentMode$outboundSchema,
   object: z.string(),
+  productId: z.string(),
   status: LicenseStatus$outboundSchema,
   key: z.string(),
   activation: z.number(),
@@ -573,6 +590,7 @@ export const License$outboundSchema: z.ZodType<
   ).optional(),
 }).transform((v) => {
   return remap$(v, {
+    productId: "product_id",
     activationLimit: "activation_limit",
     expiresAt: "expires_at",
     createdAt: "created_at",
