@@ -16,6 +16,7 @@ jobs:
   publish:
     uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-publish.yaml@v15
     with:
+      pnpm_version: "10.16.0"
       target: creem
     secrets:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
